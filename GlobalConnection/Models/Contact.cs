@@ -1,4 +1,7 @@
-﻿namespace GlobalConnection.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
+
+namespace GlobalConnection.Models;
 public class Contact
 {
     public int ContactId { get; set; }

@@ -434,4 +434,4 @@ And finally a project which uses Entity Framework which is another console proje
 
 ## Source code
 
-Clone the following GitHub repository.
+Clone the following [GitHub repository](https://github.com/karenpayneoregon/sql-basics).

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GlobalConnection.Classes;
+﻿namespace GlobalConnection.Classes;
 public class SqlStatements
 {
+    public static string CategoryShort() 
+        => "SELECT CategoryID,CategoryName FROM dbo.Categories;";
+
     public static string ContactDemo() =>
         """
         SELECT  ContactId,
@@ -41,4 +38,36 @@ public class SqlStatements
                 WHERE (C.CountryIdentifier = @CountryIdentifier)
                       AND (C.ContactTypeIdentifier = @ContactTypeIdentifier);
                 """;
+
+    public static string ProductsCategories() =>
+        """
+        SELECT 
+            ProductID, 
+            ProductName, 
+            p.CategoryID, 
+            QuantityPerUnit,
+            CategoryName 
+        FROM Products p 
+            INNER JOIN Categories c 
+                ON p.CategoryID = c.CategoryID
+        """;
+
+    public static string ProductsSelect() => """
+        SELECT ProductID,
+               ProductName,
+               SupplierID,
+               Products.CategoryID,
+               QuantityPerUnit,
+               UnitPrice,
+               UnitsInStock,
+               UnitsOnOrder,
+               ReorderLevel,
+               Discontinued,
+               DiscontinuedDate,
+               Categories.CategoryID,
+               CategoryName
+        FROM dbo.Products
+            INNER JOIN dbo.Categories
+                ON Products.CategoryID = Categories.CategoryID;
+        """;
 }

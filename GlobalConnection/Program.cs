@@ -1,6 +1,8 @@
 ﻿using System.Data;
 using Dapper;
 using DbPeekQueryLibrary.LanguageExtensions;
+using Dommel;
+
 using GlobalConnection.Classes;
 using GlobalConnection.Models;
 using Microsoft.Data.SqlClient;
@@ -10,15 +12,51 @@ namespace GlobalConnection;
 
 internal class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
+        await Task.Delay(0);
         //Playground1("Roel's");
         //Playground1DataTable(20);
-        Playground1Dapper(20);
+        //Playground1Dapper(20);
         //Playground2(8,7);
         //Playground3(8,7);
         //Playground4(8,7);
+        //var contacts = await DapperDommelGetContacts();
+        //var owners = await DapperDommelGetContactsOwners();
+        
+        await OneToManyRelationships();
+
+
         Console.ReadLine();
+    }
+
+    /// <summary>
+    /// Group <see cref="Product"/> by <see cref="Category"/>
+    /// </summary>
+    private static async Task OneToManyRelationships()
+    {
+        
+        var catDictionary = await Operations.CatDictionary();
+        var products = await DapperGetProductsWithCategory();
+        products = products.OrderBy(p => p.Category.CategoryName).ToList();
+
+        var productsGrouped = products
+            .GroupBy(product => product.Category.CategoryID)
+            .Select(grp => new CategoryGroup(grp.Key, grp.ToList()))
+            .ToList();
+
+        foreach (var item in productsGrouped)
+        {
+            // show category name
+            Console.WriteLine(catDictionary[item.Id]);
+
+            // display each product for current category
+            foreach (var product in item.List.OrderBy(x => x.ProductName))
+            {
+                Console.WriteLine($"    {product.ProductName,-40}");
+
+            }
+        }
     }
 
     static void UsingGlobalConnection()
@@ -222,4 +260,36 @@ internal class Program
         return list;
     }
 
+    public static async Task<List<Contact>> DapperDommelGetContacts()
+    {
+        await using SqlConnection cn = new(ConnectionString());
+        var contacts = await cn.GetAllAsync<Contact>();
+        return contacts.ToList();
+    }
+
+    public static async Task<List<Contact>> DapperDommelGetContactsOwners()
+    {
+        await using SqlConnection cn = new(ConnectionString());
+        
+        var contacts = await cn.SelectAsync<Contact>(c =>  
+            c.ContactTypeIdentifier == 7);
+
+        return contacts.ToList();
+    }
+
+    public static async Task<List<Product>> DapperGetProductsWithCategory()
+    {
+        await using SqlConnection cn = new(ConnectionString());
+        
+        var products = await cn.QueryAsync<Product, Category, Product>(
+            SqlStatements.ProductsCategories(), (product, category) => {
+                product.Category = category;
+                product.CategoryID = category.CategoryID;
+                return product;
+            },
+            splitOn: "CategoryId");
+
+        return products.ToList();
+
+    }
 }

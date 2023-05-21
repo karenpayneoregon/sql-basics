@@ -9,6 +9,7 @@
 	<ItemGroup>
 		<PackageReference Include="DbPeekQueryLibrary" Version="1.0.1" />
 		<PackageReference Include="Dapper" Version="2.0.123" />
+		<PackageReference Include="Dommel" Version="3.0.0" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
 		<PackageReference Include="ConfigurationLibrary" Version="1.0.4" />
 	</ItemGroup>
