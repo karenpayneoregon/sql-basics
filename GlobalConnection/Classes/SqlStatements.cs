@@ -53,21 +53,20 @@ public class SqlStatements
         """;
 
     public static string ProductsSelect() => """
-        SELECT ProductID,
-               ProductName,
-               SupplierID,
-               Products.CategoryID,
-               QuantityPerUnit,
-               UnitPrice,
-               UnitsInStock,
-               UnitsOnOrder,
-               ReorderLevel,
-               Discontinued,
-               DiscontinuedDate,
-               Categories.CategoryID,
-               CategoryName
-        FROM dbo.Products
-            INNER JOIN dbo.Categories
-                ON Products.CategoryID = Categories.CategoryID;
+        SELECT P.ProductID,
+               P.ProductName,
+               P.SupplierID,
+               P.CategoryID,
+               P.QuantityPerUnit,
+               P.UnitPrice,
+               P.UnitsInStock,
+               P.UnitsOnOrder,
+               P.ReorderLevel,
+               P.Discontinued,
+               P.DiscontinuedDate,
+               C.CategoryName
+        FROM dbo.Products AS P
+            INNER JOIN dbo.Categories AS C
+                ON P.CategoryID = C.CategoryID;
         """;
 }
