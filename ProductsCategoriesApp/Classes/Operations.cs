@@ -118,17 +118,16 @@ public class Operations
 
         await using SqlConnection cn = new(ConnectionString());
 
-        var list = cn.Query<Contacts, ContactType, ContactDevices, PhoneType, Contacts >(
-            SqlStatements.ContactsWithDevicesAndPhoneType(), (contact, contactType, contactDevices, phoneType) =>
+        var parameters = new { @PhoneTypeIdenitfier = 3 };
+        var list = cn.Query<Contacts, ContactType, ContactDevices, PhoneType, Contacts>(
+            SqlStatements.ContactsWithDevicesAndPhoneType(),  (contact, contactType, contactDevices, phoneType) =>
             {
                 contact.ContactTypeIdentifierNavigation = contactType;
                 contact.ContactTypeIdentifier = contactType.ContactTypeIdentifier;
-                //contact.ContactDevices.FirstOrDefault().PhoneTypeIdentifierNavigation = phoneType;
+
 
                 if (phoneType is not null)
                 {
-                    Debug.WriteLine(contact.ContactDevices.Count);
-
                     contact.ContactDevices.Add(new ContactDevices());
                     var device = contact.ContactDevices.FirstOrDefault();
                     device!.PhoneTypeIdentifierNavigation = phoneType;
@@ -136,13 +135,12 @@ public class Operations
                     device.PhoneTypeIdentifier = phoneType.PhoneTypeIdenitfier;
                     device.ContactId = contact.ContactId;
                     device.Contact = contact;
-
                 }
 
 
                 contact.ContactDevices.Add(contactDevices);
                 return contact;
-            }, splitOn: "ContactTypeIdentifier,ContactId,PhoneTypeIdenitfier");
+            },parameters, splitOn: "ContactTypeIdentifier,ContactId,PhoneTypeIdenitfier");
 
 
         return list.ToList();

@@ -129,6 +129,7 @@ public class SqlStatements
                 INNER JOIN dbo.ContactDevices AS CD
                     ON C.ContactId = CD.ContactId
                 INNER JOIN dbo.PhoneType AS PT
-                    ON CD.PhoneTypeIdentifier = PT.PhoneTypeIdenitfier;
+                    ON CD.PhoneTypeIdentifier = PT.PhoneTypeIdenitfier
+            WHERE PT.PhoneTypeIdenitfier = @PhoneTypeIdenitfier
     """;
 }
