@@ -97,7 +97,7 @@ public class SqlStatements
                    C.LastName,
                    C.ContactTypeIdentifier,
                    CT.ContactTitle,
-                   CD.id,
+                   CD.id AS DeviceId,
                    CD.ContactId,
                    CD.PhoneTypeIdentifier,
                    CD.PhoneNumber,
@@ -116,12 +116,12 @@ public class SqlStatements
                    C.LastName,
                    C.ContactTypeIdentifier,
                    CT.ContactTitle,
-                   CD.id,
+                   CD.id AS DeviceId,
                    CD.ContactId,
                    CD.PhoneTypeIdentifier,
                    CD.PhoneNumber,
                    CT.ContactTypeIdentifier,
-                   PT.PhoneTypeIdenitfier,
+                   PT.PhoneTypeIdenitfier AS PhoneTypeIdentifier,
                    PT.PhoneTypeDescription
             FROM dbo.Contacts AS C
                 INNER JOIN dbo.ContactType AS CT
@@ -130,6 +130,6 @@ public class SqlStatements
                     ON C.ContactId = CD.ContactId
                 INNER JOIN dbo.PhoneType AS PT
                     ON CD.PhoneTypeIdentifier = PT.PhoneTypeIdenitfier
-            WHERE PT.PhoneTypeIdenitfier = @PhoneTypeIdenitfier
+            WHERE PT.PhoneTypeIdenitfier = @PhoneTypeIdenitfier;
     """;
 }

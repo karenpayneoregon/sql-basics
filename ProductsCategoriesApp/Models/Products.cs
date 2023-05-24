@@ -49,4 +49,7 @@ public partial class Products
     [ForeignKey("SupplierID")]
     [InverseProperty("Products")]
     public virtual Suppliers Supplier { get; set; }
+
+    public override string ToString() => ProductName;
+
 }

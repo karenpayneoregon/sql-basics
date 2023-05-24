@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace ProductsCategoriesApp.Models;
@@ -28,5 +29,6 @@ public partial class Contacts
     public virtual ContactType ContactTypeIdentifierNavigation { get; set; }
 
     [InverseProperty("Contact")]
+
     public virtual ICollection<Customers> Customers { get; } = new List<Customers>();
 }

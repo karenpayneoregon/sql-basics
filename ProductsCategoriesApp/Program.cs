@@ -1,8 +1,9 @@
-﻿using System.Diagnostics;
+﻿
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using ProductsCategoriesApp.Classes;
 using ProductsCategoriesApp.Data;
+using ProductsCategoriesApp.Models.Projections;
 
 namespace ProductsCategoriesApp;
 
@@ -10,22 +11,25 @@ internal partial class Program
 {
     static async Task Main(string[] args)
     {
-        var results = await Operations.GetContactsWithDevicesPhoneTypeIdentifierNavigation();
-        List<int> identifiers = new List<int>();
-        foreach (var result in results)
+        //await EntityCode();
+        //await Operations.ProductsWithCategories();
+        List<ContactOffice> officeContacts = await Operations.GetContactsForOffice();
+        var test = await Operations.GetContactsAndDevicesSingle();
+
+
+        var json = JsonSerializer.Serialize(officeContacts, new JsonSerializerOptions()
         {
-            //identifiers.Add(result.CustomerIdentifier);
-        }
-        var options = new JsonSerializerOptions { WriteIndented = true };
-        string jsonString = JsonSerializer.Serialize(results, options);
+            MaxDepth = 257,
+            ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles, 
+            WriteIndented = true
+        });
+
         string fileName = "results.json";
         if (File.Exists(fileName))
         {
             File.Delete(fileName);
         }
-        await File.WriteAllTextAsync(fileName, jsonString);
-        var missing = identifiers.Missing();
-
+        await File.WriteAllTextAsync(fileName, json);
 
         //Console.ReadLine();
     }
@@ -36,7 +40,9 @@ internal partial class Program
         var customers = context.Customers
             .Include(c => c.CountryIdentifierNavigation)
             .Include(c => c.Contact)
-            .ThenInclude(c => c.ContactTypeIdentifierNavigation).ToList();
+            .ThenInclude(c => c.ContactDevices)
+            //.ThenInclude(c => c.ContactTypeIdentifierNavigation)
+            .ToList();
     }
 }
 

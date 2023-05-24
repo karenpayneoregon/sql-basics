@@ -4,16 +4,19 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace ProductsCategoriesApp.Models;
 
 [Index("ContactId", Name = "IX_ContactDevices_ContactId")]
 [Index("PhoneTypeIdentifier", Name = "IX_ContactDevices_PhoneTypeIdentifier")]
-public partial class ContactDevices
+public partial class ContactDevices : IEquatable<ContactDevices>
 {
     [Key]
-    public int id { get; set; }
+    [Column("id")]
+    public int DeviceId { get; set; }
 
     public int? ContactId { get; set; }
 
@@ -23,9 +26,14 @@ public partial class ContactDevices
 
     [ForeignKey("ContactId")]
     [InverseProperty("ContactDevices")]
+    [JsonIgnore]
     public virtual Contacts Contact { get; set; }
 
     [ForeignKey("PhoneTypeIdentifier")]
     [InverseProperty("ContactDevices")]
+    [JsonIgnore]
     public virtual PhoneType PhoneTypeIdentifierNavigation { get; set; }
+    public bool Equals(ContactDevices other) => ContactId == other.ContactId;
+
+
 }

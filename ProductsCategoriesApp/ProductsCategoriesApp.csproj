@@ -25,6 +25,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Using Include="ProductsCategoriesApp.Classes.SqlStatements" Alias="SQL" />
+	</ItemGroup>
+	<ItemGroup>
 		<PackageReference Include="Dapper" Version="2.0.123" />
 		<PackageReference Include="Dommel" Version="3.0.0" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />

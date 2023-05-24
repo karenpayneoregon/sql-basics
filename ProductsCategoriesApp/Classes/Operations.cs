@@ -3,8 +3,8 @@ using Dapper;
 using Dommel;
 using Microsoft.Data.SqlClient;
 using ProductsCategoriesApp.Models;
+using ProductsCategoriesApp.Models.Projections;
 using static ConfigurationLibrary.Classes.ConfigurationHelper;
-
 
 namespace ProductsCategoriesApp.Classes;
 public class Operations
@@ -12,26 +12,22 @@ public class Operations
     public static async Task ProductsWithCategories()
     {
         await using SqlConnection cn = new(ConnectionString());
+        var products = await cn.GetAllAsync<Products, Categories, Products>();
 
-        //var product = await product.GetAsync<Products, Categories, Products>(1, (order, line) =>
-        //{
-        //    return order;
-        //});
-        //var products = await cn.GetAllAsync<Products>();
+        foreach (Products product in products)
+        {
+            Console.WriteLine(product.ProductID);
+        }
 
-        //var products = cn.GetAll<Products>();
-        //var product = cn.Get<Products, Categories, Products>(products.First().ProductID);
-        var product = await cn.GetAllAsync<Products, Categories, Products>();
     }
 
     public static async Task<List<Products>> ProductsWithCategoriesAndSuppliers()
     {
         await using SqlConnection cn = new(ConnectionString());
-        var product = await cn.GetAllAsync<Products, Categories, Suppliers, Products>();
-        return product.ToList();
+        var products = await cn.GetAllAsync<Products, Categories, Suppliers, Products>();
+        return products.ToList();
     }
 
-    // works
     public static async Task<List<Customers>> CustomersWithContacts()
     {
         await using SqlConnection cn = new(ConnectionString());
@@ -41,13 +37,12 @@ public class Operations
 
     }
 
-    // works
     public static async Task<List<Customers>> CustomersWithContacts1()
     {
         await using SqlConnection cn = new(ConnectionString());
 
         var list = cn.Query<Customers, Contacts,  Countries, Customers>(
-            SqlStatements.CustomerWithContacts1(), (customers,contacts,  country) =>
+            SQL.CustomerWithContacts1(), (customers,contacts,  country) =>
         {
             customers.Contact = contacts;
             customers.ContactId = contacts.ContactId;
@@ -64,7 +59,7 @@ public class Operations
         await using SqlConnection cn = new(ConnectionString());
 
         var list = cn.Query<Customers, Contacts, ContactType, Countries, Customers>(
-            SqlStatements.CustomerWithContacts2(), (customers, contacts, contactType, country) =>
+            SQL.CustomerWithContacts2(), (customers, contacts, contactType, country) =>
             {
                 customers.Contact = contacts;
                 customers.Contact.ContactTypeIdentifierNavigation = contactType;
@@ -84,7 +79,7 @@ public class Operations
         await using SqlConnection cn = new(ConnectionString());
 
         var list = cn.Query<Contacts, ContactType, Contacts>(
-            SqlStatements.Contacts(), (contact, contactType) =>
+            SQL.Contacts(), (contact, contactType) =>
         {
             contact.ContactTypeIdentifierNavigation = contactType;
             contact.ContactTypeIdentifier = contactType.ContactTypeIdentifier;
@@ -96,11 +91,10 @@ public class Operations
     }
     public static async Task<List<Contacts>> GetContactsWithDevices()
     {
-
         await using SqlConnection cn = new(ConnectionString());
 
         var list = cn.Query<Contacts, ContactType, ContactDevices, Contacts>(
-            SqlStatements.ContactsWithDevices(), (contact, contactType, contactDevices) =>
+            SQL.ContactsWithDevices(), (contact, contactType, contactDevices) =>
             {
                 contact.ContactTypeIdentifierNavigation = contactType;
                 contact.ContactTypeIdentifier = contactType.ContactTypeIdentifier;
@@ -113,36 +107,121 @@ public class Operations
         return list.ToList();
     }
 
-    public static async Task<List<Contacts>> GetContactsWithDevicesPhoneTypeIdentifierNavigation()
+    // Gets back DeviceId
+    public static async Task<List<Contacts>> GetContactsAndDevices()
+    {
+        await using SqlConnection cn = new(ConnectionString());
+
+        var list = cn.Query<Contacts, ContactDevices, Contacts>(
+            SQL.ContactsWithDevices(), (contact,  contactDevices) =>
+            {
+
+                contact.ContactDevices.Add(contactDevices);
+                return contact;
+            }, splitOn: "ContactId,DeviceId");
+
+
+        return list.ToList();
+    }
+    public static async Task<Contacts> GetContactsAndDevicesSingle()
+    {
+        await using SqlConnection cn = new(ConnectionString());
+
+        var list = cn.Query<Contacts, ContactDevices, Contacts>(
+            SQL.ContactsWithDevices(), (contact, contactDevices) =>
+            {
+
+                contact.ContactDevices.Add(contactDevices);
+                return contact;
+            }, splitOn: "ContactId,DeviceId").FirstOrDefault();
+
+
+        return list;
+    }
+    /// <summary>
+    /// Get contacts with an office phone
+    /// </summary>
+    /// <returns></returns>
+    /// <remarks>
+    /// The primary key for <see cref="PhoneType"/> has a typo so with that the following was done
+    /// - In <see cref="PhoneType"/> we alias PhoneTypeIdenitfier to PhoneTypeIdentifier
+    /// - In SqlStatements.ContactsWithDevicesAndPhoneType we also alias PhoneTypeIdenitfier to PhoneTypeIdentifier
+    /// </remarks>
+    public static async Task<List<Contacts>> GetContactsWithOfficePhone()
     {
 
         await using SqlConnection cn = new(ConnectionString());
 
+        // 3 is for office phone
         var parameters = new { @PhoneTypeIdenitfier = 3 };
-        var list = cn.Query<Contacts, ContactType, ContactDevices, PhoneType, Contacts>(
-            SqlStatements.ContactsWithDevicesAndPhoneType(),  (contact, contactType, contactDevices, phoneType) =>
+
+        var list = await cn.QueryAsync<Contacts, ContactType, ContactDevices, PhoneType, Contacts>(
+            SQL.ContactsWithDevicesAndPhoneType(),  
+            (contact, contactType, contactDevices, phoneType) =>
             {
                 contact.ContactTypeIdentifierNavigation = contactType;
                 contact.ContactTypeIdentifier = contactType.ContactTypeIdentifier;
+                contact.ContactDevices.Add(new ContactDevices());
 
+                ContactDevices device = contact.ContactDevices.FirstOrDefault();
+                
+                device!.PhoneTypeIdentifierNavigation = phoneType;
+                device.PhoneNumber = contactDevices.PhoneNumber;
+                device.PhoneTypeIdentifier = phoneType.PhoneTypeIdentifier;
+                device.ContactId = contact.ContactId;
+                device.PhoneTypeIdentifierNavigation = phoneType;
 
-                if (phoneType is not null)
-                {
-                    contact.ContactDevices.Add(new ContactDevices());
-                    var device = contact.ContactDevices.FirstOrDefault();
-                    device!.PhoneTypeIdentifierNavigation = phoneType;
-                    device.PhoneNumber = contactDevices.PhoneNumber;
-                    device.PhoneTypeIdentifier = phoneType.PhoneTypeIdenitfier;
-                    device.ContactId = contact.ContactId;
-                    device.Contact = contact;
-                }
-
-
+                device.Contact = contact;
                 contact.ContactDevices.Add(contactDevices);
+                
                 return contact;
-            },parameters, splitOn: "ContactTypeIdentifier,ContactId,PhoneTypeIdenitfier");
+
+            },
+            parameters, 
+            splitOn: 
+            """
+                ContactTypeIdentifier,
+                ContactId,
+                PhoneTypeIdentifier
+            """);
 
 
+        return list.ToList();
+    }
+    public static async Task<List<ContactOffice>> GetContactsForOffice()
+    {
+        await using SqlConnection cn = new(ConnectionString());
+
+        var parameters = new { @PhoneTypeIdenitfier = (int)DeviceType.Office };
+        var list = await cn.QueryAsync<
+            ContactOffice, 
+            ContactType, ContactDevices, PhoneType, 
+            ContactOffice>(
+            SQL.ContactsWithDevicesAndPhoneType(),
+            (contact, contactType, contactDevices, phoneType) =>
+            {
+                contact.ContactTypeIdentifierNavigation = contactType;
+                contact.ContactTypeIdentifier = contactType.ContactTypeIdentifier;
+                ContactDevices device = contact.OfficeDevice;
+                
+                device.PhoneTypeIdentifierNavigation = phoneType;
+                device.PhoneNumber = contactDevices.PhoneNumber;
+                device.PhoneTypeIdentifier = phoneType.PhoneTypeIdentifier;
+                device.ContactId = contact.ContactId;
+                device.DeviceId = contact.OfficeDevice.DeviceId;
+                device.PhoneTypeIdentifierNavigation = phoneType;
+
+                return contact;
+            },
+            parameters,
+            splitOn:
+            """
+                DeviceId,
+                ContactTypeIdentifier,
+                ContactId,
+                PhoneTypeIdentifier
+            """);
+        
         return list.ToList();
     }
 }
