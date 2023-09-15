@@ -2,6 +2,8 @@
 
 In this article learn how to insert a new record into a SQL-Server database table and after execution of command return the new primary key.
 
+The reason for obtaining the key would be to be able to reference the new record in perhaps a grid/table in an ASP.NET Core page. For performing bulk inserts the new key typically is not needed.
+
 A Windows Form is used rather than a console or other project type as it is easier and clearer to see results
 
 ## Table structure
@@ -154,4 +156,8 @@ Requires [Dapper Plus](https://dapper-plus.net/) to get the new primary key.
 
 ## Source code
 
-Is in this project in a GitHub repository
+Is in this [project](https://github.com/karenpayneoregon/sql-basics/tree/master/InsertNewRecordApp) in a GitHub [repository](https://github.com/karenpayneoregon/sql-basics)
+
+## Before running the project
+
+Run the following [script](https://github.com/karenpayneoregon/sql-basics/blob/master/InsertNewRecordApp/Scripts/databaseCreateScript.sql) to create the required localDb database.
