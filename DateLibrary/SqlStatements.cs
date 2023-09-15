@@ -107,4 +107,14 @@ public class SqlStatements
                 SUBSTRING(PhoneNumber, 1, 3) + '-' + SUBSTRING(PhoneNumber, 4, 3) + '-' + SUBSTRING(PhoneNumber, 7, 4) AS PhoneNumber
          FROM dbo.People;
          """;
+
+    public static string GetProductByName() =>
+        """
+        SELECT ProductID,
+               DiscontinuedDate
+        FROM dbo.Products
+        WHERE ProductName = @ProductName;
+        """;
+
+
 }

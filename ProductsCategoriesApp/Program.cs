@@ -15,14 +15,14 @@ internal partial class Program
         //await Operations.ProductsWithCategories();
         List<ContactOffice> officeContacts = await Operations.GetContactsForOffice();
         var test = await Operations.GetContactsAndDevicesSingle();
-
+        var test1 = await Operations.GetContactsWithOfficePhone();
 
         var json = JsonSerializer.Serialize(officeContacts, new JsonSerializerOptions()
         {
             MaxDepth = 257,
             ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles, 
             WriteIndented = true
-        });
+        }); 
 
         string fileName = "results.json";
         if (File.Exists(fileName))

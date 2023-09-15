@@ -33,8 +33,8 @@ public class SqlOperations
     {
         List<Calendar> list = new();
 
-        using var cn = new SqlConnection(ConnectionString());
-        using var cmd = new SqlCommand { Connection = cn, CommandText = SqlStatements.CalendarByYearMonthDay()};
+        using SqlConnection cn = new(ConnectionString());
+        using SqlCommand cmd = new() { Connection = cn, CommandText = SqlStatements.CalendarByYearMonthDay()};
 
         cmd.Parameters.Add("@CalendarYear", SqlDbType.Int).Value = 2023;
         cmd.Parameters.Add("@CalendarMonth", SqlDbType.Int).Value = 5;
@@ -98,7 +98,7 @@ public class SqlOperations
     /// </summary>
     /// <param name="year"></param>
     /// <param name="month"></param>
-    /// <param name="businessDay"></param>
+    /// <param name="businessDay"></param>s
     /// <param name="dayOfWeek"></param>
     /// <returns></returns>
     public static List<Calendar> GetCalendar3(int year, int month, int businessDay, DayOfWeek dayOfWeek )
@@ -137,7 +137,6 @@ public class SqlOperations
                     Holiday = reader.GetString(10)
                 });
             }
-
         }
 
         return list;
