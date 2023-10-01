@@ -1,5 +1,7 @@
 ﻿#nullable enable
 using GetValuesApp.Classes;
+#pragma warning disable CS8603 // Possible null reference return.
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
 namespace GetValuesApp;
 
@@ -13,7 +15,7 @@ internal partial class Program
         var result = Examples.FindItemOrDefault(persons, "what ever") ?? new List<Person>()
         {
             new Person() { SomeProperty = "No records found"}
-        };
+        }!;
 
         Console.ReadLine();
     }
