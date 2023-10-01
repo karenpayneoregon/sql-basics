@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductsCategoriesApp", "Pr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetValuesApp", "GetValuesApp\GetValuesApp.csproj", "{87DF424C-A48F-44B0-BAD8-812D569EA8EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsertNewRecordApp", "InsertNewRecordApp\InsertNewRecordApp.csproj", "{F88D298D-0AB7-43D3-A9C5-8BBDD754CE74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsertNewRecordApp", "InsertNewRecordApp\InsertNewRecordApp.csproj", "{F88D298D-0AB7-43D3-A9C5-8BBDD754CE74}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubSamples", "NextResultsApp\GitHubSamples.csproj", "{7184F016-B141-4450-9170-51539DC96D4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{F88D298D-0AB7-43D3-A9C5-8BBDD754CE74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F88D298D-0AB7-43D3-A9C5-8BBDD754CE74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F88D298D-0AB7-43D3-A9C5-8BBDD754CE74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7184F016-B141-4450-9170-51539DC96D4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7184F016-B141-4450-9170-51539DC96D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7184F016-B141-4450-9170-51539DC96D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7184F016-B141-4450-9170-51539DC96D4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +90,7 @@ Global
 		{434D1E45-B487-4993-9B96-BDB1DB6EE904} = {890D5B16-1421-4721-BCF8-2C1F6E8642DE}
 		{87DF424C-A48F-44B0-BAD8-812D569EA8EA} = {890D5B16-1421-4721-BCF8-2C1F6E8642DE}
 		{F88D298D-0AB7-43D3-A9C5-8BBDD754CE74} = {3047B01C-561D-4A3F-A8EC-0930332D8A34}
+		{7184F016-B141-4450-9170-51539DC96D4F} = {890D5B16-1421-4721-BCF8-2C1F6E8642DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}
