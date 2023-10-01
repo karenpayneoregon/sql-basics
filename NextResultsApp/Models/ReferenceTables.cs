@@ -1,6 +1,4 @@
-﻿using GitHubSamples.Models;
-
-namespace GitHubSamples.Classes;
+﻿namespace GitHubSamples.Models;
 
 public class ReferenceTables
 {

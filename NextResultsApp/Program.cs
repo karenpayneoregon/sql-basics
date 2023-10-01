@@ -1,4 +1,5 @@
 ﻿using GitHubSamples.Classes;
+using GitHubSamples.Models;
 
 namespace GitHubSamples;
 
