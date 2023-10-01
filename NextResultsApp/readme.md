@@ -250,3 +250,12 @@ internal partial class Program
 ### Example for the Dapper sample
 
 ![x](assets/screen.png)
+
+## Summary
+
+What has been presented can assist with reading two or more reference tables at once without the need for multiple connection and command objects using multiple data readers and best of all for some an introduction into using Dappper.
+
+## Source code
+
+In the following [project](https://github.com/karenpayneoregon/sql-basics/tree/master/NextResultsApp) which can be cloned from the following GitHub [repository](https://github.com/karenpayneoregon/sql-basics).
+
