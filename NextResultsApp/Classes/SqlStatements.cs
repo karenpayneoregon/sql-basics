@@ -10,4 +10,12 @@ internal class SqlStatements
         SELECT ContactTypeIdentifier,ContactTitle FROM dbo.ContactType;
         SELECT CountryIdentifier,[Name] FROM dbo.Countries;
         """;
+
+    /// <summary>
+    /// Read each category primary key and category name
+    /// </summary>
+    public static string GetCategories =>
+        """
+        SELECT CategoryID,CategoryName FROM dbo.Categories;
+        """;
 }

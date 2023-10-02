@@ -7,6 +7,7 @@ internal partial class Program
 {
     static async Task Main(string[] args)
     {
+        await DataOperations.GetCategories();
         await StandardSample();
         await DataSetSample();
         await DapperSample();

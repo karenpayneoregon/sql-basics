@@ -79,6 +79,15 @@ public class DataOperations
         referenceTables.CountriesList = results.Read<Countries>().ToList();
     }
 
+    /// <summary>
+    /// not part of any articles -  left it from a forum question that might be helpful to those learning Dapper
+    /// </summary>
+    public static async Task<IEnumerable<Categories>> GetCategories()
+    {
+        await using SqlConnection cn = new(ConnectionString());
+        return await cn.QueryAsync<Categories>(SqlStatements.GetCategories);
+    }
+
     public static async Task<(bool success, Exception exception, DataSet dataSet)> GetReferenceTablesDataSet()
     {
         DataSet ds = new();
