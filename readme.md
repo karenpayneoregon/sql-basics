@@ -419,6 +419,21 @@ static List<Contact> Playground1Dapper(int top)
 }
 ```
 
+## Multiple Result Sets for SQL-Server
+
+Learn how to read reference table from SQL-Server using a single method. What is shown provides an efficient way to either a connection, command objects to read data via a SqlDataReader for conventional work using methods from SqlClient and also Dapper which requires two lines of code to read data and one line of code to store data into list.
+
+### Goal
+
+To read from three reference table in a modified version of Microsoft NorthWind database, Categories, ContactType and Countries tables.
+
+In all code samples all records are read from each table, in some cases not all records may be needed, simply change the SQL SELECT statement with a WHERE clause. Also, the same goes for columns.
+
+### Project
+
+See [GitHubSamples](https://github.com/karenpayneoregon/sql-basics/tree/master/NextResultsApp) (name came from another of this author's work)
+
+
 ## Provides code samples
 
 There is one console project uses to write all the code samples which appeared in this article. All code is in this project.
