@@ -79,6 +79,22 @@ public class DataOperations
         referenceTables.CountriesList = results.Read<Countries>().ToList();
     }
 
+    public static async Task GetReferenceTablesDapperStoredProcedure(ReferenceTables referenceTables)
+    {
+        await using SqlConnection cn = new(ConnectionString());
+
+        SqlMapper.GridReader results = await cn.QueryMultipleAsync(
+            "usp_SelectCatCountryContactType", 
+            null,
+            null,
+            null,
+            CommandType.StoredProcedure);
+
+        referenceTables.CategoriesList = results.Read<Categories>().ToList();
+        referenceTables.ContactTypesList = results.Read<ContactType>().ToList();
+        referenceTables.CountriesList = results.Read<Countries>().ToList();
+    }
+
     /// <summary>
     /// not part of any articles -  left it from a forum question that might be helpful to those learning Dapper
     /// </summary>

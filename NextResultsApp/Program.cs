@@ -14,6 +14,7 @@ internal partial class Program
         await DataSetSample();
         DataSetSampleForumPost();
         await DapperSample();
+        await DapperSampleStoredProcedure();
 
         AnsiConsole.MarkupLine("[yellow]Press ENTER to exit[/]");
         Console.ReadLine();
@@ -34,6 +35,11 @@ internal partial class Program
         await DataOperations.GetReferenceTablesDapper(referenceTables);
     }
 
+    private static async Task DapperSampleStoredProcedure()
+    {
+        ReferenceTables referenceTables = new();
+        await DataOperations.GetReferenceTablesDapperStoredProcedure(referenceTables);
+    }
     private static async Task DataSetSample()
     {
         var (success, exception, dataSet) = await DataOperations.GetReferenceTablesDataSet();
