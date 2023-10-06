@@ -11,6 +11,14 @@ internal class SqlStatements
         SELECT CountryIdentifier,[Name] FROM dbo.Countries;
         """;
 
+
+    public static string ReferenceTableStatements1 =>
+        @"
+SELECT CategoryID,CategoryName FROM dbo.Categories;
+SELECT ContactTypeIdentifier,ContactTitle FROM dbo.ContactType;
+SELECT CountryIdentifier,[Name] FROM dbo.Countries;
+        ";
+
     /// <summary>
     /// Read each category primary key and category name
     /// </summary>

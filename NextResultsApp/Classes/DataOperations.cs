@@ -112,4 +112,34 @@ public class DataOperations
             return (false, localException, null);
         }
     }
+
+    public static (bool success, Exception exception, DataSet dataSet) GetReferenceTablesDataSet1()
+    {
+
+        DataSet ds = new();
+
+        try
+        {
+            SqlDataAdapter adapter = new();
+
+            using (var cn = new SqlConnection(ConnectionString()))
+            {
+                SqlCommand command = new(SqlStatements.ReferenceTableStatements1, cn);
+                adapter.SelectCommand = command;
+
+                adapter.Fill(ds);
+
+                ds.Tables[0].TableName = "Categories";
+                ds.Tables[1].TableName = "ContactType";
+                ds.Tables[2].TableName = "Countries";
+
+                return ((true, null, ds));
+            }
+
+        }
+        catch (Exception localException)
+        {
+            return ((false, localException, null));
+        }
+    }
 }

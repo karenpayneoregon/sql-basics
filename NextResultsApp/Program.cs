@@ -7,9 +7,12 @@ internal partial class Program
 {
     static async Task Main(string[] args)
     {
+
+
         await DataOperations.GetCategories();
         await StandardSample();
         await DataSetSample();
+        DataSetSampleForumPost();
         await DapperSample();
 
         AnsiConsole.MarkupLine("[yellow]Press ENTER to exit[/]");
@@ -36,6 +39,14 @@ internal partial class Program
         var (success, exception, dataSet) = await DataOperations.GetReferenceTablesDataSet();
         Console.WriteLine(success
             ? "Success reading to DataSet"
+            : $"DataSet operation failed with \n{exception.Message}");
+    }
+
+    private static void DataSetSampleForumPost()
+    {
+        var (success, exception, dataSet) = DataOperations.GetReferenceTablesDataSet1();
+        Console.WriteLine(success
+            ? "Success reading to DataSet1"
             : $"DataSet operation failed with \n{exception.Message}");
     }
 }
