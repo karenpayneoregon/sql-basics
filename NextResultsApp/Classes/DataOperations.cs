@@ -113,6 +113,10 @@ public class DataOperations
         }
     }
 
+    /// <summary>
+    /// Alternate to above method as a developer in a forum post could not get
+    /// the above method to compile as most likely they are using a lesser edition of VS2022 
+    /// </summary>
     public static (bool success, Exception exception, DataSet dataSet) GetReferenceTablesDataSet1()
     {
 
