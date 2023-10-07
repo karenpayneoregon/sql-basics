@@ -12,6 +12,8 @@ An example to perform an incremental like filter with a custom TextBox.
 
 ![Custom Props](assets/customProps.png)
 
+![Form](assets/form.png)
+
 ## Original code
 
 Found in the following GitHub [repository](https://github.com/karenpayneoregon/BindingSourceFiltering_C/tree/master) which does not have the custom TextBox.
