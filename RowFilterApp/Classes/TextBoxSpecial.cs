@@ -32,8 +32,11 @@ public class TextBoxSpecial : TextBox
     [Category("Special"), Description("Sensitivty for like condition")]
     public bool CaseSensitiveLike { get; set; }
 
+    [Category("Special"), Description("Stash")]
+    public string Stash { get; set; }
+
     /// <summary>
-    /// Is there data
+    /// Is there data in the BindingSource
     /// </summary>
     [Browsable(false)]
     public bool HasData { get; set; }
@@ -67,12 +70,14 @@ public class TextBoxSpecial : TextBox
         if (!string.IsNullOrWhiteSpace(Text))
         {
             BindingSource.RowFilterContains(ColumnName, Text, false);
-            HasData = BindingSource.HasData();
         }
         else
         {
             BindingSource.RowFilterClear();
         }
+
+        HasData = BindingSource.HasData();
+
     }
 
     public delegate void TriggerDelegate();

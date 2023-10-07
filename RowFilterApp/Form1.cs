@@ -1,4 +1,5 @@
 using RowFilterApp.Classes;
+using RowFilterApp.Extensions;
 
 namespace RowFilterApp;
 
@@ -16,9 +17,14 @@ public partial class Form1 : Form
 
     private async void Form1_Shown(object? sender, EventArgs e)
     {
-        NorthBindingSource.DataSource = await DataOperations.Filtered();
+
+        NorthBindingSource.DataSource = await DataOperations.ReadCustomersData();
         dataGridView1.DataSource = NorthBindingSource;
+
+        dataGridView1.ExpandColumns();
+
         coreBindingNavigator1.BindingSource = NorthBindingSource;
-        textBoxSpecial1.BindingSource = NorthBindingSource;
+        containsTextBox.BindingSource = NorthBindingSource;
+
     }
 }

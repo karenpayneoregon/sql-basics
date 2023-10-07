@@ -5,7 +5,7 @@ using static ConfigurationLibrary.Classes.ConfigurationHelper;
 namespace RowFilterApp.Classes;
 internal class DataOperations
 {
-    public static async Task<DataTable> Filtered()
+    public static async Task<DataTable> ReadCustomersData()
     {
         DataTable dt = new DataTable();
 
