@@ -83,11 +83,8 @@ public class DataOperations
     {
         await using SqlConnection cn = new(ConnectionString());
 
-        SqlMapper.GridReader results = await cn.QueryMultipleAsync(
-            "usp_SelectCatCountryContactType", 
-            null,
-            null,
-            null,
+        SqlMapper.GridReader results = await cn.QueryMultipleAsync("usp_SelectCatCountryContactType", 
+            null, null, null,
             CommandType.StoredProcedure);
 
         referenceTables.CategoriesList = results.Read<Categories>().ToList();
