@@ -16,6 +16,7 @@ internal class DataOperations
             Connection = cn,
             CommandText = SqlStatements.CompanyNameContains
         };
+
         await cn.OpenAsync();
         dt.Load(await cmd.ExecuteReaderAsync());
 

@@ -1,5 +1,4 @@
 using RowFilterApp.Classes;
-using RowFilterApp.Extensions;
 
 namespace RowFilterApp;
 
