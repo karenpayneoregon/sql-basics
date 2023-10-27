@@ -6,6 +6,9 @@ The reason for obtaining the key would be to be able to reference the new record
 
 A Windows Form is used rather than a console or other project type as it is easier and clearer to see results
 
+> **Note**
+> 10/27/2023 made changes that are not in the comments below but will do so. In short added code to be able to try the code again and again without adding more than 20 records. Also added  SqlMapper.TypeHandler for Dapper to handle DateOnly and TimeOnly.
+
 ## Table structure
 
 For this demonstration the following table structure is used.

@@ -139,20 +139,17 @@ public class DataOperations
         {
             SqlDataAdapter adapter = new();
 
-            using (var cn = new SqlConnection(ConnectionString()))
-            {
-                SqlCommand command = new(SqlStatements.ReferenceTableStatements1, cn);
-                adapter.SelectCommand = command;
+            using var cn = new SqlConnection(ConnectionString());
+            SqlCommand command = new(SqlStatements.ReferenceTableStatements1, cn);
+            adapter.SelectCommand = command;
 
-                adapter.Fill(ds);
+            adapter.Fill(ds);
 
-                ds.Tables[0].TableName = "Categories";
-                ds.Tables[1].TableName = "ContactType";
-                ds.Tables[2].TableName = "Countries";
+            ds.Tables[0].TableName = "Categories";
+            ds.Tables[1].TableName = "ContactType";
+            ds.Tables[2].TableName = "Countries";
 
-                return ((true, null, ds));
-            }
-
+            return ((true, null, ds));
         }
         catch (Exception localException)
         {

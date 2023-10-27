@@ -1,78 +1,82 @@
 ﻿using System.Data;
+using Dapper;
 using InsertNewRecordApp.Models;
 using Microsoft.Data.SqlClient;
 using static ConfigurationLibrary.Classes.ConfigurationHelper;
 namespace InsertNewRecordApp.Classes;
 
-/// <summary>
-/// All data operations without any exception handling.
-/// </summary>
+
 internal class DataOperations
 {
-    /// <summary>
-    /// Add new records and display only the newly added records
-    /// </summary>
-    /// <remarks>
-    /// Many novice developers get this method wrong by
-    ///  - Creating the command object in the for statement
-    ///  - Creating parameters in the for statement
-    ///  - Use AddRange rather than Add for Parameters
-    ///
-    /// Note:
-    /// For BirthDate, we are using <see cref="DateOnly"/> and a extension
-    /// method <see cref="SqlClientExtensions.GetDateOnly"/> to get <see cref="Person.BirthDate"/>
-    /// </remarks>
-    public static List<Person> AddRange()
+    public static async Task<(bool success, Exception exception)> AddRange(List<Person> list)
     {
-
-        using SqlConnection cn = new(ConnectionString());
-        using SqlCommand cmd = new() { Connection = cn, CommandText = SqlStatements.InsertPeople };
-
-        cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar);
-        cmd.Parameters.Add("@LastName", SqlDbType.NVarChar);
-        cmd.Parameters.Add("@BirthDate", SqlDbType.Date);
-
-        var bogusPeople = BogusOperations.People();
-
-        cn.Open();
-
-        for (int index = 0; index < bogusPeople.Count; index++)
+        static async Task<(bool, SqlException exception)> CanConnect()
         {
-            cmd.Parameters["@FirstName"].Value = bogusPeople[index].FirstName;
-            cmd.Parameters["@LastName"].Value = bogusPeople[index].LastName;
-            cmd.Parameters["@BirthDate"].Value = bogusPeople[index].BirthDate;
-            bogusPeople[index].Id = Convert.ToInt32(cmd.ExecuteScalar());
+            await using SqlConnection connection = new(ConnectionString());
+            try
+            {
+                await connection.OpenAsync();
+                return (true, null);
+            }
+            catch (SqlException exception)
+            {
+                return (false,exception);
+            }
         }
 
-        return bogusPeople;
+        var ( _, sqlException) = await CanConnect();
+        if (sqlException is not null)
+        {
+            return (false, sqlException);
+        }
+
+        await using SqlConnection cn = new(ConnectionString());
+        await cn.OpenAsync();
+        await using SqlTransaction transaction = cn.BeginTransaction();
+
+        try
+        {
+            await using SqlCommand cmd = new()
+            {
+                Connection = cn,
+                CommandText = SqlStatements.InsertPeople,
+                Transaction = transaction
+            };
+
+            cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar);
+            cmd.Parameters.Add("@LastName", SqlDbType.NVarChar);
+            cmd.Parameters.Add("@BirthDate", SqlDbType.Date);
+
+            for (int index = 0; index < list.Count; index++)
+            {
+                cmd.Parameters["@FirstName"].Value = list[index].FirstName;
+                cmd.Parameters["@LastName"].Value = list[index].LastName;
+                cmd.Parameters["@BirthDate"].Value = list[index].BirthDate;
+                list[index].Id = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+            }
+
+            await transaction.CommitAsync();
+
+            return (true, null);
+        }
+        catch (Exception ex)
+        {
+            transaction.Rollback();
+            return (false, ex);
+        }
     }
+
     /// <summary>
     /// Get all records for Person table
     /// </summary>
     public static List<Person> GetAll()
     {
-        List<Person> list = new();
+        SqlMapper.AddTypeHandler(new DapperSqlDateOnlyTypeHandler());
+        
         using SqlConnection cn = new(ConnectionString());
-        using SqlCommand cmd = new() { Connection = cn, CommandText = SqlStatements.ReadPeople };
+   
+        return cn.Query<Person>(SqlStatements.ReadPeople).ToList();
 
-        cn.Open();
-
-        var reader = cmd.ExecuteReader();
-
-        while (reader.Read())
-        {
-            Person person = new()
-            {
-                Id = reader.GetInt32(0),
-                FirstName = reader.GetString(1),
-                LastName = reader.GetString(2),
-                BirthDate = reader.GetDateOnly(3)
-            };
-
-            list.Add(person);
-        }
-
-        return list;
     }
 
     /// <summary>
@@ -87,4 +91,16 @@ internal class DataOperations
         cn.Open();
         return Convert.ToInt32(cmd.ExecuteScalar());
     }
+
+    public static void Reset()
+    {
+        using SqlConnection cn = new(ConnectionString());
+        using SqlCommand cmd = new() { Connection = cn, CommandText = "DELETE FROM dbo.Person" };
+        cn.Open();
+        cmd.ExecuteNonQuery();
+        cmd.CommandText = "DBCC CHECKIDENT (Person, RESEED, 0)";
+        cmd.ExecuteNonQuery();
+    }
 }
+
+

@@ -1,4 +1,4 @@
-﻿namespace RowFilterApp.Extensions;
+﻿namespace InsertNewRecordApp.Classes;
 
 public static class DataGridViewExtensions
 {
@@ -25,5 +25,13 @@ public static class DataGridViewExtensions
         }
 
 
+    }
+
+    public static void Spread(this DataGridView source)
+    {
+        foreach (DataGridViewColumn column in source.Columns)
+        {
+            column.HeaderText = column.HeaderText.SplitCamelCase();
+        }
     }
 }

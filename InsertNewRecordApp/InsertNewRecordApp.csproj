@@ -19,6 +19,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Bogus" Version="34.0.2" />
+		<PackageReference Include="Dapper" Version="2.1.15" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
 	</ItemGroup>
 	<ItemGroup>
@@ -31,5 +32,10 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="assets\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Classes\CoreBindingNavigator.cs">
+	    <SubType>Component</SubType>
+	  </Compile>
 	</ItemGroup>
 </Project>

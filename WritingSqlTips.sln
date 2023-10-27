@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsertNewRecordApp", "Inser
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubSamples", "NextResultsApp\GitHubSamples.csproj", "{7184F016-B141-4450-9170-51539DC96D4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RowFilterApp", "RowFilterApp\RowFilterApp.csproj", "{FC9C7685-FEFD-45EA-A91D-7FACFF6D3B15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RowFilterApp", "RowFilterApp\RowFilterApp.csproj", "{FC9C7685-FEFD-45EA-A91D-7FACFF6D3B15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
