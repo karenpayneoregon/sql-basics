@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using InsertNewRecordApp.Classes;
+using InsertNewRecordApp.MockingClasses;
 using InsertNewRecordApp.Models;
 
 namespace InsertNewRecordApp;
@@ -19,9 +20,9 @@ public partial class DataForm : Form
 
     private async void SaveButton_Click(object sender, EventArgs e)
     {
-        DataOperations.Reset();
+        await DataOperations.Reset();
 
-        var (success, exception) = await DataOperations.AddRange(_personList.ToList());
+        var (success, exception) = await DataOperations.AddRangeDapperWithoutKeys(_personList.ToList());
         if (exception is not null)
         {
             MessageBox.Show($@"Failed with {exception.Message}");

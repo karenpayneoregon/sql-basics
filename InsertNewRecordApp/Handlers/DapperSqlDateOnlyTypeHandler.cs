@@ -1,7 +1,8 @@
 ﻿using Dapper;
 using System.Data;
 
-namespace InsertNewRecordApp.Classes;
+namespace InsertNewRecordApp.Handlers;
+// https://github.com/DapperLib/Dapper/issues/1715#issuecomment-1149665776
 public class DapperSqlDateOnlyTypeHandler : SqlMapper.TypeHandler<DateOnly>
 {
     public override void SetValue(IDbDataParameter parameter, DateOnly date)

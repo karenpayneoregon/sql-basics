@@ -1,4 +1,4 @@
-﻿namespace InsertNewRecordApp.Classes;
+﻿namespace InsertNewRecordApp.Extensions;
 
 public static class DataGridViewExtensions
 {

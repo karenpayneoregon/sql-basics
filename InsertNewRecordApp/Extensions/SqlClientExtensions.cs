@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace InsertNewRecordApp.Classes;
+namespace InsertNewRecordApp.Extensions;
 
 public static class SqlClientExtensions
 {

@@ -1,5 +1,4 @@
-﻿
-namespace InsertNewRecordApp.Classes;
+﻿namespace InsertNewRecordApp.Components;
 
 
 public sealed class CoreBindingNavigator : BindingNavigator

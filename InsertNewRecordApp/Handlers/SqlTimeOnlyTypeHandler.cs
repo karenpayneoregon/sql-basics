@@ -1,8 +1,9 @@
 ﻿using System.Data;
 using Dapper;
 
-namespace InsertNewRecordApp.Classes;
+namespace InsertNewRecordApp.Handlers;
 
+// https://github.com/DapperLib/Dapper/issues/1715#issuecomment-1146141064
 public class SqlTimeOnlyTypeHandler : SqlMapper.TypeHandler<TimeOnly>
 {
     public override void SetValue(IDbDataParameter parameter, TimeOnly time)
@@ -10,8 +11,5 @@ public class SqlTimeOnlyTypeHandler : SqlMapper.TypeHandler<TimeOnly>
         parameter.Value = time.ToString();
     }
 
-    public override TimeOnly Parse(object value)
-    {
-        return TimeOnly.FromTimeSpan((TimeSpan)value);
-    }
+    public override TimeOnly Parse(object value) => TimeOnly.FromTimeSpan((TimeSpan)value);
 }

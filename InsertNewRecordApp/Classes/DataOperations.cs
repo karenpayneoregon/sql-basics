@@ -2,28 +2,20 @@
 using Dapper;
 using InsertNewRecordApp.Models;
 using Microsoft.Data.SqlClient;
-using static ConfigurationLibrary.Classes.ConfigurationHelper;
+
 namespace InsertNewRecordApp.Classes;
 
 
-internal class DataOperations
+internal partial class DataOperations
 {
+
+    /// <summary>
+    /// Given a list of <see cref="Person"/> add them to the table with a transaction
+    /// </summary>
+    /// <param name="list">Properly populated list from Bogus NuGet package</param>
+    /// <returns></returns>
     public static async Task<(bool success, Exception exception)> AddRange(List<Person> list)
     {
-        static async Task<(bool, SqlException exception)> CanConnect()
-        {
-            await using SqlConnection connection = new(ConnectionString());
-            try
-            {
-                await connection.OpenAsync();
-                return (true, null);
-            }
-            catch (SqlException exception)
-            {
-                return (false,exception);
-            }
-        }
-
         var ( _, sqlException) = await CanConnect();
         if (sqlException is not null)
         {
@@ -58,25 +50,13 @@ internal class DataOperations
             await transaction.CommitAsync();
 
             return (true, null);
+
         }
         catch (Exception ex)
         {
             transaction.Rollback();
             return (false, ex);
         }
-    }
-
-    /// <summary>
-    /// Get all records for Person table
-    /// </summary>
-    public static List<Person> GetAll()
-    {
-        SqlMapper.AddTypeHandler(new DapperSqlDateOnlyTypeHandler());
-        
-        using SqlConnection cn = new(ConnectionString());
-   
-        return cn.Query<Person>(SqlStatements.ReadPeople).ToList();
-
     }
 
     /// <summary>
@@ -92,15 +72,6 @@ internal class DataOperations
         return Convert.ToInt32(cmd.ExecuteScalar());
     }
 
-    public static void Reset()
-    {
-        using SqlConnection cn = new(ConnectionString());
-        using SqlCommand cmd = new() { Connection = cn, CommandText = "DELETE FROM dbo.Person" };
-        cn.Open();
-        cmd.ExecuteNonQuery();
-        cmd.CommandText = "DBCC CHECKIDENT (Person, RESEED, 0)";
-        cmd.ExecuteNonQuery();
-    }
 }
 
 

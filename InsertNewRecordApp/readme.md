@@ -7,7 +7,7 @@ The reason for obtaining the key would be to be able to reference the new record
 A Windows Form is used rather than a console or other project type as it is easier and clearer to see results
 
 > **Note**
-> 10/27/2023 made changes that are not in the comments below but will do so. In short added code to be able to try the code again and again without adding more than 20 records. Also added  SqlMapper.TypeHandler for Dapper to handle DateOnly and TimeOnly.
+> 10/27/2023 made changes that are not in the comments below but will do so. In short added code to be able to try the code again and again without adding more than 20 records. Also added  SqlMapper.TypeHandler for Dapper to handle DateOnly and TimeOnly. Also introduced parial class for DataOperations. More to follow.
 
 ## Table structure
 
@@ -105,6 +105,27 @@ public static List<Person> AddRange()
 1. Open the connection
 1. Using a for statement set values to the command parameters.
 1. Execute the statements where using cmd.ExecuteScalar() returns the result of the secondary SQL statement as an object is than cast to an int and set the current Person in the list Id property.
+
+## Dapper add records
+
+
+```csharp
+public static async Task<(bool, Exception ex)> AddRangeDapper(List<Person> list)
+{
+    SqlMapper.AddTypeHandler(new DapperSqlDateOnlyTypeHandler());
+    try
+    {
+        await using SqlConnection cn = new(ConnectionString());
+        var rowsAffected = await cn.ExecuteAsync(SqlStatements.InsertPeople, list);
+            
+        return (rowsAffected >0, null);
+    }
+    catch (Exception ex)
+    {
+        return (false, ex);
+    }
+}
+```
 
 ## Window form
 

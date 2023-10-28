@@ -117,4 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAGBkAAAEAIADsCQAAFgAAACgAAAAYAAAAMgAAAAEAIAAAAAAAxAkAAMQOAADEDgAAAAAAAAAA
+        AAD///////////////////////////7+/f/9/Pv/+/r3//r49f/59vP/9/Xz//f18//39fP/+fbz//r4
+        9f/7+vf//fz7//7+/f///////////////////////////////wD//////fz7//f08P/v6eD/5t3O/9zP
+        uf/SwaX/x7WY/7yniP+0m3P/s5Ri/7KTW/+ylWL/tZtz/7ynif/ItZj/0sGl/93Puv/m3c7/8Org//j0
+        8P/9/Pv//////////wD//////fz6//by7f/t59z/49nI/9rOvP/Pwa3/x6hr/82eK//VnQr/15wA/9ea
+        AP/XnAD/1Z0L/82dLP/HqWz/z8Gt/9rOvP/k2cj/7ufc//bz7f/9/Pv//////////wD/////////////
+        //////////////jx3f/vxVP/46YF/8SGAP+lagD/ll4A/5NcAP+WXgD/pmoA/8WHAP/jpwX/78VW//ny
+        3//+/////////////////////////////wD/////////////////////+um6/+uxF//AgAD/klsA/5px
+        L/+5n3b/0cCl/9jKtP/RwKX/uZ51/5lwLf+TWwD/wYEA/+uyGf/66r3/////////////////////////
+        /wD////////////////457f/5KUD/6xuAP+bbiH/2Mer////////////////////////////////////
+        /v/Wxan/m20f/65vAP/lpwX/+em7/////////////////////wD///////////zz3f/mqw3/sHEA/6+H
+        Pv/49Ov/////////////////////////////////////////////////9/Pp/66FO/+xcgD/5qwQ//z1
+        4P///////////////wD//////////+3BR//BgAD/sYQq//z58///////////////////////////////
+        //////////////////////////////v48f+wgif/w4EA/+3DTP///////////////wD/////+OrB/9iY
+        AP+xeQL/7uTM////////////////////////////////////////////////////////////////////
+        ///t4sj/sXgB/9iaAP/568b//////////wD/////68Vb/8OBAP/OqlX/////////////////////////
+        ////////////////////////////////////////////////////////zadQ/8SCAP/rx2H/////////
+        /wD+/fr/3agZ/8CDAP/s3bj///////79+P/79OL///////////////////////z26P/+/PX/9+a5//z1
+        4v/+/Pf//fv0//378//+/fj/69u0/8CCAP/eqh3///78/////wD68+D/05cA/8qUC//8+/f/9+Sw/+Wr
+        Ff/msCP/6Lcy//vz3v/89ub/6Lc1/+SpCv/lrBP/57Mk//nty//otiv/5asQ/+KmCf/sw1D/+vjz/8mT
+        Cf/TmAD/+/Tj/////wD268v/zY4A/9SjKP//////8M5y/+7JZv/68NT/4qIA/+/Nb//tyF//5q4Y/+/P
+        dv/lrBj/57Mi//ry2//jpQD/7cZZ//XhrP/46sL//////9OhI//OjwD/9+zP/////wD058b/y4sA/9mq
+        MP///////fjr/+3HZP/kqg//5awb//bltP/nsiD/7cZZ///////14qv/4qIA//fltv/kqAH/89qT////
+        /////////////9moK//LjAD/9enK/////wD16tD/yYsA/9qnH///////7spm/+KhAP/x1Yf/781z//z2
+        5f/qvUH/5q4b//z14//uymj/46YA//nuz//jpQD/8taI/////////////vz5/9mlG//KjAD/9ezU////
+        /wD59en/x48C/9ecBP/8+O//9uSw/+WuGf/puTz/5KoR//rx2P/68Nb/5a0b/+OnBf/jpgb/89qU//37
+        9P/ipgT/8tiM////////////+vHb/9abAv/IkAT/+vbt/////wD/////yZsq/86NAP/y25z///////z1
+        4//46ML//fnu/////////////vv0//jryv/89eL////////+/P/7897//frw////////////8tqX/86M
+        AP/KnS7//////////wD/////2Lx6/8B+AP/ntzL/////////////////////////////////////////
+        ////////////////////////////////////////57Yu/79+AP/avoD//////////wD/////9e/g/7R+
+        Bv/VlAD/9d2X////////////////////////////////////////////////////////////////////
+        ///125L/1JMA/7R/CP/28OT//////////wD//////////9G2e/+wcQD/5agI//rsw///////////////
+        //////////////////////////////////////////////nqv//kpwb/r3EA/9O5gP//////////////
+        /wD///////////38+v+0izj/s3QA/+mtDf/55a7/////////////////////////////////////////
+        ////////+OSr/+msC/+ycwD/tY08//79/P///////////////wD////////////////28un/qH0v/6lq
+        AP/goAD/9Mxb//vuyP///v3///////////////////79//vtxv/0y1n/358A/6dpAP+pfzL/9/Pr////
+        /////////////////wD/////////////////////+PXv/7COVP+SWgD/uXkA/92gAP/tuin/9MpS//XP
+        YP/0ylH/7boo/92fAP+5eAD/kloA/7KQV//59vH//////////////////////////wD/////////////
+        ///////////////////Wxav/nXY7/41ZAP+YXQD/pWcA/6prAP+lZgD/mFwA/41ZAP+edzz/18eu////
+        /////////////////////////////////wD//////////////////////////////////////////+vk
+        3P/QwKz/vKaH/7ade/+8poj/0MGt/+zl3f//////////////////////////////////////////////
+        /wAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAA
+        AQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEA
+</value>
+  </data>
 </root>

@@ -1,4 +1,6 @@
-﻿namespace InsertNewRecordApp;
+﻿using InsertNewRecordApp.Components;
+
+namespace InsertNewRecordApp;
 
 partial class DataForm
 {
@@ -28,11 +30,12 @@ partial class DataForm
     /// </summary>
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataForm));
         dataGridView1 = new DataGridView();
         SaveButton = new Button();
         panel1 = new Panel();
         CurrentButton = new Button();
-        coreBindingNavigator1 = new Classes.CoreBindingNavigator();
+        coreBindingNavigator1 = new CoreBindingNavigator();
         ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
         panel1.SuspendLayout();
         coreBindingNavigator1.BeginInit();
@@ -99,9 +102,10 @@ partial class DataForm
         Controls.Add(dataGridView1);
         Controls.Add(coreBindingNavigator1);
         Controls.Add(panel1);
+        Icon = (Icon)resources.GetObject("$this.Icon");
         Name = "DataForm";
         StartPosition = FormStartPosition.CenterScreen;
-        Text = "DataForm";
+        Text = "Data operation samples";
         ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
         panel1.ResumeLayout(false);
         coreBindingNavigator1.EndInit();
@@ -115,5 +119,5 @@ partial class DataForm
     private Button SaveButton;
     private Panel panel1;
     private Button CurrentButton;
-    private Classes.CoreBindingNavigator coreBindingNavigator1;
+    private CoreBindingNavigator coreBindingNavigator1;
 }
