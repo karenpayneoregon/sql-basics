@@ -35,7 +35,7 @@ public partial class DataForm : Form
         {
             _personList = new BindingList<Person>(DataOperations.GetAll());
             _bindingSource.DataSource = _personList;
-            
+
         }
     }
 
@@ -44,5 +44,23 @@ public partial class DataForm : Form
         Person person = _personList[_bindingSource.Position];
 
         MessageBox.Show($@"{person.Id} {person.FirstName} {person.LastName} {person.BirthDate}");
+    }
+
+    private async void MockUpdateCurrentButton_Click(object sender, EventArgs e)
+    {
+        Person person = _personList[_bindingSource.Position];
+
+        if (person.Id > 0)
+        {
+            Person bogus = BogusOperations.Person();
+            person.LastName = bogus!.LastName;
+            person.FirstName = bogus.FirstName;
+            person.BirthDate = bogus.BirthDate;
+            await DataOperations.Update(person);
+        }
+        else
+        {
+            MessageBox.Show(@"Use Save button than try again");
+        }
     }
 }

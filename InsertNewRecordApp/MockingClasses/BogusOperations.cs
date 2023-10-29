@@ -10,4 +10,6 @@ internal class BogusOperations
             .RuleFor(c => c.BirthDate, f =>
                 f.Date.BetweenDateOnly(new DateOnly(1999, 1, 1),
                     new DateOnly(2010, 1, 1))).Generate(count);
+
+    public static Models.Person Person() => People(1).First();
 }

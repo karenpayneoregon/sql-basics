@@ -36,6 +36,7 @@ partial class DataForm
         panel1 = new Panel();
         CurrentButton = new Button();
         coreBindingNavigator1 = new CoreBindingNavigator();
+        MockUpdateCurrentButton = new Button();
         ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
         panel1.SuspendLayout();
         coreBindingNavigator1.BeginInit();
@@ -59,7 +60,7 @@ partial class DataForm
         // 
         SaveButton.Location = new Point(12, 14);
         SaveButton.Name = "SaveButton";
-        SaveButton.Size = new Size(94, 29);
+        SaveButton.Size = new Size(104, 29);
         SaveButton.TabIndex = 1;
         SaveButton.Text = "Save";
         SaveButton.UseVisualStyleBackColor = true;
@@ -67,6 +68,7 @@ partial class DataForm
         // 
         // panel1
         // 
+        panel1.Controls.Add(MockUpdateCurrentButton);
         panel1.Controls.Add(CurrentButton);
         panel1.Controls.Add(SaveButton);
         panel1.Dock = DockStyle.Bottom;
@@ -77,9 +79,9 @@ partial class DataForm
         // 
         // CurrentButton
         // 
-        CurrentButton.Location = new Point(138, 14);
+        CurrentButton.Location = new Point(162, 14);
         CurrentButton.Name = "CurrentButton";
-        CurrentButton.Size = new Size(94, 29);
+        CurrentButton.Size = new Size(104, 29);
         CurrentButton.TabIndex = 3;
         CurrentButton.Text = "Current";
         CurrentButton.UseVisualStyleBackColor = true;
@@ -93,6 +95,16 @@ partial class DataForm
         coreBindingNavigator1.Size = new Size(800, 27);
         coreBindingNavigator1.TabIndex = 3;
         coreBindingNavigator1.Text = "coreBindingNavigator1";
+        // 
+        // MockUpdateCurrentButton
+        // 
+        MockUpdateCurrentButton.Location = new Point(300, 14);
+        MockUpdateCurrentButton.Name = "MockUpdateCurrentButton";
+        MockUpdateCurrentButton.Size = new Size(104, 29);
+        MockUpdateCurrentButton.TabIndex = 4;
+        MockUpdateCurrentButton.Text = "Mock update";
+        MockUpdateCurrentButton.UseVisualStyleBackColor = true;
+        MockUpdateCurrentButton.Click += MockUpdateCurrentButton_Click;
         // 
         // DataForm
         // 
@@ -120,4 +132,5 @@ partial class DataForm
     private Panel panel1;
     private Button CurrentButton;
     private CoreBindingNavigator coreBindingNavigator1;
+    private Button MockUpdateCurrentButton;
 }

@@ -24,6 +24,15 @@ public class SqlStatements
         FROM dbo.Person;
         """;
 
+    public static string UpdatePerson => 
+        """
+        UPDATE dbo.Person
+        SET FirstName = @FirstName,
+            LastName = @LastName,
+            BirthDate = @BirthDate
+        WHERE Id = @Id;
+        """;
+
     public static string CountOfPeople =>
         """
         SELECT COUNT(Id)
