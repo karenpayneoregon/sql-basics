@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using InsertNewRecordApp.Classes;
+using InsertNewRecordApp.Extensions;
 using InsertNewRecordApp.MockingClasses;
 using InsertNewRecordApp.Models;
 
@@ -15,12 +16,15 @@ public partial class DataForm : Form
         _personList = new BindingList<Person>(BogusOperations.People());
         _bindingSource.DataSource = _personList;
         dataGridView1.DataSource = _bindingSource;
+        dataGridView1.Spread();
+
+
         coreBindingNavigator1.BindingSource = _bindingSource;
     }
 
     private async void SaveButton_Click(object sender, EventArgs e)
     {
-        await DataOperations.Reset();
+        await DataOperations.ResetDapper();
 
         var (success, exception) = await DataOperations.AddRangeDapperWithoutKeys(_personList.ToList());
         if (exception is not null)
@@ -31,6 +35,7 @@ public partial class DataForm : Form
         {
             _personList = new BindingList<Person>(DataOperations.GetAll());
             _bindingSource.DataSource = _personList;
+            
         }
     }
 

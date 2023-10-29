@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
 
 // ReSharper disable once CheckNamespace
 namespace InsertNewRecordApp.Classes;
@@ -17,6 +18,8 @@ internal partial class DataOperations
         cmd.CommandText = "DBCC CHECKIDENT (Person, RESEED, 0)";
         await cmd.ExecuteNonQueryAsync();
     }
+
+
 
     static async Task<(bool, SqlException exception)> CanConnect()
     {

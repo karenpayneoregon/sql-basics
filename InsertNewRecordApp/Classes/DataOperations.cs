@@ -39,12 +39,12 @@ internal partial class DataOperations
             cmd.Parameters.Add("@LastName", SqlDbType.NVarChar);
             cmd.Parameters.Add("@BirthDate", SqlDbType.Date);
 
-            for (int index = 0; index < list.Count; index++)
+            foreach (var person in list)
             {
-                cmd.Parameters["@FirstName"].Value = list[index].FirstName;
-                cmd.Parameters["@LastName"].Value = list[index].LastName;
-                cmd.Parameters["@BirthDate"].Value = list[index].BirthDate;
-                list[index].Id = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+                cmd.Parameters["@FirstName"].Value = person.FirstName;
+                cmd.Parameters["@LastName"].Value = person.LastName;
+                cmd.Parameters["@BirthDate"].Value = person.BirthDate;
+                person.Id = Convert.ToInt32(await cmd.ExecuteScalarAsync());
             }
 
             await transaction.CommitAsync();
