@@ -59,4 +59,14 @@ internal partial class DataOperations
         return cn.Query<Person>(SqlStatements.ReadPeople).ToList();
 
     }
+
+    /// <summary>
+    /// Get count for Person table
+    /// </summary>
+    /// <returns>Count of records</returns>
+    public static async Task<int> PeopleCountDapper()
+    {
+        await using SqlConnection cn = new(ConnectionString());
+        return await cn.ExecuteScalarAsync<int>(SqlStatements.CountOfPeople);
+    }
 }

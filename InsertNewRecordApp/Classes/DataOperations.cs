@@ -63,13 +63,14 @@ internal partial class DataOperations
     /// Get count for Person table
     /// </summary>
     /// <returns>Count of records</returns>
-    public static int PeopleCount()
+    public static async Task<int> PeopleCount()
     {
-        using SqlConnection cn = new(ConnectionString());
-        using SqlCommand cmd = new() { Connection = cn, CommandText = SqlStatements.CountOfPeople };
+        await using SqlConnection cn = new(ConnectionString());
+        await using SqlCommand cmd = new() { Connection = cn, CommandText = SqlStatements.CountOfPeople };
 
         cn.Open();
-        return Convert.ToInt32(cmd.ExecuteScalar());
+
+        return Convert.ToInt32(await cmd.ExecuteScalarAsync());
     }
 
 }
