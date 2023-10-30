@@ -54,6 +54,74 @@ public class SqlStatements
 
 To reach the widest audience possible, a Windows Forms project is used rather than web as the architecture is different and with console projects the code can get too much for a novice developer as I would need to create a menu system hard for some to understand.
 
+## Model
+
+The Person class is setup for change notification using [INotifyPropertyChanged](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifypropertychanged?view=net-5.0) interface. This is not required for Dapper but is required for the DataGridView to update when a property changes.
+
+```csharp
+public class Person : INotifyPropertyChanged
+{
+    private int _id;
+    private string _firstName;
+    private string _lastName;
+    private DateOnly _birthDate;
+
+    public int Id
+    {
+        get => _id;
+        set
+        {
+            if (value == _id) return;
+            _id = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string FirstName
+    {
+        get => _firstName;
+        set
+        {
+            if (value == _firstName) return;
+            _firstName = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string LastName
+    {
+        get => _lastName;
+        set
+        {
+            if (value == _lastName) return;
+            _lastName = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public DateOnly BirthDate
+    {
+        get => _birthDate;
+        set
+        {
+            if (value.Equals(_birthDate)) return;
+            _birthDate = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public override string ToString() => Id.ToString();
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+}
+```
+> **Note**
+> In the above code, change notification was done using ReSharper, not by hand.
+
+
 ## Dapper DateOnly and TimeOnly support
 
 Dapper does not support the new DateOnly and TimeOnly types in .NET 6.0. To get around this, a custom type handler is created. 
@@ -455,5 +523,23 @@ public static List<Person> GetAll()
 Note that there is no need to open the SqlConnection connection, Dapper does this for us.
 
 **Current button**
+
+Shows how to get the current record in the DataGridView by primary key then reads the record from the database table.
+
+**Update button**
+
+Gets the primary key of the current record in the DataGridView, creates a mocked person which is passed to a method for Dapper to update.
+
+**Remove button**
+
+Shows how to get the current record in the DataGridView by primary key then uses Dapper to remove the person from the database table.
+
+**Add button**
+
+Creates a new person using Bogus package, adds the person to the database table using Dapper. On return from adding the record the person is displayed in the DataGridView.
+
+**Refresh button**
+
+Reloads the DataGridView with fresh mocked data ready to start over.
 
 
