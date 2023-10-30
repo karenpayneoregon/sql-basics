@@ -1,5 +1,11 @@
 ﻿using System.ComponentModel;
 
+/*
+ * Not used in this project but wanted to have it for windows developers so
+ * that rather than a BindingList, this case can replace a BindingList to provide
+ * sorting in a DataGridView.
+ */
+
 namespace InsertNewRecordApp.Classes;
 
 /// <summary>

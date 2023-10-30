@@ -43,12 +43,11 @@ public partial class DataForm : Form
      */
     private async void SaveButton_Click(object sender, EventArgs e)
     {
-
+        // reset database table
         await DataOperations.ResetDapper();
 
-        var (success, exception) = 
-            await DataOperations.AddRangeDapperWithKeys(
-                _personList.ToList());
+        // Add range of people to database
+        var (success, exception) = await DataOperations.AddRangeDapperWithKeys(_personList.ToList());
 
         if (exception is not null)
         {
@@ -73,11 +72,15 @@ public partial class DataForm : Form
      */
     private async void CurrentButton_Click(object sender, EventArgs e)
     {
+        // check if there is a current row in the DataGridView
         if (_bindingSource.Current is null) return;
+
+        // Get current person in the DataGridView
         Person person = _personList[_bindingSource.Position];
 
         if (person.Id > 0)
         {
+            // Get record for current DataGridView row in database using Dapper
             var record = await DataOperations.GetDapper(person.Id);
             MessageBox.Show($@"{record.Id} {record.FirstName} {record.LastName} {record.BirthDate:MM/dd/yyyy}");
         }
@@ -90,7 +93,10 @@ public partial class DataForm : Form
 
     private async void MockUpdateCurrentButton_Click(object sender, EventArgs e)
     {
+        // check if there is a current row in the DataGridView
         if (_bindingSource.Current is null) return;
+
+        // Get current person in the DataGridView
         Person person = _personList[_bindingSource.Position];
 
         if (person.Id > 0)
@@ -112,8 +118,13 @@ public partial class DataForm : Form
      */
     private async void RemoveButton_Click(object sender, EventArgs e)
     {
+
+        // check if there is a current row in the DataGridView
         if (_bindingSource.Current is null) return;
+
+        // Get current person in the DataGridView
         Person person = _personList[_bindingSource.Position];
+
         if (person.Id > 0)
         {
             /*
@@ -149,8 +160,14 @@ public partial class DataForm : Form
      */
     private async void AddButton_Click(object sender, EventArgs e)
     {
+
+        // create a bogus/mocked person using Bogus
         Person person = BogusOperations.Person();
+
+        // Add Person to database
         await DataOperations.AddDapper(person);
+
+        // Add person to the BindingList which will display in the DataGridView
         _personList.Add(person);
     }
 
@@ -165,6 +182,9 @@ public partial class DataForm : Form
         person.BirthDate = bogus.BirthDate;
     }
 
+    /*
+     * Reload DataGridView with another batch of bogus people
+     */
     private async void RefreshButton_Click(object sender, EventArgs e)
     {
         await DataOperations.ResetDapper();

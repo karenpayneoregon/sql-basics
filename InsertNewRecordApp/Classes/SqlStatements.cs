@@ -1,5 +1,8 @@
 ﻿namespace InsertNewRecordApp.Classes;
 
+/// <summary>
+/// All SQL statements for the project except for reset code.
+/// </summary>
 public class SqlStatements
 {
     public static string InsertPeople =>

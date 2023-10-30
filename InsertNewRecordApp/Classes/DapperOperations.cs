@@ -6,6 +6,11 @@ using InsertNewRecordApp.Models;
 
 namespace InsertNewRecordApp.Classes;
 
+/// <summary>
+///  - Connection string resides in appsettings.json retrieved using ConfigurationLibrary NuGet package
+///  - All SQL statements reside in the class SqlStatements.
+///  - SQL statements were written in SSMS first to ensure they work as expected
+/// </summary>
 public partial class DataOperations
 {
     /// <summary>
@@ -16,27 +21,45 @@ public partial class DataOperations
     public static async Task<(bool, Exception ex)> AddRangeDapperWithKeys(List<Person> list)
     {
 
-        var (_, sqlException) = await CanConnect();
+        /*
+         * Test connection to the database
+         */
+        var ( _, sqlException) = await CanConnect();
         if (sqlException is not null)
         {
             return (false, sqlException);
         }
 
+        /*
+         * Setup Dapper to understand DateOnly
+         */
         SqlMapper.AddTypeHandler(new DapperSqlDateOnlyTypeHandler());
 
         try
         {
             await using SqlConnection cn = new(ConnectionString());
+
+            /*
+             * Must open connection for transaction, without a transaction
+             * Dapper would open the connection for us.
+             */
             await cn.OpenAsync();
 
             await using (var transaction = cn.BeginTransaction())
             {
                 foreach (var person in list)
                 {
-                    
-                    var primaryKey = await transaction.ExecuteScalarAsync(
-                        SqlStatements.InsertPeople, 
-                        person);
+
+                    /*
+                     * SqlStatements.InsertPeople has two statements
+                     * First to insert record
+                     * Second to obtain new primary key
+                     *
+                     * Dapper:
+                     *  - First parameter is the SQL UPDATE statement
+                     *  - Second parameter is the data to insert to the database table
+                     */
+                    var primaryKey = await transaction.ExecuteScalarAsync(SqlStatements.InsertPeople, person);
 
                     person.Id = (int)primaryKey!;
                 }
@@ -46,10 +69,11 @@ public partial class DataOperations
             }
 
             return (list.All(p => p.Id > 0), null);
+
         }
-        catch (Exception ex)
+        catch (Exception localException)
         {
-            return (false, ex);
+            return (false, localException);
         }
     }
 
@@ -60,26 +84,35 @@ public partial class DataOperations
     /// <returns>success and on failure the exception</returns>
     public static async Task<(bool, Exception ex)> AddRangeDapperWithoutKeys(List<Person> list)
     {
+        /*
+         * Test connection to the database
+         */
         var (_, sqlException) = await CanConnect();
         if (sqlException is not null)
         {
             return (false, sqlException);
         }
 
+        /*
+         * Setup Dapper to understand DateOnly
+         */
         SqlMapper.AddTypeHandler(new DapperSqlDateOnlyTypeHandler());
+
         try
         {
             await using SqlConnection cn = new(ConnectionString());
-            
-            var rowsAffected = await cn.ExecuteAsync(
-                SqlStatements.InsertPeople, 
-                list);
+
+            /*
+             * Uses the same statements as with the method AddRangeDapperWithKeys
+             * but does not assign primary key.
+             */
+            var rowsAffected = await cn.ExecuteAsync(SqlStatements.InsertPeople, list);
 
             return (rowsAffected > 0, null);
         }
-        catch (Exception ex)
+        catch (Exception localException)
         {
-            return (false, ex);
+            return (false, localException);
         }
     }
 
@@ -90,12 +123,20 @@ public partial class DataOperations
     /// <returns></returns>
     public static async Task AddDapper(Person person)
     {
+
+        /*
+         * Setup Dapper to understand DateOnly
+         */
         SqlMapper.AddTypeHandler(new DapperSqlDateOnlyTypeHandler());
+
         await using SqlConnection cn = new(ConnectionString());
 
-        var primaryKey = await cn.ExecuteScalarAsync(
-            SqlStatements.InsertPeople, 
-            person);
+        /*
+         * Dapper
+         *  - First parameter is the INSERT statement
+         *  - Second parameter is data to insert
+         */
+        var primaryKey = await cn.ExecuteScalarAsync(SqlStatements.InsertPeople, person);
 
         person.Id = (int)primaryKey!;
     }
@@ -106,10 +147,18 @@ public partial class DataOperations
     /// </summary>
     public static List<Person> GetAll()
     {
+
+        /*
+         * Setup Dapper to understand DateOnly
+         */
         SqlMapper.AddTypeHandler(new DapperSqlDateOnlyTypeHandler());
 
         using SqlConnection cn = new(ConnectionString());
 
+        /*
+         * Dapper
+         *  - Query Executes a query, returning the data typed as in this case type Person
+         */
         return cn.Query<Person>(SqlStatements.ReadPeople).ToList();
 
     }
@@ -121,13 +170,20 @@ public partial class DataOperations
     /// <returns>A Person or null if not found</returns>
     public static async Task<Person> GetDapper(int id)
     {
+
+        /*
+         * Setup Dapper to understand DateOnly
+         */
         SqlMapper.AddTypeHandler(new DapperSqlDateOnlyTypeHandler());
 
         await using SqlConnection cn = new(ConnectionString());
        
-        return await cn.QuerySingleAsync<Person>(
-            SqlStatements.Get, new 
-                {Id = id});
+        /*
+         * Dapper:
+         *  - Ask for a single person by second parameter, the primary key
+         *  - Note that when using an anonymous parameter the variable is case sensitive
+         */
+        return await cn.QuerySingleAsync<Person>(SqlStatements.Get, new {Id = id});
 
     }
 
@@ -161,8 +217,11 @@ public partial class DataOperations
 
             await using SqlConnection cn = new(ConnectionString());
 
-            var affected = await cn.ExecuteAsync(
-                SqlStatements.UpdatePerson, new
+            /*
+             * - second parameter to ExecuteAsync are parameter values for the update statement
+             *   and need to match the parameter names
+             */
+            var affected = await cn.ExecuteAsync(SqlStatements.UpdatePerson, new
             {
                 person.FirstName,
                 person.LastName,
@@ -173,9 +232,9 @@ public partial class DataOperations
             return (affected == 1, null);
 
         }
-        catch (Exception ex)
+        catch (Exception localException)
         {
-            return (false, ex);
+            return (false, localException);
         }
     }
 
@@ -188,10 +247,7 @@ public partial class DataOperations
     {
         await using SqlConnection cn = new(ConnectionString());
 
-        var affected = await cn.ExecuteAsync(
-            SqlStatements.RemovePerson, 
-            new { person.Id }
-            );
+        var affected = await cn.ExecuteAsync(SqlStatements.RemovePerson, new { person.Id });
 
         return affected == 1;
 

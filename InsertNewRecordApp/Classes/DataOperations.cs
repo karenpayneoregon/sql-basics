@@ -1,13 +1,18 @@
 ﻿using System.Data;
-using System.Diagnostics;
-using Dapper;
-using DbPeekQueryLibrary.LanguageExtensions;
 using InsertNewRecordApp.Extensions;
 using InsertNewRecordApp.Models;
 using Microsoft.Data.SqlClient;
 
 namespace InsertNewRecordApp.Classes;
 
+/// <summary>
+///  - Connection string resides in appsettings.json retrieved using ConfigurationLibrary NuGet package
+///  - All SQL statements reside in the class SqlStatements.
+///  - SQL statements were written in SSMS first to ensure they work as expected
+/// </summary>
+/// <remarks>
+///  - All code in this class are mirror images of Dapper code samples
+/// </remarks>
 public partial class DataOperations
 {
 
@@ -63,6 +68,9 @@ public partial class DataOperations
         }
     }
 
+    /// <summary>
+    /// Get a person by primary key
+    /// </summary>
     public static async Task<Person> Get(int id)
     {
         await using SqlConnection cn = new(ConnectionString());
@@ -88,6 +96,10 @@ public partial class DataOperations
 
         return person;
     }
+
+    /// <summary>
+    /// Add a new person to the database table
+    /// </summary>
     public static async Task Add(Person person)
     {
         await using SqlConnection cn = new(ConnectionString());
@@ -107,6 +119,10 @@ public partial class DataOperations
         person.Id = Convert.ToInt32(await cmd.ExecuteScalarAsync());
         
     }
+
+    /// <summary>
+    /// Update an existing record by primary key
+    /// </summary>
     public static async Task<(bool, Exception ex)> Update(Person person)
     {
         try
@@ -136,6 +152,9 @@ public partial class DataOperations
         }
     }
 
+    /// <summary>
+    /// Remove a record by primary key
+    /// </summary>
     public static async Task<bool> Remove(Person person)
     {
         await using SqlConnection cn = new(ConnectionString());
