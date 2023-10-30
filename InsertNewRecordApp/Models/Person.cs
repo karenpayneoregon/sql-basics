@@ -2,7 +2,8 @@
 using System.Runtime.CompilerServices;
 
 namespace InsertNewRecordApp.Models;
-internal class Person : INotifyPropertyChanged
+
+public class Person : INotifyPropertyChanged
 {
     private int _id;
     private string _firstName;

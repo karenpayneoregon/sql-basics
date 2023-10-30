@@ -34,9 +34,12 @@ partial class DataForm
         dataGridView1 = new DataGridView();
         SaveButton = new Button();
         panel1 = new Panel();
+        RefreshButton = new Button();
+        AddButton = new Button();
+        RemoveButton = new Button();
+        MockUpdateCurrentButton = new Button();
         CurrentButton = new Button();
         coreBindingNavigator1 = new CoreBindingNavigator();
-        MockUpdateCurrentButton = new Button();
         ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
         panel1.SuspendLayout();
         coreBindingNavigator1.BeginInit();
@@ -46,19 +49,20 @@ partial class DataForm
         // 
         dataGridView1.AllowUserToAddRows = false;
         dataGridView1.AllowUserToDeleteRows = false;
+        dataGridView1.BackgroundColor = Color.White;
         dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        dataGridView1.Dock = DockStyle.Fill;
-        dataGridView1.Location = new Point(0, 27);
+        dataGridView1.Location = new Point(0, 33);
         dataGridView1.Name = "dataGridView1";
         dataGridView1.ReadOnly = true;
         dataGridView1.RowHeadersWidth = 51;
         dataGridView1.RowTemplate.Height = 29;
-        dataGridView1.Size = new Size(800, 368);
+        dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        dataGridView1.Size = new Size(568, 618);
         dataGridView1.TabIndex = 0;
         // 
         // SaveButton
         // 
-        SaveButton.Location = new Point(12, 14);
+        SaveButton.Location = new Point(12, 27);
         SaveButton.Name = "SaveButton";
         SaveButton.Size = new Size(104, 29);
         SaveButton.TabIndex = 1;
@@ -68,18 +72,60 @@ partial class DataForm
         // 
         // panel1
         // 
+        panel1.Controls.Add(RefreshButton);
+        panel1.Controls.Add(AddButton);
+        panel1.Controls.Add(RemoveButton);
         panel1.Controls.Add(MockUpdateCurrentButton);
-        panel1.Controls.Add(CurrentButton);
         panel1.Controls.Add(SaveButton);
-        panel1.Dock = DockStyle.Bottom;
-        panel1.Location = new Point(0, 395);
+        panel1.Controls.Add(CurrentButton);
+        panel1.Location = new Point(574, 31);
         panel1.Name = "panel1";
-        panel1.Size = new Size(800, 55);
+        panel1.Size = new Size(128, 618);
         panel1.TabIndex = 2;
+        // 
+        // RefreshButton
+        // 
+        RefreshButton.Location = new Point(12, 254);
+        RefreshButton.Name = "RefreshButton";
+        RefreshButton.Size = new Size(104, 29);
+        RefreshButton.TabIndex = 7;
+        RefreshButton.Text = "Refresh";
+        RefreshButton.UseVisualStyleBackColor = true;
+        RefreshButton.Click += RefreshButton_Click;
+        // 
+        // AddButton
+        // 
+        AddButton.Location = new Point(12, 207);
+        AddButton.Name = "AddButton";
+        AddButton.Size = new Size(104, 29);
+        AddButton.TabIndex = 6;
+        AddButton.Text = "Add";
+        AddButton.UseVisualStyleBackColor = true;
+        AddButton.Click += AddButton_Click;
+        // 
+        // RemoveButton
+        // 
+        RemoveButton.Location = new Point(12, 162);
+        RemoveButton.Name = "RemoveButton";
+        RemoveButton.Size = new Size(104, 29);
+        RemoveButton.TabIndex = 5;
+        RemoveButton.Text = "Remove";
+        RemoveButton.UseVisualStyleBackColor = true;
+        RemoveButton.Click += RemoveButton_Click;
+        // 
+        // MockUpdateCurrentButton
+        // 
+        MockUpdateCurrentButton.Location = new Point(12, 117);
+        MockUpdateCurrentButton.Name = "MockUpdateCurrentButton";
+        MockUpdateCurrentButton.Size = new Size(104, 29);
+        MockUpdateCurrentButton.TabIndex = 4;
+        MockUpdateCurrentButton.Text = "Update";
+        MockUpdateCurrentButton.UseVisualStyleBackColor = true;
+        MockUpdateCurrentButton.Click += MockUpdateCurrentButton_Click;
         // 
         // CurrentButton
         // 
-        CurrentButton.Location = new Point(162, 14);
+        CurrentButton.Location = new Point(12, 72);
         CurrentButton.Name = "CurrentButton";
         CurrentButton.Size = new Size(104, 29);
         CurrentButton.TabIndex = 3;
@@ -89,31 +135,23 @@ partial class DataForm
         // 
         // coreBindingNavigator1
         // 
+        coreBindingNavigator1.BackColor = Color.SeaShell;
         coreBindingNavigator1.ImageScalingSize = new Size(20, 20);
         coreBindingNavigator1.Location = new Point(0, 0);
         coreBindingNavigator1.Name = "coreBindingNavigator1";
-        coreBindingNavigator1.Size = new Size(800, 27);
+        coreBindingNavigator1.Size = new Size(706, 27);
         coreBindingNavigator1.TabIndex = 3;
         coreBindingNavigator1.Text = "coreBindingNavigator1";
-        // 
-        // MockUpdateCurrentButton
-        // 
-        MockUpdateCurrentButton.Location = new Point(300, 14);
-        MockUpdateCurrentButton.Name = "MockUpdateCurrentButton";
-        MockUpdateCurrentButton.Size = new Size(104, 29);
-        MockUpdateCurrentButton.TabIndex = 4;
-        MockUpdateCurrentButton.Text = "Mock update";
-        MockUpdateCurrentButton.UseVisualStyleBackColor = true;
-        MockUpdateCurrentButton.Click += MockUpdateCurrentButton_Click;
         // 
         // DataForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(800, 450);
+        ClientSize = new Size(706, 657);
         Controls.Add(dataGridView1);
         Controls.Add(coreBindingNavigator1);
         Controls.Add(panel1);
+        FormBorderStyle = FormBorderStyle.FixedToolWindow;
         Icon = (Icon)resources.GetObject("$this.Icon");
         Name = "DataForm";
         StartPosition = FormStartPosition.CenterScreen;
@@ -133,4 +171,7 @@ partial class DataForm
     private Button CurrentButton;
     private CoreBindingNavigator coreBindingNavigator1;
     private Button MockUpdateCurrentButton;
+    private Button RemoveButton;
+    private Button AddButton;
+    private Button RefreshButton;
 }

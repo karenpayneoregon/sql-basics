@@ -24,12 +24,28 @@ public class SqlStatements
         FROM dbo.Person;
         """;
 
+    public static string Get => 
+        """
+        SELECT Id,
+               FirstName,
+               LastName,
+               BirthDate
+        FROM dbo.Person
+        WHERE Id = @Id;
+        """;
+
     public static string UpdatePerson => 
         """
         UPDATE dbo.Person
         SET FirstName = @FirstName,
             LastName = @LastName,
             BirthDate = @BirthDate
+        WHERE Id = @Id;
+        """;
+
+    public static string RemovePerson =>
+        """
+        DELETE FROM dbo.Person
         WHERE Id = @Id;
         """;
 

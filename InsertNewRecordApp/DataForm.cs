@@ -4,6 +4,8 @@ using InsertNewRecordApp.Extensions;
 using InsertNewRecordApp.MockingClasses;
 using InsertNewRecordApp.Models;
 
+using static InsertNewRecordApp.Classes.Dialogs;
+
 namespace InsertNewRecordApp;
 public partial class DataForm : Form
 {
@@ -13,6 +15,12 @@ public partial class DataForm : Form
     {
         InitializeComponent();
 
+        LoadBogusData();
+    }
+
+    private void LoadBogusData()
+    {
+        
         _personList = new BindingList<Person>(BogusOperations.People());
         _bindingSource.DataSource = _personList;
         dataGridView1.DataSource = _bindingSource;
@@ -22,45 +30,144 @@ public partial class DataForm : Form
         coreBindingNavigator1.BindingSource = _bindingSource;
     }
 
+    /*
+     *   1. Dump current table data, reset identity for table using Dapper
+     *   2. Add all rows in the DataGridView to the database table
+     *   3. Read back data to DataGridView
+     *
+     *   Note:
+     *   The idea for this example might be done without a user interface so
+     *   the data is not returned but the list is updated, check it out by
+     *   uncommenting updatedPeople and put a breakpoint below and check that
+     *   each item has a primary key.
+     */
     private async void SaveButton_Click(object sender, EventArgs e)
     {
+
         await DataOperations.ResetDapper();
 
-        var (success, exception) = await DataOperations.AddRangeDapperWithoutKeys(_personList.ToList());
+        var (success, exception) = 
+            await DataOperations.AddRangeDapperWithKeys(
+                _personList.ToList());
+
         if (exception is not null)
         {
             MessageBox.Show($@"Failed with {exception.Message}");
         }
         else
         {
+            // see comments above
+            // List<Person> updatedPeople = _personList.ToList();
+
             _personList = new BindingList<Person>(DataOperations.GetAll());
             _bindingSource.DataSource = _personList;
 
         }
     }
 
-    private void CurrentButton_Click(object sender, EventArgs e)
+    /*
+     *  1. Get id from current row in the DataGridView
+     *  2. Use Dapper to find in the database table
+     *     (We could get it right from the BindingList and be done but we are here for Dapper)
+     *  3. Display person data
+     */
+    private async void CurrentButton_Click(object sender, EventArgs e)
     {
-        Person person = _personList[_bindingSource.Position];
-
-        MessageBox.Show($@"{person.Id} {person.FirstName} {person.LastName} {person.BirthDate}");
-    }
-
-    private async void MockUpdateCurrentButton_Click(object sender, EventArgs e)
-    {
+        if (_bindingSource.Current is null) return;
         Person person = _personList[_bindingSource.Position];
 
         if (person.Id > 0)
         {
-            Person bogus = BogusOperations.Person();
-            person.LastName = bogus!.LastName;
-            person.FirstName = bogus.FirstName;
-            person.BirthDate = bogus.BirthDate;
-            await DataOperations.Update(person);
+            var record = await DataOperations.GetDapper(person.Id);
+            MessageBox.Show($@"{record.Id} {record.FirstName} {record.LastName} {record.BirthDate:MM/dd/yyyy}");
         }
         else
         {
             MessageBox.Show(@"Use Save button than try again");
         }
+
+    }
+
+    private async void MockUpdateCurrentButton_Click(object sender, EventArgs e)
+    {
+        if (_bindingSource.Current is null) return;
+        Person person = _personList[_bindingSource.Position];
+
+        if (person.Id > 0)
+        {
+            BogusPerson(person);
+            await DataOperations.UpdateDapper(person);
+            //await DataOperations.Update(person);
+        }
+        else
+        {
+            MessageBox.Show(@"Use Save button than try again");
+        }
+    }
+
+    /*
+     * Remove current record requirements
+     *    1. Ensure we have a person to remove
+     *    2. Ensure the person has a primary key
+     */
+    private async void RemoveButton_Click(object sender, EventArgs e)
+    {
+        if (_bindingSource.Current is null) return;
+        Person person = _personList[_bindingSource.Position];
+        if (person.Id > 0)
+        {
+            /*
+             * Although this is mocked data, always wise to ask permission.
+             * Note that the Question method will
+             *   - Always center on the form
+             *   - Default to No (inspect the code, you can set button text as you see fit)
+             */
+            if (!Question(this, $"Remove {person.FirstName} {person.LastName}", Properties.Resources.question32))
+            {
+                return;
+            }
+
+            if (await DataOperations.RemoveDapper(person))
+            {
+                await DataOperations.RemoveDapper(person);
+                //await DataOperations.Remove(person);
+                _bindingSource.RemoveCurrent();
+            }
+            else
+            {
+                MessageBox.Show(@"Failed to remove record");
+            }
+        }
+        else
+        {
+            MessageBox.Show(@"Use Save button than try again");
+        }
+    }
+
+    /*
+     * AddDapper sets the primary key which means we see it in the grid
+     */
+    private async void AddButton_Click(object sender, EventArgs e)
+    {
+        Person person = BogusOperations.Person();
+        await DataOperations.AddDapper(person);
+        _personList.Add(person);
+    }
+
+    /*
+     * Create a mocked/random person
+     */
+    private static void BogusPerson(Person person)
+    {
+        Person bogus = BogusOperations.Person();
+        person.LastName = bogus!.LastName;
+        person.FirstName = bogus.FirstName;
+        person.BirthDate = bogus.BirthDate;
+    }
+
+    private async void RefreshButton_Click(object sender, EventArgs e)
+    {
+        await DataOperations.ResetDapper();
+        LoadBogusData();
     }
 }

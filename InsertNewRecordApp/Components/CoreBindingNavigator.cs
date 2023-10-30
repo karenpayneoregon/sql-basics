@@ -9,6 +9,7 @@ public sealed class CoreBindingNavigator : BindingNavigator
 
         AddNewItem.Visible = false;
         DeleteItem.Visible = false;
+        BackColor = Color.SeaShell;
 
     }
 }

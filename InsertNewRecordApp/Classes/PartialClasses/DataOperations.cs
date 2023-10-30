@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 
 // ReSharper disable once CheckNamespace
 namespace InsertNewRecordApp.Classes;
-internal partial class DataOperations
+public partial class DataOperations
 {
 
     /// <summary>
@@ -20,13 +20,19 @@ internal partial class DataOperations
     }
 
 
-
+    /// <summary>
+    /// Test connection with provided connection string
+    /// </summary>
+    /// <returns></returns>
     static async Task<(bool, SqlException exception)> CanConnect()
     {
+        CancellationTokenSource cancellationTokenSource = new(TimeSpan.FromSeconds(4));
+
         await using SqlConnection cn = new(ConnectionString());
+
         try
         {
-            await cn.OpenAsync();
+            await cn.OpenAsync(cancellationTokenSource.Token);
             return (true, null);
         }
         catch (SqlException exception)

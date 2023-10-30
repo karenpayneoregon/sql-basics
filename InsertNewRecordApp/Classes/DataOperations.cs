@@ -1,12 +1,14 @@
 ﻿using System.Data;
+using System.Diagnostics;
 using Dapper;
+using DbPeekQueryLibrary.LanguageExtensions;
+using InsertNewRecordApp.Extensions;
 using InsertNewRecordApp.Models;
 using Microsoft.Data.SqlClient;
 
 namespace InsertNewRecordApp.Classes;
 
-
-internal partial class DataOperations
+public partial class DataOperations
 {
 
     /// <summary>
@@ -23,7 +25,9 @@ internal partial class DataOperations
         }
 
         await using SqlConnection cn = new(ConnectionString());
+
         await cn.OpenAsync();
+
         await using SqlTransaction transaction = cn.BeginTransaction();
 
         try
@@ -52,13 +56,100 @@ internal partial class DataOperations
             return (true, null);
 
         }
-        catch (Exception ex)
+        catch (Exception localException)
         {
             transaction.Rollback();
-            return (false, ex);
+            return (false, localException);
         }
     }
 
+    public static async Task<Person> Get(int id)
+    {
+        await using SqlConnection cn = new(ConnectionString());
+        await using SqlCommand cmd = new()
+        {
+            Connection = cn,
+            CommandText = SqlStatements.Get
+        };
+
+        cmd.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+
+        await cn.OpenAsync();
+        var reader = await cmd.ExecuteReaderAsync();
+        await reader.ReadAsync();
+
+        Person person = new Person
+        {
+            Id = id,
+            FirstName = reader.GetString(1),
+            LastName = reader.GetString(2),
+            BirthDate = reader.GetDateOnly(3)
+        };
+
+        return person;
+    }
+    public static async Task Add(Person person)
+    {
+        await using SqlConnection cn = new(ConnectionString());
+        await using SqlCommand cmd = new()
+        {
+            Connection = cn,
+            CommandText = SqlStatements.InsertPeople
+        };
+
+        cmd.Parameters.Add("@Id", SqlDbType.Int).Value = person.Id;
+        cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = person.FirstName;
+        cmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = person.LastName;
+        cmd.Parameters.Add("@BirthDate", SqlDbType.Date).Value = person.BirthDate;
+
+        await cn.OpenAsync();
+
+        person.Id = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+        
+    }
+    public static async Task<(bool, Exception ex)> Update(Person person)
+    {
+        try
+        {
+
+            await using SqlConnection cn = new(ConnectionString());
+            await using SqlCommand cmd = new()
+            {
+                Connection = cn, 
+                CommandText = SqlStatements.UpdatePerson
+            };
+
+            cmd.Parameters.Add("@Id", SqlDbType.Int).Value = person.Id;
+            cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = person.FirstName;
+            cmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = person.LastName;
+            cmd.Parameters.Add("@BirthDate", SqlDbType.Date).Value = person.BirthDate;
+
+            await cn.OpenAsync();
+            var affected = await cmd.ExecuteNonQueryAsync();
+
+            return (affected == 1, null);
+
+        }
+        catch (Exception localException)
+        {
+            return (false, localException);
+        }
+    }
+
+    public static async Task<bool> Remove(Person person)
+    {
+        await using SqlConnection cn = new(ConnectionString());
+        await using SqlCommand cmd = new() { Connection = cn, CommandText = SqlStatements.RemovePerson };
+
+        cmd.Parameters.Add("@Id", SqlDbType.Int).Value = person.Id;
+
+        await cn.OpenAsync();
+
+        var affected = await cmd.ExecuteNonQueryAsync();
+
+        return affected == 1;
+
+    }
     /// <summary>
     /// Get count for Person table
     /// </summary>
@@ -74,5 +165,3 @@ internal partial class DataOperations
     }
 
 }
-
-
