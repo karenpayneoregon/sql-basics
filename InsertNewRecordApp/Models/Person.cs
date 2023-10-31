@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using static InsertNewRecordApp.MockingClasses.JsonOperations;
+using System.Text.Json.Serialization;
 
 namespace InsertNewRecordApp.Models;
 
@@ -42,6 +44,7 @@ public class Person : INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+
 
     public DateOnly BirthDate
     {

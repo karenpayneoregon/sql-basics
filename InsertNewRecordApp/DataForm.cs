@@ -16,11 +16,12 @@ public partial class DataForm : Form
         InitializeComponent();
 
         LoadBogusData();
+        
     }
 
     private void LoadBogusData()
     {
-        
+
         _personList = new BindingList<Person>(BogusOperations.People());
         _bindingSource.DataSource = _personList;
         dataGridView1.DataSource = _bindingSource;
@@ -188,5 +189,19 @@ public partial class DataForm : Form
     {
         await DataOperations.ResetDapper();
         LoadBogusData();
+    }
+
+    /*
+     * Here we show how to perform a WHERE BETWEEN on BirthDate
+     *  - Read people from json file with known data
+     *  - Reset database table and populate from json
+     *  - Execute where condition and display in the DataGridView
+     */
+    private async void WhereButton_Click(object sender, EventArgs e)
+    {
+        var peep = JsonOperations.GetAll();
+        await DataOperations.SetupWithJson(peep);
+        _personList = new BindingList<Person>(DataOperations.GetBetweenDates(1999,2004));
+        _bindingSource.DataSource = _personList;
     }
 }

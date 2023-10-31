@@ -40,6 +40,7 @@ partial class DataForm
         MockUpdateCurrentButton = new Button();
         CurrentButton = new Button();
         coreBindingNavigator1 = new CoreBindingNavigator();
+        WhereButton = new Button();
         ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
         panel1.SuspendLayout();
         coreBindingNavigator1.BeginInit();
@@ -72,6 +73,7 @@ partial class DataForm
         // 
         // panel1
         // 
+        panel1.Controls.Add(WhereButton);
         panel1.Controls.Add(RefreshButton);
         panel1.Controls.Add(AddButton);
         panel1.Controls.Add(RemoveButton);
@@ -143,6 +145,16 @@ partial class DataForm
         coreBindingNavigator1.TabIndex = 3;
         coreBindingNavigator1.Text = "coreBindingNavigator1";
         // 
+        // WhereButton
+        // 
+        WhereButton.Location = new Point(12, 295);
+        WhereButton.Name = "WhereButton";
+        WhereButton.Size = new Size(104, 29);
+        WhereButton.TabIndex = 8;
+        WhereButton.Text = "Where";
+        WhereButton.UseVisualStyleBackColor = true;
+        WhereButton.Click += WhereButton_Click;
+        // 
         // DataForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
@@ -174,4 +186,5 @@ partial class DataForm
     private Button RemoveButton;
     private Button AddButton;
     private Button RefreshButton;
+    private Button WhereButton;
 }

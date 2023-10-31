@@ -57,4 +57,15 @@ public class SqlStatements
         SELECT COUNT(Id)
         FROM dbo.Person;
         """;
+
+    public static string BirthDateBetweenYears => 
+        """
+        SELECT Id,
+               FirstName,
+               LastName,
+               BirthDate
+        FROM InsertExamples.dbo.Person
+        WHERE YEAR(BirthDate)
+        BETWEEN @StartYear AND @EndYear;
+        """;
 }
