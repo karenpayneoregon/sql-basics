@@ -5,6 +5,9 @@
 /// </summary>
 public class SqlStatements
 {
+    /// <summary>
+    /// Add new person, return new primary key
+    /// </summary>
     public static string InsertPeople =>
         """
         INSERT INTO dbo.Person
@@ -18,6 +21,9 @@ public class SqlStatements
         SELECT CAST(scope_identity() AS int);
         """;
 
+    /// <summary>
+    /// Get all records from Person table
+    /// </summary>
     public static string ReadPeople =>
         """
         SELECT Id,
@@ -27,6 +33,9 @@ public class SqlStatements
         FROM dbo.Person;
         """;
 
+    /// <summary>
+    /// Get a single person by primary key
+    /// </summary>
     public static string Get => 
         """
         SELECT Id,
@@ -37,6 +46,9 @@ public class SqlStatements
         WHERE Id = @Id;
         """;
 
+    /// <summary>
+    /// Update person by primary key
+    /// </summary>
     public static string UpdatePerson => 
         """
         UPDATE dbo.Person
@@ -46,18 +58,27 @@ public class SqlStatements
         WHERE Id = @Id;
         """;
 
+    /// <summary>
+    /// Remove person by primary key
+    /// </summary>
     public static string RemovePerson =>
         """
         DELETE FROM dbo.Person
         WHERE Id = @Id;
         """;
 
+    /// <summary>
+    /// Get count of records for Person table
+    /// </summary>
     public static string CountOfPeople =>
         """
         SELECT COUNT(Id)
         FROM dbo.Person;
         """;
 
+    /// <summary>
+    /// SELECT WHERE BETWEEN years for birth date
+    /// </summary>
     public static string BirthDateBetweenYears => 
         """
         SELECT Id,
