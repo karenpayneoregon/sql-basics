@@ -16,7 +16,7 @@ public partial class DataForm : Form
         InitializeComponent();
 
         LoadBogusData();
-        
+
     }
 
     private void LoadBogusData()
@@ -201,7 +201,13 @@ public partial class DataForm : Form
     {
         var peep = JsonOperations.GetAll();
         await DataOperations.SetupWithJson(peep);
-        _personList = new BindingList<Person>(DataOperations.GetBetweenDates(1999,2004));
+        _personList = new BindingList<Person>(DataOperations.GetBetweenDates(1999, 2004));
         _bindingSource.DataSource = _personList;
+    }
+
+    private async void GetCustomerButton_Click(object sender, EventArgs e)
+    {
+        var customer = await DataOperations.GetContrib(2);
+        MessageBox.Show(customer.ToString());
     }
 }

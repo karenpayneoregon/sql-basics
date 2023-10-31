@@ -34,13 +34,16 @@ partial class DataForm
         dataGridView1 = new DataGridView();
         SaveButton = new Button();
         panel1 = new Panel();
+        WhereButton = new Button();
         RefreshButton = new Button();
         AddButton = new Button();
         RemoveButton = new Button();
         MockUpdateCurrentButton = new Button();
         CurrentButton = new Button();
         coreBindingNavigator1 = new CoreBindingNavigator();
-        WhereButton = new Button();
+        GetCustomerButton = new Button();
+        label1 = new Label();
+        label2 = new Label();
         ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
         panel1.SuspendLayout();
         coreBindingNavigator1.BeginInit();
@@ -63,7 +66,7 @@ partial class DataForm
         // 
         // SaveButton
         // 
-        SaveButton.Location = new Point(12, 27);
+        SaveButton.Location = new Point(12, 36);
         SaveButton.Name = "SaveButton";
         SaveButton.Size = new Size(104, 29);
         SaveButton.TabIndex = 1;
@@ -73,6 +76,9 @@ partial class DataForm
         // 
         // panel1
         // 
+        panel1.Controls.Add(label2);
+        panel1.Controls.Add(label1);
+        panel1.Controls.Add(GetCustomerButton);
         panel1.Controls.Add(WhereButton);
         panel1.Controls.Add(RefreshButton);
         panel1.Controls.Add(AddButton);
@@ -85,9 +91,19 @@ partial class DataForm
         panel1.Size = new Size(128, 618);
         panel1.TabIndex = 2;
         // 
+        // WhereButton
+        // 
+        WhereButton.Location = new Point(12, 304);
+        WhereButton.Name = "WhereButton";
+        WhereButton.Size = new Size(104, 29);
+        WhereButton.TabIndex = 8;
+        WhereButton.Text = "Where";
+        WhereButton.UseVisualStyleBackColor = true;
+        WhereButton.Click += WhereButton_Click;
+        // 
         // RefreshButton
         // 
-        RefreshButton.Location = new Point(12, 254);
+        RefreshButton.Location = new Point(12, 263);
         RefreshButton.Name = "RefreshButton";
         RefreshButton.Size = new Size(104, 29);
         RefreshButton.TabIndex = 7;
@@ -97,7 +113,7 @@ partial class DataForm
         // 
         // AddButton
         // 
-        AddButton.Location = new Point(12, 207);
+        AddButton.Location = new Point(12, 216);
         AddButton.Name = "AddButton";
         AddButton.Size = new Size(104, 29);
         AddButton.TabIndex = 6;
@@ -107,7 +123,7 @@ partial class DataForm
         // 
         // RemoveButton
         // 
-        RemoveButton.Location = new Point(12, 162);
+        RemoveButton.Location = new Point(12, 171);
         RemoveButton.Name = "RemoveButton";
         RemoveButton.Size = new Size(104, 29);
         RemoveButton.TabIndex = 5;
@@ -117,7 +133,7 @@ partial class DataForm
         // 
         // MockUpdateCurrentButton
         // 
-        MockUpdateCurrentButton.Location = new Point(12, 117);
+        MockUpdateCurrentButton.Location = new Point(12, 126);
         MockUpdateCurrentButton.Name = "MockUpdateCurrentButton";
         MockUpdateCurrentButton.Size = new Size(104, 29);
         MockUpdateCurrentButton.TabIndex = 4;
@@ -127,7 +143,7 @@ partial class DataForm
         // 
         // CurrentButton
         // 
-        CurrentButton.Location = new Point(12, 72);
+        CurrentButton.Location = new Point(12, 81);
         CurrentButton.Name = "CurrentButton";
         CurrentButton.Size = new Size(104, 29);
         CurrentButton.TabIndex = 3;
@@ -145,15 +161,35 @@ partial class DataForm
         coreBindingNavigator1.TabIndex = 3;
         coreBindingNavigator1.Text = "coreBindingNavigator1";
         // 
-        // WhereButton
+        // GetCustomerButton
         // 
-        WhereButton.Location = new Point(12, 295);
-        WhereButton.Name = "WhereButton";
-        WhereButton.Size = new Size(104, 29);
-        WhereButton.TabIndex = 8;
-        WhereButton.Text = "Where";
-        WhereButton.UseVisualStyleBackColor = true;
-        WhereButton.Click += WhereButton_Click;
+        GetCustomerButton.BackColor = Color.LightCoral;
+        GetCustomerButton.ForeColor = Color.White;
+        GetCustomerButton.Location = new Point(12, 368);
+        GetCustomerButton.Name = "GetCustomerButton";
+        GetCustomerButton.Size = new Size(104, 29);
+        GetCustomerButton.TabIndex = 9;
+        GetCustomerButton.Text = "Get";
+        GetCustomerButton.UseVisualStyleBackColor = false;
+        GetCustomerButton.Click += GetCustomerButton_Click;
+        // 
+        // label1
+        // 
+        label1.AutoSize = true;
+        label1.Location = new Point(12, 8);
+        label1.Name = "label1";
+        label1.Size = new Size(85, 20);
+        label1.TabIndex = 10;
+        label1.Text = "Person opts";
+        // 
+        // label2
+        // 
+        label2.AutoSize = true;
+        label2.Location = new Point(12, 345);
+        label2.Name = "label2";
+        label2.Size = new Size(105, 20);
+        label2.TabIndex = 11;
+        label2.Text = "Customer opts";
         // 
         // DataForm
         // 
@@ -170,6 +206,7 @@ partial class DataForm
         Text = "Data operation samples";
         ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
         panel1.ResumeLayout(false);
+        panel1.PerformLayout();
         coreBindingNavigator1.EndInit();
         ResumeLayout(false);
         PerformLayout();
@@ -187,4 +224,7 @@ partial class DataForm
     private Button AddButton;
     private Button RefreshButton;
     private Button WhereButton;
+    private Label label2;
+    private Label label1;
+    private Button GetCustomerButton;
 }
