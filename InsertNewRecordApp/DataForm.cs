@@ -140,7 +140,6 @@ public partial class DataForm : Form
 
             if (await DataOperations.RemoveDapper(person))
             {
-                await DataOperations.RemoveDapper(person);
                 //await DataOperations.Remove(person);
                 _bindingSource.RemoveCurrent();
             }
