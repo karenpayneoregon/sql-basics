@@ -61,6 +61,9 @@ public partial class DataOperations
                      */
                     var primaryKey = await transaction.ExecuteScalarAsync(SqlStatements.InsertPeople, person);
 
+                    /*
+                     * Assign primary key
+                     */
                     person.Id = (int)primaryKey!;
                 }
 
@@ -138,6 +141,9 @@ public partial class DataOperations
          */
         var primaryKey = await cn.ExecuteScalarAsync(SqlStatements.InsertPeople, person);
 
+        /*
+         * Assign primary key
+         */
         person.Id = (int)primaryKey!;
     }
 
