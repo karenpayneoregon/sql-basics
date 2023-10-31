@@ -139,12 +139,12 @@ public partial class DataOperations
          *  - First parameter is the INSERT statement
          *  - Second parameter is data to insert
          */
-        var primaryKey = await cn.ExecuteScalarAsync(SqlStatements.InsertPeople, person);
+        IEnumerable<int> primaryKey = await cn.QueryAsync<int>(SqlStatements.InsertPeople, person);
 
         /*
          * Assign primary key
          */
-        person.Id = (int)primaryKey!;
+        person.Id = primaryKey.Single();
     }
 
 
