@@ -89,4 +89,17 @@ public class SqlStatements
         WHERE YEAR(BirthDate)
         BETWEEN @StartYear AND @EndYear;
         """;
+
+    /// <summary>
+    /// Example for WHERE IN primary key
+    /// </summary>
+    public static string WhereInClause =>
+        """
+        SELECT Id,
+               FirstName,
+               LastName,
+               BirthDate
+        FROM dbo.Person
+        WHERE Id IN @Ids;
+        """;
 }

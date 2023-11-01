@@ -207,6 +207,16 @@ public partial class DataForm : Form
         _bindingSource.DataSource = _personList;
     }
 
+    private async void WhereInPersonButton_Click(object sender, EventArgs e)
+    {
+        /*
+         * Example for performing a WHERE IN
+         */
+
+        int[] identifiers = { 1, 3, 5 };
+        var people = await DataOperations.WhereInDapper(identifiers);
+    }
+
     private async void GetCustomerButton_Click(object sender, EventArgs e)
     {
         var customer = await DataOperations.GetContrib(2);

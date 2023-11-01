@@ -194,6 +194,28 @@ public partial class DataOperations
     }
 
     /// <summary>
+    /// Example for executing a WHERE IN 
+    /// </summary>
+    /// <param name="ids">identifiers for where condition</param>
+    public static async Task<List<Person>> WhereInDapper(int[] ids)
+    {
+        /*
+         * Setup Dapper to understand DateOnly
+         */
+        SqlMapper.AddTypeHandler(new DapperSqlDateOnlyTypeHandler());
+
+        await using SqlConnection cn = new(ConnectionString());
+
+        IEnumerable<Person> result = await cn.QueryAsync<Person>(
+            SqlStatements.WhereInClause, new
+            {
+                Ids = ids
+            });
+
+        return result.ToList();
+    }
+
+    /// <summary>
     /// Get count for Person table
     /// </summary>
     /// <returns>Count of records</returns>
