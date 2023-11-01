@@ -34,6 +34,9 @@ partial class DataForm
         dataGridView1 = new DataGridView();
         SaveButton = new Button();
         panel1 = new Panel();
+        label2 = new Label();
+        label1 = new Label();
+        GetCustomerButton = new Button();
         WhereButton = new Button();
         RefreshButton = new Button();
         AddButton = new Button();
@@ -41,9 +44,7 @@ partial class DataForm
         MockUpdateCurrentButton = new Button();
         CurrentButton = new Button();
         coreBindingNavigator1 = new CoreBindingNavigator();
-        GetCustomerButton = new Button();
-        label1 = new Label();
-        label2 = new Label();
+        AddCustomerButton = new Button();
         ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
         panel1.SuspendLayout();
         coreBindingNavigator1.BeginInit();
@@ -76,6 +77,7 @@ partial class DataForm
         // 
         // panel1
         // 
+        panel1.Controls.Add(AddCustomerButton);
         panel1.Controls.Add(label2);
         panel1.Controls.Add(label1);
         panel1.Controls.Add(GetCustomerButton);
@@ -90,6 +92,36 @@ partial class DataForm
         panel1.Name = "panel1";
         panel1.Size = new Size(128, 618);
         panel1.TabIndex = 2;
+        // 
+        // label2
+        // 
+        label2.AutoSize = true;
+        label2.Location = new Point(12, 345);
+        label2.Name = "label2";
+        label2.Size = new Size(105, 20);
+        label2.TabIndex = 11;
+        label2.Text = "Customer opts";
+        // 
+        // label1
+        // 
+        label1.AutoSize = true;
+        label1.Location = new Point(12, 8);
+        label1.Name = "label1";
+        label1.Size = new Size(85, 20);
+        label1.TabIndex = 10;
+        label1.Text = "Person opts";
+        // 
+        // GetCustomerButton
+        // 
+        GetCustomerButton.BackColor = Color.LightCoral;
+        GetCustomerButton.ForeColor = Color.White;
+        GetCustomerButton.Location = new Point(12, 368);
+        GetCustomerButton.Name = "GetCustomerButton";
+        GetCustomerButton.Size = new Size(104, 29);
+        GetCustomerButton.TabIndex = 9;
+        GetCustomerButton.Text = "Get";
+        GetCustomerButton.UseVisualStyleBackColor = false;
+        GetCustomerButton.Click += GetCustomerButton_Click;
         // 
         // WhereButton
         // 
@@ -161,35 +193,17 @@ partial class DataForm
         coreBindingNavigator1.TabIndex = 3;
         coreBindingNavigator1.Text = "coreBindingNavigator1";
         // 
-        // GetCustomerButton
+        // AddCustomerButton
         // 
-        GetCustomerButton.BackColor = Color.LightCoral;
-        GetCustomerButton.ForeColor = Color.White;
-        GetCustomerButton.Location = new Point(12, 368);
-        GetCustomerButton.Name = "GetCustomerButton";
-        GetCustomerButton.Size = new Size(104, 29);
-        GetCustomerButton.TabIndex = 9;
-        GetCustomerButton.Text = "Get";
-        GetCustomerButton.UseVisualStyleBackColor = false;
-        GetCustomerButton.Click += GetCustomerButton_Click;
-        // 
-        // label1
-        // 
-        label1.AutoSize = true;
-        label1.Location = new Point(12, 8);
-        label1.Name = "label1";
-        label1.Size = new Size(85, 20);
-        label1.TabIndex = 10;
-        label1.Text = "Person opts";
-        // 
-        // label2
-        // 
-        label2.AutoSize = true;
-        label2.Location = new Point(12, 345);
-        label2.Name = "label2";
-        label2.Size = new Size(105, 20);
-        label2.TabIndex = 11;
-        label2.Text = "Customer opts";
+        AddCustomerButton.BackColor = Color.LightCoral;
+        AddCustomerButton.ForeColor = Color.White;
+        AddCustomerButton.Location = new Point(12, 415);
+        AddCustomerButton.Name = "AddCustomerButton";
+        AddCustomerButton.Size = new Size(104, 29);
+        AddCustomerButton.TabIndex = 12;
+        AddCustomerButton.Text = "Add";
+        AddCustomerButton.UseVisualStyleBackColor = false;
+        AddCustomerButton.Click += AddCustomerButton_Click;
         // 
         // DataForm
         // 
@@ -227,4 +241,5 @@ partial class DataForm
     private Label label2;
     private Label label1;
     private Button GetCustomerButton;
+    private Button AddCustomerButton;
 }

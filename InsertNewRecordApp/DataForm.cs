@@ -91,7 +91,9 @@ public partial class DataForm : Form
         }
 
     }
-
+    /// <summary>
+    /// Get current person from current row in the DataGridView
+    /// </summary>
     private async void MockUpdateCurrentButton_Click(object sender, EventArgs e)
     {
         // check if there is a current row in the DataGridView
@@ -209,5 +211,17 @@ public partial class DataForm : Form
     {
         var customer = await DataOperations.GetContrib(2);
         MessageBox.Show(customer.ToString());
+    }
+
+    private async void AddCustomerButton_Click(object sender, EventArgs e)
+    {
+        /*
+         * Basics for Contrib methods
+         */
+        Customer customer = new Customer() { FirstName = "Karen", LastName = "Payne", Active = true };
+        await DataOperations.AddContrib(customer);
+        customer.FirstName = "Jane";
+        var test1 = await DataOperations.UpdateContrib(customer);
+        var test2 = await DataOperations.RemoveContrib(customer);
     }
 }
