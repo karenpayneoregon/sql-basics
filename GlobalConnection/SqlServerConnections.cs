@@ -8,7 +8,7 @@ public sealed class SqlServerConnections
     private static readonly Lazy<SqlServerConnections>
         Lazy = new(() => new SqlServerConnections());
 
-    public string _connectionString = 
+    public string ConnectionString = 
         """
         Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=NorthWind2022;Integrated Security=True;Encrypt=False
         """;
@@ -27,7 +27,7 @@ public sealed class SqlServerConnections
 
         try
         {
-            connection = (SqlConnection)_connections[_connectionString];
+            connection = (SqlConnection)_connections[ConnectionString];
         }
         catch (Exception localException)
         {
@@ -58,13 +58,13 @@ public sealed class SqlServerConnections
 
         if (connection.State == ConnectionState.Closed)
         {
-            connection.ConnectionString = _connectionString;
+            connection.ConnectionString = ConnectionString;
             connection.Open();
         }
 
         if (bNeedAdd)
         {
-            _connections.Add(_connectionString, connection);
+            _connections.Add(ConnectionString, connection);
         }
 
         return connection;

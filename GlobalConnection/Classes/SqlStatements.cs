@@ -13,6 +13,7 @@ public class SqlStatements
         FROM dbo.Contacts 
         WHERE ContactId > @Top
         """;
+        
     public static string CustomersByContactTypeAndCountry()
         => """
                 SELECT C.CustomerIdentifier,
@@ -41,15 +42,15 @@ public class SqlStatements
 
     public static string ProductsCategories() =>
         """
-        SELECT 
-            ProductID, 
-            ProductName, 
-            p.CategoryID, 
-            QuantityPerUnit,
-            CategoryName 
-        FROM Products p 
-            INNER JOIN Categories c 
-                ON p.CategoryID = c.CategoryID
+        SELECT p.ProductID,
+               p.ProductName,
+               p.CategoryID,
+        	   c.CategoryID,
+               p.QuantityPerUnit,
+               c.CategoryName
+        FROM dbo.Products p
+            INNER JOIN dbo.Categories c
+                ON p.CategoryID = c.CategoryID;
         """;
 
     public static string ProductsSelect() => """

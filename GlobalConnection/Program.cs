@@ -36,8 +36,8 @@ internal class Program
     private static async Task OneToManyRelationships()
     {
         
-        var catDictionary = await Operations.CatDictionary();
-        var products = await DapperGetProductsWithCategory();
+        var categories = await Operations.CategoriesList();
+        List<Product> products = await Operations.ProductsWithCategory();
         products = products.OrderBy(p => p.Category.CategoryName).ToList();
 
         var productsGrouped = products
@@ -48,7 +48,7 @@ internal class Program
         foreach (var item in productsGrouped)
         {
             // show category name
-            Console.WriteLine(catDictionary[item.Id]);
+            Console.WriteLine(categories[item.Id]);
 
             // display each product for current category
             foreach (var product in item.List.OrderBy(x => x.ProductName))
@@ -277,19 +277,19 @@ internal class Program
         return contacts.ToList();
     }
 
-    public static async Task<List<Product>> DapperGetProductsWithCategory()
-    {
-        await using SqlConnection cn = new(ConnectionString());
+    //public static async Task<List<Product>> DapperGetProductsWithCategory()
+    //{
+    //    await using SqlConnection cn = new(ConnectionString());
         
-        var products = await cn.QueryAsync<Product, Category, Product>(
-            SqlStatements.ProductsCategories(), (product, category) => {
-                product.Category = category;
-                product.CategoryID = category.CategoryID;
-                return product;
-            },
-            splitOn: "CategoryId");
+    //    var products = await cn.QueryAsync<Product, Category, Product>(
+    //        SqlStatements.ProductsCategories(), (product, category) => {
+    //            product.Category = category;
+    //            product.CategoryID = category.CategoryID;
+    //            return product;
+    //        },
+    //        splitOn: "CategoryId");
 
-        return products.ToList();
+    //    return products.ToList();
 
-    }
+    //}
 }

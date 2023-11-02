@@ -1,4 +1,7 @@
 ﻿namespace GlobalConnection.Models;
+/// <summary>
+/// Represents a customer entity with properties such as customer identifier, company name, contact ID, street, city, postal code, country identifier, contact title, first name, and last name.
+/// </summary>
 public class Customer
 {
     public int CustomerIdentifier { get; set; }
