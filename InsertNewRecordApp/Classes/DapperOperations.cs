@@ -138,15 +138,10 @@ public partial class DataOperations
          * Dapper
          *  - First parameter is the INSERT statement
          *  - Second parameter is data to insert
+         *  - Second query is to get the new primary key
          */
-        IEnumerable<int> primaryKey = await cn.QueryAsync<int>(SqlStatements.InsertPeople, person);
-
-        /*
-         * Assign primary key
-         */
-        person.Id = primaryKey.Single();
+        person.Id = await cn.QueryFirstAsync<int>(SqlStatements.InsertPeople, person);
     }
-
 
     /// <summary>
     /// Get all records for Person table using Dapper
