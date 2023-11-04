@@ -80,6 +80,18 @@ internal partial class Program
         AnsiConsole.MarkupLine($"[LightGreen]All people after delete[/]");
         AnsiConsole.Write(table);
 
+        int[] identifiers = { 2, 4 };
+        var whereIn = await repo.WhereIn(identifiers);
+        table = PersonTable();
+
+        foreach (var peep in whereIn)
+        {
+            table.AddRow(peep.Id.ToString(), peep.FirstName, peep.LastName, peep.BirthDate.ToString());
+        }
+
+        AnsiConsole.MarkupLine($"[LightGreen]Where in results[/]");
+        AnsiConsole.Write(table);
+
         ExitPrompt();
     }
 }
