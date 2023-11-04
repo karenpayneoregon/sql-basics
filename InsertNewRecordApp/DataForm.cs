@@ -3,7 +3,6 @@ using InsertNewRecordApp.Classes;
 using InsertNewRecordApp.Extensions;
 using InsertNewRecordApp.MockingClasses;
 using InsertNewRecordApp.Models;
-
 using static InsertNewRecordApp.Classes.Dialogs;
 
 namespace InsertNewRecordApp;
@@ -234,4 +233,5 @@ public partial class DataForm : Form
         var test1 = await DataOperations.UpdateContrib(customer);
         var test2 = await DataOperations.RemoveContrib(customer);
     }
+
 }
