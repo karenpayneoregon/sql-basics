@@ -42,14 +42,21 @@ internal class SqlOperations
     //    //await cn.WriteToConsole(SqlStatements.ReadCustomers());
     //}
 
-    public static async Task WriteToFileAndConsoleForCommand()
+    public static async Task WriteToFileAndConsoleForCommand(int contactTypeIdentifier)
     {
         await using SqlConnection cn = new(ConnectionString);
-        await using SqlCommand cmd = new() { Connection = cn, CommandText = SqlStatements.ReadCustomersOwners() };
-        cmd.Parameters.Add("@ContactTypeIdentifier", SqlDbType.Int).Value = 7;
+        await using SqlCommand cmd = new()
+        {
+            Connection = cn, 
+            CommandText = SqlStatements.ReadCustomersOwners()
+        };
+
+        cmd.Parameters.Add("@ContactTypeIdentifier", SqlDbType.Int).Value = contactTypeIdentifier;
+
         await cn.OpenAsync();
-        await cmd.WriteTo();
+        await cmd.Write();
     }
+
 
 }
 
@@ -60,9 +67,10 @@ public static class SqlClientExtensions
     /// Write query results to a file or to the console
     /// </summary>
     /// <param name="cmd">Live <see cref="SqlCommand"/></param>
-    /// <param name="fileName">If not null writes query results to a file else display results to the console</param>
+    /// <param name="fileName">If not null writes query results to a file else
+    /// display results to the console</param>
     /// <returns></returns>
-    public static async Task WriteTo(this SqlCommand cmd, string fileName = null)
+    public static async Task Write(this SqlCommand cmd, string fileName = null)
     {
         SqlDataReader reader = await cmd.ExecuteReaderAsync();
         int fieldCount = reader.FieldCount;

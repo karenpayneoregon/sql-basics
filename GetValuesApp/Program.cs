@@ -9,7 +9,7 @@ internal partial class Program
 {
     static async Task Main(string[] args)
     {
-        await SqlOperations.WriteToFileAndConsoleForCommand();
+        await SqlOperations.WriteToFileAndConsoleForCommand(7);
 
         List<Person> persons = new List<Person>();
         var result = Examples.FindItemOrDefault(persons, "what ever") ?? new List<Person>()
