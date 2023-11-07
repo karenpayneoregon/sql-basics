@@ -4,6 +4,16 @@ In this article learn how to create Excel spreadsheet documents from reading dat
 
 New to Dapper, check out [Dapper Tutorial](https://dev.to/karenpayneoregon/using-dapper-c-part-1-a-eec)
 
+## Important
+
+Before running the code, create the database with the script in the script folder, [here](https://github.com/karenpayneoregon/sql-basics/blob/master/DapperWithExcel/scripts/NorthWindScript.sql).
+
+## Source code
+
+Resides in the following [GitHub repository](https://github.com/karenpayneoregon/sql-basics/tree/master) in the following [project](https://github.com/karenpayneoregon/sql-basics/tree/master/DapperWithExcel).
+
+## Conventional approach
+
 Typically, developers will attempt to create and populate the spreadsheet using Office automation although using Office automation tends to be problematic on several levels and generally does not work well on web servers.
 
 Do a search on the web for C# list to Excel and at the top of the list will be Office automation, avoid these solutions.

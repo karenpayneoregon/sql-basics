@@ -9,33 +9,6 @@ using static ConfigurationLibrary.Classes.ConfigurationHelper;
 namespace ProductsCategoriesApp.Classes;
 public class Operations
 {
-    public static async Task ProductsWithCategories()
-    {
-        await using SqlConnection cn = new(ConnectionString());
-        var products = await cn.GetAllAsync<Products, Categories, Products>();
-
-        foreach (Products product in products)
-        {
-            Console.WriteLine(product.ProductID);
-        }
-
-    }
-
-    public static async Task<List<Products>> ProductsWithCategoriesAndSuppliers()
-    {
-        await using SqlConnection cn = new(ConnectionString());
-        var products = await cn.GetAllAsync<Products, Categories, Suppliers, Products>();
-        return products.ToList();
-    }
-
-    public static async Task<List<Customers>> CustomersWithContacts()
-    {
-        await using SqlConnection cn = new(ConnectionString());
-        
-        var customers = await cn.GetAllAsync<Customers, Contacts, Countries, Customers>();
-        return customers.ToList();
-
-    }
 
     public static async Task<List<Customers>> CustomersWithContacts1()
     {

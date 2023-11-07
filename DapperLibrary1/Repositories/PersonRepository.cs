@@ -39,7 +39,7 @@ public class PersonRepository : IBaseRepository
     /// <param name="id">Existing primary key</param>
     /// <returns>A single person or null if not located</returns>
     public async Task<Person> Get(int id) 
-        => await cn.QueryFirstOrDefaultAsync<Person>(SqlStatements.Get, new { Id = id });
+        => (await cn.QueryFirstOrDefaultAsync<Person>(SqlStatements.Get, new { Id = id }))!;
 
     /// <summary>
     /// Perform a WHERE IN for identifiers
