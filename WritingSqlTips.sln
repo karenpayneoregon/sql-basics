@@ -38,12 +38,15 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RowFilterApp", "RowFilterApp\RowFilterApp.csproj", "{FC9C7685-FEFD-45EA-A91D-7FACFF6D3B15}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dapper articles", "Dapper articles", "{65FDB35C-3D56-48A9-93FB-2D32028F167B}"
+	ProjectSection(SolutionItems) = preProject
+		DapperStuff.md = DapperStuff.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperPersonRepository", "DapperPersonRepository\DapperPersonRepository.csproj", "{7FEE8E16-36CC-4318-ACEC-40CAA4FB476F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperLibrary1", "DapperLibrary1\DapperLibrary1.csproj", "{82822885-1401-4B2F-AD87-C092E1E9C2FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperWithExcel", "DapperWithExcel\DapperWithExcel.csproj", "{262A783C-7386-4C41-9C7E-9AAECAEC771D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperWithExcel", "DapperWithExcel\DapperWithExcel.csproj", "{262A783C-7386-4C41-9C7E-9AAECAEC771D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
