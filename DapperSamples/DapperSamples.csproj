@@ -9,10 +9,12 @@
 
   <ItemGroup>
     <None Remove="RawSql\Script1.sql" />
+    <None Remove="readme.md" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="RawSql\Script1.sql" />
+    <Content Include="readme.md" />
   </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="ConfigurationLibrary" Version="1.0.4" />
