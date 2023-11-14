@@ -19,13 +19,16 @@ internal class DataOperations
         var results = await cn.QueryAsync<ColumnResult>(statement);
         return results.ToList();
     }
+
     public static async Task<List<Columns>> GetColumnLengths1(string tableName)
     {
         await using SqlConnection cn = new(ConnectionString());
-        var results = await cn.QueryAsync<Columns>(SqlStatements.MaxForColumn(), new
+        return cn.Query<Columns>(SqlStatements.MaxForColumn(), new
         {
-            TableName = tableName, SQL = ""
-        });
-        return results.ToList();
+            TableName = tableName,
+            SQL = ""
+        }).AsList();
     }
+
+
 }
