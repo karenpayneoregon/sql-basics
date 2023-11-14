@@ -29,6 +29,4 @@ internal class DataOperations
             SQL = ""
         }).AsList();
     }
-
-
 }
