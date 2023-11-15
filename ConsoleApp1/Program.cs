@@ -13,7 +13,5 @@ internal class Program
         var list = operations.GetAll();
         var person = operations.GetPerson(2);
     }
-
-
 }
 

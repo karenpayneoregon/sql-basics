@@ -21,7 +21,7 @@ Appears faster than EF Core 7
 
 ## Dapper.AOT
 
-See code in `DapperOperations.cs` and 'SqlStatement.cs'
+See code in `DapperOperations.cs` and `SqlStatement.cs`
 
 https://aot.dapperlib.dev/gettingstarted
 
