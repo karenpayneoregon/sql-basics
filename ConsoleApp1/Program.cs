@@ -1,5 +1,6 @@
 ﻿
 using ConsoleApp1;
+using ConsoleApp1.Classes;
 using ConsoleApp1.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,15 +15,14 @@ internal class Program
     static void Main(string[] args)
     {
 
+        DapperOperations operations = new ();
+        var list = operations.GetAll();
 
-        //int[][] twoD = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+        Console.WriteLine("Hello, World!");
+    }
 
-        //// Create a jagged 2D array from variables:
-        //int[] row0 = [1, 2, 3];
-        //int[] row1 = [4, 5, 6];
-        //int[] row2 = [7, 8, 9];
-        //int[][] twoDFromVariables = [row0, row1, row2];
-
+    private static void EntityFrameworkCore()
+    {
         using var context = new Context();
         var customers = context.Customers
             .Include(x => x.Contact)
@@ -31,9 +31,6 @@ internal class Program
             .Include(x => x.CountryIdentifierNavigation)
             .Where(x => x.Contact.ContactTypeIdentifierNavigation.ContactTitle.Contains("ne"))
             .ToList();
-
-
-        Console.WriteLine("Hello, World!");
     }
 }
 
