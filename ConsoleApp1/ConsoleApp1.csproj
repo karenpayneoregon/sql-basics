@@ -1,0 +1,45 @@
+﻿
+
+
+	<Project Sdk="Microsoft.NET.Sdk">
+
+		<PropertyGroup>
+			<OutputType>Exe</OutputType>
+			<TargetFramework>net8.0</TargetFramework>
+			<!--<LangVersion>preview</LangVersion>-->
+			<LangVersion>default</LangVersion>
+			<ImplicitUsings>enable</ImplicitUsings>
+			<Nullable>enable</Nullable>
+		</PropertyGroup>
+
+		<ItemGroup>
+		  <None Remove="readme.md" />
+		</ItemGroup>
+
+		<ItemGroup>
+		  <Content Include="readme.md" />
+		</ItemGroup>
+
+		<ItemGroup>
+		  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+		</ItemGroup>
+
+		<ItemGroup>
+			<PackageReference Include="ConfigurationLibrary" Version="1.0.4" />
+		</ItemGroup>
+
+		<ItemGroup>
+		  <None Update="appsettings.json">
+		    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		  </None>
+		</ItemGroup>
+
+		<ItemGroup>
+			<PackageReference Include="Dapper.AOT" Version="1.0.2" />
+			<PackageReference Include="Dapper" Version="2.1.21" />
+			<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+		</ItemGroup>
+
+	</Project>
+
+
