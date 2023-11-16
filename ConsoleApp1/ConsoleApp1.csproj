@@ -3,17 +3,19 @@
 		<PropertyGroup>
 			<OutputType>Exe</OutputType>
 			<TargetFramework>net8.0</TargetFramework>
-			<LangVersion>default</LangVersion>
+			<LangVersion>preview</LangVersion>
 			<ImplicitUsings>enable</ImplicitUsings>
 			<Nullable>enable</Nullable>
 		</PropertyGroup>
 
 		<ItemGroup>
 		  <None Remove="readme.md" />
+		  <None Remove="Scripts\Script1.sql" />
 		</ItemGroup>
 
 		<ItemGroup>
 		  <Content Include="readme.md" />
+		  <Content Include="Scripts\Script1.sql" />
 		</ItemGroup>
 
 		<ItemGroup>

@@ -5,6 +5,8 @@ using ConsoleApp1.Handlers;
 using ConsoleApp1.Models;
 using Dapper;
 using static ConfigurationLibrary.Classes.ConfigurationHelper;
+using System.Drawing.Printing;
+#pragma warning disable CS8619 // Nullability of reference types in value doesn't match target type.
 #pragma warning disable DAP018
 #pragma warning disable DAP018
 #pragma warning disable CS8603 // Possible null reference return.
@@ -21,11 +23,13 @@ internal class DapperOperations
 
     private readonly IDbConnection _cn;
     private readonly IDbConnection _cn1;
+    private readonly IDbConnection _cn2;
 
     public DapperOperations()
     {
         _cn = new SqlConnection(ConnectionString());
         _cn1 = new SqlConnection("Data Source=.\\sqlexpress;Initial Catalog=DataGridViewCodeSample;Integrated Security=True;Encrypt=False");
+        _cn2 = new SqlConnection("Data Source=.\\sqlexpress;Initial Catalog=NorthWind2022;Integrated Security=True;Encrypt=False");
         SqlMapper.AddTypeHandler(new SqlDateOnlyTypeHandler());
     }
 
@@ -34,6 +38,39 @@ internal class DapperOperations
     /// </summary>
     public List<Person> GetAll()
         => _cn.Query<Person>(SqlStatements.ReadPeople).AsList();
+
+    public (List<OrdersPagination> list, Exception exception) GetOrdersPagination()
+    {
+        const string statement =
+            """
+            SELECT o.OrderID,
+                   o.CustomerIdentifier,
+                   o.EmployeeID,
+                   o.OrderDate,
+                   o.ShippedDate,
+                   o.DeliveredDate,
+                   o.ShipVia,
+                   o.Freight,
+            	   s.CompanyName AS Shipper,
+            	   e.FirstName + ' ' + e.LastName AS FullName
+            FROM dbo.Orders AS o
+            INNER JOIN dbo.Shippers AS s
+                    ON o.ShipVia = s.ShipperID
+                INNER JOIN dbo.Employees AS e
+                    ON o.EmployeeID = e.EmployeeID
+            ORDER BY o.OrderID
+            OFFSET @OffSet ROWS FETCH NEXT @PageSize ROW ONLY;
+            """;
+        try
+        {
+            var parameters = new { OffSet = 827, PageSize = 5 };
+            return (_cn2.Query<OrdersPagination>(statement, parameters).AsList(), null);
+        }
+        catch (Exception localException)
+        {
+            return (null, localException);
+        }
+    }
 
     ///// <summary>
     ///// To test Dapper AOT SQL syntax
