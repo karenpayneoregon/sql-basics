@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
+using System.Drawing;
 using ConsoleApp1.Handlers;
 using ConsoleApp1.Models;
 using Dapper;
@@ -19,10 +20,12 @@ internal class DapperOperations
 {
 
     private readonly IDbConnection _cn;
+    private readonly IDbConnection _cn1;
 
     public DapperOperations()
     {
         _cn = new SqlConnection(ConnectionString());
+        _cn1 = new SqlConnection("Data Source=.\\sqlexpress;Initial Catalog=DataGridViewCodeSample;Integrated Security=True;Encrypt=False");
         SqlMapper.AddTypeHandler(new SqlDateOnlyTypeHandler());
     }
 
@@ -66,6 +69,9 @@ internal class DapperOperations
     /// <summary>
     /// error DAP206: Error 46010: Incorrect syntax near @ByteArray.
     /// warning DAP236: Parameter 'ByteArray' is not used, but will be included
+    ///
+    ///  Change VALUES to VALUE
+    /// 
     /// </summary>
     /// <param name="imageBytes"></param>
     public static int InsertImage(byte[] imageBytes)
@@ -73,31 +79,33 @@ internal class DapperOperations
         const string statement =
             """
             INSERT INTO dbo.Pictures (Photo) 
-            OUTPUT Inserted.Id VALUE (@ByteArray)
+            OUTPUT Inserted.Id VALUES (@ByteArray)
             """;
         using var cn = new SqlConnection(ConnectionString());
         var parameters = new { ByteArray = imageBytes };
         return cn.ExecuteScalar<int>(statement, parameters);
     }
 
+    public  (bool success, Exception exception) UpdateRow(ProductItem item)
+    {
+        const string statement =
+            """
+            UPDATE dbo.Product
+            SET @Item = @Item, @ColorId = @ColorId
+            WHERE id = @Id;
+            """;
+
+        var parameters = new { item.Item, item.ColorId, item.Id };
+        try
+        {
+            var affected = _cn1.Execute(statement, parameters);
+            return (affected == 1, null)!;
+
+        }
+        catch (Exception localException)
+        {
+            return (false, localException);
+        }
+    }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
