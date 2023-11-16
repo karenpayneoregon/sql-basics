@@ -12,4 +12,13 @@ internal class SqlStatements
                BirthDate
         FROM dbo.Person;
         """;
+    public static string GetPersonById =>
+        """
+        SELECT Id,
+               FirstName,
+               LastName,
+               BirthDate
+        FROM dbo.Person
+        WHERE Id = @Id
+        """;
 }

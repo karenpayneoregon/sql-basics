@@ -11,7 +11,7 @@ internal class Program
 
         DapperOperations operations = new ();
         var list = operations.GetAll();
-        var person = operations.GetPerson(2);
+        //var person = operations.GetPerson(2);
     }
 }
 
