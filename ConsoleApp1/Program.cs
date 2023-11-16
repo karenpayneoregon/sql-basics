@@ -23,7 +23,7 @@ internal class Program
             Console.WriteLine(list.Count == 3);
         }
 
-        Console.ReadLine();
+
     }
 
     private static void UpDateItem(DapperOperations operations)
