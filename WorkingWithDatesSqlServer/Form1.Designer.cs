@@ -28,139 +28,138 @@ partial class Form1
     /// </summary>
     private void InitializeComponent()
     {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.HolidaysBetweenMonthsByYearButton = new System.Windows.Forms.Button();
-            this.HolidaysDuringTheWeekForYearButton = new System.Windows.Forms.Button();
-            this.CurrentWeekDapperTextBox = new System.Windows.Forms.TextBox();
-            this.StartEndCurrentWeekDapperButton = new System.Windows.Forms.Button();
-            this.CurrentWeekTextBox = new System.Windows.Forms.TextBox();
-            this.StartEndCurrentWeekButton = new System.Windows.Forms.Button();
-            this.GetCalendar4Button = new System.Windows.Forms.Button();
-            this.CalculateAgeButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 29;
-            this.dataGridView1.Size = new System.Drawing.Size(1635, 243);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.CalculateAgeButton);
-            this.panel1.Controls.Add(this.HolidaysBetweenMonthsByYearButton);
-            this.panel1.Controls.Add(this.HolidaysDuringTheWeekForYearButton);
-            this.panel1.Controls.Add(this.CurrentWeekDapperTextBox);
-            this.panel1.Controls.Add(this.StartEndCurrentWeekDapperButton);
-            this.panel1.Controls.Add(this.CurrentWeekTextBox);
-            this.panel1.Controls.Add(this.StartEndCurrentWeekButton);
-            this.panel1.Controls.Add(this.GetCalendar4Button);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 249);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1635, 193);
-            this.panel1.TabIndex = 1;
-            // 
-            // HolidaysBetweenMonthsByYearButton
-            // 
-            this.HolidaysBetweenMonthsByYearButton.Location = new System.Drawing.Point(294, 14);
-            this.HolidaysBetweenMonthsByYearButton.Name = "HolidaysBetweenMonthsByYearButton";
-            this.HolidaysBetweenMonthsByYearButton.Size = new System.Drawing.Size(255, 29);
-            this.HolidaysBetweenMonthsByYearButton.TabIndex = 6;
-            this.HolidaysBetweenMonthsByYearButton.Text = "Holidays: 2023 between months";
-            this.HolidaysBetweenMonthsByYearButton.UseVisualStyleBackColor = true;
-            this.HolidaysBetweenMonthsByYearButton.Click += new System.EventHandler(this.HolidaysBetweenMonthsByYearButton_Click);
-            // 
-            // HolidaysDuringTheWeekForYearButton
-            // 
-            this.HolidaysDuringTheWeekForYearButton.Location = new System.Drawing.Point(21, 152);
-            this.HolidaysDuringTheWeekForYearButton.Name = "HolidaysDuringTheWeekForYearButton";
-            this.HolidaysDuringTheWeekForYearButton.Size = new System.Drawing.Size(255, 29);
-            this.HolidaysDuringTheWeekForYearButton.TabIndex = 5;
-            this.HolidaysDuringTheWeekForYearButton.Text = "Holidays During The Week For Year";
-            this.HolidaysDuringTheWeekForYearButton.UseVisualStyleBackColor = true;
-            this.HolidaysDuringTheWeekForYearButton.Click += new System.EventHandler(this.HolidaysDuringTheWeekForYearButton_Click);
-            // 
-            // CurrentWeekDapperTextBox
-            // 
-            this.CurrentWeekDapperTextBox.Location = new System.Drawing.Point(294, 108);
-            this.CurrentWeekDapperTextBox.Name = "CurrentWeekDapperTextBox";
-            this.CurrentWeekDapperTextBox.Size = new System.Drawing.Size(255, 27);
-            this.CurrentWeekDapperTextBox.TabIndex = 4;
-            // 
-            // StartEndCurrentWeekDapperButton
-            // 
-            this.StartEndCurrentWeekDapperButton.Location = new System.Drawing.Point(21, 107);
-            this.StartEndCurrentWeekDapperButton.Name = "StartEndCurrentWeekDapperButton";
-            this.StartEndCurrentWeekDapperButton.Size = new System.Drawing.Size(255, 29);
-            this.StartEndCurrentWeekDapperButton.TabIndex = 3;
-            this.StartEndCurrentWeekDapperButton.Text = "Start/End of current week Dapper";
-            this.StartEndCurrentWeekDapperButton.UseVisualStyleBackColor = true;
-            this.StartEndCurrentWeekDapperButton.Click += new System.EventHandler(this.StartEndCurrentWeekDapperButton_Click);
-            // 
-            // CurrentWeekTextBox
-            // 
-            this.CurrentWeekTextBox.Location = new System.Drawing.Point(294, 64);
-            this.CurrentWeekTextBox.Name = "CurrentWeekTextBox";
-            this.CurrentWeekTextBox.Size = new System.Drawing.Size(255, 27);
-            this.CurrentWeekTextBox.TabIndex = 2;
-            // 
-            // StartEndCurrentWeekButton
-            // 
-            this.StartEndCurrentWeekButton.Location = new System.Drawing.Point(21, 62);
-            this.StartEndCurrentWeekButton.Name = "StartEndCurrentWeekButton";
-            this.StartEndCurrentWeekButton.Size = new System.Drawing.Size(255, 29);
-            this.StartEndCurrentWeekButton.TabIndex = 1;
-            this.StartEndCurrentWeekButton.Text = "Start/End of current week ado";
-            this.StartEndCurrentWeekButton.UseVisualStyleBackColor = true;
-            this.StartEndCurrentWeekButton.Click += new System.EventHandler(this.StartEndCurrentWeekButton_Click);
-            // 
-            // GetCalendar4Button
-            // 
-            this.GetCalendar4Button.Location = new System.Drawing.Point(21, 14);
-            this.GetCalendar4Button.Name = "GetCalendar4Button";
-            this.GetCalendar4Button.Size = new System.Drawing.Size(255, 29);
-            this.GetCalendar4Button.TabIndex = 0;
-            this.GetCalendar4Button.Text = "GetCalendar4";
-            this.GetCalendar4Button.UseVisualStyleBackColor = true;
-            this.GetCalendar4Button.Click += new System.EventHandler(this.GetCalendar4Button_Click);
-            // 
-            // CalculateAgeButton
-            // 
-            this.CalculateAgeButton.Location = new System.Drawing.Point(294, 152);
-            this.CalculateAgeButton.Name = "CalculateAgeButton";
-            this.CalculateAgeButton.Size = new System.Drawing.Size(255, 29);
-            this.CalculateAgeButton.TabIndex = 7;
-            this.CalculateAgeButton.Text = "Calculate age";
-            this.CalculateAgeButton.UseVisualStyleBackColor = true;
-            this.CalculateAgeButton.Click += new System.EventHandler(this.CalculateAgeButton_Click);
-            // 
-            // Form1
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1635, 442);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.dataGridView1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "Form1";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Working with TSQL";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.ResumeLayout(false);
-
+        dataGridView1 = new DataGridView();
+        panel1 = new Panel();
+        CalculateAgeButton = new Button();
+        HolidaysBetweenMonthsByYearButton = new Button();
+        HolidaysDuringTheWeekForYearButton = new Button();
+        CurrentWeekDapperTextBox = new TextBox();
+        StartEndCurrentWeekDapperButton = new Button();
+        CurrentWeekTextBox = new TextBox();
+        StartEndCurrentWeekButton = new Button();
+        GetCalendar4Button = new Button();
+        ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+        panel1.SuspendLayout();
+        SuspendLayout();
+        // 
+        // dataGridView1
+        // 
+        dataGridView1.AllowUserToAddRows = false;
+        dataGridView1.AllowUserToDeleteRows = false;
+        dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        dataGridView1.Location = new Point(0, 0);
+        dataGridView1.Name = "dataGridView1";
+        dataGridView1.ReadOnly = true;
+        dataGridView1.RowHeadersWidth = 51;
+        dataGridView1.RowTemplate.Height = 29;
+        dataGridView1.Size = new Size(1635, 243);
+        dataGridView1.TabIndex = 0;
+        // 
+        // panel1
+        // 
+        panel1.Controls.Add(CalculateAgeButton);
+        panel1.Controls.Add(HolidaysBetweenMonthsByYearButton);
+        panel1.Controls.Add(HolidaysDuringTheWeekForYearButton);
+        panel1.Controls.Add(CurrentWeekDapperTextBox);
+        panel1.Controls.Add(StartEndCurrentWeekDapperButton);
+        panel1.Controls.Add(CurrentWeekTextBox);
+        panel1.Controls.Add(StartEndCurrentWeekButton);
+        panel1.Controls.Add(GetCalendar4Button);
+        panel1.Dock = DockStyle.Bottom;
+        panel1.Location = new Point(0, 249);
+        panel1.Name = "panel1";
+        panel1.Size = new Size(1635, 193);
+        panel1.TabIndex = 1;
+        // 
+        // CalculateAgeButton
+        // 
+        CalculateAgeButton.Location = new Point(294, 152);
+        CalculateAgeButton.Name = "CalculateAgeButton";
+        CalculateAgeButton.Size = new Size(255, 29);
+        CalculateAgeButton.TabIndex = 7;
+        CalculateAgeButton.Text = "Calculate age";
+        CalculateAgeButton.UseVisualStyleBackColor = true;
+        CalculateAgeButton.Click += CalculateAgeButton_Click;
+        // 
+        // HolidaysBetweenMonthsByYearButton
+        // 
+        HolidaysBetweenMonthsByYearButton.Location = new Point(294, 14);
+        HolidaysBetweenMonthsByYearButton.Name = "HolidaysBetweenMonthsByYearButton";
+        HolidaysBetweenMonthsByYearButton.Size = new Size(255, 29);
+        HolidaysBetweenMonthsByYearButton.TabIndex = 6;
+        HolidaysBetweenMonthsByYearButton.Text = "Holidays: 2023 between months";
+        HolidaysBetweenMonthsByYearButton.UseVisualStyleBackColor = true;
+        HolidaysBetweenMonthsByYearButton.Click += HolidaysBetweenMonthsByYearButton_Click;
+        // 
+        // HolidaysDuringTheWeekForYearButton
+        // 
+        HolidaysDuringTheWeekForYearButton.Location = new Point(21, 152);
+        HolidaysDuringTheWeekForYearButton.Name = "HolidaysDuringTheWeekForYearButton";
+        HolidaysDuringTheWeekForYearButton.Size = new Size(255, 29);
+        HolidaysDuringTheWeekForYearButton.TabIndex = 5;
+        HolidaysDuringTheWeekForYearButton.Text = "Holidays During The Week For Year";
+        HolidaysDuringTheWeekForYearButton.UseVisualStyleBackColor = true;
+        HolidaysDuringTheWeekForYearButton.Click += HolidaysDuringTheWeekForYearButton_Click;
+        // 
+        // CurrentWeekDapperTextBox
+        // 
+        CurrentWeekDapperTextBox.Location = new Point(294, 108);
+        CurrentWeekDapperTextBox.Name = "CurrentWeekDapperTextBox";
+        CurrentWeekDapperTextBox.Size = new Size(255, 27);
+        CurrentWeekDapperTextBox.TabIndex = 4;
+        // 
+        // StartEndCurrentWeekDapperButton
+        // 
+        StartEndCurrentWeekDapperButton.Location = new Point(21, 107);
+        StartEndCurrentWeekDapperButton.Name = "StartEndCurrentWeekDapperButton";
+        StartEndCurrentWeekDapperButton.Size = new Size(255, 29);
+        StartEndCurrentWeekDapperButton.TabIndex = 3;
+        StartEndCurrentWeekDapperButton.Text = "Start/End of current week Dapper";
+        StartEndCurrentWeekDapperButton.UseVisualStyleBackColor = true;
+        StartEndCurrentWeekDapperButton.Click += StartEndCurrentWeekDapperButton_Click;
+        // 
+        // CurrentWeekTextBox
+        // 
+        CurrentWeekTextBox.Location = new Point(294, 64);
+        CurrentWeekTextBox.Name = "CurrentWeekTextBox";
+        CurrentWeekTextBox.Size = new Size(255, 27);
+        CurrentWeekTextBox.TabIndex = 2;
+        // 
+        // StartEndCurrentWeekButton
+        // 
+        StartEndCurrentWeekButton.Location = new Point(21, 62);
+        StartEndCurrentWeekButton.Name = "StartEndCurrentWeekButton";
+        StartEndCurrentWeekButton.Size = new Size(255, 29);
+        StartEndCurrentWeekButton.TabIndex = 1;
+        StartEndCurrentWeekButton.Text = "Start/End of current week ado";
+        StartEndCurrentWeekButton.UseVisualStyleBackColor = true;
+        StartEndCurrentWeekButton.Click += StartEndCurrentWeekButton_Click;
+        // 
+        // GetCalendar4Button
+        // 
+        GetCalendar4Button.Location = new Point(21, 14);
+        GetCalendar4Button.Name = "GetCalendar4Button";
+        GetCalendar4Button.Size = new Size(255, 29);
+        GetCalendar4Button.TabIndex = 0;
+        GetCalendar4Button.Text = "GetCalendar4";
+        GetCalendar4Button.UseVisualStyleBackColor = true;
+        GetCalendar4Button.Click += GetCalendar4Button_Click;
+        // 
+        // Form1
+        // 
+        AutoScaleDimensions = new SizeF(8F, 20F);
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(1635, 442);
+        Controls.Add(panel1);
+        Controls.Add(dataGridView1);
+        FormBorderStyle = FormBorderStyle.FixedToolWindow;
+        Name = "Form1";
+        StartPosition = FormStartPosition.CenterScreen;
+        Text = "Working with TSQL";
+        ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+        panel1.ResumeLayout(false);
+        panel1.PerformLayout();
+        ResumeLayout(false);
     }
 
     #endregion

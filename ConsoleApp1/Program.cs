@@ -23,7 +23,9 @@ internal class Program
             Console.WriteLine(list.Count == 3);
         }
 
+        operations.OrdersPaginationStatementInResourcesNotBrokenStatement();
 
+        Console.ReadLine();
     }
 
     private static void UpDateItem(DapperOperations operations)

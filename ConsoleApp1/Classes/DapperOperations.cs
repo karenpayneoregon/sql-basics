@@ -145,4 +145,18 @@ internal class DapperOperations
         }
     }
 
+    public void OrdersPaginationStatementInResourcesBrokenStatement()
+    {
+
+        var parameters = new { Offset = 827, PageSize = 5 };
+        _cn2.Query<OrdersPagination>(Properties.Resources.OrdersPaginationSelectStatementBroken, parameters).AsList();
+    }
+    public void OrdersPaginationStatementInResourcesNotBrokenStatement()
+    {
+
+        var parameters = new { Offset = 827, PageSize = 5 };
+        var list = _cn2.Query<OrdersPagination>(Properties.Resources.OrdersPaginationSelectStatementGood, parameters).AsList();
+        Console.WriteLine(list.Count == 3);
+    }
+
 }
