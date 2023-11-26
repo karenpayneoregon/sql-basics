@@ -41,6 +41,10 @@
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="DatabaseScript\" />
+	</ItemGroup>
 	<Target Name="MakeMyDir" AfterTargets="Build">
 		<MakeDir Directories="$(OutDir)LogFiles" />
 	</Target>

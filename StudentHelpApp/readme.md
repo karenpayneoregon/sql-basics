@@ -1,5 +1,8 @@
 ﻿## Introduction
 
+> **Note**
+> Information presented is for novice developers and seasoned developers in regards to being introduced to a basic level of Dapper and EF Core.
+
 When a developer begins to interact with data as a novice or student will look to storing data in a text file which has many drawbacks, then there are those who will use a database but unsure which of the many paths to take then there are those who want to experiment with different paths.
 
 Here there are three basic paths, working with json for a crude way to store data to using SQL-Server database where there are two paths, the first using [Dapper](https://www.learndapper.com/) and the second [EF Core](https://learn.microsoft.com/en-us/ef/core/).
@@ -82,6 +85,23 @@ public Repository()
 ```
 
 So for the average developer they know how to work with different types thus it does not matter if in the code samples for this article are just strings.
+
+## Source code
+
+Clone the following [GitHub repository](https://github.com/karenpayneoregon/sql-basics), and run the following [project](https://github.com/karenpayneoregon/sql-basics/tree/master/StudentHelpApp).
+
+Take time also to check out other projects in the repository for intermediate level to advance level code.
+
+### Requires
+
+1. Microsoft Visual Studio edition 17.18.0 or higher.
+
+1. Run the script DatabaseScript\script.sql, make sure to change the path first.
+1. 
+
+### EF Core logging
+
+The EF Core code logs information under the application folder, under LogFiles followed by a folder for the current day. Well worth examining to see what EF Core writes for your code.
 
 ## Using JSON
 
@@ -224,4 +244,15 @@ public async Task Add(Item item)
 
 > **Note**
 > When working with Dapper, the SQL written for the accompanying code samples in the GitHub repository were all written in SSMS (SQL-Server Management Studio) to ensure that they worked. This important any time SQL is used in an application. Many novice developers write SQL directly in code and the SQL is poorly written and they have no idea why an exception is raised or results are not as expected.
+
+## See also
+
+- My [repository](https://github.com/karenpayneoregon/ef-code-8-samples) on EF Core 8
+
+## Summary
+
+Provided information should be enough to make an informed decision on using Dapper or EF Core for working with databases and not to use json for a substitute for storing data.
+
+Both EF Core and Dapper can be used in any project type supported by Visual Studio yet know that much of the Microsoft documentation will favor EF Core yet that should not stop a developer from using Dapper.
+
 
