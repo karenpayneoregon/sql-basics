@@ -100,6 +100,8 @@ public class PersonRepository : IBaseRepository
     /// Not great performance wise, for inserting a great deal of records see
     /// https://www.learndapper.com/bulk-operations/bulk-insert
     /// which for one developer is $999 per year.
+    ///
+    /// See also <seealso cref="AddRangeSlim"/>
     /// </remarks>
     public async Task<(bool, Exception ex)> AddRange(List<Person> list)
     {
@@ -124,6 +126,15 @@ public class PersonRepository : IBaseRepository
         }
     }
 
+    /// <summary>
+    /// Slim down version of <seealso cref="AddRange"/>
+    /// </summary>
+    /// <param name="list"></param>
+    /// <returns></returns>
+    public async Task AddRangeSlim(List<Person> list)
+    {
+        await cn.ExecuteAsync(SqlStatements.InsertPeople, list);
+    }
     /// <summary>
     /// Remove a single record
     /// </summary>
