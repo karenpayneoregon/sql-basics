@@ -120,13 +120,13 @@ public class Operations
     /// - In <see cref="PhoneType"/> we alias PhoneTypeIdenitfier to PhoneTypeIdentifier
     /// - In SqlStatements.ContactsWithDevicesAndPhoneType we also alias PhoneTypeIdenitfier to PhoneTypeIdentifier
     /// </remarks>
-    public static async Task<List<Contacts>> GetContactsWithOfficePhone()
+    public static async Task<List<Contacts>> GetContactsWithOfficePhone(int phoneIdentifier)
     {
 
         await using SqlConnection cn = new(ConnectionString());
 
         // 3 is for office phone
-        var parameters = new { @PhoneTypeIdenitfier = 3 };
+        var parameters = new { @PhoneTypeIdenitfier = phoneIdentifier };
 
         var list = await cn.QueryAsync<Contacts, ContactType, ContactDevices, PhoneType, Contacts>(
             SQL.ContactsWithDevicesAndPhoneType(),  

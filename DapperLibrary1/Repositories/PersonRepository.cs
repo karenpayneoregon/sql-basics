@@ -6,6 +6,7 @@ using DapperLibrary1.Handlers;
 using DapperLibrary1.Interfaces;
 using DapperLibrary1.Models;
 using Microsoft.Data.SqlClient;
+#pragma warning disable CS8619 // Nullability of reference types in value doesn't match target type.
 
 namespace DapperLibrary1.Repositories;
 

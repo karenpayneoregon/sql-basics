@@ -15,7 +15,7 @@ internal partial class Program
         //await Operations.ProductsWithCategories();
         List<ContactOffice> officeContacts = await Operations.GetContactsForOffice();
         var test = await Operations.GetContactsAndDevicesSingle();
-        var test1 = await Operations.GetContactsWithOfficePhone();
+        var test1 = await Operations.GetContactsWithOfficePhone(3);
 
         var json = JsonSerializer.Serialize(officeContacts, new JsonSerializerOptions()
         {

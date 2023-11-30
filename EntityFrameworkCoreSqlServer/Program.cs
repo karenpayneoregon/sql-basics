@@ -16,7 +16,8 @@ internal partial class Program
     /// <param name="args"></param>
     static void Main(string[] args)
     {
-        WeekStartEnd();
+        //WeekStartEnd();
+        Example1();
         AnsiConsole.MarkupLine("[yellow]Done[/]");
         Console.ReadLine();
     }
