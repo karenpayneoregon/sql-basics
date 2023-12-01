@@ -12,13 +12,13 @@ namespace DapperLibrary1.Repositories;
 
 public class PersonRepository : IBaseRepository
 {
-    private IDbConnection cn;
+    private IDbConnection _cn;
     /// <summary>
     /// Setup for DateOnly handler and for creating a connection
     /// </summary>
     public PersonRepository()
     {
-        cn = new SqlConnection(ConnectionString());
+        _cn = new SqlConnection(ConnectionString());
         SqlMapper.AddTypeHandler(new DapperSqlDateOnlyTypeHandler());
     }
 
@@ -26,13 +26,13 @@ public class PersonRepository : IBaseRepository
     /// Get all records in the Person table synchronously
     /// </summary>
     public List<Person> GetAll() 
-        => cn.Query<Person>(SqlStatements.ReadPeople).ToList();
+        => _cn.Query<Person>(SqlStatements.ReadPeople).ToList();
 
     /// <summary>
     /// Get all records in the Person table asynchronously
     /// </summary>
     public async Task<List<Person>> GetAllAsync() 
-        => (List<Person>)await cn.QueryAsync<Person>(SqlStatements.ReadPeople);
+        => (List<Person>)await _cn.QueryAsync<Person>(SqlStatements.ReadPeople);
 
     /// <summary>
     /// Get a single person by id
@@ -40,7 +40,7 @@ public class PersonRepository : IBaseRepository
     /// <param name="id">Existing primary key</param>
     /// <returns>A single person or null if not located</returns>
     public async Task<Person> Get(int id) 
-        => (await cn.QueryFirstOrDefaultAsync<Person>(SqlStatements.Get, new { Id = id }))!;
+        => (await _cn.QueryFirstOrDefaultAsync<Person>(SqlStatements.Get, new { Id = id }))!;
 
     /// <summary>
     /// Perform a WHERE IN for identifiers
@@ -49,7 +49,7 @@ public class PersonRepository : IBaseRepository
     /// <returns>list of people</returns>
     public async Task<List<Person>> WhereIn(int[] ids)
     {
-        IEnumerable<Person> result = await cn.QueryAsync<Person>(
+        IEnumerable<Person> result = await _cn.QueryAsync<Person>(
             SqlStatements.WhereInClause, new
             {
                 Ids = ids
@@ -67,7 +67,7 @@ public class PersonRepository : IBaseRepository
     {
         try
         {
-            var affected = await cn.ExecuteAsync(SqlStatements.UpdatePerson, new
+            var affected = await _cn.ExecuteAsync(SqlStatements.UpdatePerson, new
             {
                 person.FirstName,
                 person.LastName,
@@ -90,7 +90,7 @@ public class PersonRepository : IBaseRepository
     /// <param name="person"></param>
     public async Task Add(Person person)
     {
-        person.Id = await cn.QueryFirstAsync<int>(SqlStatements.InsertPeople, person);
+        person.Id = await _cn.QueryFirstAsync<int>(SqlStatements.InsertPeople, person);
     }
     /// <summary>
     /// Add list of person to the person table
@@ -134,7 +134,7 @@ public class PersonRepository : IBaseRepository
     /// <returns></returns>
     public async Task AddRangeSlim(List<Person> list)
     {
-        await cn.ExecuteAsync(SqlStatements.InsertPeople, list);
+        await _cn.ExecuteAsync(SqlStatements.InsertPeople, list);
     }
     /// <summary>
     /// Remove a single record
@@ -143,7 +143,7 @@ public class PersonRepository : IBaseRepository
     /// <returns>success of operation</returns>
     public async Task<bool> Remove(Person person)
     {
-        var affected = await cn.ExecuteAsync(SqlStatements.RemovePerson, new { person.Id });
+        var affected = await _cn.ExecuteAsync(SqlStatements.RemovePerson, new { person.Id });
         return affected == 1;
     }
 
@@ -160,7 +160,7 @@ public class PersonRepository : IBaseRepository
 
     public async Task<int> Count()
     {
-        return await cn.ExecuteScalarAsync<int>(SqlStatements.CountOfPeople);
+        return await _cn.ExecuteScalarAsync<int>(SqlStatements.CountOfPeople);
     }
 
     #endregion
