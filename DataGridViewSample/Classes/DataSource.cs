@@ -10,7 +10,7 @@ public sealed class DataSource
     public static DataSource Instance => Lazy.Value;
 
     public readonly BindingSource BindingSource = new();
-    public BindingList<Book> BindingList = new();
+    public BindingList<Book> BindingList;
 
     private DataSource()
     {
