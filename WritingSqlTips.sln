@@ -19,6 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		createAndPopulateDates.sql = createAndPopulateDates.sql
 		createAndPopulateNorthWind.sql = createAndPopulateNorthWind.sql
 		readme.md = readme.md
+		North2024.sql = North2024.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend projects", "Frontend projects", "{3047B01C-561D-4A3F-A8EC-0930332D8A34}"
