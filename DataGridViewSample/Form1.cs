@@ -15,9 +15,9 @@ namespace DataGridViewSample
             Shown += OnShown;
         }
 
-        private async void OnShown(object sender, EventArgs e)
+        private void OnShown(object sender, EventArgs e)
         {
-            _bindingList = new BindingList<Book>(await DataOperations.Books());
+            _bindingList = DataSource.Instance.BindingList;
             _bindingSource.DataSource = _bindingList;
             dataGridView1.DataSource = _bindingSource;
             dataGridView1.ExpandColumns();
@@ -27,6 +27,12 @@ namespace DataGridViewSample
         {
             Book book = _bindingList[_bindingSource.Position];
             var book1 = await DataOperations.GetCategory(book.Id, book.CategoryId);
+        }
+
+        private void EditCurrentButton_Click(object sender, EventArgs e)
+        {
+            EditForm form = new EditForm(_bindingSource.Position);
+            form.ShowDialog();
         }
     }
 }

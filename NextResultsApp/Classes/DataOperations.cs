@@ -18,6 +18,7 @@ public class DataOperations
     /// <returns>Success of the operation and if an exception, the exception is returned</returns>
     public static async Task<(bool success, Exception exception)> GetReferenceTables(ReferenceTables referenceTables)
     {
+        
 
         await using SqlConnection cn = new(ConnectionString());
         await using SqlCommand cmd = new()

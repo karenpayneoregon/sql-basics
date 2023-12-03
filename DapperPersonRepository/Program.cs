@@ -1,7 +1,8 @@
 ﻿using DapperLibrary1.Models;
 using DapperPersonRepository.MockingClasses;
-using static DapperPersonRepository.Classes.SpectreConsoleHelpers;
 using DapperLibrary1.Repositories;
+using static DapperPersonRepository.Classes.SpectreConsoleHelpers;
+
 namespace DapperPersonRepository;
 
 internal partial class Program
@@ -14,6 +15,7 @@ internal partial class Program
          *  - Sets up a handler for DateOnly work
          */
         PersonRepository repo = new();
+        var nullPerson = repo.BuilderWithNull();
 
         /*
          * Get current count of records if any

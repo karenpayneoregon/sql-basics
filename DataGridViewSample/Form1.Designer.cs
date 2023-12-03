@@ -30,10 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             dataGridView1 = new DataGridView();
-            GetCurrentFromTableButton = new Button();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
+            GetCurrentFromTableButton = new Button();
+            EditCurrentButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -47,19 +48,6 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(958, 192);
             dataGridView1.TabIndex = 1;
-            // 
-            // GetCurrentFromTableButton
-            // 
-            GetCurrentFromTableButton.Image = (Image)resources.GetObject("GetCurrentFromTableButton.Image");
-            GetCurrentFromTableButton.ImageAlign = ContentAlignment.MiddleLeft;
-            GetCurrentFromTableButton.Location = new Point(16, 209);
-            GetCurrentFromTableButton.Margin = new Padding(3, 4, 3, 4);
-            GetCurrentFromTableButton.Name = "GetCurrentFromTableButton";
-            GetCurrentFromTableButton.Size = new Size(173, 31);
-            GetCurrentFromTableButton.TabIndex = 2;
-            GetCurrentFromTableButton.Text = "Current";
-            GetCurrentFromTableButton.UseVisualStyleBackColor = true;
-            GetCurrentFromTableButton.Click += GetCurrentFromTableButton_Click;
             // 
             // Column1
             // 
@@ -85,11 +73,37 @@
             Column3.Name = "Column3";
             Column3.Width = 125;
             // 
+            // GetCurrentFromTableButton
+            // 
+            GetCurrentFromTableButton.Image = (Image)resources.GetObject("GetCurrentFromTableButton.Image");
+            GetCurrentFromTableButton.ImageAlign = ContentAlignment.MiddleLeft;
+            GetCurrentFromTableButton.Location = new Point(16, 209);
+            GetCurrentFromTableButton.Margin = new Padding(3, 4, 3, 4);
+            GetCurrentFromTableButton.Name = "GetCurrentFromTableButton";
+            GetCurrentFromTableButton.Size = new Size(173, 31);
+            GetCurrentFromTableButton.TabIndex = 2;
+            GetCurrentFromTableButton.Text = "Current";
+            GetCurrentFromTableButton.UseVisualStyleBackColor = true;
+            GetCurrentFromTableButton.Click += GetCurrentFromTableButton_Click;
+            // 
+            // EditCurrentButton
+            // 
+            EditCurrentButton.ImageAlign = ContentAlignment.MiddleLeft;
+            EditCurrentButton.Location = new Point(801, 209);
+            EditCurrentButton.Margin = new Padding(3, 4, 3, 4);
+            EditCurrentButton.Name = "EditCurrentButton";
+            EditCurrentButton.Size = new Size(173, 31);
+            EditCurrentButton.TabIndex = 3;
+            EditCurrentButton.Text = "Edit";
+            EditCurrentButton.UseVisualStyleBackColor = true;
+            EditCurrentButton.Click += EditCurrentButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(986, 253);
+            Controls.Add(EditCurrentButton);
             Controls.Add(GetCurrentFromTableButton);
             Controls.Add(dataGridView1);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
@@ -107,5 +121,6 @@
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
+        private Button EditCurrentButton;
     }
 }

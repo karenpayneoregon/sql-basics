@@ -6,21 +6,21 @@ using System.Data;
 namespace StudentHelpApp.Classes;
 internal class DapperOperations
 {
-    private IDbConnection cn;
+    private IDbConnection _cn;
 
     /// <summary>
     /// Setup connection for all operations
     /// </summary>
     public DapperOperations()
     {
-        cn = new SqlConnection(ConnectionString());
+        _cn = new SqlConnection(ConnectionString());
     }
 
     /// <summary>
     /// Get all records in the <seealso cref="Item"/> table synchronously
     /// </summary>
     public List<Item> GetAll()
-        => cn.Query<Item>(
+        => _cn.Query<Item>(
             """
             SELECT [Id],[Name],[Description] 
             FROM [dbo].[Item]
@@ -37,7 +37,7 @@ internal class DapperOperations
             INSERT INTO [dbo].[Item] ([Name],[Description]) 
             VALUES (@Name,@Description)
             """;
-        cn.Execute(statement, BogusOperations.Items());
+        _cn.Execute(statement, BogusOperations.Items());
 
     }
     /// <summary>
@@ -46,7 +46,7 @@ internal class DapperOperations
     /// <param name="item">Valid item without id set</param>
     public async Task Add(Item item)
     {
-        var identifier = await cn.QueryFirstAsync<int>(
+        var identifier = await _cn.QueryFirstAsync<int>(
             """
                 INSERT INTO [dbo].[Item] ([Name],[Description]) 
                 VALUES (@Name,@Description);
@@ -60,7 +60,7 @@ internal class DapperOperations
     /// <param name="id">Existing primary key</param>
     /// <returns>A single person or null if not located</returns>
     public async Task<Item> Find(int id)
-        => (await cn.QueryFirstOrDefaultAsync<Item>(
+        => (await _cn.QueryFirstOrDefaultAsync<Item>(
             """
                 SELECT Id, Name,Description FROM dbo.Item WHERE Id = @Id;
                 """, new { Id = id }))!;
@@ -74,7 +74,7 @@ internal class DapperOperations
     {
         try
         {
-            var affected = await cn.ExecuteAsync(
+            var affected = await _cn.ExecuteAsync(
                 """
                     UPDATE [dbo].[Item]
                       SET [Name] = @Name,
@@ -97,7 +97,7 @@ internal class DapperOperations
     /// <returns>success of operation</returns>
     public async Task<bool> Remove(Item item)
     {
-        var affected = await cn.ExecuteAsync(
+        var affected = await _cn.ExecuteAsync(
             """
                 DELETE FROM [dbo].[Item] 
                 WHERE Id = @Id
@@ -110,7 +110,7 @@ internal class DapperOperations
     /// </summary>
     public void Reset()
     {
-         cn.Execute($"DELETE FROM dbo.{nameof(Item)}");
-         cn.Execute($"DBCC CHECKIDENT ({nameof(Item)}, RESEED, 0)");
+         _cn.Execute($"DELETE FROM dbo.{nameof(Item)}");
+         _cn.Execute($"DBCC CHECKIDENT ({nameof(Item)}, RESEED, 0)");
     }
 }

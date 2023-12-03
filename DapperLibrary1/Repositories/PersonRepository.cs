@@ -6,6 +6,7 @@ using DapperLibrary1.Handlers;
 using DapperLibrary1.Interfaces;
 using DapperLibrary1.Models;
 using Microsoft.Data.SqlClient;
+#pragma warning disable CS8603 // Possible null reference return.
 #pragma warning disable CS8619 // Nullability of reference types in value doesn't match target type.
 
 namespace DapperLibrary1.Repositories;
@@ -34,6 +35,46 @@ public class PersonRepository : IBaseRepository
     public async Task<List<Person>> GetAllAsync() 
         => (List<Person>)await _cn.QueryAsync<Person>(SqlStatements.ReadPeople);
 
+    // Id 1 does not exists
+    public Person BuilderWithNull(int id = 1)
+    {
+        var statement =
+            """
+            SELECT Id,
+                   FirstName,
+                   LastName,
+                   BirthDate
+            FROM dbo.Person
+            /**where**/
+            """;
+
+        var builder = new SqlBuilder().Where("Id = @id", new { Id = id });
+        var template = builder.AddTemplate(statement);
+        return _cn.Query<Person>(
+            template.RawSql, template.Parameters)
+            .FirstOrDefault();
+    }
+    public void BuilderWithoutNull(int id = 2)
+    {
+        var statement =
+            """
+            SELECT Id,
+                   FirstName,
+                   LastName,
+                   BirthDate
+            FROM dbo.Person
+            /**where**/
+            """;
+
+        var builder = new SqlBuilder()
+            .Where("Id = @id", new { Id = id });
+
+        SqlBuilder.Template? template = builder.AddTemplate(statement);
+
+        var person = _cn.Query<Person>(
+            template.RawSql, template.Parameters)
+            .FirstOrDefault();
+    }
     /// <summary>
     /// Get a single person by id
     /// </summary>

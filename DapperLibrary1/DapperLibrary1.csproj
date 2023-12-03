@@ -14,13 +14,14 @@
 	  <Content Include="readme.md" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="ConfigurationLibrary" Version="1.0.4" />
+		<PackageReference Include="ConfigurationLibrary" Version="1.0.6" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Dapper" Version="2.1.15" />
-		<PackageReference Include="Dapper.Transaction" Version="2.0.143" />
-		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+		<PackageReference Include="Dapper" Version="2.1.24" />
+		<PackageReference Include="Dapper.SqlBuilder" Version="2.0.78" />
+		<PackageReference Include="Dapper.Transaction" Version="2.1.24" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
 	</ItemGroup>
 
 </Project>
