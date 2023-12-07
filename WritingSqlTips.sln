@@ -18,8 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 		createAndPopulateDates.sql = createAndPopulateDates.sql
 		createAndPopulateNorthWind.sql = createAndPopulateNorthWind.sql
-		readme.md = readme.md
 		North2024.sql = North2024.sql
+		readme.md = readme.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend projects", "Frontend projects", "{3047B01C-561D-4A3F-A8EC-0930332D8A34}"
@@ -60,6 +60,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Json Dapper EF Core", "Json Dapper EF Core", "{9A8E3213-997D-43FE-AAAE-6746EDD25FCA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentHelpApp", "StudentHelpApp\StudentHelpApp.csproj", "{96861043-AC00-4069-B6F8-80B96615CC4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalogApp", "ProductCatalogApp\ProductCatalogApp.csproj", "{72F6515D-4D70-48C8-A26B-855C6E0B236F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +137,10 @@ Global
 		{96861043-AC00-4069-B6F8-80B96615CC4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96861043-AC00-4069-B6F8-80B96615CC4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96861043-AC00-4069-B6F8-80B96615CC4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72F6515D-4D70-48C8-A26B-855C6E0B236F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72F6515D-4D70-48C8-A26B-855C6E0B236F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72F6515D-4D70-48C8-A26B-855C6E0B236F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72F6515D-4D70-48C8-A26B-855C6E0B236F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -158,6 +164,7 @@ Global
 		{7C5035FD-DEB7-4E0E-A32F-23BC2D1FD36F} = {25F770B3-F218-4C45-A15B-3508245CB326}
 		{96C92B9E-789C-408A-849B-71CFC951B847} = {65FDB35C-3D56-48A9-93FB-2D32028F167B}
 		{96861043-AC00-4069-B6F8-80B96615CC4B} = {9A8E3213-997D-43FE-AAAE-6746EDD25FCA}
+		{72F6515D-4D70-48C8-A26B-855C6E0B236F} = {25F770B3-F218-4C45-A15B-3508245CB326}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}
