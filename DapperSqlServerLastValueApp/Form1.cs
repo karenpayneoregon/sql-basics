@@ -6,6 +6,7 @@ namespace DapperSqlServerLastValueApp;
 
 public partial class Form1 : Form
 {
+    private BindingSource _bindingSource = new ();
     public Form1()
     {
         InitializeComponent();
@@ -13,13 +14,12 @@ public partial class Form1 : Form
 
     private void LoadButton_Click(object sender, EventArgs e)
     {
-        dataGridView1.DataSource = DataOperations.List();
+        _bindingSource.DataSource = DataOperations.List();
+        dataGridView1.DataSource = _bindingSource;
         dataGridView1.ExpandColumns();
     }
-
-
 }
-
+// belong in its own file
 public class DataOperations
 {
     public static List<ProductItem> List()
