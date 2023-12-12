@@ -13,8 +13,18 @@ public partial class Form1 : Form
 
     private void LoadButton_Click(object sender, EventArgs e)
     {
-        using var cn = new SqlConnection(ConnectionString());
-        dataGridView1.DataSource = cn.Query<ProductItem>(SqlStatements.SelectStatement);
+        dataGridView1.DataSource = DataOperations.List();
         dataGridView1.ExpandColumns();
+    }
+
+
+}
+
+public class DataOperations
+{
+    public static List<ProductItem> List()
+    {
+        using var cn = new SqlConnection(ConnectionString());
+        return cn.Query<ProductItem>(SqlStatements.SelectStatement).AsList();
     }
 }
