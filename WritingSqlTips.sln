@@ -63,7 +63,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentHelpApp", "StudentHe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalogApp", "ProductCatalogApp\ProductCatalogApp.csproj", "{72F6515D-4D70-48C8-A26B-855C6E0B236F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperSqlServerLastValueApp", "DapperSqlServerLastValueApp\DapperSqlServerLastValueApp.csproj", "{FAB8E4E8-F428-4206-A53F-ADBEACC355AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperSqlServerLastValueApp", "DapperSqlServerLastValueApp\DapperSqlServerLastValueApp.csproj", "{FAB8E4E8-F428-4206-A53F-ADBEACC355AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dapper Excel fake", "Dapper Excel fake", "{BA8ABD4C-2BE1-4B5F-BD38-83FA66D972EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransferFromJsonToDatabaseToExcel", "TransferFromJsonToDatabaseToExcel\TransferFromJsonToDatabaseToExcel.csproj", "{1C61ADA2-D478-4670-AD3A-A4CF39E8314D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -147,6 +151,10 @@ Global
 		{FAB8E4E8-F428-4206-A53F-ADBEACC355AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAB8E4E8-F428-4206-A53F-ADBEACC355AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAB8E4E8-F428-4206-A53F-ADBEACC355AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C61ADA2-D478-4670-AD3A-A4CF39E8314D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C61ADA2-D478-4670-AD3A-A4CF39E8314D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C61ADA2-D478-4670-AD3A-A4CF39E8314D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C61ADA2-D478-4670-AD3A-A4CF39E8314D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -172,6 +180,8 @@ Global
 		{96861043-AC00-4069-B6F8-80B96615CC4B} = {9A8E3213-997D-43FE-AAAE-6746EDD25FCA}
 		{72F6515D-4D70-48C8-A26B-855C6E0B236F} = {25F770B3-F218-4C45-A15B-3508245CB326}
 		{FAB8E4E8-F428-4206-A53F-ADBEACC355AB} = {25F770B3-F218-4C45-A15B-3508245CB326}
+		{BA8ABD4C-2BE1-4B5F-BD38-83FA66D972EE} = {65FDB35C-3D56-48A9-93FB-2D32028F167B}
+		{1C61ADA2-D478-4670-AD3A-A4CF39E8314D} = {BA8ABD4C-2BE1-4B5F-BD38-83FA66D972EE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}

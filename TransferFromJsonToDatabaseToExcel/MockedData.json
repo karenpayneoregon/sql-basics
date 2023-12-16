@@ -1,0 +1,142 @@
+﻿[
+  {
+    "Id": 1,
+    "InputDate": "1970-05-29",
+    "Specification": "Tipmunplo",
+    "Category": "Seafood",
+    "Value": 17
+  },
+  {
+    "Id": 2,
+    "InputDate": "1960-10-02",
+    "Specification": "Doptumadicator",
+    "Category": "Cereals",
+    "Value": 20
+  },
+  {
+    "Id": 3,
+    "InputDate": "1985-09-10",
+    "Specification": "Tipbanefan",
+    "Category": "Shell fish",
+    "Value": 12
+  },
+  {
+    "Id": 4,
+    "InputDate": "2007-01-05",
+    "Specification": "Cipsipopor",
+    "Category": "Confections",
+    "Value": 9
+  },
+  {
+    "Id": 5,
+    "InputDate": "1999-01-10",
+    "Specification": "Parjubopower",
+    "Category": "Grain",
+    "Value": 1
+  },
+  {
+    "Id": 6,
+    "InputDate": "1983-04-18",
+    "Specification": "Tupsapor",
+    "Category": "Beverages",
+    "Value": 2
+  },
+  {
+    "Id": 7,
+    "InputDate": "1977-10-14",
+    "Specification": "Supwerpor",
+    "Category": "Confections",
+    "Value": 14
+  },
+  {
+    "Id": 8,
+    "InputDate": "2019-01-26",
+    "Specification": "Adjubantor",
+    "Category": "Snails",
+    "Value": 9
+  },
+  {
+    "Id": 9,
+    "InputDate": "1960-02-03",
+    "Specification": "Sursipilax",
+    "Category": "Seafood",
+    "Value": 10
+  },
+  {
+    "Id": 10,
+    "InputDate": "1997-12-21",
+    "Specification": "Cippebentor",
+    "Category": "Meat",
+    "Value": 15
+  },
+  {
+    "Id": 11,
+    "InputDate": "1955-01-03",
+    "Specification": "Repebefantor",
+    "Category": "Poultry",
+    "Value": 5
+  },
+  {
+    "Id": 12,
+    "InputDate": "1970-05-13",
+    "Specification": "Qwicadentor",
+    "Category": "Produce",
+    "Value": 12
+  },
+  {
+    "Id": 13,
+    "InputDate": "1975-05-30",
+    "Specification": "Grocadimax",
+    "Category": "Cereals",
+    "Value": 8
+  },
+  {
+    "Id": 14,
+    "InputDate": "2022-04-14",
+    "Specification": "Rapvenegor",
+    "Category": "Dairy",
+    "Value": 12
+  },
+  {
+    "Id": 15,
+    "InputDate": "2000-09-30",
+    "Specification": "Tipwerpar1",
+    "Category": "Dairy",
+    "Value": 16
+  },
+  {
+    "Id": 16,
+    "InputDate": "1998-11-04",
+    "Specification": "Kliquestentor",
+    "Category": "Shell fish",
+    "Value": 11
+  },
+  {
+    "Id": 17,
+    "InputDate": "1972-10-16",
+    "Specification": "Qwicadicator",
+    "Category": "Beverages",
+    "Value": 11
+  },
+  {
+    "Id": 18,
+    "InputDate": "1996-01-28",
+    "Specification": "Untinommar",
+    "Category": "Shell fish",
+    "Value": 10
+  },
+  {
+    "Id": 19,
+    "InputDate": "2002-04-19",
+    "Specification": "Monrobamower",
+    "Category": "Produce",
+    "Value": 16
+  },
+  {
+    "Id": 20,
+    "InputDate": "2002-02-15",
+    "Specification": "Innipover",
+    "Category": "Poultry",
+    "Value": 18
+  }
+]
