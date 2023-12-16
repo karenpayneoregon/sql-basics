@@ -21,7 +21,7 @@ public class DataOperations
         cn.Execute("DELETE FROM dbo.Data");
         cn.Execute("DBCC CHECKIDENT (Data, RESEED, 0)");
     }
-    public bool AddRecord(List<Container> containers)
+    public bool AddRecords(List<Container> containers)
     {
         const string statement = 
             """

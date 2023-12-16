@@ -98,7 +98,7 @@ public class CrudeService
         }
         else
         {
-            if (DataOperations.AddRecord(Containers))
+            if (DataOperations.AddRecords(Containers))
             {
                 if (DoDatabaseWork)
                 {
