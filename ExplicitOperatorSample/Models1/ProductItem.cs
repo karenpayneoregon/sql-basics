@@ -11,14 +11,14 @@ public class ProductItem
 
     public override string ToString() => ProductName;
 
-    public static explicit operator ProductItem(Product item)
+    public static explicit operator ProductItem(Product product)
     {
         return new ProductItem
         {
-            ProductId = item.ProductId,
-            ProductName = item.ProductName,
-            UnitPrice = item.UnitPrice,
-            UnitsInStock = item.UnitsInStock,
+            ProductId = product.ProductId,
+            ProductName = product.ProductName,
+            UnitPrice = product.UnitPrice,
+            UnitsInStock = product.UnitsInStock,
         };
     }
 }
