@@ -49,6 +49,16 @@ internal partial class Program
         AnsiConsole.Write(table);
 
 
+        //https://github.com/thomasgalliker/ObjectDumper?tab=readme-ov-file
+        //Console.WriteLine(ObjectDumper.Dump(people, DumpStyle.CSharp));
+
+        DumpOptions options = new()
+        {
+            DumpStyle = DumpStyle.CSharp,
+            MaxLevel = 3
+        };
+        Console.WriteLine(ObjectDumper.Dump(people, options));
+
         /*
          * Get the second record, change first name followed
          * by saving to the table
@@ -56,7 +66,9 @@ internal partial class Program
         Person person = await repo.Get(2);
         Console.WriteLine($"First name is {person.FirstName}");
         person.FirstName += " Changed";
-        await repo.Update(person);
+
+        // return values not used here but shows how to deconstruct 
+        var (success, exception) = await repo.Update(person);
 
         /*
          * Get the first record and delete from the table

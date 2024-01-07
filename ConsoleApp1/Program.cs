@@ -3,6 +3,7 @@ using ConsoleApp1.Models;
 using System.Collections.Frozen;
 using System.Collections.Immutable;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 //using Karen = (string test, int test1);
 
@@ -12,8 +13,12 @@ internal class Program
 {
     static void Main(string[] args)
     {
+        List<Customers> customers = EntityOperations.CustomersList();
+        var dump = ObjectDumper.Dump(customers.FirstOrDefault());
+        Debug.WriteLine(dump);
+        Console.ReadLine();
         DapperOperations operations = new ();
-        //var list = operations.GetAll();
+        var list1 = operations.GetAll();
         //var person = operations.GetPerson(2);
         //UpDateItem(operations);
 
@@ -25,7 +30,6 @@ internal class Program
 
         operations.OrdersPaginationStatementInResourcesNotBrokenStatement();
 
-        Console.ReadLine();
     }
 
     private static void UpDateItem(DapperOperations operations)

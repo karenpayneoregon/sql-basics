@@ -55,7 +55,7 @@ public partial class Context : DbContext
     public virtual DbSet<Territories> Territories { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer(ConnectionString());
+        => optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=NorthWind2022;Integrated Security=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
