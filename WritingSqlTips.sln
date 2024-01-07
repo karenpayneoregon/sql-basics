@@ -75,6 +75,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Forum questions", "Forum qu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperSimpleInsertApp", "DapperSimpleInsertApp\DapperSimpleInsertApp.csproj", "{68DF18F0-53C5-4B6C-AA99-B1E54FFE0A29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaskingSocialApp", "MaskingSocialApp\MaskingSocialApp.csproj", "{F3C3C783-A601-47DA-B334-DD1544EB6D00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -169,6 +171,10 @@ Global
 		{68DF18F0-53C5-4B6C-AA99-B1E54FFE0A29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68DF18F0-53C5-4B6C-AA99-B1E54FFE0A29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68DF18F0-53C5-4B6C-AA99-B1E54FFE0A29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3C3C783-A601-47DA-B334-DD1544EB6D00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3C3C783-A601-47DA-B334-DD1544EB6D00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3C3C783-A601-47DA-B334-DD1544EB6D00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3C3C783-A601-47DA-B334-DD1544EB6D00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
