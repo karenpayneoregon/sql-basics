@@ -5,8 +5,6 @@ using System.Collections.Immutable;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
-//using Karen = (string test, int test1);
-
 namespace ConsoleApp1;
 
 internal class Program

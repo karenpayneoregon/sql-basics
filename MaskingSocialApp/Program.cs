@@ -1,4 +1,5 @@
-﻿using MaskingSocialApp.Data;
+﻿using System.Net.Http.Json;
+using MaskingSocialApp.Data;
 
 namespace MaskingSocialApp;
 
@@ -14,3 +15,34 @@ internal partial class Program
         Console.ReadLine();
     }
 }
+
+    public static class HttpHelper
+    {
+        private static readonly HttpClient httpClient = new();
+
+        public static async Task<string> Read(string uri) 
+            => await httpClient.GetStringAsync(uri);
+        public static async Task<Person> Read1(string uri)
+            => await httpClient.GetFromJsonAsync<Person>(uri);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public class Person
+    {
+
+    }

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 // ReSharper disable once CheckNamespace
 namespace MaskingSocialApp;
@@ -14,6 +10,9 @@ internal partial class Program
     {
         AnsiConsole.MarkupLine("");
         Console.Title = "Code sample";
-        WindowUtility.SetConsoleWindowPosition(WindowUtility.AnchorWindow.Center);
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            WindowUtility.SetConsoleWindowPosition(WindowUtility.AnchorWindow.Center);
+        }
     }
 }
