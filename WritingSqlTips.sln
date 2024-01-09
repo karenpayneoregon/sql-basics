@@ -75,7 +75,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Forum questions", "Forum qu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperSimpleInsertApp", "DapperSimpleInsertApp\DapperSimpleInsertApp.csproj", "{68DF18F0-53C5-4B6C-AA99-B1E54FFE0A29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaskingSocialApp", "MaskingSocialApp\MaskingSocialApp.csproj", "{F3C3C783-A601-47DA-B334-DD1544EB6D00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaskingSocialApp", "MaskingSocialApp\MaskingSocialApp.csproj", "{F3C3C783-A601-47DA-B334-DD1544EB6D00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper1App", "Dapper1App\Dapper1App.csproj", "{D0DF38CD-05D4-49AD-84AA-9D22A101D0CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -175,6 +177,10 @@ Global
 		{F3C3C783-A601-47DA-B334-DD1544EB6D00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3C3C783-A601-47DA-B334-DD1544EB6D00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3C3C783-A601-47DA-B334-DD1544EB6D00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0DF38CD-05D4-49AD-84AA-9D22A101D0CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0DF38CD-05D4-49AD-84AA-9D22A101D0CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0DF38CD-05D4-49AD-84AA-9D22A101D0CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0DF38CD-05D4-49AD-84AA-9D22A101D0CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -204,6 +210,7 @@ Global
 		{1C61ADA2-D478-4670-AD3A-A4CF39E8314D} = {BA8ABD4C-2BE1-4B5F-BD38-83FA66D972EE}
 		{F598BDCC-EF45-42AA-859D-E2CE1462731C} = {3047B01C-561D-4A3F-A8EC-0930332D8A34}
 		{68DF18F0-53C5-4B6C-AA99-B1E54FFE0A29} = {F598BDCC-EF45-42AA-859D-E2CE1462731C}
+		{D0DF38CD-05D4-49AD-84AA-9D22A101D0CE} = {65FDB35C-3D56-48A9-93FB-2D32028F167B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}
