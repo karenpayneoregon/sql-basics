@@ -33,7 +33,7 @@ public partial class Form1 : Form
         };
 
         // setup validation
-        CustomerValidator validator = new CustomerValidator();
+        CustomerValidator validator = new();
         // validate
         ValidationResult result = validator.Validate(customer);
 
