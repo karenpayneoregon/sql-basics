@@ -5,6 +5,7 @@ using FastMember;
 using SpreadsheetLight;
 using Color = System.Drawing.Color;
 
+
 namespace DapperWithExcel.Classes;
 internal class SpreadSheetLightOperations
 {
@@ -28,6 +29,11 @@ internal class SpreadSheetLightOperations
         DataTable table = new();
         table.Load(reader);
 
+        /*
+         * ReSharper reports possible NullReferenceException on the next three lines.
+         * This is not possible to reach these next lines in that case, we would have
+         * issues with table.Load instead. So I elect to not be concerned with this Exception.
+         */
         table.Columns[nameof(Contacts.ContactId)].ColumnName = "Id";
         table.Columns[nameof(Contacts.Fullname)].ColumnName = "Full name";
         table.Columns[nameof(Contacts.PhoneNumber)].ColumnName = "Phone";
