@@ -18,15 +18,22 @@ public class CustomerRepository : ICustomerRepository
         SqlMapper.AddTypeHandler(new SqlDateOnlyTypeHandler());
     }
 
+    private string _tableName = "";
+    public CustomerRepository(string tableName)
+    {
+        _cn = new OleDbConnection(ConnectionString());
+        SqlMapper.AddTypeHandler(new SqlDateOnlyTypeHandler());
+        _tableName = tableName;
+    }
     public List<Customers> GetAll()
-        => _cn.Query<Customers>("SELECT Identifier, FirstName, LastName, UserName FROM Customers").ToList();
+        => _cn.Query<Customers>($"SELECT Identifier, FirstName, LastName, UserName FROM {_tableName}").ToList();
 
     public void Add(List<Customers> customer)
     {
 
         var statement =
-            """
-            INSERT INTO Customers
+            $"""
+            INSERT INTO {_tableName}
             (
                 FirstName,LastName,UserName
             )

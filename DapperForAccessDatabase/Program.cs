@@ -7,9 +7,9 @@ internal partial class Program
 {
     static void Main(string[] args)
     {
-        CustomerRepository repository = new();
+        CustomerRepository repository = new("Customers");
 
-        var bogusCustomerList = BogusOperations.CustomersListHasNoIdentifiers(10000);
+        var bogusCustomerList = BogusOperations.CustomersListHasNoIdentifiers(10_000);
         AnsiConsole.MarkupLine("[cyan]Bogus data generated[/] [yellow]Adding records...[/]");
         repository.Add(bogusCustomerList);
         var customers = repository.GetAll();

@@ -28,9 +28,9 @@ internal class SpreadSheetLightOperations
         DataTable table = new();
         table.Load(reader);
 
-        table.Columns["ContactId"]!.ColumnName = "Id";
-        table.Columns["FullName"]!.ColumnName = "Full name";
-        table.Columns["PhoneNumber"]!.ColumnName = "Phone";
+        table.Columns[nameof(Contacts.ContactId)].ColumnName = "Id";
+        table.Columns[nameof(Contacts.Fullname)].ColumnName = "Full name";
+        table.Columns[nameof(Contacts.PhoneNumber)].ColumnName = "Phone";
 
         using SLDocument document = new();
         SLStyle headerStyle = HeaderRowStyle(document);
@@ -44,8 +44,7 @@ internal class SpreadSheetLightOperations
 
         document.SetCellStyle(1, 1, 1, 4, headerStyle);
         document.SetActiveCell("A2");
-        document.RenameWorksheet(SLDocument.DefaultFirstSheetName, 
-            sheetName.SplitCamelCase());
+        document.RenameWorksheet(SLDocument.DefaultFirstSheetName, sheetName.SplitCamelCase());
         document.SaveAs(fileName);
     }
 

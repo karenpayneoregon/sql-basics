@@ -12,6 +12,7 @@ internal partial class Program
             var list = context.Taxpayer.ToList();
             AnsiConsole.MarkupLine("[yellow]Hello[/]");
         }
+        
         Console.ReadLine();
     }
 }
