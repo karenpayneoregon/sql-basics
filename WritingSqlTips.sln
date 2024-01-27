@@ -83,6 +83,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dapper using Access", "Dapp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperForAccessDatabase", "DapperForAccessDatabase\DapperForAccessDatabase.csproj", "{D4B74AC6-854C-4B8C-BD03-DDA4E1B04128}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework 4.8", "Framework 4.8", "{AC29C8E3-A20A-4482-8BD5-C7AE267CE585}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperSimpleApp", "DapperSimpleApp\DapperSimpleApp.csproj", "{45C54B67-6789-4A1B-ADAD-BE06E0E0A65C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -189,6 +193,10 @@ Global
 		{D4B74AC6-854C-4B8C-BD03-DDA4E1B04128}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4B74AC6-854C-4B8C-BD03-DDA4E1B04128}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4B74AC6-854C-4B8C-BD03-DDA4E1B04128}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45C54B67-6789-4A1B-ADAD-BE06E0E0A65C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45C54B67-6789-4A1B-ADAD-BE06E0E0A65C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45C54B67-6789-4A1B-ADAD-BE06E0E0A65C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45C54B67-6789-4A1B-ADAD-BE06E0E0A65C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -221,6 +229,8 @@ Global
 		{D0DF38CD-05D4-49AD-84AA-9D22A101D0CE} = {65FDB35C-3D56-48A9-93FB-2D32028F167B}
 		{2BA082AA-41F5-40BC-B31F-BAD9180A8202} = {3047B01C-561D-4A3F-A8EC-0930332D8A34}
 		{D4B74AC6-854C-4B8C-BD03-DDA4E1B04128} = {2BA082AA-41F5-40BC-B31F-BAD9180A8202}
+		{AC29C8E3-A20A-4482-8BD5-C7AE267CE585} = {3047B01C-561D-4A3F-A8EC-0930332D8A34}
+		{45C54B67-6789-4A1B-ADAD-BE06E0E0A65C} = {AC29C8E3-A20A-4482-8BD5-C7AE267CE585}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}
