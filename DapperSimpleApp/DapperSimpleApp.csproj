@@ -73,6 +73,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form1Updated.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1Updated.Designer.cs">
+      <DependentUpon>Form1Updated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ApplicationSettings.cs" />
     <Compile Include="Classes\ConfigureSettings.cs" />
     <Compile Include="Models\Person.cs" />
@@ -93,6 +99,9 @@
     <Content Include="Scripts\populate.sql" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1Updated.resx">
+      <DependentUpon>Form1Updated.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
