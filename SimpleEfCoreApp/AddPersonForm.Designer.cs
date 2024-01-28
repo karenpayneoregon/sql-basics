@@ -1,4 +1,4 @@
-﻿namespace DapperSimpleEfCoreApp;
+﻿namespace SimpleEfCoreApp;
 
 partial class AddPersonForm
 {

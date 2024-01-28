@@ -1,13 +1,13 @@
-﻿using DapperSimpleEfCoreApp.Classes;
-using DapperSimpleEfCoreApp.Models;
-using DapperSimpleEfCoreApp.Validators;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
+using SimpleEfCoreApp.Classes;
+using SimpleEfCoreApp.Models;
+using SimpleEfCoreApp.Validators;
 
 // ReSharper disable CollectionNeverQueried.Local
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 #pragma warning disable CS0067 // Event is never used
 
-namespace DapperSimpleEfCoreApp;
+namespace SimpleEfCoreApp;
 public partial class AddPersonForm : Form
 {
     public delegate void OnValidatePerson(Person person);

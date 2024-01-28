@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace DapperSimpleEfCoreApp.Classes
+namespace SimpleEfCoreApp.Classes
 {
     /// <summary>
     /// Provides a calendar column for the DataGridView control.

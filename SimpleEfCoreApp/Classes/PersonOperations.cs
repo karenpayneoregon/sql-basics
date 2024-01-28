@@ -1,8 +1,8 @@
-﻿using DapperSimpleEfCoreApp.Data;
-using DapperSimpleEfCoreApp.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using SimpleEfCoreApp.Data;
+using SimpleEfCoreApp.Models;
 
-namespace DapperSimpleEfCoreApp.Classes;
+namespace SimpleEfCoreApp.Classes;
 internal class PersonOperations
 {
     public static List<Person> GetAll()

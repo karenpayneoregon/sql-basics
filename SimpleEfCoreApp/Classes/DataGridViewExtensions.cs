@@ -1,9 +1,6 @@
-﻿using System;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
+﻿using System.Text.RegularExpressions;
 
-namespace DapperSimpleApp.Classes
+namespace SimpleEfCoreApp.Classes
 {
     public static class DataGridViewExtensions
     {

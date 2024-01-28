@@ -2,7 +2,7 @@
 using static System.DateTime;
 // ReSharper disable EmptyEmbeddedStatement
 
-namespace DapperSimpleEfCoreApp.Classes;
+namespace SimpleEfCoreApp.Classes;
 
 /// <summary>
 /// For logging messages from DbContext.

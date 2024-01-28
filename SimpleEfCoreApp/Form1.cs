@@ -1,11 +1,11 @@
 using System.ComponentModel;
-using DapperSimpleApp.Classes;
-using DapperSimpleEfCoreApp.Classes;
-using DapperSimpleEfCoreApp.Models;
-using DapperSimpleEfCoreApp.Validators;
 using FluentValidation.Results;
+using SimpleEfCoreApp.Classes;
+using SimpleEfCoreApp.Models;
+using SimpleEfCoreApp.Validators;
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
-namespace DapperSimpleEfCoreApp;
+namespace SimpleEfCoreApp;
 
 public partial class Form1 : Form
 {

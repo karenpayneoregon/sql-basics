@@ -8,10 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DapperSimpleEfCoreApp.Properties {
-    using System;
-    
-    
+namespace SimpleEfCoreApp.Properties {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>

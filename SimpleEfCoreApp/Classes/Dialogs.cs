@@ -1,6 +1,6 @@
-﻿using DapperSimpleEfCoreApp.Properties;
+﻿using SimpleEfCoreApp.Properties;
 
-namespace DapperSimpleEfCoreApp.Classes;
+namespace SimpleEfCoreApp.Classes;
 public class Dialogs
 {
     public static bool Question(string caption, string heading, string yesText, string noText, DialogResult defaultButton)

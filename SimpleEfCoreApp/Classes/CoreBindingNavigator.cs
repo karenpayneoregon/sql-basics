@@ -1,7 +1,7 @@
 ﻿
-using DapperSimpleEfCoreApp.Properties;
+using SimpleEfCoreApp.Properties;
 
-namespace DapperSimpleEfCoreApp.Classes;
+namespace SimpleEfCoreApp.Classes;
 
 
 public sealed class CoreBindingNavigator : BindingNavigator

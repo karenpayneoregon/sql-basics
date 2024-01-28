@@ -1,4 +1,4 @@
-namespace DapperSimpleEfCoreApp;
+namespace SimpleEfCoreApp;
 
 internal static class Program
 {

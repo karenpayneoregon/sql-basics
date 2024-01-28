@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel;
+
 #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
-namespace DapperSimpleEfCoreApp.Classes;
+namespace SimpleEfCoreApp.Classes;
 
 /// <summary>
 /// Provides a generic collection that supports data binding and additionally supports sorting.

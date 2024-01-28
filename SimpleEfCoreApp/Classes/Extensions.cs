@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace DapperSimpleEfCoreApp.Classes;
+namespace SimpleEfCoreApp.Classes;
 
 internal static class Extensions
 {

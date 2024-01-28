@@ -1,7 +1,7 @@
-﻿using DapperSimpleEfCoreApp.Models;
-using FluentValidation;
+﻿using FluentValidation;
+using SimpleEfCoreApp.Models;
 
-namespace DapperSimpleEfCoreApp.Validators
+namespace SimpleEfCoreApp.Validators
 {
     /// <summary>
     /// Basic example for a validator
@@ -18,6 +18,10 @@ namespace DapperSimpleEfCoreApp.Validators
                 .NotEmpty()
                 .WithMessage("Please enter a last name");
 
+            /*
+             * Is DateTime to let the custom DataGridView calendar control to work
+             * else would be a DateOnly.
+             */
             RuleFor(x => x.BirthDate)
                 .LessThan(x => new DateTime(2006, 1, 1))
                 .WithMessage("Please enter a a birth date less than the year 2006");
