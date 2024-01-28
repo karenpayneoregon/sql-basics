@@ -61,9 +61,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CalendarColumn.cs" />
     <Compile Include="Classes\DataGridViewExtensions.cs" />
     <Compile Include="Classes\Dialogs.cs" />
     <Compile Include="Classes\Extensions.cs" />
+    <Compile Include="Classes\OldSchool.cs" />
     <Compile Include="Classes\PersonOperations.cs" />
     <Compile Include="Classes\SortableBindingList.cs" />
     <Compile Include="Classes\SqlStatements.cs" />

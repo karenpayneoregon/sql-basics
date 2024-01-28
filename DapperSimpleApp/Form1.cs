@@ -34,7 +34,13 @@ namespace DapperSimpleApp
                 GetAllPeople();
             }
 
+            dataGridView1.DataError += DataGridView1_DataError;
+        }
 
+        private void DataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("Invalid data");
+            e.Cancel = true;
         }
 
         /*

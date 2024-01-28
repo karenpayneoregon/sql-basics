@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Dapper;
 using DapperSimpleApp.Classes;
 using DapperSimpleApp.Models;
 using DapperSimpleApp.Validators;
@@ -16,10 +9,12 @@ using FluentValidation.Results;
 
 namespace DapperSimpleApp
 {
+    /// <summary>
+    /// Zero data operations in this form, just one call to test the connection which
+    /// was left for testing for those who are working with this from the DEV article.
+    /// </summary>
     public partial class Form1Updated : Form
     {
-        private string connectionString =
-            "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=InsertExamples;Integrated Security=True;Encrypt=False";
 
         private BindingSource _bindingSource = new BindingSource();
 
@@ -31,43 +26,43 @@ namespace DapperSimpleApp
         public Form1Updated()
         {
             InitializeComponent();
+
             bindingNavigatorDeleteItem.Enabled = false;
+            dataGridView1.AutoGenerateColumns = false;
 
             if (Environment.UserName == "PayneK")
             {
                 GetAllButton.Enabled = true;
                 GetAllPeople();
             }
+
         }
         private void GetAllPeople()
         {
-            using (var cn = new SqlConnection(connectionString))
-            {
-                // read from database
-                var list = cn.Query<Person>(SqlStatements.GetAllPeople).AsList();
+            // read from database
+            var operations = new PersonOperations();
+            var list = operations.GetList();
 
-                _bindingList = new SortableBindingList<Person>(list);
-                _bindingSource.DataSource = _bindingList;
-                bindingNavigator1.BindingSource = _bindingSource;
-                dataGridView1.DataSource = _bindingSource;
+            _bindingList = new SortableBindingList<Person>(list);
+            _bindingSource.DataSource = _bindingList;
+            bindingNavigator1.BindingSource = _bindingSource;
+            dataGridView1.DataSource = _bindingSource;
 
-                dataGridView1.ExpandColumns();
-                _bindingSource.ListChanged += BindingSource_ListChanged;
+            _bindingSource.ListChanged += BindingSource_ListChanged;
 
-                CurrentButton.Enabled = true;
-                bindingNavigatorDeleteItem.Enabled = true;
+            CurrentButton.Enabled = true;
+            bindingNavigatorDeleteItem.Enabled = true;
 
-                /*
-                 * Override default action of the BindingNavigator delete button
-                 * Note step 1 was to remove the default in the designer.
-                 */
-                bindingNavigatorDeleteItem.Click += BindingNavigatorDeleteItem_Click;
+            /*
+             * Override default action of the BindingNavigator delete button
+             * Note step 1 was to remove the default in the designer.
+             */
+            bindingNavigatorDeleteItem.Click += BindingNavigatorDeleteItem_Click;
 
-                // No records yet so disable delete button in the BindingNavigator
-                bindingNavigatorDeleteItem.Enabled = _bindingList.Count > 0;
-
-                dataGridView1.FixHeaders();
-            }
+            // No records yet so disable delete button in the BindingNavigator
+            bindingNavigatorDeleteItem.Enabled = _bindingList.Count > 0;
+            dataGridView1.ExpandColumns1();
+            
         }
 
         /// <summary>
@@ -83,16 +78,8 @@ namespace DapperSimpleApp
 
                 if (result.IsValid)
                 {
-                    using (var cn = new SqlConnection(connectionString))
-                    {
-                        cn.Execute(SqlStatements.UpdatePerson, new
-                        {
-                            currentPerson.FirstName,
-                            currentPerson.LastName,
-                            currentPerson.BirthDate,
-                            currentPerson.Id
-                        });
-                    }
+                    var operations = new PersonOperations();
+                    operations.Update(currentPerson);
                 }
                 else
                 {
@@ -100,11 +87,10 @@ namespace DapperSimpleApp
                      * Reset from database table and in a multi-user environment there may have
                      * been changes to this record since the app started so be aware of this.
                      */
-                    using (var cn = new SqlConnection(connectionString))
-                    {
-                        var person = cn.QueryFirst<Person>(SqlStatements.GetPerson, new { Id = currentPerson.Id });
-                        _bindingList[e.OldIndex] = person;
-                    }
+                    var operations = new PersonOperations();
+                    var person = operations.Get(currentPerson.Id);
+                    _bindingList[e.OldIndex] = person;
+
                 }
 
             }
@@ -128,33 +114,26 @@ namespace DapperSimpleApp
                 var currentPerson = _bindingList[_bindingSource.Position];
                 if (Dialogs.Question($"Delete {currentPerson.FirstName} {currentPerson.LastName} ?"))
                 {
-                    using (var cn = new SqlConnection(connectionString))
+                    var operations = new PersonOperations();
+                    if (operations.Delete(currentPerson.Id))
                     {
-                        var affected = cn.Execute(SqlStatements.RemovePerson, new { currentPerson.Id });
-                        if (affected == 1)
-                        {
-                            _bindingSource.RemoveCurrent();
-                            bindingNavigatorDeleteItem.Enabled = _bindingList.Count > 0;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Failed to remove record");
-                        }
+                        _bindingSource.RemoveCurrent();
+                        bindingNavigatorDeleteItem.Enabled = _bindingList.Count > 0;
                     }
-
+                    else
+                    {
+                        MessageBox.Show("Failed to remove record");
+                    }
                 }
             }
-
         }
 
         private void CurrentButton_Click(object sender, EventArgs e)
         {
             var currentPerson = _bindingList[_bindingSource.Position];
-            using (var cn = new SqlConnection(connectionString))
-            {
-                Person person = cn.QueryFirst<Person>(SqlStatements.GetPerson, new { currentPerson.Id });
-                MessageBox.Show($"From database {person}");
-            }
+            var operations = new PersonOperations();
+            var person = operations.Get(currentPerson.Id);
+            MessageBox.Show($"From database {person}");
         }
 
         private void GetAllButton_Click(object sender, EventArgs e)
@@ -164,7 +143,7 @@ namespace DapperSimpleApp
 
         private void ConnectionButton_Click(object sender, EventArgs e)
         {
-            using (var cn = new SqlConnection(connectionString))
+            using (var cn = new SqlConnection(ConfigureSettings.ConnectionString()))
             {
                 try
                 {
@@ -200,11 +179,9 @@ namespace DapperSimpleApp
         {
             if (CurrentButton.Enabled)
             {
-                using (var cn = new SqlConnection(connectionString))
-                {
-                    person.Id = cn.QueryFirst<int>(SqlStatements.InsertPerson, person);
-                    _bindingList.Add(person);
-                }
+                var operations = new PersonOperations();
+                operations.Add(person);
+                _bindingList.Add(person);
             }
             else
             {
@@ -216,10 +193,9 @@ namespace DapperSimpleApp
         {
             if (Dialogs.Question("Do you really want to restore person table?"))
             {
-                PersonOperations operations = new PersonOperations();
+                var operations = new PersonOperations();
                 operations.ResetData();
-                // the following works outside visual studio only
-                Application.Restart();
+                GetAllPeople();
             }
         }
     }

@@ -29,3 +29,5 @@ Using [FluentValidation](https://www.nuget.org/packages/FluentValidation) done s
 I never cared to add records in a DataGridView, always used a modal dialog in most cases so here its done in a dialog.
 
 See code in SampleValidationForm to see the basics to validate before an add new record.
+
+

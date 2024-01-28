@@ -23,7 +23,12 @@ namespace DapperSimpleApp.Classes
 
         public void Update(Person currentPerson)
         {
-            _cn.Execute(SqlStatements.UpdatePerson, new { currentPerson.FirstName, currentPerson.LastName, currentPerson.BirthDate, currentPerson.Id });
+            _cn.Execute(SqlStatements.UpdatePerson, new
+            {
+                currentPerson.FirstName, 
+                currentPerson.LastName, 
+                currentPerson.BirthDate, currentPerson.Id
+            });
         }
 
         public Person Get(int id) 
