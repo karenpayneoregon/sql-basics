@@ -27,7 +27,8 @@ namespace DapperSimpleApp.Classes
             {
                 currentPerson.FirstName, 
                 currentPerson.LastName, 
-                currentPerson.BirthDate, currentPerson.Id
+                currentPerson.BirthDate, 
+                currentPerson.Id
             });
         }
 

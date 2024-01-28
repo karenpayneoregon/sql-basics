@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using static System.DateTime;
+// ReSharper disable EmptyEmbeddedStatement
 
 namespace DapperSimpleEfCoreApp.Classes;
 
@@ -39,7 +40,7 @@ public class DbContextToFileLogger
         var dir = Path.GetDirectoryName(_fileName);
         if (!Directory.Exists(dir))
         {
-            Directory.CreateDirectory(dir);
+            Directory.CreateDirectory(dir!);
         }
         if (!File.Exists(_fileName))
         {
