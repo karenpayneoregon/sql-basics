@@ -18,7 +18,11 @@ public class DataOperations
 
     public async Task<List<Contact>> AllContacts()
     {
-        var statement =
+        var statesStatement = 
+            """
+            SELECT Id,StateName FROM dbo.States;
+            """;
+        var contactStatement =
             """
             SELECT C.Id,
                    C.FirstName,
@@ -38,9 +42,11 @@ public class DataOperations
                     ON A.ContactId = C.Id;
             """;
 
+        var states = await db.QueryAsync <States>(statesStatement);
+
         var contactDictionary = new Dictionary<int, Contact>();
 
-        IEnumerable<Contact> contacts = await db.QueryAsync<Contact, Address, Contact>(statement, (contact, address) =>
+        IEnumerable<Contact> contacts = await db.QueryAsync<Contact, Address, Contact>(contactStatement, (contact, address) =>
         {
             if (!contactDictionary.TryGetValue(contact.Id, out var currentContact))
             {
@@ -49,6 +55,10 @@ public class DataOperations
             }
 
             currentContact.Addresses.Add(address);
+            foreach (var current in currentContact.Addresses)
+            {
+                current.State = states.FirstOrDefault(x => x.Id == current.StateId);
+            }
             return currentContact;
         });
 

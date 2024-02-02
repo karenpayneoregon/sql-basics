@@ -15,6 +15,12 @@ public class Contact
     public string Email { get; set; }
     public string Company { get; set; }
     public string Title { get; set; }
+    public string StateName { get; set; }
     public bool IsNew => this.Id == default(int);
     public List<Address> Addresses { get; } = new List<Address>();
+}
+public class States
+{
+    public int Id { get; set; }
+    public string StateName { get; set; }
 }

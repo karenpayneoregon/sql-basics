@@ -8,6 +8,7 @@ public class Address
     public string StreetAddress { get; set; }
     public string City { get; set; }
     public int StateId { get; set; }
+    public States State { get; set; }
     public string PostalCode { get; set; }
     internal bool IsNew => (this.Id == default(int));
     public bool IsDeleted { get; set; }
