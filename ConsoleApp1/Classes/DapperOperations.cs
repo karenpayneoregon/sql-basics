@@ -1,11 +1,10 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
-using System.Drawing;
 using ConsoleApp1.Handlers;
 using ConsoleApp1.Models;
 using Dapper;
 using static ConfigurationLibrary.Classes.ConfigurationHelper;
-using System.Drawing.Printing;
+
 #pragma warning disable CS8619 // Nullability of reference types in value doesn't match target type.
 #pragma warning disable DAP018
 #pragma warning disable DAP018

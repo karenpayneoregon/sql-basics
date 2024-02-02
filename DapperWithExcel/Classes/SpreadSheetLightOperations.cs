@@ -9,7 +9,6 @@ using Color = System.Drawing.Color;
 namespace DapperWithExcel.Classes;
 internal class SpreadSheetLightOperations
 {
-
     /// <summary>
     /// Create a new Excel file for a specific contact type
     /// </summary>

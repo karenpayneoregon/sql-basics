@@ -1,5 +1,6 @@
 ﻿namespace DapperWithExcel.Models;
-internal enum ContactType
+
+public enum ContactType
 {
     Owners = 7,
     SalesManagers = 11,

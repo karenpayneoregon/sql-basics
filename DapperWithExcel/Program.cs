@@ -15,8 +15,13 @@ internal partial class Program
         foreach (var enumValue in Enum.GetValues(typeof(ContactType)))
         {
             ContactType current = ConvertFromObject<ContactType>((ContactType)enumValue);
+            
             Console.WriteLine($"   {current}.xlsx");
-            await SpreadSheetLightOperations.Write($"{current}.xlsx", $"{current}", current);
+
+            await SpreadSheetLightOperations.Write(
+                contactType: current, 
+                fileName: $"{current}.xlsx", 
+                sheetName: $"{current}");
         }
 
         ExitPrompt();

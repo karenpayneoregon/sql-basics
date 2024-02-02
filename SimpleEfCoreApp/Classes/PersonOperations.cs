@@ -2,6 +2,7 @@
 using SimpleEfCoreApp.Data;
 using SimpleEfCoreApp.Models;
 using System.Runtime.CompilerServices;
+#pragma warning disable CS8604 // Possible null reference argument.
 
 namespace SimpleEfCoreApp.Classes;
 internal class PersonOperations
@@ -45,6 +46,7 @@ internal class PersonOperations
         context.Database.ExecuteSql($"DBCC CHECKIDENT ({nameof(Person)}, RESEED, 0)");
 
         context.Database.ExecuteSql(FormattableStringFactory.Create(InsertPeople));
+        //context.Database.ExecuteSql(InsertPeopleFormattableString);
 
     }
 
@@ -58,4 +60,14 @@ internal class PersonOperations
         ( N'Drew', N'Green', N'2002-01-08' ), 
         ( N'Denise', N'Schaden', N'2001-01-08' )
         """;
+    private static FormattableString InsertPeopleFormattableString =>
+        $"""
+         INSERT INTO dbo.Person ([FirstName], [LastName], [BirthDate]) 
+         VALUES 
+         ( N'Benny', N'Anderson', N'2005-05-27' ), 
+         ( N'Teri', N'Schaefer', N'2002-12-19' ), 
+         ( N'Clint', N'Mante', N'2005-09-15' ), 
+         ( N'Drew', N'Green', N'2002-01-08' ), 
+         ( N'Denise', N'Schaden', N'2001-01-08' )
+         """;
 }
