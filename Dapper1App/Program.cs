@@ -13,6 +13,7 @@ namespace Dapper1App;
             List<Contact> list = await operations.AllContacts();
 
             AnsiConsole.Record();
+
             AnsiConsole.MarkupLine("[u]Contact list[/]");
             foreach (var contact in list)
             {

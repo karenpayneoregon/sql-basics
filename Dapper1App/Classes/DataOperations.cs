@@ -16,6 +16,7 @@ public class DataOperations
 {
     private IDbConnection db = new SqlConnection(ConnectionString());
 
+
     public async Task<List<Contact>> AllContacts()
     {
         var statesStatement = 
