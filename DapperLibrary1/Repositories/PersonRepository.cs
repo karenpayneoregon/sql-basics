@@ -1,4 +1,7 @@
 ﻿using System.Data;
+using System.Reflection;
+using System.Text;
+using System.Text.Json;
 using System.Transactions;
 using Dapper;
 using DapperLibrary1.Classes;
@@ -6,6 +9,7 @@ using DapperLibrary1.Handlers;
 using DapperLibrary1.Interfaces;
 using DapperLibrary1.Models;
 using Microsoft.Data.SqlClient;
+#pragma warning disable CS8604 // Possible null reference argument.
 #pragma warning disable CS8603 // Possible null reference return.
 #pragma warning disable CS8619 // Nullability of reference types in value doesn't match target type.
 
@@ -28,6 +32,11 @@ public class PersonRepository : IBaseRepository
     /// </summary>
     public List<Person> GetAll() 
         => _cn.Query<Person>(SqlStatements.ReadPeople).ToList();
+
+    public async Task<List<Person>?> GetAllJson() 
+        => (JsonSerializer.Deserialize<List<Person>>(
+            await _cn.QueryFirstAsync<string>(SqlStatements.ReadPeopleJson)))
+            .AsList();
 
     /// <summary>
     /// Get all records in the Person table asynchronously

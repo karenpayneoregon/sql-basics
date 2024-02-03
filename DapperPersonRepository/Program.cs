@@ -106,6 +106,7 @@ internal partial class Program
         AnsiConsole.MarkupLine($"[LightGreen]Where in results[/]");
         AnsiConsole.Write(table);
 
+        var fromJson = await repo.GetAllJson();
         ExitPrompt();
     }
 }

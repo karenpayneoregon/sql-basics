@@ -33,6 +33,18 @@ public class SqlStatements
         FROM dbo.Person;
         """;
 
+    public static string ReadPeopleJson =>
+        """
+        SELECT Id,
+               FirstName,
+               LastName,
+               BirthDate
+        FROM dbo.Person 
+        
+        FOR JSON PATH;
+        
+        """;
+
     /// <summary>
     /// Get a single person by primary key
     /// </summary>
