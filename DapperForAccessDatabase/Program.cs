@@ -5,7 +5,42 @@ namespace DapperForAccessDatabase;
 
 internal partial class Program
 {
+    /// <summary>
+    /// Run each method separately
+    /// </summary>
+    /// <param name="args"></param>
     static void Main(string[] args)
+    {
+        //PersonSamples();
+        //CustomersSamples();
+
+        AnsiConsole.MarkupLine("[yellow]Press ENTER to quit[/]");
+        Console.ReadLine();
+    }
+
+    private static void PersonSamples()
+    {
+        PersonRepository repository = new();
+
+        // add several people
+        repository.AddRange(MockedData.People());
+
+        // get person by primary key
+        var firstPerson = repository.Get(1);
+        
+        Console.WriteLine(repository.UpdateBirthDate(1, new DateOnly(1960, 12, 12))
+            ? "Update successful"
+            : "Update failed");
+
+        // show all records
+        var people = repository.GetAll();
+        foreach (var person in people)
+        {
+            Console.WriteLine(person);
+        }
+    }
+
+    private static void CustomersSamples()
     {
         CustomerRepository repository = new("Customers");
 
@@ -15,7 +50,5 @@ internal partial class Program
         var customers = repository.GetAll();
         Console.WriteLine(ObjectDumper.Dump(customers));
         AnsiConsole.MarkupLine($"[cyan]Record count {customers.Count}[/]");
-        AnsiConsole.MarkupLine("[yellow]Press ENTER to quit[/]");
-        Console.ReadLine();
     }
 }
