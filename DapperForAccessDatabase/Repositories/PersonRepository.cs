@@ -44,6 +44,10 @@ public class PersonRepository
         }
     }
 
+    /*
+     * Basic/one property update. Add another method for say only updating First/Last name
+     * The idea is usually all properties need not be updated.
+     */
     public bool UpdateBirthDate(int id, DateOnly birthDate)
     {
         const string statement =
@@ -64,4 +68,9 @@ public class PersonRepository
             WHERE Id = @Id
             """, 
             new {Id = id});
+
+    public void Remove(int id)
+    {
+        // TODO
+    }
 }
