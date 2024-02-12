@@ -74,10 +74,20 @@ public class DataOperations
     public static async Task GetReferenceTablesDapper(ReferenceTables referenceTables)
     {
         await using SqlConnection cn = new(ConnectionString());
-        SqlMapper.GridReader results = await cn.QueryMultipleAsync(SqlStatements.ReferenceTableStatements);
+
+        const string statement = 
+            """
+            SELECT CategoryID,CategoryName FROM dbo.Categories;
+            SELECT ContactTypeIdentifier,ContactTitle FROM dbo.ContactType;
+            SELECT CountryIdentifier,[Name] FROM dbo.Countries;
+            """;
+
+        SqlMapper.GridReader results = await cn.QueryMultipleAsync(statement);
+
         referenceTables.CategoriesList = results.Read<Categories>().ToList();
         referenceTables.ContactTypesList = results.Read<ContactType>().ToList();
         referenceTables.CountriesList = results.Read<Countries>().ToList();
+
     }
 
     public static async Task GetReferenceTablesDapperStoredProcedure(ReferenceTables referenceTables)
@@ -85,12 +95,12 @@ public class DataOperations
         await using SqlConnection cn = new(ConnectionString());
 
         SqlMapper.GridReader results = await cn.QueryMultipleAsync("usp_SelectCatCountryContactType", 
-            null, null, null,
-            CommandType.StoredProcedure);
+            commandType:CommandType.StoredProcedure);
 
         referenceTables.CategoriesList = results.Read<Categories>().ToList();
         referenceTables.ContactTypesList = results.Read<ContactType>().ToList();
         referenceTables.CountriesList = results.Read<Countries>().ToList();
+
     }
 
     /// <summary>

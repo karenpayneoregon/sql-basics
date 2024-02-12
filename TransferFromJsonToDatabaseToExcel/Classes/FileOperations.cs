@@ -10,7 +10,6 @@ internal class FileOperations
         var container = JsonSerializer.Deserialize<List<Container>>(File.ReadAllText(FileName));
         if (container.Count <= 0) return null;
         Container item = container[0];
-        Console.SetCursorPosition(0, 1);
 
         AnsiConsole.MarkupLine($"[yellow]Reading[/] [lightseagreen]" +
                                $"{item.Id,-4}{item.InputDate,-12}" +
