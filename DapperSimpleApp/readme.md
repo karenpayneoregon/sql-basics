@@ -1,6 +1,6 @@
 ﻿# About
 
-This code sample is for novice developers using Framework 4.8 that are interested in working with SQL-Server using a data provider, in this case using Dapper.
+This code sample is for novice developers using Framework 4.8 that are interested in working with SQL-Server using a data provider, in this case using Dapper. Code presented works no different with .NET Core Windows Forms projects.
 
 All data operations are in the form which is okay for learning when first starting out while the next step is to move data operations need to be in a separate class outside of a form. With that the challenge and to learn is take all data operations out of the form into a separate class.
 

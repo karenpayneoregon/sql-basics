@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using System.Text;
 using System.Windows.Forms;
 using Dapper;
 using DapperSimpleApp.Classes;
@@ -170,6 +171,12 @@ namespace DapperSimpleApp
                         var person = cn.QueryFirst<Person>(SqlStatements.GetPerson, new { Id = currentPerson.Id });
                         _bindingList[e.OldIndex] = person;
                     }
+                    StringBuilder builder = new StringBuilder();
+                    foreach (var error in result.Errors)
+                    {
+                        builder.AppendLine(error.ErrorMessage);
+                    }
+                    MessageBox.Show($"Errors\n{builder}");
                 }
 
             }
