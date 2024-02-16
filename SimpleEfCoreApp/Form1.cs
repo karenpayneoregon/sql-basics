@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Text;
 using FluentValidation.Results;
 using SimpleEfCoreApp.Classes;
 using SimpleEfCoreApp.Models;
@@ -20,7 +21,7 @@ public partial class Form1 : Form
     {
         InitializeComponent();
         dataGridView1.AutoGenerateColumns = false;
-        ClientSize = new Size(350, 322);
+        //ClientSize = new Size(350, 322);
         Shown += Form1_Shown;
     }
 
@@ -62,7 +63,7 @@ public partial class Form1 : Form
 
             if (result.IsValid)
             {
-                PersonOperations.Update(currentPerson);
+                var result1 = PersonOperations.Update(currentPerson);
             }
             else
             {
@@ -72,6 +73,12 @@ public partial class Form1 : Form
                  */
                 var person = PersonOperations.Get(currentPerson.Id);
                 _bindingList[_bindingSource.Position] = person!;
+                StringBuilder builder = new();
+                foreach (var error in result.Errors)
+                {
+                    builder.AppendLine(error.ErrorMessage);
+                }
+                MessageBox.Show($"Errors\n{builder}");
             }
 
         }
