@@ -1,6 +1,8 @@
 using System.Diagnostics;
+using System.Reflection;
 using ContinentsDapperApp.Classes;
 using ContinentsDapperApp.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ContinentsDapperApp;
 
@@ -63,6 +65,8 @@ public partial class Form1 : Form
         CountriesComboBox.DataSource = _countriesBindingSource;
         CountriesComboBox.SelectedIndex = 0;
 
+
+        _countriesBindingSource.PositionChanged -= _countriesBindingSource_PositionChanged;
         _countriesBindingSource.PositionChanged += _countriesBindingSource_PositionChanged;
 
     }

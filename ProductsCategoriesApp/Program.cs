@@ -12,7 +12,7 @@ internal partial class Program
     static async Task Main(string[] args)
     {
         //await EntityCode();
-        //await Operations.ProductsWithCategories();
+        
         List<ContactOffice> officeContacts = await Operations.GetContactsForOffice();
         var test = await Operations.GetContactsAndDevicesSingle();
         var test1 = await Operations.GetContactsWithOfficePhone(3);

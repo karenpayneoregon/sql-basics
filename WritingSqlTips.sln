@@ -99,7 +99,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlAddColumnWithValuesApp",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContinentsDapperApp", "ContinentsDapperApp\ContinentsDapperApp.csproj", "{E6F4C7FD-8A54-4CEC-9030-AE212E2064D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServerLibrary", "SqlServerLibrary\SqlServerLibrary.csproj", "{FA1472F1-5A4D-4BC1-96C1-0D74C2917D16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServerLibrary", "SqlServerLibrary\SqlServerLibrary.csproj", "{FA1472F1-5A4D-4BC1-96C1-0D74C2917D16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

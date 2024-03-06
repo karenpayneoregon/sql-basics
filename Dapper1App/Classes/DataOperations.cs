@@ -19,11 +19,11 @@ public class DataOperations
 
     public async Task<List<Contact>> AllContacts()
     {
-        var statesStatement = 
+        const string statesStatement = 
             """
             SELECT Id,StateName FROM dbo.States;
             """;
-        var contactStatement =
+        const string contactStatement =
             """
             SELECT C.Id,
                    C.FirstName,

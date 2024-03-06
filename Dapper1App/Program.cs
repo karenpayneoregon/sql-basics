@@ -31,6 +31,7 @@ namespace Dapper1App;
 
             await File.WriteAllTextAsync("Demo.html", AnsiConsole.ExportHtml());
 
+            Console.ReadLine();
         }
     }
 
