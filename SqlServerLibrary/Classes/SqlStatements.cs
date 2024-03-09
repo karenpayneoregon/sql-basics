@@ -256,6 +256,43 @@
                AND TABLE_NAME <> 'sysdiagrams'
              ORDER BY TABLE_NAME;
              """;
+
+        public static string DatabaseTablesRowCount = 
+            """
+            SELECT     QUOTENAME(SCHEMA_NAME(item.schema_id)) + '.' + QUOTENAME(item.name) AS [Name],
+                       SUM(parts.[rows]) AS [RowCount]
+             FROM      sys.objects AS item
+            INNER JOIN sys.partitions AS parts
+               ON item.object_id = parts.object_id
+            WHERE      item.[type]     = 'U'
+              AND      item.is_ms_shipped = 0x0
+              AND      parts.index_id      < 2 -- 0:Heap, 1:Clustered
+              AND  item.[name] <> 'sysdiagrams'
+            GROUP BY item.schema_id,
+                     item.[name]
+            ORDER BY [Name];
+            """;
+
+        public static string DatabaseTablesRowCount1 =
+            """
+            SELECT     TableSchema = s.name,
+                       Name = t.name,
+                       [RowCount] = p.rows
+             FROM      sys.tables t
+            INNER JOIN sys.schemas s
+               ON t.schema_id = s.schema_id
+            INNER JOIN sys.indexes i
+               ON t.object_id = i.object_id
+            INNER JOIN sys.partitions p
+               ON i.object_id = p.object_id
+              AND i.index_id  = p.index_id
+            WHERE      t.is_ms_shipped = 0
+            GROUP BY t.name,
+                     s.name,
+                     p.rows
+            ORDER BY s.name,
+                     t.name;
+            """;
     }
 }
 

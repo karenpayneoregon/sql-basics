@@ -83,6 +83,7 @@ public class DataOperations
 
         var item = QueryParser.Parse(text) as SelectQuery;
         var tablenames = item.GetPhysicalTables().ToList();
+        var itemWhereClause = item.WhereClause;
     }
 
 

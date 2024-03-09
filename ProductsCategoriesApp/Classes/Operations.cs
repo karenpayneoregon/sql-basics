@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using Dapper;
-using Dommel;
+﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using ProductsCategoriesApp.Models;
 using ProductsCategoriesApp.Models.Projections;

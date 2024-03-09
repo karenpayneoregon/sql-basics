@@ -9,6 +9,7 @@ namespace Dapper1App;
         static async Task Main(string[] args)
         {
             DataOperations operations = new();
+            operations.CarbunqlBasic();
             
             List<Contact> list = await operations.AllContacts();
 
@@ -18,6 +19,7 @@ namespace Dapper1App;
             foreach (var contact in list)
             {
                 AnsiConsole.MarkupLine($"[indianred_1]{contact.Title,-20}{contact.FirstName,-15}{contact.LastName}[/]");
+
                 foreach (var address in contact.Addresses)
                 {
                     AnsiConsole.MarkupLine(address.AddressType == "Home"
