@@ -8,8 +8,6 @@ namespace SqlLiteSample1;
 
 internal partial class Program
 {
-    private static string ConnectionString() 
-        => "Data Source=sample1.db";
 
     static void Main(string[] args)
     {
