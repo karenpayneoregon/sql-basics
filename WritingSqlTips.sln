@@ -101,7 +101,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContinentsDapperApp", "Cont
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServerLibrary", "SqlServerLibrary\SqlServerLibrary.csproj", "{FA1472F1-5A4D-4BC1-96C1-0D74C2917D16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableRowCountApp", "TableRowCountApp\TableRowCountApp.csproj", "{23B26428-02C9-43B2-80AA-F31D36DA10F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TableRowCountApp", "TableRowCountApp\TableRowCountApp.csproj", "{23B26428-02C9-43B2-80AA-F31D36DA10F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlLite", "SqlLite", "{022A5373-9966-4DED-A084-566122878608}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlLiteSample1", "SqlLiteSample1\SqlLiteSample1.csproj", "{7507E8D0-AB27-4140-BA4C-4810180ED564}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -237,6 +241,10 @@ Global
 		{23B26428-02C9-43B2-80AA-F31D36DA10F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23B26428-02C9-43B2-80AA-F31D36DA10F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23B26428-02C9-43B2-80AA-F31D36DA10F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7507E8D0-AB27-4140-BA4C-4810180ED564}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7507E8D0-AB27-4140-BA4C-4810180ED564}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7507E8D0-AB27-4140-BA4C-4810180ED564}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7507E8D0-AB27-4140-BA4C-4810180ED564}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -278,6 +286,7 @@ Global
 		{40E8BC58-ACA5-4B9F-A18A-BDD45CA1357C} = {08AEA021-B429-484E-82FD-CEF1EBDD9D90}
 		{FA1472F1-5A4D-4BC1-96C1-0D74C2917D16} = {FBF6715D-FC48-443C-A94D-763460A6314C}
 		{23B26428-02C9-43B2-80AA-F31D36DA10F3} = {890D5B16-1421-4721-BCF8-2C1F6E8642DE}
+		{7507E8D0-AB27-4140-BA4C-4810180ED564} = {022A5373-9966-4DED-A084-566122878608}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}
