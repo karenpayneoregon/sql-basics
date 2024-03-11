@@ -1,6 +1,4 @@
-﻿using System.Data.SQLite;
-using Dapper;
-using SqlLiteSample1.Classes;
+﻿using SqlLiteSample1.Classes;
 using SqlLiteSample1.Models;
 using static SqlLiteSample1.SpectreConsoleHelpers;
 
