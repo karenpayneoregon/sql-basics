@@ -9,24 +9,26 @@ namespace ConsoleApp1;
 
 internal class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
         List<Customers> customers = EntityOperations.CustomersList();
-        var dump = ObjectDumper.Dump(customers.FirstOrDefault());
-        Debug.WriteLine(dump);
-        Console.ReadLine();
-        DapperOperations operations = new ();
-        var list1 = operations.GetAll();
+        //var dump = ObjectDumper.Dump(customers.FirstOrDefault());
+        //Debug.WriteLine(dump);
+        //Console.ReadLine();
+        Console.WriteLine("Results");
+        DapperOperation1 operations = new ();
+        var list1 = await operations.GetAllAsync();
         //var person = operations.GetPerson(2);
         //UpDateItem(operations);
 
-        var (list, exception) = operations.GetOrdersPagination();
-        if (exception is null)
-        {
-            Console.WriteLine(list.Count == 3);
-        }
+        //var (list, exception) = operations.GetOrdersPagination();
+        //if (exception is null)
+        //{
+        //    Console.WriteLine(list.Count == 3);
+        //}
 
-        operations.OrdersPaginationStatementInResourcesNotBrokenStatement();
+        //operations.OrdersPaginationStatementInResourcesNotBrokenStatement();
+        Console.ReadLine();
 
     }
 

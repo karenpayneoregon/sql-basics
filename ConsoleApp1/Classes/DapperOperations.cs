@@ -10,12 +10,12 @@ using static ConfigurationLibrary.Classes.ConfigurationHelper;
 #pragma warning disable DAP018
 #pragma warning disable CS8603 // Possible null reference return.
 
-[module: DapperAot]
+//[module: DapperAot]
 //[module: DapperAot(false)]
 
 namespace ConsoleApp1.Classes;
 
-[SqlSyntax(SqlSyntax.SqlServer)]
+//[SqlSyntax(SqlSyntax.SqlServer)]
 
 internal class DapperOperations
 {

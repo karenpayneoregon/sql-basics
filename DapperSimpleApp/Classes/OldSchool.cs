@@ -27,6 +27,7 @@ namespace DapperSimpleApp.Classes
             }
         }
 
+
         public static List<Person> ConventionalPeopleList()
         {
             List<Person> list = new List<Person>();
