@@ -21,18 +21,38 @@ public class PersonRepository
 
     public void Add(Person person)
     {
-        var statement =
+        const string statement =
             """
-             INSERT INTO Person
-             (
-                 FirstName,LastName,BirthDate,Active
-             )
-             VALUES
-             (
-                 @FirstName,@LastName,@BirthDate,@Active
-             )
-             """;
+            INSERT INTO Person
+            (
+                FirstName,LastName,BirthDate,Active
+            )
+            VALUES
+            (
+                @FirstName,@LastName,@BirthDate,@Active
+            )
+            """;
         _cn.Execute(statement, new { person.FirstName, person.LastName, person.BirthDate, person.Active });
+    }
+
+    public void Insert(Person person)
+    {
+        const string statement =
+            """
+            INSERT INTO Person
+            (
+                FirstName,LastName,BirthDate,Active
+            )
+            VALUES
+            (
+                @FirstName,@LastName,@BirthDate,@Active
+            )
+            """;
+
+        _cn.Open();
+        _cn.Execute(statement, new { person.FirstName, person.LastName, person.BirthDate, person.Active });
+        person.Id = _cn.QueryFirst<int>("SELECT @@IDENTITY");
+        _cn.Close();
     }
 
     public void AddRange(List<Person> people)

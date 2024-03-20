@@ -37,6 +37,14 @@
             "SELECT CAST(scope_identity() AS int);";
 
         /// <summary>
+        /// Insert a new person, return the new primary key
+        /// </summary>
+        public static string InsertPerson1 =
+            "INSERT INTO dbo.Person (FirstName,LastName,BirthDate) " +
+            "OUTPUT INSERTED.Id " +
+            "VALUES (@FirstName, @LastName, @BirthDate)";
+
+        /// <summary>
         /// For resetting Person table to default data. Also demonstrates and
         /// easy way to add multiple records at once. Note that Dapper does
         /// a foreach internally to perform the add operation and is not a bulk

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Text;
 using System.Windows.Forms;
+using Dapper;
 using DapperSimpleApp.Classes;
 using DapperSimpleApp.Models;
 using DapperSimpleApp.Validators;
@@ -16,6 +17,10 @@ namespace DapperSimpleApp
     /// </summary>
     public partial class Form1Updated : Form
     {
+
+        private string connectionString =
+            "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=InsertExamples;Integrated Security=True;Encrypt=False";
+
 
         private BindingSource _bindingSource = new BindingSource();
 
@@ -204,6 +209,25 @@ namespace DapperSimpleApp
                 var operations = new PersonOperations();
                 operations.ResetData();
                 GetAllPeople();
+            }
+        }
+
+        /// <summary>
+        /// This differs from the regular add by SQL statement in that it uses the OUTPUT clause
+        /// </summary>
+        private void Add1Button_Click(object sender, EventArgs e)
+        {
+            Person person = new Person()
+            {
+                FirstName = "Karen",
+                LastName = "Payne",
+                BirthDate = new DateTime(1959, 12, 7)
+            };
+
+            using (var cn = new SqlConnection(connectionString))
+            {
+                person.Id = cn.QueryFirst<int>(SqlStatements.InsertPerson1, person);
+                _bindingList.Add(person);
             }
         }
     }

@@ -32,11 +32,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1Updated));
             this.ConnectionButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Add1Button = new System.Windows.Forms.Button();
             this.ResetButton = new System.Windows.Forms.Button();
             this.AddNewPersonButton = new System.Windows.Forms.Button();
             this.CurrentButton = new System.Windows.Forms.Button();
             this.GetAllButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FirstNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BirthDate = new DapperSimpleApp.Classes.CalendarColumn();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -49,10 +54,6 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FirstNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BirthDate = new DapperSimpleApp.Classes.CalendarColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
@@ -71,6 +72,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.Add1Button);
             this.panel1.Controls.Add(this.ResetButton);
             this.panel1.Controls.Add(this.AddNewPersonButton);
             this.panel1.Controls.Add(this.CurrentButton);
@@ -81,6 +83,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 100);
             this.panel1.TabIndex = 1;
+            // 
+            // Add1Button
+            // 
+            this.Add1Button.Location = new System.Drawing.Point(682, 69);
+            this.Add1Button.Name = "Add1Button";
+            this.Add1Button.Size = new System.Drawing.Size(106, 23);
+            this.Add1Button.TabIndex = 5;
+            this.Add1Button.Text = "Add 1";
+            this.Add1Button.UseVisualStyleBackColor = true;
+            this.Add1Button.Click += new System.EventHandler(this.Add1Button_Click);
             // 
             // ResetButton
             // 
@@ -141,6 +153,43 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(800, 239);
             this.dataGridView1.TabIndex = 3;
+            // 
+            // IdColumn
+            // 
+            this.IdColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.IdColumn.DataPropertyName = "Id";
+            this.IdColumn.HeaderText = "Id";
+            this.IdColumn.MinimumWidth = 6;
+            this.IdColumn.Name = "IdColumn";
+            this.IdColumn.ReadOnly = true;
+            this.IdColumn.Width = 47;
+            // 
+            // FirstNameColumn
+            // 
+            this.FirstNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.FirstNameColumn.DataPropertyName = "FirstName";
+            this.FirstNameColumn.HeaderText = "First name";
+            this.FirstNameColumn.MinimumWidth = 6;
+            this.FirstNameColumn.Name = "FirstNameColumn";
+            this.FirstNameColumn.Width = 98;
+            // 
+            // LastNameColumn
+            // 
+            this.LastNameColumn.DataPropertyName = "LastName";
+            this.LastNameColumn.HeaderText = "Last name";
+            this.LastNameColumn.MinimumWidth = 6;
+            this.LastNameColumn.Name = "LastNameColumn";
+            this.LastNameColumn.Width = 125;
+            // 
+            // BirthDate
+            // 
+            this.BirthDate.DataPropertyName = "BirthDate";
+            this.BirthDate.HeaderText = "Birth date";
+            this.BirthDate.MinimumWidth = 6;
+            this.BirthDate.Name = "BirthDate";
+            this.BirthDate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.BirthDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.BirthDate.Width = 125;
             // 
             // bindingNavigator1
             // 
@@ -257,43 +306,6 @@
             this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
-            // IdColumn
-            // 
-            this.IdColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.IdColumn.DataPropertyName = "Id";
-            this.IdColumn.HeaderText = "Id";
-            this.IdColumn.MinimumWidth = 6;
-            this.IdColumn.Name = "IdColumn";
-            this.IdColumn.ReadOnly = true;
-            this.IdColumn.Width = 47;
-            // 
-            // FirstNameColumn
-            // 
-            this.FirstNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.FirstNameColumn.DataPropertyName = "FirstName";
-            this.FirstNameColumn.HeaderText = "First name";
-            this.FirstNameColumn.MinimumWidth = 6;
-            this.FirstNameColumn.Name = "FirstNameColumn";
-            this.FirstNameColumn.Width = 98;
-            // 
-            // LastNameColumn
-            // 
-            this.LastNameColumn.DataPropertyName = "LastName";
-            this.LastNameColumn.HeaderText = "Last name";
-            this.LastNameColumn.MinimumWidth = 6;
-            this.LastNameColumn.Name = "LastNameColumn";
-            this.LastNameColumn.Width = 125;
-            // 
-            // BirthDate
-            // 
-            this.BirthDate.DataPropertyName = "BirthDate";
-            this.BirthDate.HeaderText = "Birth date";
-            this.BirthDate.MinimumWidth = 6;
-            this.BirthDate.Name = "BirthDate";
-            this.BirthDate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.BirthDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.BirthDate.Width = 125;
-            // 
             // Form1Updated
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -341,5 +353,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FirstNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastNameColumn;
         private Classes.CalendarColumn BirthDate;
+        private System.Windows.Forms.Button Add1Button;
     }
 }

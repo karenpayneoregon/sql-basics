@@ -1,4 +1,5 @@
 ﻿using DapperForAccessDatabase.Classes;
+using DapperForAccessDatabase.Models;
 using DapperForAccessDatabase.Repositories;
 
 namespace DapperForAccessDatabase;
@@ -11,7 +12,7 @@ internal partial class Program
     /// <param name="args"></param>
     static void Main(string[] args)
     {
-        //PersonSamples();
+        PersonSamples();
         //CustomersSamples();
 
         AnsiConsole.MarkupLine("[yellow]Press ENTER to quit[/]");
@@ -32,6 +33,15 @@ internal partial class Program
             ? "Update successful"
             : "Update failed");
 
+
+        Person person1 = new()
+        {
+            FirstName = "John",
+            LastName = "Doe",
+            BirthDate = new DateOnly(1980, 1, 1),
+            Active = true
+        };
+        repository.Insert(person1);
         // show all records
         var people = repository.GetAll();
         foreach (var person in people)
