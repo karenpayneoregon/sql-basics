@@ -46,7 +46,7 @@ public partial class AddPersonForm : Form
         /*
          * Validate Person
          */
-        PersonValidator validator = new PersonValidator();
+        PersonValidator validator = new();
         ValidationResult result = validator.Validate(Person);
 
         if (!result.IsValid)
