@@ -56,29 +56,29 @@ internal class DataOperations
     public static async Task<List<Book>> BooksAsync()
     {
         await using var cn = new SqlConnection(ConnectionString());
-        IEnumerable<Book> books = await cn.QueryAsync<Book, Categories, Book>(SqlStatements.GetBooksWithCategories,
+
+        return (await cn.QueryAsync<Book, Categories, Book>(SqlStatements.GetBooksWithCategories,
             (book, category) =>
             {
                 book.Category = category;
                 book.CategoryId = category.CategoryId;
                 return book;
-            }, splitOn: nameof(Book.CategoryId));
-
-        return books.ToList();
+            }, splitOn: nameof(Book.CategoryId)))
+            .AsList();
     }
 
     public static List<Book> Books()
     {
         using var cn = new SqlConnection(ConnectionString());
-        IEnumerable<Book> books =  cn.Query<Book, Categories, Book>(SqlStatements.GetBooksWithCategories,
+
+        return (cn.Query<Book, Categories, Book>(SqlStatements.GetBooksWithCategories,
             (book, category) =>
             {
                 book.Category = category;
                 book.CategoryId = category.CategoryId;
                 return book;
-            }, splitOn: nameof(Book.CategoryId));
-
-        return books.ToList();
+            }, splitOn: nameof(Book.CategoryId)))
+            .AsList();
     }
 
 }

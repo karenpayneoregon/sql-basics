@@ -31,7 +31,7 @@
         /// <summary>
         /// Insert a new person, return the new primary key
         /// </summary>
-        public static string InsertPerson = 
+        public static string InsertPerson => 
             "INSERT INTO dbo.Person (FirstName,LastName,BirthDate) " +
             "VALUES (@FirstName, @LastName, @BirthDate);" +
             "SELECT CAST(scope_identity() AS int);";

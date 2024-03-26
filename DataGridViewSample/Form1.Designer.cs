@@ -35,6 +35,7 @@
             Column3 = new DataGridViewTextBoxColumn();
             GetCurrentFromTableButton = new Button();
             EditCurrentButton = new Button();
+            GetBooksAsyncButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -98,11 +99,22 @@
             EditCurrentButton.UseVisualStyleBackColor = true;
             EditCurrentButton.Click += EditCurrentButton_Click;
             // 
+            // GetBooksAsyncButton
+            // 
+            GetBooksAsyncButton.Location = new Point(228, 209);
+            GetBooksAsyncButton.Name = "GetBooksAsyncButton";
+            GetBooksAsyncButton.Size = new Size(173, 31);
+            GetBooksAsyncButton.TabIndex = 4;
+            GetBooksAsyncButton.Text = "Get Books Async";
+            GetBooksAsyncButton.UseVisualStyleBackColor = true;
+            GetBooksAsyncButton.Click += GetBooksAsyncButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(986, 253);
+            Controls.Add(GetBooksAsyncButton);
             Controls.Add(EditCurrentButton);
             Controls.Add(GetCurrentFromTableButton);
             Controls.Add(dataGridView1);
@@ -122,5 +134,6 @@
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
         private Button EditCurrentButton;
+        private Button GetBooksAsyncButton;
     }
 }

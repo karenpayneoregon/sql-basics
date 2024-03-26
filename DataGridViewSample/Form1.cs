@@ -34,5 +34,10 @@ namespace DataGridViewSample
             EditForm form = new EditForm(_bindingSource.Position);
             form.ShowDialog();
         }
+
+        private async void GetBooksAsyncButton_Click(object sender, EventArgs e)
+        {
+            var books = await DataOperations.BooksAsync();
+        }
     }
 }
