@@ -22,7 +22,7 @@ public partial class Form1 : Form
     private void GetCalendar4Button_Click(object sender, EventArgs e)
     {
 
-        var (data, exception) = SqlOperations.GetCalendar4(
+        var (data, exception) = SqlOperations.GetCalendar4Dapper(
             2023, 5, 1, DayOfWeek.Monday);
 
         if (exception is null)

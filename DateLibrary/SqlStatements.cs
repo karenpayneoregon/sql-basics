@@ -36,6 +36,26 @@ public class SqlStatements
                   AND DayOfWeekName = @DayOfWeekName;
             """;
 
+    public static string CalendarByYearMonthDayComputedHoliday() =>
+        """
+        SELECT CalendarDate,
+               CalendarDay,
+               FirstDateOfWeek,
+               LastDateOfWeek,
+               FirstDateOfMonth,
+               LastDateOfMonth,
+               FirstDateOfQuarter,
+               LastDateOfQuarter,
+               FirstDateOfYear,
+               LastDateOfYear,
+               [HolidayComputed] AS Holiday
+        FROM dbo.Calendar
+        WHERE CalendarYear = @CalendarYear
+              AND CalendarMonth = @CalendarMonth
+              AND BusinessDay = @BusinessDay
+              AND DayOfWeekName = @DayOfWeekName;
+        """;
+
     /// <summary>
     /// Query to get start and end date for the current week where were we ask the server to
     /// which in set in appsettings.json

@@ -49,10 +49,7 @@ internal class DataOperations
         return book;
     }
 
-    /// <summary>
-    /// Get all books
-    /// </summary>
-    /// <returns>Books with category</returns>
+
     public static async Task<List<Book>> BooksAsync()
     {
         await using var cn = new SqlConnection(ConnectionString());

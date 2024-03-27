@@ -142,6 +142,22 @@ public class SqlOperations
         return list;
 
     }
+    public static List<Calendar> GetCalendarDapper(int year, int month, int businessDay, DayOfWeek dayOfWeek)
+    {
+        List<Calendar> list = new();
+
+        using var cn = new SqlConnection(ConnectionString());
+        var results = cn.Query<Calendar>(SqlStatements.CalendarByYearMonthDay(), new
+        {
+            CalendarYear = year,
+            CalendarMonth = month,
+            BusinessDay = businessDay,
+            DayOfWeekName = dayOfWeek.ToString()
+        });
+ 
+        return list;
+
+    }
     /// <summary>
     /// Variation of above
     /// * Has exception handling
@@ -154,11 +170,10 @@ public class SqlOperations
     /// <returns></returns>
     public static (List<Calendar> data, Exception exception) GetCalendar4(int year, int month, int businessDay, DayOfWeek dayOfWeek)
     {
-        SetupLogging.Development();
         List<Calendar> list = new();
 
-        using var cn = new SqlConnection(ConnectionString());
-        using var cmd = new SqlCommand { Connection = cn, CommandText = SqlStatements.CalendarByYearMonthDay() };
+        using SqlConnection cn = new(ConnectionString());
+        using SqlCommand cmd = new() { Connection = cn, CommandText = SqlStatements.CalendarByYearMonthDay() };
 
         cmd.Parameters.Add("@CalendarYear", SqlDbType.Int).Value = year;
         cmd.Parameters.Add("@CalendarMonth", SqlDbType.Int).Value = month;
@@ -169,7 +184,6 @@ public class SqlOperations
         {
 
             cn.Open();
-
             SqlDataReader? reader = cmd.ExecuteReader();
 
             if (reader.HasRows)
@@ -192,7 +206,6 @@ public class SqlOperations
                         Holiday = reader.GetString(10)
                     });
                 }
-
             }
 
             return (list, null);
@@ -200,12 +213,34 @@ public class SqlOperations
         }
         catch (Exception localException)
         {
-            Log.Error(localException, "Failed reading data");
-            
             return (null, localException);
         }
 
     }
+    public static (List<Calendar> data, Exception exception) GetCalendar4Dapper(int year, int month, int businessDay, DayOfWeek dayOfWeek)
+    {
+        using SqlConnection cn = new(ConnectionString());
+        try
+        {
+            var list = cn.Query<Calendar>(SqlStatements.CalendarByYearMonthDayComputedHoliday(), new
+            {
+                CalendarYear = year,
+                CalendarMonth = month,
+                BusinessDay = businessDay,
+                DayOfWeekName = dayOfWeek.ToString()
+            });
+
+            return (list.AsList(), null);
+        }
+        catch (Exception localException)
+        {
+            return (null, localException);
+        }
+
+    }
+
+
+
     /// <summary>
     /// Ask out SQL-Server for start and end dates for the current week
     /// </summary>
