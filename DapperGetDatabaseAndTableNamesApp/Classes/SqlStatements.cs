@@ -7,6 +7,20 @@ using System.Threading.Tasks;
 namespace DapperGetDatabaseAndTableNamesApp.Classes;
 internal class SqlStatements
 {
+    /// <summary>
+    /// Get all views for a database into a list of <see cref="ViewContainer"/>
+    /// </summary>
+    public const string GetViews = 
+        """
+        SELECT 
+          SCHEMA_NAME(schema_id) AS [Schema],
+          [Name]
+        FROM sys.views;
+        """;
+
+    /// <summary>
+    /// Get all tables for a database and database name into a list of <see cref="DataContainer"/>
+    /// </summary>
     public const string ReadStatement =
         """
         DECLARE @sql NVARCHAR(MAX);

@@ -9,8 +9,13 @@ internal class DataOperations
     {
         using var connection = new SqlConnection(ConnectionString());
         connection.Open();
-        return connection
-            .Query<DataContainer>(SqlStatements.ReadStatement).AsList();
+        return connection.Query<DataContainer>(SqlStatements.ReadStatement).AsList();
+    }
 
+    public static List<ViewContainer> ReadViews()
+    {
+        using var connection = new SqlConnection(ConnectionString());
+        connection.Open();
+        return connection.Query<ViewContainer>(SqlStatements.GetViews).AsList();
     }
 }

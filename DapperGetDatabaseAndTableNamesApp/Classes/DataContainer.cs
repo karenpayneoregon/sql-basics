@@ -5,5 +5,4 @@ internal class DataContainer
     public string SchemaName { get; set; }
     public string TableName { get; set; }
     public override string ToString() => DatabaseName;
-
 }
