@@ -1,6 +1,6 @@
-﻿namespace DapperGetDatabaseAndTableNamesApp.Classes;
+﻿namespace SqlServer.Library.Models;
 
-internal class ViewContainer
+public class ViewContainer
 {
     public string Schema { get; set; }
     public string Name { get; set; }

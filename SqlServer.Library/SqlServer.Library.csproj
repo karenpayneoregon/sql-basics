@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="readme.md" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="readme.md" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ConfigurationLibrary" Version="1.0.6" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
+		<PackageReference Include="Dapper" Version="2.1.35" />
+	</ItemGroup>
+
+</Project>

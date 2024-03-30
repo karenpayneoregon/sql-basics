@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SqlServer.Library.Models;
 
-namespace DapperGetDatabaseAndTableNamesApp.Classes;
+namespace SqlServer.Library.Classes;
 internal class SqlStatements
 {
     /// <summary>
@@ -47,5 +43,20 @@ internal class SqlStatements
                                                        TableName';
         
         EXECUTE (@sql);
+        """;
+
+    /// <summary>
+    /// Get column details for table, calling code must provide value for @TableName parameter
+    /// </summary>
+    public const string GetColumnDetailsForTable =
+        """
+        SELECT X.COLUMN_NAME AS ColumnName,
+              X.ORDINAL_POSITION AS Position,
+              X.TABLE_CATALOG AS Catalog,
+              X.TABLE_SCHEMA AS TableSchema,
+              X.COLUMN_DEFAULT AS ColumnDefault,
+              X.DATA_TYPE AS DataType
+        FROM INFORMATION_SCHEMA.COLUMNS AS X
+        WHERE X.TABLE_NAME = @TableName 
         """;
 }
