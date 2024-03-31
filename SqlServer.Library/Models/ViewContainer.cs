@@ -1,4 +1,5 @@
-﻿namespace SqlServer.Library.Models;
+﻿#nullable disable
+namespace SqlServer.Library.Models;
 
 public class ViewContainer
 {

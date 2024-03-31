@@ -1,0 +1,40 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="alert alert-primary" role="alert">
+    <h1 class="fs-5">Demonstrates getting table names</h1>
+</div>
+
+<div class="container border border-dark border-1 mt-4 shadow">
+    
+
+
+    <form method="post">
+
+        <div class="row mt-3">
+            <div class="col-2 ms-2">
+                <label asp-for="Identifier" class="control-label">Tables</label>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-2 ms-sm-2">
+                <select asp-for="Identifier" class="form-select mb-3" asp-items="ViewBag.TableOptions"></select>
+            </div>
+
+        </div>
+
+        <div class="col-auto pt-2 ps-2 pb-2 ">
+
+            <input type="submit"
+                   asp-page-handler="NormalExample"
+                   value="Get" class="btn btn-primary "/>
+
+        </div>
+    </form>
+
+</div>
