@@ -69,13 +69,12 @@ public class DataOperations
         var list = (await ReadDataContainersAsync()).AsList();
         return list.GroupBy(x => x.DatabaseName).ToList();
     }
-        
 
     /// <summary>
     /// Read all databases and tables from an instance of SQL-Server grouped by database names
     /// </summary>
     /// <returns></returns>
-    public static List<IGrouping<string, DataContainer>> ReadDataContainersGrouped() 
+    public static List<IGrouping<string, DataContainer>> ReadDataContainersGrouped()
         => ReadDataContainers().GroupBy(x => x.DatabaseName).ToList();
 
 
@@ -93,6 +92,12 @@ public class DataOperations
 
     }
 
+    /// <summary>
+    /// Get foreign keys for a catalog
+    /// </summary>
+    /// <param name="dataSource">server</param>
+    /// <param name="catalog">database</param>
+    /// <returns></returns>
     public static List<ForeignKeyContainer> ReadForeignKeys(string dataSource, string catalog)
     {
         SqlConnectionStringBuilder builder = new(ConnectionString())
@@ -102,7 +107,7 @@ public class DataOperations
         };
 
         using var connection = new SqlConnection(builder.ConnectionString);
-        
+
         return connection.Query<ForeignKeyContainer>(SqlStatements.GetForeignKeysWithRules).AsList();
 
     }
@@ -198,8 +203,7 @@ public class DataOperations
     public static async Task<List<TableNameIndexContainer?>> TableNamesWithIndicesAsync(string databaseName)
     {
         await using var connection = new SqlConnection(ConnectionString());
-        return  (await TableNamesAsync(databaseName))
-            .Select((x,y) => new TableNameIndexContainer(y, x))
+        return (await TableNamesAsync(databaseName)).Select((name, index) => new TableNameIndexContainer(index, name))
             .ToList();
     }
 
@@ -211,7 +215,7 @@ public class DataOperations
     {
         using var connection = new SqlConnection(ConnectionString());
         return (TableNames(databaseName))
-            .Select((x, y) => new TableNameIndexContainer(y, x))
+            .Select((name, index) => new TableNameIndexContainer(index, name))
             .ToList();
     }
 }
