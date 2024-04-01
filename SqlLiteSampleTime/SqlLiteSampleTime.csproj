@@ -18,6 +18,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="ConfigurationLibrary" Version="1.0.6" />
+		<PackageReference Include="ObjectDumper.NET" Version="4.1.17" />
 	</ItemGroup>
 
 	<ItemGroup>

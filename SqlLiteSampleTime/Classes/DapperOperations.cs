@@ -24,5 +24,10 @@ internal class DapperOperations
                 """)
             .AsList();
 
+
+        var result = ObjectDumper.Dump(data).Replace("{TimeOnly}", "{[hotpink]TimeOnly[/]}");
+
+        AnsiConsole.MarkupLine(result);
+
     }
 }

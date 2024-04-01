@@ -257,7 +257,7 @@
              ORDER BY TABLE_NAME;
              """;
 
-        public static string DatabaseTablesRowCount = 
+        public static string DatabaseTablesRowCount => 
             """
             SELECT     QUOTENAME(SCHEMA_NAME(item.schema_id)) + '.' + QUOTENAME(item.name) AS [Name],
                        SUM(parts.[rows]) AS [RowCount]
@@ -273,7 +273,7 @@
             ORDER BY [Name];
             """;
 
-        public static string DatabaseTablesRowCount1 =
+        public static string DatabaseTablesRowCount1 =>
             """
             SELECT     TableSchema = s.name,
                        Name = t.name,

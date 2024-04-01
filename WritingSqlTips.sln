@@ -121,6 +121,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperGetDatabaseAndTableNa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperGetDatabaseAndTableNamesApp2", "DapperGetDatabaseAndTableNamesApp2\DapperGetDatabaseAndTableNamesApp2.csproj", "{36939C4C-DA14-4492-9B07-BF6A70317C80}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlLiteSample2", "SqlLiteSample2\SqlLiteSample2.csproj", "{43D74204-62C9-4A3E-A174-173A375E5261}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -283,6 +285,10 @@ Global
 		{36939C4C-DA14-4492-9B07-BF6A70317C80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36939C4C-DA14-4492-9B07-BF6A70317C80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36939C4C-DA14-4492-9B07-BF6A70317C80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43D74204-62C9-4A3E-A174-173A375E5261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43D74204-62C9-4A3E-A174-173A375E5261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43D74204-62C9-4A3E-A174-173A375E5261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43D74204-62C9-4A3E-A174-173A375E5261}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -330,6 +336,7 @@ Global
 		{2D58AFB7-CDBC-4C01-8DAD-8D9D430A58FF} = {022A5373-9966-4DED-A084-566122878608}
 		{0685AD13-8CE4-4F5F-853A-08A4CB8E4F15} = {0D457154-6C4B-4009-8AA7-A30AFB4BE4D2}
 		{36939C4C-DA14-4492-9B07-BF6A70317C80} = {0D457154-6C4B-4009-8AA7-A30AFB4BE4D2}
+		{43D74204-62C9-4A3E-A174-173A375E5261} = {022A5373-9966-4DED-A084-566122878608}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}
