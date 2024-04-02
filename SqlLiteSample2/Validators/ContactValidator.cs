@@ -4,7 +4,7 @@ using SqlLiteSample2.Models;
 
 namespace SqlLiteSample2.Validators;
 
-public class ContactValidator : FL.AbstractValidator<Contacts>
+public class ContactValidator : AbstractValidator<Contacts>
 {
     public ContactValidator()
     {

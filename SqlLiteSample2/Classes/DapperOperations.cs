@@ -46,5 +46,30 @@ internal class DapperOperations
         return ( cn.Query<ContactType>(sql)).AsList();
     }
 
+    public static List<Countries> Countries()
+    {
+        var cn = new SQLiteConnection(ConnectionString());
+        const string sql =
+            """
+            SELECT [CountryIdentifier]
+                ,[Name]
+            FROM Countries
+            """;
+        return (cn.Query<Countries>(sql)).AsList();
+    }
 
+    public static List<Contacts> Contacts()
+    {
+        var cn = new SQLiteConnection(ConnectionString());
+        const string sql =
+            """
+            SELECT [ContactId]
+                ,[FirstName]
+                ,[LastName]
+                ,[ContactTypeIdentifier]
+                ,[FullName]
+            FROM Contacts
+            """;
+        return (cn.Query<Contacts>(sql)).AsList();
+    }
 }

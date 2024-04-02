@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using SqlLiteSample2.Classes;
 using SqlLiteSample2.Models;
 
 namespace SqlLiteSample2.Validators;
@@ -19,11 +20,16 @@ public class CustomersValidator : AbstractValidator<Customers>
             .NotEmpty()
             .MinimumLength(8);
 
+
+        var contacts = DapperOperations.Contacts();
+
         RuleFor(c => c.ContactId)
-            .GreaterThan(0);
+            .ExclusiveBetween(1, contacts.Max(x => x.ContactId));
+
+        var countries = DapperOperations.Countries();
 
         RuleFor(c => c.CountryIdentifier)
-            .GreaterThan(0);
+            .ExclusiveBetween(1, countries.Max(x => x.CountryIdentifier));
     }
 
 }

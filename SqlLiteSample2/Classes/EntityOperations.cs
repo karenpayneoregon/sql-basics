@@ -274,4 +274,22 @@ internal class EntityOperations
         var valid = CustomersCityStreetValidator.Validate(customers);
         Console.WriteLine(valid ? "Valid" : "Not valid");
     }
+
+    public static void WithName()
+    {
+
+        PrintMethod();
+
+        Contacts contacts = new()
+        {
+            ContactTypeIdentifier = 7 // Owner
+        };
+        ContactValidator validator = new();
+        var validate = validator.Validate(contacts);
+
+        foreach (var failure in validate.Errors)
+        {
+            AnsiConsole.MarkupLine($"   WithName: [white]{failure.ErrorMessage}[/]");
+        }
+    }
 }
