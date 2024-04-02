@@ -17,24 +17,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ConfigurationLibrary" Version="1.0.6" />
+		<PackageReference Include="ConfigurationLibrary" Version="1.0.4" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ConsoleHelperLibrary" Version="1.0.2" />
+		<PackageReference Include="ConsoleHelperLibrary" Version="1.0.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Bogus" Version="35.3.1" />
-		<PackageReference Include="Dapper" Version="2.1.28" />
-		<PackageReference Include="Dapper.Transaction" Version="2.1.24" />
-		<PackageReference Include="kp.Dapper.Handlers" Version="1.0.0" />
-		<PackageReference Include="System.Data.OleDb" Version="8.0.0" />
-		<PackageReference Include="ObjectDumper.NET" Version="4.1.3" />
-	</ItemGroup>
 
 	<ItemGroup>
-
 		<PackageReference Include="Spectre.Console" Version="0.46.0" />
 	</ItemGroup>
 
@@ -42,9 +33,17 @@
 	  <None Update="appsettings.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Database1.accdb">
+	  <None Update="Books.mdb">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Dapper" Version="2.1.28" />
+		<PackageReference Include="Dapper.Transaction" Version="2.1.24" />
+		<PackageReference Include="kp.Dapper.Handlers" Version="1.0.0" />
+		<PackageReference Include="System.Data.OleDb" Version="8.0.0" />
+		<PackageReference Include="ObjectDumper.NET" Version="4.1.3" />
 	</ItemGroup>
 
 </Project>

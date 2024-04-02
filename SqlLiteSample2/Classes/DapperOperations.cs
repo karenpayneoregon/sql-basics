@@ -67,7 +67,6 @@ internal class DapperOperations
                 ,[FirstName]
                 ,[LastName]
                 ,[ContactTypeIdentifier]
-                ,[FullName]
             FROM Contacts
             """;
         return (cn.Query<Contacts>(sql)).AsList();
