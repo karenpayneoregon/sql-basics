@@ -266,18 +266,10 @@ internal class EntityOperations
 
         Customers customers = new()
         {
-            //City = "Mexico City",
+            City = "Mexico City",
             Street = "123 Main Street"
         };
 
-        //var properties = new[] { nameof(Customers.Street), nameof(Customers.City) };
-        //ValidationContext<Customers> context = new(customers, 
-        //    new PropertyChain(), 
-        //    new MemberNameValidatorSelector(properties));
-
-        //IValidator validate = new CustomersValidator();
-        //var result = validate.Validate(context);
-        //Console.WriteLine(result.IsValid ? "Valid" : "Not valid");
 
         var valid = CustomersCityStreetValidator.Validate(customers);
         Console.WriteLine(valid ? "Valid" : "Not valid");
