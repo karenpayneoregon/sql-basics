@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SqlLiteSample2.Models;
 
@@ -18,4 +19,6 @@ public partial class Categories
     public byte[] Photo { get; set; }
 
     public virtual ICollection<Products> Products { get; set; } = new List<Products>();
+
+
 }

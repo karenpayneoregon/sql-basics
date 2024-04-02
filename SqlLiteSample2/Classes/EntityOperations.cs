@@ -1,8 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using FluentValidation;
+using FluentValidation.Internal;
+using Microsoft.EntityFrameworkCore;
 using SqlLiteSample2.Data;
 using SqlLiteSample2.Models;
 using SqlLiteSample2.Validators;
 using static SqlLiteSample2.Classes.SpectreConsoleHelpers;
+//using ValidationResult = Spectre.Console.ValidationResult;
 
 /*
  * NOTES:
@@ -149,6 +153,7 @@ internal class EntityOperations
             .ThenInclude(x => x.Supplier)
             .ToListAsync();
 
+
         await File.WriteAllTextAsync("Results\\Categories.txt", ObjectDumper.Dump(categories));
     }
 
@@ -171,7 +176,7 @@ internal class EntityOperations
         };
         
         ContactValidator validator = new();
-        FL.Results.ValidationResult validate = await validator.ValidateAsync(contacts);
+        var validate = await validator.ValidateAsync(contacts);
         if (validate.IsValid)
         {
             context.Contacts.Add(contacts);
@@ -204,7 +209,7 @@ internal class EntityOperations
         {
             FirstName = "Karen",
             FullName = "Karen Payne",
-            ContactTypeIdentifier = 27
+            ContactTypeIdentifier = 27 // Does not exist
         };
 
         ContactValidator validator = new();
@@ -246,5 +251,35 @@ internal class EntityOperations
 
         await File.WriteAllTextAsync("Results\\Customers.txt", ObjectDumper.Dump(customers));
 
+    }
+
+    /// <summary>
+    /// This method shows how to validate two properties while ignoring the rest
+    /// * CompanyName
+    /// * ContactId
+    /// * CountryIdentifier
+    /// </summary>
+    public static void AddNewCustomerValidateOneProperty()
+    {
+        
+        PrintMethod();
+
+        Customers customers = new()
+        {
+            //City = "Mexico City",
+            Street = "123 Main Street"
+        };
+
+        //var properties = new[] { nameof(Customers.Street), nameof(Customers.City) };
+        //ValidationContext<Customers> context = new(customers, 
+        //    new PropertyChain(), 
+        //    new MemberNameValidatorSelector(properties));
+
+        //IValidator validate = new CustomersValidator();
+        //var result = validate.Validate(context);
+        //Console.WriteLine(result.IsValid ? "Valid" : "Not valid");
+
+        var valid = CustomersCityStreetValidator.Validate(customers);
+        Console.WriteLine(valid ? "Valid" : "Not valid");
     }
 }

@@ -61,4 +61,8 @@
 		<Using Include="FluentValidation" Alias="FL" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Stash\" />
+	</ItemGroup>
+
 </Project>

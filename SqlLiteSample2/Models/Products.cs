@@ -13,7 +13,7 @@ public partial class Products
 
     public int? SupplierID { get; set; }
 
-    public int? CategoryID { get; set; }
+    public int CategoryID { get; set; }
 
     public string QuantityPerUnit { get; set; }
 
@@ -34,4 +34,5 @@ public partial class Products
     public virtual ICollection<OrderDetails> OrderDetails { get; set; } = new List<OrderDetails>();
 
     public virtual Suppliers Supplier { get; set; }
+
 }

@@ -8,13 +8,17 @@ internal partial class Program
     {
         
         await EntityOperations.ReadAllCustomers();
-        await EntityOperations.AddNewContact();
-        await EntityOperations.AddNewContactBad();
-        await EntityOperations.ReadAllCategories();
-        await EntityOperations.ReadAllEmployeesUpDateOne();
-        await EntityOperations.RemoveOneOrder();
-        await EntityOperations.GetTableNamesInDatabase();
-        await EntityOperations.UpdateCustomerCity();
+        //await EntityOperations.AddNewContact();
+        //await EntityOperations.AddNewContactBad();
+        //await EntityOperations.ReadAllCategories();
+        //await EntityOperations.ReadAllEmployeesUpDateOne();
+        //await EntityOperations.RemoveOneOrder();
+        //await EntityOperations.GetTableNamesInDatabase();
+        //await EntityOperations.UpdateCustomerCity();
+
+        EntityOperations.AddNewCustomerValidateOneProperty();
+
+
 
         SpectreConsoleHelpers.ExitPrompt();
     }

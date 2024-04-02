@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using SqlLiteSample2.Classes;
-using SqlLiteSample2.Interfaces;
+using FluentValidation.Internal;
 using SqlLiteSample2.Models;
 
 namespace SqlLiteSample2.Validators;
+
 public class CustomersValidator : AbstractValidator<Customers>
 {
     public CustomersValidator()
@@ -26,39 +26,20 @@ public class CustomersValidator : AbstractValidator<Customers>
         RuleFor(c => c.CountryIdentifier)
             .GreaterThan(0);
     }
+
 }
 
-        public class ContactValidator : AbstractValidator<Contacts>
-        {
-            public ContactValidator()
-            {
-                Include(new FirstLastNameValidator());
-
-                var contactTypes = DapperOperations.ContactTypes();
-
-                RuleFor(c => c.ContactTypeIdentifier)
-                    .InclusiveBetween(1, contactTypes.Max(x => x.ContactTypeIdentifier));
-            }
-        }
-
-
-
-public class EmployeesValidator : AbstractValidator<Employees>
+public class CustomersCityStreetValidator
 {
-    public EmployeesValidator()
+    public static bool Validate(Customers customers)
     {
-        Include(new FirstLastNameValidator());
-    }
-}
-public class FirstLastNameValidator : AbstractValidator<IPerson>
-{
-    public FirstLastNameValidator()
-    {
-        RuleFor(x => x.FirstName)
-            .NotEmpty()
-            .MinimumLength(3);
-        RuleFor(x => x.LastName)
-            .NotEmpty()
-            .MinimumLength(3);
+        var properties = new[] { nameof(Customers.Street), nameof(Customers.City) };
+        ValidationContext<Customers> context = new(customers,
+            new PropertyChain(),
+            new MemberNameValidatorSelector(properties));
+
+        IValidator validate = new CustomersValidator();
+        var result = validate.Validate(context);
+        return result.IsValid;
     }
 }
