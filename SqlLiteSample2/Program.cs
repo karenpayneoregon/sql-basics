@@ -7,12 +7,14 @@ internal partial class Program
 {
     static async Task Main(string[] args)
     {
+
         // Set up FluentValidation for .WithName
         ValidatorOptions.Global.DisplayNameResolver = (type, memberInfo, expression) =>
             ValidatorOptions.Global.PropertyNameResolver(type, memberInfo, expression)
                 .SplitPascalCase();
 
 
+        var customersJoinedSample = DapperOperations.CustomersJoinedSample1();
         //await EntityOperations.ReadAllCustomers();
         //await EntityOperations.AddNewContact();
         //await EntityOperations.AddNewContactBad();

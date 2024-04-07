@@ -4,7 +4,7 @@ using ContinentsDapperApp.Models;
 using Dapper;
 
 namespace ContinentsDapperApp.Classes;
-internal class DapperOperations // yes we can do stored procedures 😊 and code is formatted for a Twitter pos
+internal class DapperOperations // yes we can do stored procedures 😊 and code is formatted for a Twitter post
 {
     private IDbConnection db = new SqlConnection(ConnectionString());
     public List<Continent> Continents()

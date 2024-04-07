@@ -1,15 +1,12 @@
-using System.Diagnostics;
-using System.Reflection;
 using ContinentsDapperApp.Classes;
 using ContinentsDapperApp.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ContinentsDapperApp;
 
 public partial class Form1 : Form
 {
-    private BindingSource _continentBindingSource = new(); 
-    private BindingSource _countriesBindingSource = new();
+    private BindingSource _continentBindingSource = []; 
+    private BindingSource _countriesBindingSource = [];
 
     private DapperOperations operations = new();
 

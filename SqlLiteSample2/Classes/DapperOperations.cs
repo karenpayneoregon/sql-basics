@@ -71,4 +71,41 @@ internal class DapperOperations
             """;
         return (cn.Query<Contacts>(sql)).AsList();
     }
+
+    public static List<Customers> CustomersJoinedSample()
+    {
+        var cn = new SQLiteConnection(ConnectionString());
+
+        var list = cn.Query<Customers, Contacts, Countries, Customers>(
+            SqlStatements.CustomerJoined(), (customers, contacts, country) =>
+            {
+                customers.Contact = contacts;
+                customers.ContactId = contacts.ContactId;
+                customers.CountryIdentifier = country.CountryIdentifier;
+                customers.CountryIdentifierNavigation = country;
+                return customers;
+
+            }, splitOn: "ContactId,CountryIdentifier");
+
+        return list.ToList();
+    }
+
+    public static List<Customers> CustomersJoinedSample1()
+    {
+        var cn = new SQLiteConnection(ConnectionString());
+
+        var list = cn.Query<Customers, Contacts, ContactType, Countries, Customers>(
+            SqlStatements.CustomerJoined(), (customers, contacts, contactTypes, country) =>
+            {
+                customers.Contact = contacts;
+                customers.ContactId = contacts.ContactId;
+                customers.ContactTypeIdentifierNavigation = contactTypes;
+                customers.CountryIdentifier = country.CountryIdentifier;
+                customers.CountryIdentifierNavigation = country;
+                return customers;
+
+            }, splitOn: "ContactId,ContactTypeIdentifier,CountryIdentifier");
+
+        return list.ToList();
+    }
 }

@@ -5,8 +5,8 @@ using Person = DapperLibrary1.Models.Person;
 namespace DapperPersonRepository.MockingClasses;
 internal class BogusOperations
 {
-    public static List<DapperLibrary1.Models.Person> People(int count = 20) =>
-        new Faker<DapperLibrary1.Models.Person>()
+    public static List<Person> People(int count = 20) =>
+        new Faker<Person>()
             .RuleFor(c => c.FirstName, f => f.Person.FirstName)
             .RuleFor(c => c.LastName, f => f.Person.LastName)
             .RuleFor(c => c.BirthDate, f =>

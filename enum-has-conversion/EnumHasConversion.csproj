@@ -61,6 +61,10 @@
 	  </Compile>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Scripts\" />
+	</ItemGroup>
+
 
 
 </Project>
