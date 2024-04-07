@@ -1,6 +1,6 @@
 ﻿# About
 
-Working with NuGet package [StrEnum.Dapper](http://example.com) which converts string to Enum. 
+Working with NuGet package [StrEnum.Dapper](https://www.nuget.org/packages/StrEnum/2.0.2?_src=template) which converts string to Enum for [Dapper](https://www.nuget.org/packages/Dapper). 
 
 Note this library stores enum as a string in the database rather than an int. This can be problematic if a wine-type name were to change. For this reason I will follow this up with a int conversion next. 
 
