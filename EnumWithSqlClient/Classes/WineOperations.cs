@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Data;
+using System.Diagnostics;
 using DbPeekQueryLibrary.LanguageExtensions;
 using Microsoft.Data.SqlClient;
 using static ConfigurationLibrary.Classes.ConfigurationHelper;
@@ -116,7 +117,7 @@ internal class WineOperations
         using var cn = new SqlConnection(ConnectionString());
 
         using var cmd = new SqlCommand(statement, cn);
-        cmd.Parameters.AddWithValue("@WineType", wineType.IntValue());
+        cmd.Parameters.Add("@WineType",SqlDbType.Int).Value = wineType.IntValue();
 
         cn.Open();
 
