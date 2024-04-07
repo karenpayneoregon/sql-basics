@@ -78,7 +78,9 @@ internal class WineOperations
             FROM dbo.Wine
             WHERE WineType IN @WineType;
             """;
+
         var values = wineTypes.Select(x => x.IntValue()).ToArray();
+
         IEnumerable<Wine> result = await db.QueryAsync<Wine>(
             WhereInClause, new
             {
