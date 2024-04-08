@@ -48,4 +48,20 @@ public class StoredProcedureHelpers
         return _cn.Query<string>(statement, new { ProcedureName = procedureName}).FirstOrDefault();
     }
 
+    public string? GetStoredProcedureDefinition1(string procedureName)
+    {
+        var statement =
+            """
+            DECLARE @Lines TABLE (Line NVARCHAR(MAX)) ;
+            DECLARE @FullText NVARCHAR(MAX) = '' ;
+            
+            INSERT @Lines EXEC sp_helptext @ProcedureName ;
+            SELECT @FullText = @FullText + Line FROM @Lines ; 
+            
+            SELECT @FullText ;
+            """;
+
+        return _cn.Query<string>(statement, new { ProcedureName = procedureName }).FirstOrDefault();
+    }
+
 }
