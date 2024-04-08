@@ -125,13 +125,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlLiteSample2", "SqlLiteSa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperForAccessDatabaseMdb", "DapperForAccessDatabaseMdb\DapperForAccessDatabaseMdb.csproj", "{A475F0A7-C7A0-428A-A33B-B83DFFC8C9BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumHasConversionDapper", "EnumHasConversionDapper\EnumHasConversionDapper.csproj", "{6FC8842D-C55E-4158-A07C-D6A6F534EF5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumHasConversionDapper", "EnumHasConversionDapper\EnumHasConversionDapper.csproj", "{6FC8842D-C55E-4158-A07C-D6A6F534EF5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumHasConversionDapper1", "EnumHasConversionDapper1\EnumHasConversionDapper1.csproj", "{512B6F56-1372-47B6-855A-2EF3F99C5664}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumHasConversionDapper1", "EnumHasConversionDapper1\EnumHasConversionDapper1.csproj", "{512B6F56-1372-47B6-855A-2EF3F99C5664}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Conversions", "Conversions", "{BCA6D25E-F641-4217-A509-D134814082DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumWithSqlClient", "EnumWithSqlClient\EnumWithSqlClient.csproj", "{7B0C0C12-A801-4A7D-948C-E48B2A9061D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumWithSqlClient", "EnumWithSqlClient\EnumWithSqlClient.csproj", "{7B0C0C12-A801-4A7D-948C-E48B2A9061D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetStoredProceduresApp", "GetStoredProceduresApp\GetStoredProceduresApp.csproj", "{2990ED42-88AB-465F-981A-A36AED67BD59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -315,6 +317,10 @@ Global
 		{7B0C0C12-A801-4A7D-948C-E48B2A9061D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B0C0C12-A801-4A7D-948C-E48B2A9061D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B0C0C12-A801-4A7D-948C-E48B2A9061D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2990ED42-88AB-465F-981A-A36AED67BD59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2990ED42-88AB-465F-981A-A36AED67BD59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2990ED42-88AB-465F-981A-A36AED67BD59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2990ED42-88AB-465F-981A-A36AED67BD59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -368,6 +374,7 @@ Global
 		{6FC8842D-C55E-4158-A07C-D6A6F534EF5D} = {BCA6D25E-F641-4217-A509-D134814082DB}
 		{512B6F56-1372-47B6-855A-2EF3F99C5664} = {BCA6D25E-F641-4217-A509-D134814082DB}
 		{7B0C0C12-A801-4A7D-948C-E48B2A9061D2} = {BCA6D25E-F641-4217-A509-D134814082DB}
+		{2990ED42-88AB-465F-981A-A36AED67BD59} = {08AEA021-B429-484E-82FD-CEF1EBDD9D90}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}
