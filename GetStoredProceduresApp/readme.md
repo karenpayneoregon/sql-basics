@@ -5,3 +5,5 @@ Writes definitions of stored procedures for a database to a text file using code
 ## Usage
 
 Set the database connection string in `appsettings.json`
+
+![Screenshot](assets/screenshot.png)

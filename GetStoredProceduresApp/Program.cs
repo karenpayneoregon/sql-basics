@@ -14,9 +14,11 @@ internal partial class Program
         var names = helpers.GetStoredProcedureName();
         foreach (var name in names)
         {
+            AnsiConsole.MarkupLine($"[yellow]Processing[/] [white]{name}[/]");
             var definition = helpers.GetStoredProcedureDefinition(name);
             builder.AppendLine($"Procedure name: {name}");
             builder.AppendLine(definition);
+            builder.AppendLine(new string('-',200));
         }
 
         var fileName = "StoredProcedures.txt";
