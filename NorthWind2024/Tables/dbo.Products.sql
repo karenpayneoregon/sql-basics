@@ -10,8 +10,7 @@ CREATE TABLE [dbo].[Products]
 [UnitsOnOrder] [smallint] NULL,
 [ReorderLevel] [smallint] NULL,
 [Discontinued] [bit] NOT NULL,
-[DiscontinuedDate] [datetime2] NULL,
-[RowPosition] [int] NULL
+[DiscontinuedDate] [datetime2] NULL
 ) ON [PRIMARY]
 GO
 ALTER TABLE [dbo].[Products] ADD CONSTRAINT [PK_Products] PRIMARY KEY CLUSTERED ([ProductID]) ON [PRIMARY]

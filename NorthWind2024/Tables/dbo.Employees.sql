@@ -16,7 +16,8 @@ CREATE TABLE [dbo].[Employees]
 [Extension] [nvarchar] (4) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [Notes] [nvarchar] (max) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [ReportsTo] [int] NULL,
-[ReportsToNavigationEmployeeID] [int] NULL
+[ReportsToNavigationEmployeeID] [int] NULL,
+[FullName] AS ((([TitleOfCourtesy]+' ')+([FirstName]+' '))+[LastName])
 ) ON [PRIMARY]
 GO
 ALTER TABLE [dbo].[Employees] ADD CONSTRAINT [PK_Employees] PRIMARY KEY CLUSTERED ([EmployeeID]) ON [PRIMARY]
