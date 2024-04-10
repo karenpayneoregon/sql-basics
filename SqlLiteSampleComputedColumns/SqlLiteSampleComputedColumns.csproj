@@ -17,24 +17,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.4" />
+		<PackageReference Include="ConfigurationLibrary" Version="1.0.4" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="ConsoleHelperLibrary" Version="1.0.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Using Include="ProductsCategoriesApp.Classes.SqlStatements" Alias="SQL" />
-	</ItemGroup>
+
+	<!--<ItemGroup>
+		<PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
+	</ItemGroup>-->
 
 	<ItemGroup>
-		<PackageReference Include="Dapper" Version="2.1.35" />
-		<PackageReference Include="Dommel" Version="3.3.1" />
-		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
-		<PackageReference Include="ConfigurationLibrary" Version="1.0.4" />
+		<PackageReference Include="Spectre.Console" Version="0.46.0" />
 	</ItemGroup>
-
 
 	<ItemGroup>
 	  <None Update="appsettings.json">

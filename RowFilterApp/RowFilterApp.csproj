@@ -22,11 +22,11 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="ConfigurationLibrary" Version="1.0.4" />
+		<PackageReference Include="ConfigurationLibrary" Version="1.0.6" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>
