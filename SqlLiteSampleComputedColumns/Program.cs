@@ -6,7 +6,7 @@ internal partial class Program
 {
     static void Main(string[] args)
     {
-        var people = DapperOperations.GetPeople();
+        var people = DapperOperations.GetPeopleInView();
         foreach (var person in people)
         {
             Console.WriteLine($"{person.Id,-5}{person.FullName}");

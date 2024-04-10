@@ -3,21 +3,16 @@ using System.Data;
 using System.Data.SQLite;
 
 namespace SqlLiteSampleComputedColumns.Classes;
-internal class DapperOperations
+public class DapperOperations
 {
-    private static string ConnectionString()
-        => "Data Source=sample1.db";
-    public static List<Person> GetPeople()
+    private static string ConnectionString() => "Data Source=sample1.db";
+    public static List<Person> GetPeopleInView()
     {
         var cn = new SQLiteConnection(ConnectionString());
 
         return cn.Query<Person>(
                 """
-                SELECT Id,
-                       FirstName,
-                       LastName,
-                       FullName
-                FROM ComputedSample
+                SELECT * FROM GetComputedData
                 """)
             .AsList();
     }
