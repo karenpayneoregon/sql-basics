@@ -1,10 +1,33 @@
 ﻿# About
 
-Example to get a database names and their table names and writes them to a simple text file.
+Example to get a database names and their table names and writes them to a simple text file and display in a tree view.
 
-As presented the code reads the connection string from appsettings.json so if there is a need to work against more than one server the code needs to change to work for more than one server
+Do not run `Get foreign keys' without changing `ApplicationSettings.Catalog` setting in `appsettings.json`
 
-There is starter code to get view names for a database but not implemented.
+![Menu](assets/menu.png)
 
+## Before running
+
+1. If not using SQLEXPRESS, change it 
+1. Under `ApplicationSettings` change the server if not using SQLEXPRESS
+
+
+```json
+{
+  "ConnectionsConfiguration": {
+    "ActiveEnvironment": "Development",
+    "Development": "Data Source=.\\SQLEXPRESS;Initial Catalog=master;Integrated Security=True;Encrypt=False"
+  },
+  "ApplicationSettings": {
+    "Server": ".\\SQLEXPRESS",
+    "Catalog": "NorthWind2024" 
+  } 
+}
+```
+
+![Sample](assets/sample.png)
+
+## Details
 - Written in NET8
 - Uses [Dapper](https://www.nuget.org/packages/Dapper) NuGet package
+- [Spectre.Console](https://www.nuget.org/packages/Spectre.Console/0.46.0?_src=template) for menu and tree

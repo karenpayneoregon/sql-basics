@@ -29,8 +29,22 @@ internal class Operations
 
     public static void IterateDatabases()
     {
+        List<IGrouping<string, DataContainer>> grouped = [];
+        AnsiConsole.Progress()
+            
+            .Start(ctx =>
+            {
+                var task = ctx.AddTask("[yellow]Reading data[/]");
+                
+                while (!ctx.IsFinished)
+                {
 
-        List<IGrouping<string, DataContainer>> grouped = DataOperations.ReadDataContainersGrouped();
+                    grouped = DataOperations.ReadDataContainersGrouped();
+                    task.Increment(45);
+
+                }
+
+            });
 
         //FileOperations.WriteToFile(grouped);
         var root = new Tree("[darkseagreen2_1]Databases[/]");
@@ -51,12 +65,12 @@ internal class Operations
                 var columns = DataOperations.ReadColumnDetailsForTable(Utilities.ServerName(), groupItem.Key, item.TableName);
                 foreach (var column in columns)
                 {
-                    childAddNode.AddNode($"{column.Position} {column.ColumnName}");
+                    childAddNode.AddNode($"{column.ColumnName}");
                     
                 }
             }
         }
-
+        Console.Clear();
         AnsiConsole.Write(root);
         Continue();
 
