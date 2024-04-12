@@ -7,7 +7,7 @@ using static ConfigurationLibrary.Classes.ConfigurationHelper;
 namespace SqlServer.Library.Classes;
 public class DataOperations
 {
-    #region Two ifferent ways to check if a catalog exists
+    #region Two different ways to check if a catalog exists
     /// <summary>
     /// Determine if a database exists
     /// </summary>

@@ -1,6 +1,6 @@
 ﻿{
    "CodeGenerationMode": 4,
-   "ContextClassName": "C:\\OED\\DotnetLand\\VS2022\\WritingSqlTips\\SqlLiteSampleComputedColumns\\Sample1.dbContext",
+   "ContextClassName": "Context",
    "ContextNamespace": null,
    "FilterSchemas": false,
    "IncludeConnectionString": true,
@@ -16,6 +16,10 @@
    "Tables": [
       {
          "Name": "ComputedSample",
+         "ObjectType": 0
+      },
+      {
+         "Name": "Person",
          "ObjectType": 0
       }
    ],

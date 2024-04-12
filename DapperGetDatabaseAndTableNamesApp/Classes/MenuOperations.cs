@@ -4,31 +4,7 @@ namespace DapperGetDatabaseAndTableNamesApp.Classes
 {
     class MenuOperations
     {
-        /// <summary>
-        /// Create main menu
-        /// The property Information is optional
-        /// </summary>
-        //public static SelectionPrompt<MenuItem> MainSelectionPrompt()
-        //{
-        //    SelectionPrompt<MenuItem> menu = new()
-        //    {
-        //        HighlightStyle = new Style(Color.Black, Color.White, Decoration.None)
-        //    };
-
-        //    menu.Title("[cyan]Select a option[/]");
-        //    menu.AddChoices(new List<MenuItem>()
-        //    {
-        //        new () {Id = 1, Text = "Enter an animal",  Information = "Enter",  
-        //            Action = Option1 },
-        //        new () {Id = 2, Text = "Have all animals speaks", Information = "Speak", 
-        //            Action = () =>  AnsiConsole.MarkupLine("[yellow]Call method to have animals speak[/]") },
-        //        new () {Id = -1,Text = "Exit"},
-        //    });
-
-        //    return menu;
-
-        //}
-
+    
         public static SelectionPrompt<MenuItem> MainSelectionPrompt()
         {
             SelectionPrompt<MenuItem> menu = new()

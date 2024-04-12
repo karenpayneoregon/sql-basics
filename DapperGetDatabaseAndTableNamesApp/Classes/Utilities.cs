@@ -15,4 +15,6 @@ internal class Utilities
 
     public static string ServerName() =>
         ConfigurationRoot().GetSection("ApplicationSettings")["Server"];
+    public static string Catalog() =>
+        ConfigurationRoot().GetSection("ApplicationSettings")["Catalog"];
 }
