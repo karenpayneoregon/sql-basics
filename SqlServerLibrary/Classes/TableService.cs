@@ -23,20 +23,8 @@ public class TableService
         {
             InitialCatalog = initialCatalog
         };
-        var test = builder.ConnectionString;
-        Debug.WriteLine(test);
-        using var cn = new SqlConnection(builder.ConnectionString);
+
+        await using var cn = new SqlConnection(builder.ConnectionString);
         return ( await cn.QueryAsync<TableConstraints>(SqlStatements.TableConstraintsForDatabase)).AsList();
     }
 }
-
-public class DatabaseService
-{
-    private readonly IDbConnection _cn = new SqlConnection(ConnectionString());
-
-    public async Task<List<string>> DatabaseNames()
-    {
-        return ( await _cn.QueryAsync<string>(SqlStatements.GetDatabaseNames)).AsList();
-    }
-}
-
