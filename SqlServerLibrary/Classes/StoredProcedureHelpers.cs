@@ -7,6 +7,19 @@ public class StoredProcedureHelpers
 {
     private readonly IDbConnection _cn = new SqlConnection(ConnectionString());
 
+    public string FileName()
+    {
+        SqlConnectionStringBuilder builder = new(ConnectionString());
+        return Path.Combine("StoredProcedures", $"{builder.InitialCatalog}_StoredProcedures.sql");
+    }
+
+    public string InitialCatalog()
+    {
+        SqlConnectionStringBuilder builder = new(ConnectionString());
+        
+        return $"{builder.DataSource}\\{builder.InitialCatalog}";
+    }
+
     /// <summary>
     /// Read names of stored procedures from database in connection string
     /// </summary>

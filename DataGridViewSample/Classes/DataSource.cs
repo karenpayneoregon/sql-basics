@@ -14,7 +14,7 @@ public sealed class DataSource
 
     private DataSource()
     {
-        BindingList = new BindingList<Book>(DataOperations.Books());
+        BindingList = new BindingList<Book>(DataOperations.Books1());
         BindingSource.DataSource = BindingList;
     }
 }

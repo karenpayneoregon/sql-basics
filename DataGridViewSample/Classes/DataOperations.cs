@@ -1,5 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
-using System.Data;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
 using Dapper;
 using DataGridViewSample.Models;
 
@@ -75,6 +75,20 @@ internal class DataOperations
                 book.CategoryId = category.CategoryId;
                 return book;
             }, splitOn: nameof(Book.CategoryId)))
+            .AsList();
+    }
+
+    public static List<Book> Books1()
+    {
+        using var cn = new SqlConnection(ConnectionString());
+
+        return (cn.Query<Book, Categories, Book>("usp_GetBooksWithCategories",
+                (book, category) =>
+                {
+                    book.Category = category;
+                    book.CategoryId = category.CategoryId;
+                    return book;
+                }, splitOn: nameof(Book.CategoryId), commandType: CommandType.StoredProcedure))
             .AsList();
     }
 
