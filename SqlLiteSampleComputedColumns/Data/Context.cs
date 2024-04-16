@@ -7,13 +7,13 @@ using SqlLiteSampleComputedColumns.Models;
 
 namespace SqlLiteSampleComputedColumns.Data;
 
-public partial class COEDDotnetLandVS2022WritingSqlTipsSqlLiteSampleComputedColumnsSample1dbContext : DbContext
+public partial class Context : DbContext
 {
-    public COEDDotnetLandVS2022WritingSqlTipsSqlLiteSampleComputedColumnsSample1dbContext()
+    public Context()
     {
     }
 
-    public COEDDotnetLandVS2022WritingSqlTipsSqlLiteSampleComputedColumnsSample1dbContext(DbContextOptions<COEDDotnetLandVS2022WritingSqlTipsSqlLiteSampleComputedColumnsSample1dbContext> options)
+    public Context(DbContextOptions<Context> options)
         : base(options)
     {
     }

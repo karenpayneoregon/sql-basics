@@ -11,6 +11,14 @@ internal partial class Program
         {
             Console.WriteLine($"{person.Id,-5}{person.FullName}");
         }
+
+        Console.WriteLine();
+
+        people = DapperOperations.GetPeople();
+        foreach (var person in people)
+        {
+            Console.WriteLine($"{person.Id,-5}'{person.FirstName,-8}' '{person.LastName,-10}' => {person.FullName}");
+        }
         Console.ReadLine();
     }
 }

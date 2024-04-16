@@ -15,6 +15,40 @@
         {
           "Documents": [
             {
+              "FilePath": "C:\\OED\\DotnetLand\\VS2022\\WritingSqlTips\\SqlLiteSample1\\Classes\\DapperOperations.cs",
+              "RelativePath": "..\\..\\SqlLiteSample1\\Classes\\DapperOperations.cs",
+              "FullName": "DapperOperations.cs",
+              "DockedHeight": {
+                "UnitType": "Stretch",
+                "Value": 162
+              },
+              "DockedWidth": {
+                "UnitType": "Stretch",
+                "Value": 200
+              },
+              "Line": 12,
+              "Column": 24,
+              "IsPinned": false,
+              "IsActive": true,
+              "IsSelected": true
+            },
+            {
+              "FilePath": "C:\\OED\\DotnetLand\\VS2022\\WritingSqlTips\\SqlLiteSample1\\Program.cs",
+              "RelativePath": "..\\..\\SqlLiteSample1\\Program.cs",
+              "FullName": "Program.cs",
+              "DockedHeight": {
+                "UnitType": "Stretch",
+                "Value": 162
+              },
+              "DockedWidth": {
+                "UnitType": "Stretch",
+                "Value": 200
+              },
+              "Line": 12,
+              "Column": 31,
+              "IsPinned": false
+            },
+            {
               "FilePath": "C:\\OED\\DotnetLand\\VS2022\\WritingSqlTips\\SqlServerLibrary\\Classes\\StoredProcedureHelpers.cs",
               "RelativePath": "..\\..\\SqlServerLibrary\\Classes\\StoredProcedureHelpers.cs",
               "FullName": "StoredProcedureHelpers.cs",
@@ -26,74 +60,8 @@
                 "UnitType": "Stretch",
                 "Value": 200
               },
-              "Line": 10,
-              "Column": 12,
-              "IsPinned": false
-            },
-            {
-              "FilePath": "C:\\OED\\DotnetLand\\VS2022\\WritingSqlTips\\GetStoredProceduresApp\\Program.cs",
-              "RelativePath": "..\\..\\GetStoredProceduresApp\\Program.cs",
-              "FullName": "Program.cs",
-              "DockedHeight": {
-                "UnitType": "Stretch",
-                "Value": 162
-              },
-              "DockedWidth": {
-                "UnitType": "Stretch",
-                "Value": 200
-              },
-              "Line": 24,
-              "Column": 46,
-              "IsPinned": false,
-              "IsActive": true,
-              "IsSelected": true
-            },
-            {
-              "FilePath": "C:\\OED\\DotnetLand\\VS2022\\WritingSqlTips\\GetStoredProceduresApp\\appsettings.json",
-              "RelativePath": "..\\..\\GetStoredProceduresApp\\appsettings.json",
-              "FullName": "appsettings.json",
-              "DockedHeight": {
-                "UnitType": "Stretch",
-                "Value": 162
-              },
-              "DockedWidth": {
-                "UnitType": "Stretch",
-                "Value": 200
-              },
-              "Line": 1,
-              "Column": 1,
-              "IsPinned": false
-            },
-            {
-              "FilePath": "C:\\OED\\DotnetLand\\VS2022\\WritingSqlTips\\GetStoredProceduresApp\\GetStoredProceduresApp.csproj",
-              "RelativePath": "..\\..\\GetStoredProceduresApp\\GetStoredProceduresApp.csproj",
-              "FullName": "GetStoredProceduresApp.csproj",
-              "DockedHeight": {
-                "UnitType": "Stretch",
-                "Value": 162
-              },
-              "DockedWidth": {
-                "UnitType": "Stretch",
-                "Value": 200
-              },
-              "Line": 1,
-              "Column": 1,
-              "IsPinned": false
-            },
-            {
-              "FilePath": "C:\\OED\\DotnetLand\\VS2022\\WritingSqlTips\\GetStoredProceduresApp\\Classes\\Program.cs",
-              "RelativePath": "..\\..\\GetStoredProceduresApp\\Classes\\Program.cs",
-              "FullName": "Program.cs",
-              "DockedHeight": {
-                "UnitType": "Stretch",
-                "Value": 162
-              },
-              "DockedWidth": {
-                "UnitType": "Stretch",
-                "Value": 200
-              },
-              "Line": 1,
-              "Column": 1,
+              "Line": 20,
+              "Column": 37,
               "IsPinned": false
             }
           ],
