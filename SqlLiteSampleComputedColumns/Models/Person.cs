@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace SqlLiteSampleComputedColumns.Models;
 
+// for EF Core - another under Classes for Dapper
 public partial class Person
 {
     public int Id { get; set; }
