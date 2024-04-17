@@ -14,7 +14,9 @@ public class DapperOperations
         const string connectionString = "data source=:memory:;cache=shared;";
 
         using var cn = new SqliteConnection(connectionString);
+
         cn.Open();
+
         CreateTable(cn);
 
         var people = new List<Person>
