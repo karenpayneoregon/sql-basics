@@ -183,6 +183,9 @@ namespace DapperSimpleApp
             else if (e.ListChangedType == ListChangedType.ItemDeleted)
             {
                 // this is after a delete operation 
+            }else if (e.ListChangedType == ListChangedType.ItemAdded)
+            {
+                // handle new record
             }
 
         }
