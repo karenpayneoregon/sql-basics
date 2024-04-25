@@ -112,28 +112,26 @@ namespace DapperSimpleApp
         /// </summary>
         private void BindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-            if (_bindingSource.Current != null)
-            {
-                var currentPerson = _bindingList[_bindingSource.Position];
-                if (Dialogs.Question($"Delete {currentPerson.FirstName} {currentPerson.LastName} ?"))
-                {
-                    using (var cn = new SqlConnection(connectionString))
-                    {
-                        var affected = cn.Execute(SqlStatements.RemovePerson, new { currentPerson.Id });
-                        if (affected == 1)
-                        {
-                            _bindingSource.RemoveCurrent();
-                            bindingNavigatorDeleteItem.Enabled = _bindingList.Count > 0;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Failed to remove record");
-                        }
-                    }
+            if (_bindingSource.Current == null) return;
 
+            var currentPerson = _bindingList[_bindingSource.Position];
+            if (!Dialogs.Question($"Delete {currentPerson.FirstName} {currentPerson.LastName} ?")) return;
+            using (var cn = new SqlConnection(connectionString))
+            {
+
+                Person person = cn.QueryFirstOrDefault<Person>(SqlStatements.RemovePerson, new { currentPerson.Id });
+
+                if (person != null)
+                {
+                    _bindingSource.RemoveCurrent();
+                    bindingNavigatorDeleteItem.Enabled = _bindingList.Count > 0;
                 }
+                else
+                {
+                    MessageBox.Show($"Failed to remove {currentPerson.FirstName} {currentPerson.LastName} as it does not exists");
+                }
+
             }
-            
         }
 
         /// <summary>
@@ -229,7 +227,7 @@ namespace DapperSimpleApp
             {
                 using (var cn = new SqlConnection(connectionString))
                 {
-                    person.Id = cn.QueryFirst<int>(SqlStatements.InsertPerson, person);
+                    person.Id = cn.QueryFirst<int>(SqlStatements.InsertPerson1, person);
                     _bindingList.Add(person);
                 }
             }

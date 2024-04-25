@@ -1,4 +1,5 @@
-﻿namespace DapperSimpleApp.Classes
+﻿using DapperSimpleApp.Models;
+namespace DapperSimpleApp.Classes
 {
     /// <summary>
     /// Collection of SQL statements, feel free to move to stored procedures.
@@ -24,9 +25,10 @@
             "UPDATE [dbo].[Person] SET [FirstName] = @FirstName,[LastName] = @LastName,[BirthDate] = @BirthDate WHERE Id = @Id";
 
         /// <summary>
-        /// Remove a person by primary key
+        /// Remove a person by primary key, caller checks to see if a <see cref="Person"/>
+        /// is returned or null if the record does not exist.
         /// </summary>
-        public static string RemovePerson = "DELETE FROM dbo.Person WHERE Id = @Id;";
+        public static string RemovePerson = "DELETE FROM dbo.Person OUTPUT Deleted.* WHERE Id = @Id;";
 
         /// <summary>
         /// Insert a new person, return the new primary key

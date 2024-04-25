@@ -13,7 +13,7 @@ namespace DapperSimpleApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1Updated());
+            Application.Run(new Form1());
         }
     }
 }
