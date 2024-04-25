@@ -4,6 +4,9 @@ This code sample is for novice developers using Framework 4.8 that are intereste
 
 All data operations are in the form which is okay for learning when first starting out while the next step is to move data operations need to be in a separate class outside of a form. With that the challenge and to learn is take all data operations out of the form into a separate class.
 
+> **Note**
+> Delete and inserts use OUTPUT Clause
+
 ## Setup
 
 1. Under localDb, create a database named `InsertExamples`
