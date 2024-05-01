@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using System.Data;
 using System.Data.SQLite;
 
 namespace SqlLiteSampleComputedColumns.Classes;
@@ -27,7 +26,7 @@ public class DapperOperations
     public static List<Person> GetPeople()
     {
         var cn = new SQLiteConnection(ConnectionString());
-
+        
         return cn.Query<Person>(
                 """
                 SELECT Id, FirstName, LastName, FullName FROM ComputedSample1

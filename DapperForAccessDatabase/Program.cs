@@ -12,7 +12,9 @@ internal partial class Program
     /// <param name="args"></param>
     static void Main(string[] args)
     {
-        PersonSamples();
+        Table1Operations table1Operations = new();
+        table1Operations.Add(new Table1 { Column1 = "Some value" });
+        //PersonSamples();
         //CustomersSamples();
 
         AnsiConsole.MarkupLine("[yellow]Press ENTER to quit[/]");

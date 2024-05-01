@@ -264,7 +264,7 @@ public partial class DataOperations
     /// <summary>
     /// Remove <see cref="Person"/> from the database
     /// </summary>
-    /// <param name="person">Person with a id</param>
+    /// <param name="person">Person with an id</param>
     /// <returns>success</returns>
     public static async Task<bool> RemoveDapper(Person person)
     {
