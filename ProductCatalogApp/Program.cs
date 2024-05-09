@@ -30,6 +30,8 @@ internal partial class Program
             if (product.Data.Length > 2)
             {
                 Manufacturing manufacturing = JsonSerializer.Deserialize<Manufacturing>(product.Data);
+
+                
                 AnsiConsole.MarkupLine($"{product.ProductID,-4}" +
                                        $"{product.Name,-30}" +
                                        $"{product.Color ?? "(none)",-10}[cyan]" +
@@ -41,7 +43,8 @@ internal partial class Program
             {
                 Console.WriteLine($"{product.ProductID,-4}" +
                                   $"{product.Name,-30}" +
-                                  $"{product.Color ?? "(Unknown)"} " +
+                                  $"{product.Color ?? "(Unknown)"} " + 
+                                  "      ??  ??         " +
                                   $"{onSale}");
             }
         }

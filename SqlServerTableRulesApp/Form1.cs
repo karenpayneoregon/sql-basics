@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics;
 using SqlServerLibrary.Classes;
 using SqlServerLibrary.Models;
 using SqlServerTableRulesApp.Extensions;
@@ -50,6 +51,7 @@ public partial class Form1 : Form
         if (_bindingList is not null)
         {
             var current = _bindingList[_bindingSource.Position];
+            Debugger.Break();
         }
     }
 }

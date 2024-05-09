@@ -141,7 +141,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlLiteSampleInMemoryDb", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperAccessWinForms", "DapperAccessWinForms\DapperAccessWinForms.csproj", "{62FF6902-1F90-4AC1-B78D-FBC18B3676C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlLiteInsertNulls", "SqlLiteInsertNulls\SqlLiteInsertNulls.csproj", "{026D7BC9-1EE8-4FF3-88E0-7929C4FE64BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlLiteInsertNulls", "SqlLiteInsertNulls\SqlLiteInsertNulls.csproj", "{026D7BC9-1EE8-4FF3-88E0-7929C4FE64BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableAdapterSimple", "TableAdapterSimple\TableAdapterSimple.csproj", "{D98E4B4A-DC1C-4BEC-A4B6-A962FC413619}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -345,6 +347,10 @@ Global
 		{026D7BC9-1EE8-4FF3-88E0-7929C4FE64BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{026D7BC9-1EE8-4FF3-88E0-7929C4FE64BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{026D7BC9-1EE8-4FF3-88E0-7929C4FE64BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D98E4B4A-DC1C-4BEC-A4B6-A962FC413619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D98E4B4A-DC1C-4BEC-A4B6-A962FC413619}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D98E4B4A-DC1C-4BEC-A4B6-A962FC413619}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D98E4B4A-DC1C-4BEC-A4B6-A962FC413619}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -403,6 +409,7 @@ Global
 		{08B74DB2-70A3-4DE4-9CB2-2BB320A03276} = {022A5373-9966-4DED-A084-566122878608}
 		{62FF6902-1F90-4AC1-B78D-FBC18B3676C6} = {2BA082AA-41F5-40BC-B31F-BAD9180A8202}
 		{026D7BC9-1EE8-4FF3-88E0-7929C4FE64BF} = {022A5373-9966-4DED-A084-566122878608}
+		{D98E4B4A-DC1C-4BEC-A4B6-A962FC413619} = {F598BDCC-EF45-42AA-859D-E2CE1462731C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}

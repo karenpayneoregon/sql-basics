@@ -30,9 +30,9 @@ partial class Form1
     {
         DatabaseNamesComboBox = new ComboBox();
         panel1 = new Panel();
+        CurrentButton = new Button();
         GetRulesButton = new Button();
         dataGridView1 = new DataGridView();
-        CurrentButton = new Button();
         panel1.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
         SuspendLayout();
@@ -57,6 +57,17 @@ partial class Form1
         panel1.Size = new Size(1173, 86);
         panel1.TabIndex = 1;
         // 
+        // CurrentButton
+        // 
+        CurrentButton.Enabled = false;
+        CurrentButton.Location = new Point(567, 25);
+        CurrentButton.Name = "CurrentButton";
+        CurrentButton.Size = new Size(148, 29);
+        CurrentButton.TabIndex = 2;
+        CurrentButton.Text = "Current";
+        CurrentButton.UseVisualStyleBackColor = true;
+        CurrentButton.Click += CurrentButton_Click;
+        // 
         // GetRulesButton
         // 
         GetRulesButton.Enabled = false;
@@ -70,6 +81,7 @@ partial class Form1
         // 
         // dataGridView1
         // 
+        dataGridView1.AllowUserToAddRows = false;
         dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
         dataGridView1.Dock = DockStyle.Fill;
         dataGridView1.Location = new Point(0, 0);
@@ -77,17 +89,6 @@ partial class Form1
         dataGridView1.RowHeadersWidth = 51;
         dataGridView1.Size = new Size(1173, 364);
         dataGridView1.TabIndex = 2;
-        // 
-        // CurrentButton
-        // 
-        CurrentButton.Enabled = false;
-        CurrentButton.Location = new Point(567, 25);
-        CurrentButton.Name = "CurrentButton";
-        CurrentButton.Size = new Size(148, 29);
-        CurrentButton.TabIndex = 2;
-        CurrentButton.Text = "Current";
-        CurrentButton.UseVisualStyleBackColor = true;
-        CurrentButton.Click += CurrentButton_Click;
         // 
         // Form1
         // 
