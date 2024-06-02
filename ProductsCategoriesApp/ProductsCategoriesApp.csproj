@@ -18,6 +18,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.4" />
+		<PackageReference Include="EntityCoreFileLogger" Version="1.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -42,4 +43,8 @@
 	  </None>
 	</ItemGroup>
 
+	<Target Name="MakeLogDir" AfterTargets="Build">
+		<!-- Create folder LogFiles than each day create a folder with the current date -->
+		<MakeDir Directories="$(OutDir)LogFiles\$([System.DateTime]::Now.ToString(yyyy-MM-dd))" />
+	</Target>
 </Project>

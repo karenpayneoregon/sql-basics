@@ -132,4 +132,28 @@ public class SqlStatements
                     ON CD.PhoneTypeIdentifier = PT.PhoneTypeIdenitfier
             WHERE PT.PhoneTypeIdenitfier = @PhoneTypeIdenitfier;
     """;
+
+    public static string ContactsWithDevicesAndPhoneType1() =>
+        """
+                SELECT C.ContactId,
+                       C.FirstName,
+                       C.LastName,
+                       C.ContactTypeIdentifier,
+                       CT.ContactTitle,
+                       CD.id AS DeviceId,
+                       CD.ContactId,
+                       CD.PhoneTypeIdentifier,
+                       CD.PhoneNumber,
+                       CT.ContactTypeIdentifier,
+                       PT.PhoneTypeIdenitfier AS PhoneTypeIdentifier,
+                       PT.PhoneTypeDescription
+                FROM dbo.Contacts AS C
+                    INNER JOIN dbo.ContactType AS CT
+                        ON C.ContactTypeIdentifier = CT.ContactTypeIdentifier
+                    INNER JOIN dbo.ContactDevices AS CD
+                        ON C.ContactId = CD.ContactId
+                    INNER JOIN dbo.PhoneType AS PT
+                        ON CD.PhoneTypeIdentifier = PT.PhoneTypeIdenitfier
+                WHERE PT.PhoneTypeIdenitfier = @PhoneTypeIdenitfier;
+        """;
 }

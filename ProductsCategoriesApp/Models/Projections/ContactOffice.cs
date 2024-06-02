@@ -29,7 +29,7 @@ public class ContactOffice
         get
         {
 
-            return (contact) => new ContactOffice()
+            return contact => new ContactOffice()
             {
                 ContactId = contact.ContactId,
                 FirstName = contact.FirstName,

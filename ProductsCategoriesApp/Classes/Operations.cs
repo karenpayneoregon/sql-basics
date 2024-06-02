@@ -166,9 +166,11 @@ public class Operations
         var parameters = new { @PhoneTypeIdenitfier = (int)DeviceType.Office };
         var list = await cn.QueryAsync<
             ContactOffice, 
-            ContactType, ContactDevices, PhoneType, 
+            ContactType, 
+            ContactDevices, 
+            PhoneType, 
             ContactOffice>(
-            SQL.ContactsWithDevicesAndPhoneType(),
+            SQL.ContactsWithDevicesAndPhoneType1(),
             (contact, contactType, contactDevices, phoneType) =>
             {
                 contact.ContactTypeIdentifierNavigation = contactType;
@@ -182,6 +184,7 @@ public class Operations
                 device.DeviceId = contact.OfficeDevice.DeviceId;
                 device.PhoneTypeIdentifierNavigation = phoneType;
 
+          
                 return contact;
             },
             parameters,
@@ -192,7 +195,11 @@ public class Operations
                 ContactId,
                 PhoneTypeIdentifier
             """);
-        
+
+        foreach (var c in list)
+        {
+            c.OfficeDevice.DeviceId = 3;
+        }
         return list.ToList();
     }
 }

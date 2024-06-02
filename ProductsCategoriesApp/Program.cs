@@ -11,7 +11,7 @@ internal partial class Program
 {
     static async Task Main(string[] args)
     {
-        //await EntityCode();
+        await EntityCode();
         
         List<ContactOffice> officeContacts = await Operations.GetContactsForOffice();
         var test = await Operations.GetContactsAndDevicesSingle();

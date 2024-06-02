@@ -10,4 +10,7 @@ public class Product
     public int Quantity;
     public string Data;
     public string[] Tags;
+    public override string ToString() => Name;
+
 }
+
