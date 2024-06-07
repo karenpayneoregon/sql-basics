@@ -3,7 +3,7 @@ internal class SqlStatements
 {
     public static string CompanyNameContains =>
         """
-               SELECT c.CustomerIdentifier,
+        SELECT c.CustomerIdentifier,
                c.CompanyName,
                c.ContactId,
                ct.FirstName,

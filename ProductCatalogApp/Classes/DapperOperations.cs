@@ -71,6 +71,9 @@ internal class DapperOperations
     /// Get product by primary key
     /// </summary>
     /// <param name="id">Primary key</param>
+    /// <remarks>
+    /// Also consider using a stored procedure
+    /// </remarks>
     public static Product GetProduct(int id)
     {
         using SqlConnection cn = new(ConnectionString());
@@ -80,6 +83,9 @@ internal class DapperOperations
     /// Delete product by primary key
     /// </summary>
     /// <param name="id">Primary key</param>
+    /// <remarks>
+    /// Also consider using a stored procedure
+    /// </remarks>
     public static void DeleteProduct(int id) 
     {
         using SqlConnection cn = new(ConnectionString());
@@ -89,6 +95,9 @@ internal class DapperOperations
     /// Update product using stored procedure
     /// </summary>
     /// <param name="product">Valid product</param>
+    /// <remarks>
+    /// Also consider using a stored procedure
+    /// </remarks>
     public static void UpdateProduct(Product product)
     {
         using SqlConnection cn = new(ConnectionString());

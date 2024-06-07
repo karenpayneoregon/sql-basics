@@ -94,7 +94,7 @@ public class Operations
 
         return list.ToList();
     }
-    public static async Task<Contacts> GetContactsAndDevicesSingle()
+    public static async Task<Contacts> GetContactsAndDevicesSingle(int contactId)
     {
         await using SqlConnection cn = new(ConnectionString());
 
@@ -104,7 +104,7 @@ public class Operations
 
                 contact.ContactDevices.Add(contactDevices);
                 return contact;
-            }, splitOn: "ContactId,DeviceId").FirstOrDefault();
+            }, splitOn: "ContactId,DeviceId", param: new {ContactId = contactId}).FirstOrDefault();
 
 
         return list;

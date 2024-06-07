@@ -18,7 +18,6 @@ internal class DapperOperations
     {
         _cn = new SqlConnection(DataConnections.Instance.MainConnection);
         SqlMapper.AddTypeHandler(new SqlDateOnlyTypeHandler());
-        SqlMapper.AddTypeHandler(new SqlTimeOnlyTypeHandler());
     }
 
     public async Task<List<BirthDays>> GetBirthdaysAsync()

@@ -1,5 +1,4 @@
 ﻿
-using EF_CoreBirthdaysComputedColumns.Classes;
 using EF_CoreBirthdaysComputedColumns.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,21 +9,19 @@ internal partial class Program
     {
         await Setup();
         var table = CreateTable();
-        await using (var context = new Context())
+        await using var context = new Context();
+        var list = await context.BirthDays.ToListAsync();
+        foreach (var bd in list)
         {
-            var list = await context.BirthDays.ToListAsync();
-            foreach (var bd in list)
-            {
-                table.AddRow(
-                    bd.Id.ToString(),
-                    bd.FirstName,
-                    bd.LastName,
-                    bd.BirthDate.ToString(),
-                    bd.YearsOld.ToString());
-            }
-
-            AnsiConsole.Write(table);
+            table.AddRow(
+                bd.Id.ToString(),
+                bd.FirstName,
+                bd.LastName,
+                bd.BirthDate.ToString(),
+                bd.YearsOld.ToString());
         }
+
+        AnsiConsole.Write(table);
         ExitPrompt();
     }
     public static Table CreateTable()

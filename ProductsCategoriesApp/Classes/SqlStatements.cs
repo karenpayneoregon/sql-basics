@@ -92,22 +92,23 @@ public class SqlStatements
 
     public static string ContactsWithDevices() =>
         """
-            SELECT C.ContactId,
-                   C.FirstName,
-                   C.LastName,
-                   C.ContactTypeIdentifier,
-                   CT.ContactTitle,
-                   CD.id AS DeviceId,
-                   CD.ContactId,
-                   CD.PhoneTypeIdentifier,
-                   CD.PhoneNumber,
-                   CT.ContactTypeIdentifier
-            FROM dbo.Contacts AS C
-                INNER JOIN dbo.ContactType AS CT
-                    ON C.ContactTypeIdentifier = CT.ContactTypeIdentifier
-                INNER JOIN dbo.ContactDevices AS CD
-                    ON C.ContactId = CD.ContactId;;
-    """;
+            SELECT      C.ContactId,
+                        C.FirstName,
+                        C.LastName,
+                        C.ContactTypeIdentifier,
+                        CT.ContactTitle,
+                        CD.id AS DeviceId,
+                        CD.ContactId,
+                        CD.PhoneTypeIdentifier,
+                        CD.PhoneNumber,
+                        CT.ContactTypeIdentifier
+              FROM      dbo.Contacts AS C
+             INNER JOIN dbo.ContactType AS CT
+                ON C.ContactTypeIdentifier = CT.ContactTypeIdentifier
+             INNER JOIN dbo.ContactDevices AS CD
+                ON C.ContactId             = CD.ContactId
+            WHERE C.ContactId = @ContactId
+        """;
 
     public static string ContactsWithDevicesAndPhoneType() =>
         """
@@ -130,7 +131,7 @@ public class SqlStatements
                     ON C.ContactId = CD.ContactId
                 INNER JOIN dbo.PhoneType AS PT
                     ON CD.PhoneTypeIdentifier = PT.PhoneTypeIdenitfier
-            WHERE PT.PhoneTypeIdenitfier = @PhoneTypeIdenitfier;
+            WHERE PT.PhoneTypeIdenitfier = @PhoneTypeIdenitfier AND CD.Id IS NOT NULL;
     """;
 
     public static string ContactsWithDevicesAndPhoneType1() =>

@@ -62,7 +62,6 @@ partial class Form1
         // dataGridView1
         // 
         dataGridView1.AllowUserToAddRows = false;
-        dataGridView1.AllowUserToDeleteRows = false;
         dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
         dataGridView1.Dock = DockStyle.Fill;
         dataGridView1.Location = new Point(0, 27);
