@@ -109,6 +109,7 @@ public class Operations
 
         return list;
     }
+
     /// <summary>
     /// Get contacts with an office phone
     /// </summary>

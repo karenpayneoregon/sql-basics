@@ -147,9 +147,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableAdapterSimple", "Table
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillMaster", "KillMaster\KillMaster.csproj", "{8AEF251D-CC6F-42A6-A36A-8EB39399A131}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperBirthdaysComputedColumns", "DapperBirthdaysComputedColumns\DapperBirthdaysComputedColumns.csproj", "{DA4F183D-75DD-4D20-B345-13AF44C7449E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperBirthdaysComputedColumns", "DapperBirthdaysComputedColumns\DapperBirthdaysComputedColumns.csproj", "{DA4F183D-75DD-4D20-B345-13AF44C7449E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF_CoreBirthdaysComputedColumns", "EF_CoreBirthdaysComputedColumns\EF_CoreBirthdaysComputedColumns.csproj", "{956B3E7A-3D7C-45CC-9F30-C19D4D76D364}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF_CoreBirthdaysComputedColumns", "EF_CoreBirthdaysComputedColumns\EF_CoreBirthdaysComputedColumns.csproj", "{956B3E7A-3D7C-45CC-9F30-C19D4D76D364}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServerOutputToOtherTableExample", "SqlServerOutputToOtherTableExample\SqlServerOutputToOtherTableExample.csproj", "{43A4962D-CD3E-47A0-9B87-9F0EFE5A1CF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -369,6 +371,10 @@ Global
 		{956B3E7A-3D7C-45CC-9F30-C19D4D76D364}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{956B3E7A-3D7C-45CC-9F30-C19D4D76D364}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{956B3E7A-3D7C-45CC-9F30-C19D4D76D364}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43A4962D-CD3E-47A0-9B87-9F0EFE5A1CF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43A4962D-CD3E-47A0-9B87-9F0EFE5A1CF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43A4962D-CD3E-47A0-9B87-9F0EFE5A1CF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43A4962D-CD3E-47A0-9B87-9F0EFE5A1CF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -431,6 +437,7 @@ Global
 		{8AEF251D-CC6F-42A6-A36A-8EB39399A131} = {25F770B3-F218-4C45-A15B-3508245CB326}
 		{DA4F183D-75DD-4D20-B345-13AF44C7449E} = {3047B01C-561D-4A3F-A8EC-0930332D8A34}
 		{956B3E7A-3D7C-45CC-9F30-C19D4D76D364} = {3047B01C-561D-4A3F-A8EC-0930332D8A34}
+		{43A4962D-CD3E-47A0-9B87-9F0EFE5A1CF6} = {890D5B16-1421-4721-BCF8-2C1F6E8642DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}

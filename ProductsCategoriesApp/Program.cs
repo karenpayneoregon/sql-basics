@@ -12,7 +12,11 @@ internal partial class Program
     static async Task Main(string[] args)
     {
         await EntityCode();
-        
+
+
+        var ddddd = DapperOperations.GetContacts();
+
+
         List<ContactOffice> officeContacts = await Operations.GetContactsForOffice();
         var test = await Operations.GetContactsAndDevicesSingle(71);
         var test1 = await Operations.GetContactsWithOfficePhone(3);
