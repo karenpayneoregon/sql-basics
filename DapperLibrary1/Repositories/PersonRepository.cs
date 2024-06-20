@@ -7,6 +7,8 @@ using DapperLibrary1.Handlers;
 using DapperLibrary1.Interfaces;
 using DapperLibrary1.Models;
 using Microsoft.Data.SqlClient;
+using Serilog;
+
 #pragma warning disable CS8604 // Possible null reference argument.
 #pragma warning disable CS8603 // Possible null reference return.
 #pragma warning disable CS8619 // Nullability of reference types in value doesn't match target type.
@@ -154,7 +156,6 @@ public class PersonRepository : IBaseRepository
     /// </remarks>
     public async Task<(bool, Exception ex)> AddRange(List<Person> list)
     {
-
         using TransactionScope transScope = new(TransactionScopeAsyncFlowOption.Enabled);
 
         try
@@ -171,6 +172,7 @@ public class PersonRepository : IBaseRepository
         }
         catch (Exception localException)
         {
+            Log.Error(localException,"Failed add range of people.");
             return (false, localException);
         }
     }

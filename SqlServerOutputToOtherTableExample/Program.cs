@@ -16,7 +16,7 @@ internal partial class Program
             new() { FirstName = "Bill", LastName = "Jones", Gender = "Male" }
         ];
 
-        Person p = new Person() { FirstName = "Karen", LastName = "Payne", Gender = "Female"};
+        Person p = new() { FirstName = "Karen", LastName = "Payne", Gender = "Female"};
         
         await using var cn = new SqlConnection(DataConnections.Instance.MainConnection);
 

@@ -30,7 +30,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Dapper" Version="2.1.35" />
+		<PackageReference Include="Dapper" Version="2.1.35"/>
 		<PackageReference Include="Dommel" Version="3.3.1" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
 		<PackageReference Include="ConfigurationLibrary" Version="1.0.4" />

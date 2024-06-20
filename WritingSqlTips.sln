@@ -145,13 +145,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlLiteInsertNulls", "SqlLi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableAdapterSimple", "TableAdapterSimple\TableAdapterSimple.csproj", "{D98E4B4A-DC1C-4BEC-A4B6-A962FC413619}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillMaster", "KillMaster\KillMaster.csproj", "{8AEF251D-CC6F-42A6-A36A-8EB39399A131}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperBirthdaysComputedColumns", "DapperBirthdaysComputedColumns\DapperBirthdaysComputedColumns.csproj", "{DA4F183D-75DD-4D20-B345-13AF44C7449E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF_CoreBirthdaysComputedColumns", "EF_CoreBirthdaysComputedColumns\EF_CoreBirthdaysComputedColumns.csproj", "{956B3E7A-3D7C-45CC-9F30-C19D4D76D364}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServerOutputToOtherTableExample", "SqlServerOutputToOtherTableExample\SqlServerOutputToOtherTableExample.csproj", "{43A4962D-CD3E-47A0-9B87-9F0EFE5A1CF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServerOutputToOtherTableExample", "SqlServerOutputToOtherTableExample\SqlServerOutputToOtherTableExample.csproj", "{43A4962D-CD3E-47A0-9B87-9F0EFE5A1CF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperStoredProcedures1", "DapperStoredProcedures1\DapperStoredProcedures1.csproj", "{512EA324-F0B4-4B15-A15A-654DC32C1F87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -359,10 +359,6 @@ Global
 		{D98E4B4A-DC1C-4BEC-A4B6-A962FC413619}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D98E4B4A-DC1C-4BEC-A4B6-A962FC413619}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D98E4B4A-DC1C-4BEC-A4B6-A962FC413619}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8AEF251D-CC6F-42A6-A36A-8EB39399A131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8AEF251D-CC6F-42A6-A36A-8EB39399A131}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8AEF251D-CC6F-42A6-A36A-8EB39399A131}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8AEF251D-CC6F-42A6-A36A-8EB39399A131}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DA4F183D-75DD-4D20-B345-13AF44C7449E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DA4F183D-75DD-4D20-B345-13AF44C7449E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA4F183D-75DD-4D20-B345-13AF44C7449E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -375,6 +371,10 @@ Global
 		{43A4962D-CD3E-47A0-9B87-9F0EFE5A1CF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43A4962D-CD3E-47A0-9B87-9F0EFE5A1CF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43A4962D-CD3E-47A0-9B87-9F0EFE5A1CF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{512EA324-F0B4-4B15-A15A-654DC32C1F87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{512EA324-F0B4-4B15-A15A-654DC32C1F87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{512EA324-F0B4-4B15-A15A-654DC32C1F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{512EA324-F0B4-4B15-A15A-654DC32C1F87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -434,10 +434,10 @@ Global
 		{62FF6902-1F90-4AC1-B78D-FBC18B3676C6} = {2BA082AA-41F5-40BC-B31F-BAD9180A8202}
 		{026D7BC9-1EE8-4FF3-88E0-7929C4FE64BF} = {022A5373-9966-4DED-A084-566122878608}
 		{D98E4B4A-DC1C-4BEC-A4B6-A962FC413619} = {F598BDCC-EF45-42AA-859D-E2CE1462731C}
-		{8AEF251D-CC6F-42A6-A36A-8EB39399A131} = {25F770B3-F218-4C45-A15B-3508245CB326}
 		{DA4F183D-75DD-4D20-B345-13AF44C7449E} = {3047B01C-561D-4A3F-A8EC-0930332D8A34}
 		{956B3E7A-3D7C-45CC-9F30-C19D4D76D364} = {3047B01C-561D-4A3F-A8EC-0930332D8A34}
 		{43A4962D-CD3E-47A0-9B87-9F0EFE5A1CF6} = {890D5B16-1421-4721-BCF8-2C1F6E8642DE}
+		{512EA324-F0B4-4B15-A15A-654DC32C1F87} = {65FDB35C-3D56-48A9-93FB-2D32028F167B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}
