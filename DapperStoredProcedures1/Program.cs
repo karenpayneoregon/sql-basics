@@ -16,18 +16,50 @@ internal partial class Program
         // Allows Dapper to handle DateOnly types
         SqlMapper.AddTypeHandler(new SqlDateOnlyTypeHandler());
 
+        await GetAllEmployees();
+
+        Console.WriteLine();
+
+        await GetEmployeeByGender();
+
+        ExitPrompt();
+    }
+
+    private static async Task GetEmployeeByGender()
+    {
+
+        AnsiConsole.MarkupLine("[cyan]Female employees[/]");
+
+        await using SqlConnection cn = new(DataConnections.Instance.MainConnection);
+
+        // get employees via a stored procedure
+        var employees =
+            (
+                await cn.QueryAsync<Employee>("usp_GetEmployeeByGender", 
+                    param: new { GenderId = Genders.Female })
+            )
+            .AsList();
+
+        // Nicely display the results from the stored procedure
+        employees.Dump();
+    }
+
+    private static async Task GetAllEmployees()
+    {
+        AnsiConsole.MarkupLine("[cyan]All employees[/]");
+
         await using SqlConnection cn = new(DataConnections.Instance.MainConnection);
 
         // get employees via a stored procedure
         var employees = 
             (
-                await cn.QueryAsync<Employee>("usp_GetAllEmployees", commandType: CommandType.StoredProcedure)
+                await cn.QueryAsync<Employee>("usp_GetAllEmployees")
             )
             .AsList();
 
         // Nicely display the results from the stored procedure
-        Console.WriteLine(employees.Dump());
-
-        ExitPrompt();
+        employees.Dump();
     }
 }
+
+

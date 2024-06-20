@@ -1,4 +1,5 @@
 ﻿using DapperStoredProcedures1.Classes;
+using Dumpify;
 using Microsoft.Extensions.DependencyInjection;
 using System.Runtime.CompilerServices;
 
@@ -11,6 +12,9 @@ internal partial class Program
     {
         Console.Title = "Code sample";
         WindowUtility.SetConsoleWindowPosition(WindowUtility.AnchorWindow.Center);
+        DumpConfig.Default.ColorConfig.TypeNameColor = System.Drawing.Color.GreenYellow;
+        DumpConfig.Default.ColorConfig.LabelValueColor = System.Drawing.Color.BlueViolet;
+        DumpConfig.Default.TableConfig.ShowTableHeaders = false;
     }
     private static async Task Setup()
     {
