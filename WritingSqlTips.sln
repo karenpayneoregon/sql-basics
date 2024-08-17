@@ -153,6 +153,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServerOutputToOtherTable
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperStoredProcedures1", "DapperStoredProcedures1\DapperStoredProcedures1.csproj", "{512EA324-F0B4-4B15-A15A-654DC32C1F87}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataGridView", "DataGridView", "{2A80EBD9-AC69-483A-993F-43FC6DBE8F1B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataGridViewButtonApp", "DataGridViewButtonApp\DataGridViewButtonApp.csproj", "{33949222-36A0-4DE4-9E30-F11FA8968E07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -375,6 +379,10 @@ Global
 		{512EA324-F0B4-4B15-A15A-654DC32C1F87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{512EA324-F0B4-4B15-A15A-654DC32C1F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{512EA324-F0B4-4B15-A15A-654DC32C1F87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33949222-36A0-4DE4-9E30-F11FA8968E07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33949222-36A0-4DE4-9E30-F11FA8968E07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33949222-36A0-4DE4-9E30-F11FA8968E07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33949222-36A0-4DE4-9E30-F11FA8968E07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -438,6 +446,7 @@ Global
 		{956B3E7A-3D7C-45CC-9F30-C19D4D76D364} = {3047B01C-561D-4A3F-A8EC-0930332D8A34}
 		{43A4962D-CD3E-47A0-9B87-9F0EFE5A1CF6} = {890D5B16-1421-4721-BCF8-2C1F6E8642DE}
 		{512EA324-F0B4-4B15-A15A-654DC32C1F87} = {65FDB35C-3D56-48A9-93FB-2D32028F167B}
+		{33949222-36A0-4DE4-9E30-F11FA8968E07} = {2A80EBD9-AC69-483A-993F-43FC6DBE8F1B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}
