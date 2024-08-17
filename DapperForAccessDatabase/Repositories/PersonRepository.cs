@@ -37,15 +37,15 @@ public class PersonRepository
     {
         const string statement =
             """
-                    INSERT INTO Person
-                    (
-                        FirstName,LastName,BirthDate,Active
-                    )
-                    VALUES
-                    (
-                        @FirstName,@LastName,@BirthDate,@Active
-                    )
-                    """;
+             INSERT INTO Person
+             (
+                 FirstName,LastName,BirthDate,Active
+             )
+             VALUES
+             (
+                 @FirstName,@LastName,@BirthDate,@Active
+             )
+             """;
         _cn.Execute(statement, new { person.FirstName, person.LastName, person.BirthDate, person.Active });
     }
 
@@ -53,15 +53,15 @@ public class PersonRepository
     {
         const string statement =
             """
-                    INSERT INTO Person
-                    (
-                        FirstName,LastName,BirthDate,Active
-                    )
-                    VALUES
-                    (
-                        @FirstName,@LastName,@BirthDate,@Active
-                    )
-                    """;
+             INSERT INTO Person
+             (
+                 FirstName,LastName,BirthDate,Active
+             )
+             VALUES
+             (
+                 @FirstName,@LastName,@BirthDate,@Active
+             )
+             """;
 
         _cn.Open();
         _cn.Execute(statement, new { person.FirstName, person.LastName, person.BirthDate, person.Active });
@@ -86,11 +86,11 @@ public class PersonRepository
      * The idea is usually all properties need not be updated.
      */
     /// <summary>
-    /// Updates the birth date of a person in the database.
+    /// Updates the birthdate of a person in the database.
     /// </summary>
     /// <param name="id">The ID of the person.</param>
-    /// <param name="birthDate">The new birth date.</param>
-    /// <returns>True if the birth date was successfully updated, otherwise false.</returns>
+    /// <param name="birthDate">The new birthdate.</param>
+    /// <returns>True if the birthdate was successfully updated, otherwise false.</returns>
     public bool UpdateBirthDate(int id, DateOnly birthDate)
     {
         const string statement =
@@ -111,10 +111,10 @@ public class PersonRepository
     public Person Get(int id) =>
         _cn.QueryFirst<Person>(
             """
-                    SELECT Id, FirstName, LastName, BirthDate, Active 
-                    FROM Person 
-                    WHERE Id = @Id
-                    """,
+             SELECT Id, FirstName, LastName, BirthDate, Active 
+             FROM Person 
+             WHERE Id = @Id
+             """,
             new { Id = id });
 
     /// <summary>
@@ -126,9 +126,9 @@ public class PersonRepository
     {
         const string statement =
             """
-                    DELETE FROM Person
-                    WHERE Id = @Id
-                    """;
+            DELETE FROM Person
+            WHERE Id = @Id
+            """;
 
         return _cn.Execute(statement, new { Id = id }) == 1;
     }
