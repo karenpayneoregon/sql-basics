@@ -77,21 +77,28 @@ public partial class DataOperations
         await using SqlCommand cmd = new()
         {
             Connection = cn,
-            CommandText = SqlStatements.Get
+            CommandText = """
+                          SELECT Id,
+                                 FirstName,
+                                 LastName,
+                                 BirthDate
+                          FROM dbo.Person
+                          WHERE Id = @Id;
+                          """
         };
 
         cmd.Parameters.Add("@Id", SqlDbType.Int).Value = id;
 
         await cn.OpenAsync();
-        var reader = await cmd.ExecuteReaderAsync();
+        SqlDataReader reader = await cmd.ExecuteReaderAsync();
         await reader.ReadAsync();
 
-        Person person = new Person
+        Person person = new()
         {
             Id = id,
-            FirstName = reader.GetString(1),
-            LastName = reader.GetString(2),
-            BirthDate = reader.GetDateOnly(3)
+            FirstName = await reader.GetStringAsync(1),
+            LastName = await reader.GetStringAsync(2),
+            BirthDate = await reader.GetDateOnlyAsync(3)
         };
 
         return person;
@@ -183,4 +190,40 @@ public partial class DataOperations
         return Convert.ToInt32(await cmd.ExecuteScalarAsync());
     }
 
+}
+
+public class Demo
+{
+    public static async Task<Person> Get(int id)
+    {
+        await using SqlConnection cn = new("TODO");
+        await using SqlCommand cmd = new()
+        {
+            Connection = cn,
+            CommandText = """
+                          SELECT Id,
+                                 FirstName,
+                                 LastName,
+                                 BirthDate
+                          FROM dbo.Person
+                          WHERE Id = @Id;
+                          """
+        };
+
+        cmd.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+
+        await cn.OpenAsync();
+        SqlDataReader reader = await cmd.ExecuteReaderAsync();
+        await reader.ReadAsync();
+
+        Person person = new()
+        {
+            Id = id,
+            FirstName = await reader.GetStringAsync(1),
+            LastName = await reader.GetStringAsync(2),
+            BirthDate = await reader.GetDateOnlyAsync(3)
+        };
+
+        return person;
+    }
 }

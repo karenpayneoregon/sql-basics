@@ -1,5 +1,4 @@
-﻿using System.Data;
-using Dapper;
+﻿using Dapper;
 using DapperStoredProcedures1.Classes;
 using DapperStoredProcedures1.Models;
 using Dumpify;

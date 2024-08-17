@@ -1,5 +1,7 @@
 ﻿using System.Data;
+using System.Data.Common;
 using System.Data.SqlTypes;
+using DbPeekQueryLibrary.LanguageExtensions;
 using Microsoft.Data.SqlClient;
 
 namespace GetValuesApp.Classes;
@@ -53,6 +55,32 @@ internal class SqlOperations
 
         await cn.OpenAsync();
         await cmd.Write();
+    }
+
+    public static void DataAdapterPeekParameters(int customerId)
+    {
+        var statement =
+            """
+            SELECT     CU.CompanyName,
+                       CO.FirstName,
+                       CO.LastName
+             FROM      dbo.Customers AS CU
+            INNER JOIN dbo.Contacts AS CO
+               ON CU.ContactId = CO.ContactId
+            WHERE      (CU.CustomerIdentifier = @CustomerIdentifier);
+            """;
+        using SqlConnection cn = new(ConnectionString);
+        using SqlDataAdapter da = new(statement, cn);
+        da.SelectCommand.Parameters.AddWithValue(
+            "@CustomerIdentifier", customerId);
+
+
+        var actualCommandText = da.SelectCommand.ActualCommandText();
+
+        DataSet ds = new();
+        da.Fill(ds, "Customers");
+        DataTable dt = ds.Tables["Customers"];
+
     }
 
 

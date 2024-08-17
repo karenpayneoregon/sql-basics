@@ -28,5 +28,7 @@ internal partial class Program
         await cn.ExecuteAsync(SqlStatements.InsertPersonToTransactions, list);
         AnsiConsole.MarkupLine("[green]Records added[/]");
         ExitPrompt();
+
+ 
     }
 }

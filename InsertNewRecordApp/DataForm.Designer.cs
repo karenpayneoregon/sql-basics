@@ -46,6 +46,7 @@ partial class DataForm
         MockUpdateCurrentButton = new Button();
         CurrentButton = new Button();
         coreBindingNavigator1 = new CoreBindingNavigator();
+        DateOnlyButton = new Button();
         ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
         panel1.SuspendLayout();
         coreBindingNavigator1.BeginInit();
@@ -78,6 +79,7 @@ partial class DataForm
         // 
         // panel1
         // 
+        panel1.Controls.Add(DateOnlyButton);
         panel1.Controls.Add(WhereInPersonButton);
         panel1.Controls.Add(AddCustomerButton);
         panel1.Controls.Add(label2);
@@ -217,6 +219,16 @@ partial class DataForm
         coreBindingNavigator1.TabIndex = 3;
         coreBindingNavigator1.Text = "coreBindingNavigator1";
         // 
+        // DateOnlyButton
+        // 
+        DateOnlyButton.Location = new Point(12, 582);
+        DateOnlyButton.Name = "DateOnlyButton";
+        DateOnlyButton.Size = new Size(104, 29);
+        DateOnlyButton.TabIndex = 14;
+        DateOnlyButton.Text = "DateOnly";
+        DateOnlyButton.UseVisualStyleBackColor = true;
+        DateOnlyButton.Click += DateOnlyButton_Click;
+        // 
         // DataForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
@@ -255,4 +267,5 @@ partial class DataForm
     private Button GetCustomerButton;
     private Button AddCustomerButton;
     private Button WhereInPersonButton;
+    private Button DateOnlyButton;
 }

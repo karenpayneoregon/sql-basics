@@ -22,6 +22,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="ConsoleHelperLibrary" Version="1.0.0" />
+		<PackageReference Include="DbPeekQueryLibrary" Version="1.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>

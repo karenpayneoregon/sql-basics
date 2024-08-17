@@ -9,6 +9,7 @@ internal partial class Program
 {
     static async Task Main(string[] args)
     {
+        SqlOperations.DataAdapterPeekParameters(6);
         await SqlOperations.WriteToFileAndConsoleForCommand(7);
 
         List<Person> persons = new List<Person>();

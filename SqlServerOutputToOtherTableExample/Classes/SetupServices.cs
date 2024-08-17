@@ -2,6 +2,7 @@
 using SqlServerOutputToOtherTableExample.Models;
 
 namespace SqlServerOutputToOtherTableExample.Classes;
+
 internal class SetupServices
 {
     private readonly ConnectionStrings _options;

@@ -213,7 +213,11 @@ public partial class DataForm : Form
          */
 
         int[] identifiers = { 1, 3, 5 };
-        var people = await DataOperations.WhereInDapper(identifiers);
+        var whereIn = await DataOperations.WhereIn(identifiers);
+        foreach (var person in whereIn)
+        {
+            
+        }
     }
 
     private async void GetCustomerButton_Click(object sender, EventArgs e)
@@ -234,4 +238,8 @@ public partial class DataForm : Form
         var test2 = await DataOperations.RemoveContrib(customer);
     }
 
+    private async void DateOnlyButton_Click(object sender, EventArgs e)
+    {
+       var result = await DataOperations.Get(1);
+    }
 }

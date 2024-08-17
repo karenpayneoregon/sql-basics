@@ -182,7 +182,7 @@ public partial class DataOperations
         /*
          * Dapper:
          *  - Ask for a single person by second parameter, the primary key
-         *  - Note that when using an anonymous parameter the variable is case sensitive
+         *  - Note that when using an anonymous parameter the variable is case-sensitive
          */
         return await cn.QuerySingleAsync<Person>(SqlStatements.Get, new {Id = id});
 
@@ -192,7 +192,7 @@ public partial class DataOperations
     /// Example for executing a WHERE IN 
     /// </summary>
     /// <param name="ids">identifiers for where condition</param>
-    public static async Task<List<Person>> WhereInDapper(int[] ids)
+    public static async Task<List<Person>> WhereIn(int[] ids)
     {
         /*
          * Setup Dapper to understand DateOnly

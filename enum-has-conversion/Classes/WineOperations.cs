@@ -6,23 +6,26 @@ namespace EnumHasConversion.Classes;
 
 public class WineOperations
 {
+    /// <summary>
+    /// Retrieves a list of wines based on the specified wine type.
+    /// </summary>
+    /// <param name="wineType">The wine type to filter by.</param>
+    /// <returns>A list of wines matching the specified wine type.</returns>
     public static List<Wine> GetWinesByType(WineType wineType)
     {
         using var context = new WineContext();
-        return context.Wines
-            .Where(wine => wine.WineType == wineType)
-            .ToList();
+        return [.. context.Wines.Where(wine => wine.WineType == wineType)];
     }
 
     public static void RunExamples()
     {
 
         using var context = new WineContext();
-            
+
         LineSeparator("[white]Grouped 1[/]");
 
         List<WineGroupItem> allWinesGrouped1 = context.Wines
-            .GroupBy( wine => wine.WineType)
+            .GroupBy(wine => wine.WineType)
             .Select(w => new WineGroupItem(w.Key, w.ToList()))
             .ToList();
 
@@ -34,10 +37,10 @@ public class WineOperations
             AnsiConsole.MarkupLine($"[cyan]{item.Type}[/]");
             foreach (var wine in item.List)
             {
-                Console.WriteLine($"\t{wine.WineId, -5}{wine.Name}");
+                Console.WriteLine($"\t{wine.WineId,-5}{wine.Name}");
             }
         }
-        
+
         LineSeparator("[white]Grouped 2[/]");
 
         foreach (KeyValuePair<WineType, List<Wine>> kvp in allWinesGrouped2)
@@ -50,7 +53,7 @@ public class WineOperations
         }
 
         List<Wine> allWines = [.. context.Wines];
-        
+
         LineSeparator("[white]All[/]");
 
         foreach (var wine in allWines)
@@ -73,7 +76,7 @@ public class WineOperations
                 Console.WriteLine($"{wine.Name,30}");
             }
         }
-        
+
         LineSeparator("[white]Red[/]");
 
 

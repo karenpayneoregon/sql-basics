@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 namespace SqlServerOutputToOtherTableExample;
 internal partial class Program
 {
+
     [ModuleInitializer]
     public static void Init()
     {

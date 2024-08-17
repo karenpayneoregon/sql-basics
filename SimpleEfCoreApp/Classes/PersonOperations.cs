@@ -47,6 +47,7 @@ internal class PersonOperations
 
         context.Database.ExecuteSql(FormattableStringFactory.Create(InsertPeople));
         //context.Database.ExecuteSql(InsertPeopleFormattableString);
+        //context.Database.ExecuteSql(InsertPeopleFormattableString);
 
     }
 
