@@ -102,31 +102,27 @@ public partial class Form1 : Form
     /// </summary>
     public void CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
+        if (!dataGridView1.IsHeaderButtonCell(e)) return;
 
-        if (dataGridView1.IsHeaderButtonCell(e))
+        var columnName = dataGridView1.Columns[e.ColumnIndex].Name;
+        if (columnName != EditButtonName) return;
+
+        DataRow row = BindingSource.CurrentRow();
+        if (row.Field<string>("LastName") == "Payne")
         {
-            var columnName = dataGridView1.Columns[e.ColumnIndex].Name;
-            if (columnName == EditButtonName)
+            Process.Start((ProcessStartInfo)new()
             {
-                DataRow row = BindingSource.CurrentRow();
-                if (row.Field<string>("LastName") == "Payne")
-                {
-                    Process.Start((ProcessStartInfo)new()
-                    {
-                        UseShellExecute = true,
-                        FileName = "https://github.com/karenpayneoregon?tab=repositories",
-                    });
-                }
-                else
-                {
-                    Process.Start((ProcessStartInfo)new()
-                    {
-                        UseShellExecute = true,
-                        FileName = "https://spectreconsole.net/",
-                    });
-                }
-            }
-
+                UseShellExecute = true,
+                FileName = "https://github.com/karenpayneoregon?tab=repositories",
+            });
+        }
+        else
+        {
+            Process.Start((ProcessStartInfo)new()
+            {
+                UseShellExecute = true,
+                FileName = "https://spectreconsole.net/",
+            });
         }
     }
     public void CellEnter(object sender, DataGridViewCellEventArgs e)
