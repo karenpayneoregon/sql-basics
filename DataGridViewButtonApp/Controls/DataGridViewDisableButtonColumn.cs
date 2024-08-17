@@ -1,5 +1,8 @@
 ﻿namespace DataGridViewButtonApp.Controls;
 
+/// <summary>
+/// It's been a while, think I got this from Microsoft and did some modifications.
+/// </summary>
 public class DataGridViewDisableButtonColumn : DataGridViewButtonColumn
 {
     public DataGridViewDisableButtonColumn()
