@@ -98,7 +98,7 @@ public partial class Form1 : Form
     }
 
     /// <summary>
-    /// Used for editing
+    /// Used for performing an action on the current row of the DataGridView
     /// </summary>
     public void CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
@@ -133,7 +133,9 @@ public partial class Form1 : Form
     {
         var dgv = ((DataGridView)sender);
 
-        DataGridViewDisableButtonCell editButtonCell = (DataGridViewDisableButtonCell)(dgv.Rows[e.RowIndex].Cells[EditButtonName]);
+        DataGridViewDisableButtonCell editButtonCell = 
+            (DataGridViewDisableButtonCell)(dgv.Rows[e.RowIndex].Cells[EditButtonName]);
+
         editButtonCell.Enabled = true;
 
         if (editButtonCell.Value == null)
@@ -146,7 +148,10 @@ public partial class Form1 : Form
     public void CellLeave(object sender, DataGridViewCellEventArgs e)
     {
         var dgv = ((DataGridView)sender);
-        DataGridViewDisableButtonCell editButtonCell = (DataGridViewDisableButtonCell)(dgv.Rows[e.RowIndex].Cells[EditButtonName]);
+        
+        DataGridViewDisableButtonCell editButtonCell = 
+            (DataGridViewDisableButtonCell)(dgv.Rows[e.RowIndex].Cells[EditButtonName]);
+
         editButtonCell.Enabled = false;
         dgv.Invalidate();
     }
