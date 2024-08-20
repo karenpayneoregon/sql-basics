@@ -12,6 +12,7 @@
     {
         /// <summary>
         /// Provides column names from the description property for each column in a specified table name
+        /// IMPORTANT: Consider using a stored procedure for this query, a raw string literal is used here for demonstration purposes.
         /// </summary>
         public static string DescriptionStatement =>
             """
