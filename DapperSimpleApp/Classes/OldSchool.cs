@@ -55,6 +55,8 @@ namespace DapperSimpleApp.Classes
             return list;
         }
 
+
+
         public static List<Person> DapperPeopleList()
         {
             var statement = "SELECT Id,FirstName,LastName,BirthDate FROM dbo.Person;";

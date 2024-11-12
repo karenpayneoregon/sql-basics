@@ -1,4 +1,5 @@
 ﻿namespace DapperSimpleInsertApp.Models;
+#nullable disable
 internal class Person
 {
     public int  Id { get; set; }

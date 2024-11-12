@@ -1,4 +1,5 @@
 ﻿
+using EF_CoreBirthdaysComputedColumns.Classes;
 using EF_CoreBirthdaysComputedColumns.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +9,16 @@ internal partial class Program
     static async Task Main(string[] args)
     {
         await Setup();
+
+        await foreach (var bd in YieldOperations.AgeExample())
+        {
+            Console.WriteLine($"{bd.FirstName,-15}{bd.YearsOld,-5}{bd.BirthDate.Value.Year}");
+        }
+        ExitPrompt();
+    }
+
+    private static async Task Normal()
+    {
         var table = CreateTable();
         await using var context = new Context();
         var list = await context.BirthDays.ToListAsync();
@@ -22,8 +33,8 @@ internal partial class Program
         }
 
         AnsiConsole.Write(table);
-        ExitPrompt();
     }
+
     public static Table CreateTable()
     {
         var table = new Table()

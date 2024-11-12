@@ -51,7 +51,7 @@ public partial class Form1 : Form
         if (_bindingList is not null)
         {
             var current = _bindingList[_bindingSource.Position];
-            Debugger.Break();
+            //Debugger.Break();
         }
     }
 }

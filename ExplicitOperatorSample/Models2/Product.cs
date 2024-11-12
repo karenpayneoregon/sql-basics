@@ -1,7 +1,7 @@
 ﻿#pragma warning disable CS8618
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
+#nullable disable
 namespace ExplicitOperatorSample.Models2;
 
 /// <summary>
@@ -58,7 +58,7 @@ public class Product : INotifyPropertyChanged
         }
     }
 
-
+    
     public override string ToString() => ProductName;
 
     public event PropertyChangedEventHandler? PropertyChanged;

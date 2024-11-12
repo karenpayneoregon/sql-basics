@@ -1,4 +1,6 @@
 ﻿using System.Globalization;
+// ReSharper disable ConvertToAutoProperty
+#nullable disable
 
 namespace SimpleEfCoreApp.Classes
 {
@@ -79,7 +81,7 @@ namespace SimpleEfCoreApp.Classes
             {
                 if (value is string)
                 {
-                    Value = DateTime.Parse(Convert.ToString(value));
+                    Value = DateTime.Parse(Convert.ToString(value)!);
                 }
             }
         }

@@ -38,6 +38,13 @@ public class Operations
         return countries;
     }
 
+public async Task<List<ProcedureProperty>> ProcedureProperties()
+{
+
+    var name = "usp_GetExtendedPropertiesForUserStoredProcedures";
+    return  (await db.QueryAsync<ProcedureProperty>(name, commandType: CommandType.StoredProcedure)).AsList();
+}
+
     public List<Product> GetAllProductsByCategory(int categoryId)
     {
         var categories = CategoryList();

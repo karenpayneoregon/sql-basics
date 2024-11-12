@@ -1,8 +1,6 @@
 ﻿using System.Data;
 using Carbunql;
 using Carbunql.Analysis;
-using Carbunql.Analysis.Parser;
-using Carbunql.Building;
 using Dapper;
 using Dapper1App.Models;
 using Microsoft.Data.SqlClient;

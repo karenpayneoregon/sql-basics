@@ -1,5 +1,6 @@
 ﻿using DataGridViewButtonApp.Controls;
-
+// ReSharper disable NegativeEqualityExpression
+#nullable disable
 namespace DataGridViewButtonApp.Extensions;
 public static class DataGridViewButtonExtensions
 {

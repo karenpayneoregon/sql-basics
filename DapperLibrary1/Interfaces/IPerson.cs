@@ -2,7 +2,7 @@
 
 namespace DapperLibrary1.Interfaces;
 
-public interface IBaseRepository
+public interface IPerson
 {
     List<Person> GetAll();
     Task<List<Person>> GetAllAsync();   

@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
 
 namespace SqlServerOutputToOtherTableExample.Classes;
 public class SpectreConsoleHelpers

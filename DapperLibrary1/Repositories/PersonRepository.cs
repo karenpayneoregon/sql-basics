@@ -15,7 +15,7 @@ using Serilog;
 
 namespace DapperLibrary1.Repositories;
 
-public class PersonRepository : IBaseRepository
+public class PersonRepository : IPerson
 {
     private IDbConnection _cn;
     /// <summary>

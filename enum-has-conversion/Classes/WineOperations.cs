@@ -22,6 +22,8 @@ public class WineOperations
 
         using var context = new WineContext();
 
+        var allWine = context.Wines.ToList();
+
         LineSeparator("[white]Grouped 1[/]");
 
         List<WineGroupItem> allWinesGrouped1 = context.Wines

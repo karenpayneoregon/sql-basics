@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using static System.DateTime;
+// ReSharper disable EmptyEmbeddedStatement
 
 namespace StudentHelpApp.Classes;
 
