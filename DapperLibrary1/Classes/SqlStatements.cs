@@ -89,7 +89,7 @@ public class SqlStatements
         """;
 
     /// <summary>
-    /// SELECT WHERE BETWEEN years for birth date
+    /// SELECT WHERE BETWEEN years for birthdate
     /// </summary>
     public static string BirthDateBetweenYears => 
         """

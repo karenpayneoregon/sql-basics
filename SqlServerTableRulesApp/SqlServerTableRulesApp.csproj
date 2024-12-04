@@ -13,10 +13,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Dapper" Version="2.1.28" />
-		<PackageReference Include="Dapper.Transaction" Version="2.1.24" />
-		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.5" />
+		<PackageReference Include="Dapper" Version="2.1.35" />
+		<PackageReference Include="Dapper.Transaction" Version="2.1.35" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<NuGetAuditSuppress Include="https://github.com/advisories/GHSA-hh2w-p6rv-4g7w" />
+		<NuGetAuditSuppress Include="https://github.com/advisories/GHSA-wvxc-855f-jvrv" />
+		<NuGetAuditSuppress Include="https://github.com/advisories/GHSA-m5vv-6r4h-3vj9" />
+		<NuGetAuditSuppress Include="https://github.com/advisories/GHSA-x674-v45j-fwxw" />
+	</ItemGroup>
+
+
 
 	<ItemGroup>
 	  <ProjectReference Include="..\SqlServerLibrary\SqlServerLibrary.csproj" />

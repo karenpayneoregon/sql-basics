@@ -14,7 +14,7 @@ internal partial class Program
     {
         Table1Operations table1Operations = new();
         table1Operations.Add(new Table1 { Column1 = "Some value" });
-        //PersonSamples();
+        PersonSamples();
         //CustomersSamples();
 
         AnsiConsole.MarkupLine("[yellow]Press ENTER to quit[/]");

@@ -159,6 +159,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataGridViewButtonApp", "Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirthdaysFromDatabase", "BirthdaysFromDatabase\BirthdaysFromDatabase.csproj", "{12259F63-B584-4A9F-A758-20C7A1BC1C5C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlClientHelperApp", "SqlClientHelperApp\SqlClientHelperApp.csproj", "{8FABDD07-AEE4-4FA3-902E-EE2054C10A16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -389,6 +391,10 @@ Global
 		{12259F63-B584-4A9F-A758-20C7A1BC1C5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12259F63-B584-4A9F-A758-20C7A1BC1C5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12259F63-B584-4A9F-A758-20C7A1BC1C5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FABDD07-AEE4-4FA3-902E-EE2054C10A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FABDD07-AEE4-4FA3-902E-EE2054C10A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FABDD07-AEE4-4FA3-902E-EE2054C10A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FABDD07-AEE4-4FA3-902E-EE2054C10A16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -454,6 +460,7 @@ Global
 		{512EA324-F0B4-4B15-A15A-654DC32C1F87} = {65FDB35C-3D56-48A9-93FB-2D32028F167B}
 		{33949222-36A0-4DE4-9E30-F11FA8968E07} = {2A80EBD9-AC69-483A-993F-43FC6DBE8F1B}
 		{12259F63-B584-4A9F-A758-20C7A1BC1C5C} = {3047B01C-561D-4A3F-A8EC-0930332D8A34}
+		{8FABDD07-AEE4-4FA3-902E-EE2054C10A16} = {3047B01C-561D-4A3F-A8EC-0930332D8A34}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}

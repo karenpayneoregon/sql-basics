@@ -3,58 +3,72 @@
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net9.0-windows</TargetFramework>
-		<Nullable>disable</Nullable>
+		<Nullable>enable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="article.md" />
-	  <None Remove="readme.md" />
-	  <None Remove="Scripts\Script1.sql" />
+	  <Content Remove="C:\Users\paynek\.nuget\packages\consoleconfigurationlibrary\1.0.0.2\contentFiles\any\net8.0\readme.md" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="article.md" />
-	  <Content Include="readme.md" />
-	  <Content Include="Scripts\Script1.sql" />
+		<PackageReference Include="ConfigurationLibrary" Version="1.0.6" />
+		<PackageReference Include="ConsoleConfigurationLibrary" Version="1.0.0.2" />
 	</ItemGroup>
+
 	<ItemGroup>
-		<PackageReference Include="Bogus" Version="35.6.1" />
 		<PackageReference Include="Dapper" Version="2.1.35" />
-		<PackageReference Include="Dapper.Contrib" Version="2.0.78" />
-		<PackageReference Include="Dapper.Transaction" Version="2.1.35" />
-		<PackageReference Include="DbPeekQueryLibrary" Version="1.0.1" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
 	</ItemGroup>
+
 	<ItemGroup>
-		<PackageReference Include="ConfigurationLibrary" Version="1.0.6" />
+	  <ProjectReference Include="..\SqlServer.Library\SqlServer.Library.csproj" />
 	</ItemGroup>
+
+
+	<!--<ItemGroup>
+		<PackageReference Include="FluentValidation" Version="11.9.0" />
+		<PackageReference Include="ObjectDumper.NET" Version="4.1.17" />
+	</ItemGroup>-->
+
+
+	<ItemGroup>
+		<Using Include="ConsoleConfigurationLibrary.Classes" Alias="Config" />
+	</ItemGroup>
+
+
 	<ItemGroup>
 	  <None Update="appsettings.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Data.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
 	</ItemGroup>
+
+
 	<ItemGroup>
-	  <Folder Include="assets_article\" />
+	  <Folder Include="DataScripts\" />
 	</ItemGroup>
+
+
 	<ItemGroup>
-	  <Compile Update="Components\CoreBindingNavigator.cs">
-	    <SubType>Component</SubType>
-	  </Compile>
 	  <Compile Update="Properties\Resources.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>Resources.resx</DependentUpon>
 	  </Compile>
 	</ItemGroup>
+
+
 	<ItemGroup>
 	  <EmbeddedResource Update="Properties\Resources.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
 	</ItemGroup>
+
+	<Target Name="MakeLogDir" AfterTargets="Build">
+		<!-- Create folder LogFiles than each day create a folder with the current date -->
+		<MakeDir Directories="$(OutDir)LogFiles\$([System.DateTime]::Now.ToString(yyyy-MM-dd))" />
+	</Target>
+
 </Project>

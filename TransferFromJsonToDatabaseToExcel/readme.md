@@ -11,3 +11,11 @@ Must run the script Create.sql first under the Scripts folder.
 ## Json file
 
 Is copied to the application folder each time the application runs and once completed will be empty. 
+
+## Package warnings
+
+In project file.
+
+```xml
+<NuGetAudit>false</NuGetAudit>
+```

@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 	</PropertyGroup>
@@ -11,6 +11,7 @@
 		<None Remove="readme.md" />
 	</ItemGroup>
 
+
 	<ItemGroup>
 		<Content Include="assets\csharp.ico" />
 		<Content Include="readme.md" />
@@ -18,13 +19,13 @@
 
 	<ItemGroup>
 		<PackageReference Include="ConfigurationLibrary" Version="1.0.6" />
-		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
 		<PackageReference Include="Dapper" Version="2.1.35" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="ConsoleHelperLibrary" Version="1.0.2" />
-		<PackageReference Include="ObjectDumper.NET" Version="4.1.17" />
+		<PackageReference Include="ObjectDumper.NET" Version="4.3.2" />
 	</ItemGroup>
 
 

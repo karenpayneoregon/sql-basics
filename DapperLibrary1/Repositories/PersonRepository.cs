@@ -44,10 +44,10 @@ public class PersonRepository : IPerson
     public async Task<List<Person>> GetAllAsync() 
         => (List<Person>)await _cn.QueryAsync<Person>(SqlStatements.ReadPeople);
 
-    // Id 1 does not exists
+    // Id 1 does not exist
     public Person BuilderWithNull(int id = 1)
     {
-        var statement =
+        const string statement = 
             """
             SELECT Id,
                    FirstName,
@@ -59,10 +59,10 @@ public class PersonRepository : IPerson
 
         var builder = new SqlBuilder().Where("Id = @id", new { Id = id });
         var template = builder.AddTemplate(statement);
-        return _cn.Query<Person>(
-            template.RawSql, template.Parameters)
-            .FirstOrDefault();
+
+        return _cn.Query<Person>(template.RawSql, template.Parameters).FirstOrDefault();
     }
+
     public void BuilderWithoutNull(int id = 2)
     {
         var statement =

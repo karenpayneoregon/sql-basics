@@ -8,6 +8,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<NuGetAuditSuppress Include="https://github.com/advisories/GHSA-hh2w-p6rv-4g7w" />
+		<NuGetAuditSuppress Include="https://github.com/advisories/GHSA-wvxc-855f-jvrv" />
+		<NuGetAuditSuppress Include="https://github.com/advisories/GHSA-m5vv-6r4h-3vj9" />
+		<NuGetAuditSuppress Include="https://github.com/advisories/GHSA-x674-v45j-fwxw" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Remove="Models\readme.md" />
 		<None Remove="readme.md" />
 	</ItemGroup>
@@ -20,13 +27,13 @@
 
 	<ItemGroup>
 		<PackageReference Include="ConfigurationLibrary" Version="1.0.6" />
-		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
 		<PackageReference Include="Dapper" Version="2.1.35" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="ConsoleHelperLibrary" Version="1.0.2" />
-		<PackageReference Include="ObjectDumper.NET" Version="4.1.17" />
+		<PackageReference Include="ObjectDumper.NET" Version="4.3.2" />
 	</ItemGroup>
 
 
