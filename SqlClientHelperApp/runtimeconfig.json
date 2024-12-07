@@ -1,0 +1,7 @@
+{
+  "runtimeOptions": {
+    "configProperties": {
+      "System.GC.DynamicAdaptationMode": 1
+    }
+  }
+}

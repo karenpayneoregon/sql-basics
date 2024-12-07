@@ -122,11 +122,13 @@ public class GeneralUtilities
         }
     }
 
-    public static void ParseSqlLocalDbInfo()
+    public static (bool success, Exception exception) ParseSqlLocalDbInfo()
     {
+
+        LocalDbItem item = new();
+
         try
         {
-            // Start a new process to execute the sqllocaldb command
             Process process = new Process
             {
                 StartInfo = new ProcessStartInfo
@@ -140,33 +142,30 @@ public class GeneralUtilities
                 }
             };
 
-            // Start the process
             process.Start();
 
-            // Read the output
-            string output = process.StandardOutput.ReadToEnd();
-            string error = process.StandardError.ReadToEnd();
+            var output = process.StandardOutput.ReadToEnd();
+            var error = process.StandardError.ReadToEnd();
 
-            // Wait for the process to finish
             process.WaitForExit();
 
             if (!string.IsNullOrEmpty(error))
             {
-                Debug.WriteLine("Error: " + error);
-                return;
+                return (false, new Exception(error));
             }
 
-            // Parse the output
-            Debug.WriteLine("Parsing Results...");
             ParseOutput(output);
+
         }
         catch (Exception ex)
         {
-            Debug.WriteLine("An error occurred: " + ex.Message);
+            return (false, ex);
         }
+
+        return (true, null)!;
     }
 
-    private static void ParseOutput(string output)
+    private static LocalDbItem ParseOutput(string output)
     {
         LocalDbItem item = new();
 
@@ -175,26 +174,39 @@ public class GeneralUtilities
         foreach (var line in lines)
         {
             if (!line.Contains(":")) continue;
-            var parts = line.Split([':'], 2);
-            if (parts.Length != 2) continue;
-            string key = parts[0].Trim();
-            string value = parts[1].Trim();
 
-            if (key == "Name")
+            var parts = line.Split([':'], 2);
+
+            if (parts.Length != 2) continue;
+
+            var key = parts[0].Trim();
+            var value = parts[1].Trim();
+
+            switch (key)
             {
-                item.Name = value;
-            }else if (key == "Version")
-            {
-                item.Version = new Version(value);
-            }else if (key == "Last start time")
-            {
-                item.LastStartTime = DateTime.Parse(value);
-            }else if (key == "Owner")
-            {
-                item.Owner = value;
+                case "Name":
+                    item.Name = value;
+                    break;
+                case "Version":
+                    item.Version = new Version(value);
+                    break;
+                case "Last start time":
+                    item.LastStartTime = DateTime.Parse(value);
+                    break;
+                case "Owner":
+                    item.Owner = value;
+                    break;
+                case "Auto-create":
+                    item.AutoCreate = value.ToLower() == "yes";
+                    break;
+                case "State":
+                    item.State = value;
+                    break;
             }
 
-            Debug.WriteLine($"{key}: {value}");
+            //Debug.WriteLine($"{key}: {value}");
         }
+
+        return item;
     }
 }

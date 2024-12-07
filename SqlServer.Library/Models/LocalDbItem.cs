@@ -10,4 +10,5 @@ public class LocalDbItem
     public string Owner { get; set; }
     public bool AutoCreate { get; set; }
     public DateTime LastStartTime { get; set; }
+    public string State { get; set; }
 }

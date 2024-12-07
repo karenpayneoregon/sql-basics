@@ -35,6 +35,9 @@
 		<None Update="appsettings.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+		<None Update="runtimeconfig.json">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
 		<None Update="Sample1.db">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
