@@ -52,6 +52,7 @@ public static class SpectreConsoleHelpers
             .Replace("WHERE", "[cyan]WHERE[/]")
             .Replace("CAST", "[cyan]CAST[/]")
             .Replace("AS", "[cyan]AS[/]")
+            .Replace("WITH", "[cyan]WITH[/]")
             .Replace("Parameters=", "[yellow]Parameters=[/]")
             .Replace("CROSS APPLY OPENJSON", "[mediumvioletred]CROSS APPLY OPENJSON[/]");
     }
