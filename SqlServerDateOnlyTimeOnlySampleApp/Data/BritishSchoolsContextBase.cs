@@ -28,10 +28,19 @@ public abstract class BritishSchoolsContextBase : DbContext
                 {
                     if (LoggingEnabled)
                     {
-                        Console.WriteLine(s);
+                        Print(s);
                     }
                 }, LogLevel.Information);
 
+    /// <summary>
+    /// Outputs the specified string to the console with formatting applied from LogTo above.
+    /// </summary>
+    /// <param name="x">The string to be printed, which will be formatted using Spectre.Console markup.</param>
+    public void Print(string x)
+    {
+        AnsiConsole.MarkupLine(x.ConsoleEscape().HighlightKeyWords());
+
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
     }

@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SqlServerDateOnlyTimeOnlySampleApp.Models;
+﻿using SqlServerDateOnlyTimeOnlySampleApp.Models;
 
 namespace SqlServerDateOnlyTimeOnlySampleApp.Classes;
 
 internal class MockedData
 {
+    /// <summary>
+    /// Provides a list of predefined school data.
+    /// </summary>
+    /// <returns>A list of <see cref="School"/> objects representing the mocked school data.</returns>
     public static List<School> Schools() =>
     [
         new School

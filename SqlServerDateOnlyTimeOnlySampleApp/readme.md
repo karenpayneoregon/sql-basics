@@ -4,6 +4,8 @@ This is a sample application that works wit DateOnly and TimeOnly using EF Core 
 
 Original code from [here](https://github.com/dotnet/EntityFramework.Docs/blob/main/samples/core/Miscellaneous/NewInEFCore9/DateOnlyTimeOnlySample.cs) which has been modified to use SQL-Server, removed code for SqlLite.
 
+![Results](assets/results.png)
+
 Data generated (ignore table name)
 
 ```sql
