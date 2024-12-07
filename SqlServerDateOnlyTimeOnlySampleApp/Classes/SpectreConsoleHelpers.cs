@@ -14,7 +14,7 @@ public class SpectreConsoleHelpers
     }
     public static void PrintCyan([CallerMemberName] string? methodName = null)
     {
-        AnsiConsole.MarkupLine($"[cyan]{methodName}[/]");
+        AnsiConsole.MarkupLine($"[cyan]{methodName.Replace("_", " ")}[/]");
         Console.WriteLine();
     }
     private static void Render(Rule rule)
