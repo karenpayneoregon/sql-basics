@@ -1,6 +1,6 @@
 ﻿# About
 
-This is a sample application that works wit DateOnly and TimeOnly using EF Core 9.
+This is a sample application that works with DateOnly and TimeOnly using EF Core 9.
 
 Original code from [here](https://github.com/dotnet/EntityFramework.Docs/blob/main/samples/core/Miscellaneous/NewInEFCore9/DateOnlyTimeOnlySample.cs) which has been modified to use SQL-Server, removed code for SqlLite.
 
