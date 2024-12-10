@@ -8,6 +8,7 @@ public class LocalDbItem
     public Version Version { get; set; }
     public string SharedName { get; set; }
     public string Owner { get; set; }
+    public string InstancePipeName { get; set; }
     public bool AutoCreate { get; set; }
     public DateTime LastStartTime { get; set; }
     public string State { get; set; }

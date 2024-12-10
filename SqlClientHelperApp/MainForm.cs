@@ -18,7 +18,7 @@ public partial class MainForm : Form
     private void MainForm_Shown(object? sender, EventArgs e)
     {
         //GetInformation();
-        var (success, exception) = ParseSqlLocalDbInfo();
+        var (success, item, exception) = SqlLocalInfo();
     }
 
     public void GetInformation()

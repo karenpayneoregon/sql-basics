@@ -76,15 +76,35 @@ public class GeneralUtilities
     public static string DataSourceFromConnectionString(string connectionString)
         => new SqlConnectionStringBuilder(connectionString).DataSource;
 
+    /// <summary>
+    /// Retrieves the encryption setting from the specified connection string.
+    /// </summary>
+    /// <param name="connectionString">The connection string from which to extract the encryption setting.</param>
+    /// <returns>The <see cref="SqlConnectionEncryptOption"/> indicating the encryption setting.</returns>
     public static SqlConnectionEncryptOption EncryptSetting(string connectionString)
         => new SqlConnectionStringBuilder(connectionString).Encrypt;
 
+    /// <summary>
+    /// Checks if the LocalDB instance "MSSQLLocalDB" is available on the system.
+    /// </summary>
+    /// <returns>
+    /// <c>true</c> if the "MSSQLLocalDB" instance is available; otherwise, <c>false</c>.
+    /// </returns>
     public static bool LocalDbAvailable()
     {
         var (names, exception) = GetLocalDbServerNames();
         return exception is null && names.Length > 0 && names.Contains("MSSQLLocalDB", StringComparer.OrdinalIgnoreCase);
     }
 
+    /// <summary>
+    /// Retrieves the names of available LocalDB server instances.
+    /// </summary>
+    /// <returns>
+    /// A tuple containing an array of server instance names and an exception. 
+    /// The array contains the names of the LocalDB server instances if successful; 
+    /// otherwise, it is empty. The exception is <c>null</c> if the operation is successful; 
+    /// otherwise, it contains the exception that occurred.
+    /// </returns>
     public static (string[] names, Exception exception) GetLocalDbServerNames()
     {
         try
@@ -122,14 +142,21 @@ public class GeneralUtilities
         }
     }
 
-    public static (bool success, Exception exception) ParseSqlLocalDbInfo()
+    /// <summary>
+    /// Retrieves information about the local SQL Server instance.
+    /// </summary>
+    /// <returns>
+    /// A tuple containing a boolean indicating success, a <see cref="LocalDbItem"/> with the local database information, 
+    /// and an <see cref="Exception"/> if an error occurred.
+    /// </returns>
+    public static (bool success, LocalDbItem dbItem, Exception exception) SqlLocalInfo()
     {
 
         LocalDbItem item = new();
 
         try
         {
-            Process process = new Process
+            Process process = new()
             {
                 StartInfo = new ProcessStartInfo
                 {
@@ -151,25 +178,30 @@ public class GeneralUtilities
 
             if (!string.IsNullOrEmpty(error))
             {
-                return (false, new Exception(error));
+                return (false, item, new Exception(error));
             }
 
-            ParseOutput(output);
+            item = ParseOutput(output);
 
         }
         catch (Exception ex)
         {
-            return (false, ex);
+            return (false, item, ex);
         }
 
-        return (true, null)!;
+        return (true, item, null)!;
     }
 
+    /// <summary>
+    /// Parses the output from the SQL LocalDB command and extracts information into a <see cref="LocalDbItem"/>.
+    /// </summary>
+    /// <param name="output">The output string from the SQL LocalDB command.</param>
+    /// <returns>A <see cref="LocalDbItem"/> populated with the parsed data.</returns>
     private static LocalDbItem ParseOutput(string output)
     {
         LocalDbItem item = new();
 
-        string[] lines = output.Split([Environment.NewLine], StringSplitOptions.RemoveEmptyEntries);
+        var lines = output.Split([Environment.NewLine], StringSplitOptions.RemoveEmptyEntries);
 
         foreach (var line in lines)
         {
@@ -202,9 +234,16 @@ public class GeneralUtilities
                 case "State":
                     item.State = value;
                     break;
+                case "Instance pipe name":
+                    item.InstancePipeName = value;
+                    break;
             }
 
-            //Debug.WriteLine($"{key}: {value}");
+            if (Debugger.IsAttached)
+            {
+                Debug.WriteLine($"{key}: {value}");
+            }
+            
         }
 
         return item;
