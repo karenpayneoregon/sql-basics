@@ -7,29 +7,33 @@ namespace SqlServer.Library.Classes;
 
 public class GeneralUtilities
 {
-    /// <summary>
-    /// Checks if all tables in the database specified by the connection string are populated with records.
-    /// </summary>
-    /// <param name="connectionString">The connection string to the database.</param>
-    /// <returns><c>true</c> if all tables have records; otherwise, <c>false</c>.</returns>
-    public static bool TablesArePopulated(string connectionString)
-    {
-        using var cn = new SqlConnection(connectionString);
-        using var cmd = new SqlCommand(
-            """
-                   SELECT T.name TableName, i.Rows NumberOfRows 
-                   FROM sys.tables T JOIN sys.sysindexes I ON T.OBJECT_ID = I.ID 
-                   WHERE indid IN (0,1) 
-                   ORDER BY i.Rows DESC,T.name
-                   """, cn);
+/// <summary>
+/// Checks if all tables in the database specified by the connection string are populated with records.
+/// </summary>
+/// <param name="connectionString">The connection string to the database.</param>
+/// <returns><c>true</c> if all tables have records; otherwise, <c>false</c>.</returns>
+public static bool TablesArePopulated(string connectionString)
+{
+    using var cn = new SqlConnection(connectionString);
+    using var cmd = new SqlCommand(
+        """
+               SELECT      t.name AS TableName,
+                          p.rows AS [RowCount]
+                FROM      sys.tables t
+               INNER JOIN sys.partitions p
+                  ON t.object_id = p.object_id
+               WHERE      p.index_id IN ( 0, 1 )
+               ORDER BY p.rows DESC,
+                        t.name;
+               """, cn);
 
-        DataTable table = new();
-        cn.Open();
+    DataTable table = new();
+    cn.Open();
 
-        table.Load(cmd.ExecuteReader());
-        return table.AsEnumerable().All(row => row.Field<int>("NumberOfRows") > 0);
+    table.Load(cmd.ExecuteReader());
+    return table.AsEnumerable().All(row => row.Field<int>("[RowCount]") > 0);
 
-    }
+}
 
     /// <summary>
     /// Determine the database has records
