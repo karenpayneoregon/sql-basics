@@ -1,6 +1,9 @@
 namespace SqlServerGetJsonRaw.Models;
 #nullable disable
-public class PersonAddress
+/// <summary>
+/// Represents a person with details such as name, date of birth, and address information.
+/// </summary>
+public class Person
 {
     public int Id { get; set; }
     public string FirstName { get; set; }

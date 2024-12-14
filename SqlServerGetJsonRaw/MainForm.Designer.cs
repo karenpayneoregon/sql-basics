@@ -28,49 +28,89 @@ partial class MainForm
     /// </summary>
     private void InitializeComponent()
     {
-        ReadButton = new Button();
-        dataGridView1 = new DataGridView();
+        PersonDataGridView = new DataGridView();
+        IdColumn = new DataGridViewTextBoxColumn();
+        FirstNameColum = new DataGridViewTextBoxColumn();
+        LastNameColumn = new DataGridViewTextBoxColumn();
+        BirthDateColumn = new DataGridViewTextBoxColumn();
         panel1 = new Panel();
+        AddressesDataGridView = new DataGridView();
         LastNamesComboBox = new ComboBox();
-        ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)PersonDataGridView).BeginInit();
         panel1.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)AddressesDataGridView).BeginInit();
         SuspendLayout();
         // 
-        // ReadButton
+        // PersonDataGridView
         // 
-        ReadButton.Location = new Point(25, 27);
-        ReadButton.Name = "ReadButton";
-        ReadButton.Size = new Size(94, 29);
-        ReadButton.TabIndex = 0;
-        ReadButton.Text = "Read";
-        ReadButton.UseVisualStyleBackColor = true;
-        ReadButton.Click += ReadButton_Click;
+        PersonDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        PersonDataGridView.Columns.AddRange(new DataGridViewColumn[] { IdColumn, FirstNameColum, LastNameColumn, BirthDateColumn });
+        PersonDataGridView.Dock = DockStyle.Fill;
+        PersonDataGridView.Location = new Point(0, 0);
+        PersonDataGridView.Name = "PersonDataGridView";
+        PersonDataGridView.RowHeadersWidth = 51;
+        PersonDataGridView.Size = new Size(625, 311);
+        PersonDataGridView.TabIndex = 1;
         // 
-        // dataGridView1
+        // IdColumn
         // 
-        dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        dataGridView1.Dock = DockStyle.Fill;
-        dataGridView1.Location = new Point(0, 0);
-        dataGridView1.Name = "dataGridView1";
-        dataGridView1.RowHeadersWidth = 51;
-        dataGridView1.Size = new Size(932, 192);
-        dataGridView1.TabIndex = 1;
+        IdColumn.DataPropertyName = "ID";
+        IdColumn.HeaderText = "Id";
+        IdColumn.MinimumWidth = 6;
+        IdColumn.Name = "IdColumn";
+        IdColumn.Width = 125;
+        // 
+        // FirstNameColum
+        // 
+        FirstNameColum.DataPropertyName = "FirstName";
+        FirstNameColum.HeaderText = "First";
+        FirstNameColum.MinimumWidth = 6;
+        FirstNameColum.Name = "FirstNameColum";
+        FirstNameColum.Width = 125;
+        // 
+        // LastNameColumn
+        // 
+        LastNameColumn.DataPropertyName = "LastName";
+        LastNameColumn.HeaderText = "Last";
+        LastNameColumn.MinimumWidth = 6;
+        LastNameColumn.Name = "LastNameColumn";
+        LastNameColumn.Width = 125;
+        // 
+        // BirthDateColumn
+        // 
+        BirthDateColumn.DataPropertyName = "DateOfBirth";
+        BirthDateColumn.HeaderText = "Birth";
+        BirthDateColumn.MinimumWidth = 6;
+        BirthDateColumn.Name = "BirthDateColumn";
+        BirthDateColumn.Width = 125;
         // 
         // panel1
         // 
+        panel1.Controls.Add(AddressesDataGridView);
         panel1.Controls.Add(LastNamesComboBox);
-        panel1.Controls.Add(ReadButton);
         panel1.Dock = DockStyle.Bottom;
-        panel1.Location = new Point(0, 124);
+        panel1.Location = new Point(0, 128);
         panel1.Name = "panel1";
-        panel1.Size = new Size(932, 68);
+        panel1.Size = new Size(625, 183);
         panel1.TabIndex = 2;
+        // 
+        // AddressesDataGridView
+        // 
+        AddressesDataGridView.AllowUserToAddRows = false;
+        AddressesDataGridView.AllowUserToDeleteRows = false;
+        AddressesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        AddressesDataGridView.Location = new Point(12, 52);
+        AddressesDataGridView.Name = "AddressesDataGridView";
+        AddressesDataGridView.ReadOnly = true;
+        AddressesDataGridView.RowHeadersWidth = 51;
+        AddressesDataGridView.Size = new Size(586, 121);
+        AddressesDataGridView.TabIndex = 4;
         // 
         // LastNamesComboBox
         // 
         LastNamesComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
         LastNamesComboBox.FormattingEnabled = true;
-        LastNamesComboBox.Location = new Point(139, 27);
+        LastNamesComboBox.Location = new Point(12, 18);
         LastNamesComboBox.Name = "LastNamesComboBox";
         LastNamesComboBox.Size = new Size(151, 28);
         LastNamesComboBox.TabIndex = 3;
@@ -79,22 +119,26 @@ partial class MainForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(932, 192);
+        ClientSize = new Size(625, 311);
         Controls.Add(panel1);
-        Controls.Add(dataGridView1);
+        Controls.Add(PersonDataGridView);
         FormBorderStyle = FormBorderStyle.FixedToolWindow;
         Name = "MainForm";
         StartPosition = FormStartPosition.CenterScreen;
         Text = "Code sample: read json properties";
-        ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+        ((System.ComponentModel.ISupportInitialize)PersonDataGridView).EndInit();
         panel1.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)AddressesDataGridView).EndInit();
         ResumeLayout(false);
     }
 
     #endregion
-
-    private Button ReadButton;
-    private DataGridView dataGridView1;
+    private DataGridView PersonDataGridView;
     private Panel panel1;
     private ComboBox LastNamesComboBox;
+    private DataGridView AddressesDataGridView;
+    private DataGridViewTextBoxColumn IdColumn;
+    private DataGridViewTextBoxColumn FirstNameColum;
+    private DataGridViewTextBoxColumn LastNameColumn;
+    private DataGridViewTextBoxColumn BirthDateColumn;
 }

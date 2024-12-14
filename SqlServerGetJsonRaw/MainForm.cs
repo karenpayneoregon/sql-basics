@@ -1,4 +1,3 @@
-
 using SqlServerGetJsonRaw.Classes;
 
 namespace SqlServerGetJsonRaw;
@@ -8,16 +7,34 @@ public partial class MainForm : Form
     public MainForm()
     {
         InitializeComponent();
-        dataGridView1.AllowUserToAddRows = false;
+        
+        PersonDataGridView.AutoGenerateColumns = false;
 
         DataOperations operations = new();
         LastNamesComboBox.DataSource = operations.LastNames();
+
+        PopulateDataControls(operations);
+
+        LastNamesComboBox.SelectedIndexChanged += (sender, e) 
+            => PopulateDataControls(operations);
+
     }
 
-    private void ReadButton_Click(object sender, EventArgs e)
+    /// <summary>
+    /// Populates the data controls on the form with person and address data
+    /// based on the currently selected last name in the <see cref="LastNamesComboBox"/>.
+    /// </summary>
+    /// <param name="operations">
+    /// An instance of <see cref="DataOperations"/> used to retrieve person and address data.
+    /// </param>
+    private void PopulateDataControls(DataOperations operations)
     {
-        DataOperations operations = new();
-        var result = operations.GetPerson(LastNamesComboBox.Text);
-        dataGridView1.DataSource = result;
+        
+        var (person, addresses) = 
+            operations.PersonData(LastNamesComboBox.Text);
+
+        PersonDataGridView.DataSource = person;
+        AddressesDataGridView.DataSource = addresses;
     }
+
 }
