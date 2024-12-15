@@ -6,7 +6,8 @@ namespace SqlServerGetJsonRaw.Classes.Configuration;
 internal class ApplicationConfiguration
 {
     /// <summary>
-    /// Sets up the services for connection string and should mock data be used
+    /// Configures services for managing connection strings
+    /// and determines whether to use mock data.
     /// </summary>
     /// <returns>ServiceCollection</returns>
     public static ServiceCollection ConfigureServices()

@@ -8,8 +8,8 @@ public partial class MainForm : Form
     {
         InitializeComponent();
 
-        DapperOperations clientOperations = new();
-        var result = clientOperations.PersonData2("Payne");
+        //DapperOperations clientOperations = new();
+        //var result = clientOperations.PersonData2("Payne");
 
 
         PersonDataGridView.AutoGenerateColumns = false;
