@@ -1,15 +1,8 @@
 namespace SqlServerGetJsonRaw.Models;
 
-public class Address
+public class Address(string street, string city, string company)
 {
-    public string Street { get; }
-    public string City { get; }
-    public string Company { get; }
-
-    public Address(string street, string city, string company)
-    {
-        Street = street;
-        City = city;
-        Company = company;
-    }
+    public string Street { get; } = street;
+    public string City { get; } = city;
+    public string Company { get; } = company;
 }

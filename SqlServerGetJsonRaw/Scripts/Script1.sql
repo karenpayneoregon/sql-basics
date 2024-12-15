@@ -51,6 +51,30 @@ DECLARE
     SET   @INDEX = @INDEX + 1;
 END;
 
+WITH PersonAddresses
+  AS (SELECT p.Id,
+             p.FirstName,
+             p.LastName,
+             p.DateOfBirth,
+             a.Street,
+             a.City,
+             a.Company,
+             ROW_NUMBER() OVER (PARTITION BY p.Id ORDER BY a.Street) AS AddressIndex
+        FROM dbo.Person p
+       CROSS APPLY
+             OPENJSON(p.Addresses)
+             WITH (Street NVARCHAR(MAX),
+                   City NVARCHAR(MAX),
+                   Company NVARCHAR(MAX)) a
+       WHERE p.LastName = @LastName)
+SELECT pa.Id,
+       pa.FirstName,
+       pa.LastName,
+       pa.DateOfBirth,
+       pa.Street,
+       pa.City,
+       pa.Company
+  FROM PersonAddresses pa;
 
 
 USE [EF.JSON]
