@@ -4,6 +4,7 @@ using Dapper;
 using SqlServerGetJsonRaw.Classes.Configuration;
 using SqlServerGetJsonRaw.Models;
 using System.Data.Common;
+// ReSharper disable MoveLocalFunctionAfterJumpStatement
 
 namespace SqlServerGetJsonRaw.Classes;
 
@@ -22,31 +23,11 @@ internal class DapperOperations
 {
     private IDbConnection _cn = new SqlConnection(DataConnections.Instance.MainConnection);
 
-    /// <summary>
-    /// Retrieves a list of person addresses based on the provided last name.
-    /// </summary>
-    /// <param name="lastName">The last name used to filter the person addresses.</param>
-    /// <returns>
-    /// A list of <see cref="PersonDapper1"/> objects containing the person's
-    /// details and their associated addresses.
-    /// </returns>
-    private List<PersonDapper1> GetPerson(string lastName)
-    {
 
-        var list = new List<PersonDapper1>();
-        using var reader = _cn.QueryMultiple(SqlStatements.GetPersonAddressesDapper, new {LastName = lastName});
-
-        while (!reader.IsConsumed)
-        {
-            var partialResult = reader.Read<PersonDapper1>();
-            list.AddRange(partialResult);
-        }
-
-        return list;
-    }
 
     /// <summary>
-    /// Retrieves person data and their associated addresses based on the provided last name.
+    /// Retrieves a collection of person details and their associated addresses 
+    /// filtered by the specified last name.
     /// </summary>
     /// <param name="lastName">The last name used to filter the person data and addresses.</param>
     /// <returns>
@@ -60,9 +41,32 @@ internal class DapperOperations
     /// </item>
     /// </list>
     /// </returns>
+    /// <remarks>
+    /// This method queries the database using a Dapper-based approach to retrieve person details 
+    /// and their associated addresses. The results are processed to separate the person data 
+    /// and address data into distinct collections.
+    ///
+    /// This method is not recommended
+    /// </remarks>
     public (List<PersonDapper1> person, List<Address> addresses) PersonData1(string lastName)
     {
-        List<PersonDapper1> result = GetPerson(lastName);
+        List<PersonDapper1> GetPerson()
+        {
+
+            var list = new List<PersonDapper1>();
+            using var reader = _cn.QueryMultiple(SqlStatements.GetPersonAddressesDapper, new 
+                { LastName = lastName });
+
+            while (!reader.IsConsumed)
+            {
+                var partialResult = reader.Read<PersonDapper1>();
+                list.AddRange(partialResult);
+            }
+
+            return list;
+        }
+
+        List<PersonDapper1> result = GetPerson();
 
         var addresses = result.Select(p => 
             new Address(p.Street, p.City, p.Company)).ToList();
