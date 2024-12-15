@@ -9,6 +9,11 @@ internal class SqlStatements
     /// specific fields such as Street, City, and Company. It uses the <c>JSON_VALUE</c>
     /// function to parse JSON data and assumes the presence of a variable <c>@index</c>
     /// for iteration. The query filters results where the last name is 'Payne'.
+    ///
+    /// This is not recommended as it is hard coded for two addresses. If business requirements
+    /// were to require two addresses it would be fine like address for an account and one for shipping
+    /// address, otherwise if there were not two addresses an arithmetic overflow error converting
+    /// expression to data type nvarchar would occur.
     /// </remarks>
     /// <returns>
     /// A SQL query string that retrieves person addresses.
