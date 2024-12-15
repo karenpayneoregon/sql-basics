@@ -54,4 +54,33 @@ internal class SqlClientOperations
 
         return people;
     }
+
+    /// <summary>
+    /// Retrieves a list of last names from the database, ordered alphabetically.
+    /// </summary>
+    /// <returns>A list of strings representing the last names.</returns>
+    public List<string> LastNames()
+    {
+        List<string> lastNames = new();
+        const string sql =
+            """
+            SELECT 
+                LastName 
+            FROM 
+                dbo.Person 
+            ORDER BY 
+                LastName;
+            """;
+        using SqlConnection cn = new(DataConnections.Instance.MainConnection);
+        using SqlCommand cmd = new() {Connection = cn, CommandText = sql};
+        cn.Open();
+
+        var reader = cmd.ExecuteReader();
+        while (reader.Read())
+        {
+           lastNames.Add(reader.GetString(0)); 
+        }
+
+        return lastNames;
+    }
 }
