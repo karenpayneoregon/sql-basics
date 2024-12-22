@@ -14,7 +14,7 @@ internal static class Program
         // see https://aka.ms/applicationconfiguration.
         ApplicationConfiguration.Initialize();
         await Setup();
-        Application.Run(new MainForm());
+        Application.Run(new DapperForm());
     }
     /// <summary>
     /// Setup for reading connection strings and entity settings from appsettings.json

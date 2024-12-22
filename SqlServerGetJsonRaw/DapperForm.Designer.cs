@@ -28,14 +28,16 @@ partial class DapperForm
     /// </summary>
     private void InitializeComponent()
     {
+        DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
         PersonDataGridView = new DataGridView();
+        panel1 = new Panel();
+        AddMockedPersonButton = new Button();
+        AddressesDataGridView = new DataGridView();
+        LastNamesComboBox = new ComboBox();
         IdColumn = new DataGridViewTextBoxColumn();
         FirstNameColum = new DataGridViewTextBoxColumn();
         LastNameColumn = new DataGridViewTextBoxColumn();
         BirthDateColumn = new DataGridViewTextBoxColumn();
-        panel1 = new Panel();
-        AddressesDataGridView = new DataGridView();
-        LastNamesComboBox = new ComboBox();
         ((System.ComponentModel.ISupportInitialize)PersonDataGridView).BeginInit();
         panel1.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)AddressesDataGridView).BeginInit();
@@ -54,6 +56,48 @@ partial class DapperForm
         PersonDataGridView.RowHeadersWidth = 51;
         PersonDataGridView.Size = new Size(625, 128);
         PersonDataGridView.TabIndex = 3;
+        // 
+        // panel1
+        // 
+        panel1.Controls.Add(AddMockedPersonButton);
+        panel1.Controls.Add(AddressesDataGridView);
+        panel1.Controls.Add(LastNamesComboBox);
+        panel1.Dock = DockStyle.Bottom;
+        panel1.Location = new Point(0, 128);
+        panel1.Name = "panel1";
+        panel1.Size = new Size(625, 183);
+        panel1.TabIndex = 4;
+        // 
+        // AddMockedPersonButton
+        // 
+        AddMockedPersonButton.Location = new Point(504, 17);
+        AddMockedPersonButton.Name = "AddMockedPersonButton";
+        AddMockedPersonButton.Size = new Size(94, 29);
+        AddMockedPersonButton.TabIndex = 5;
+        AddMockedPersonButton.Text = "Add";
+        AddMockedPersonButton.UseVisualStyleBackColor = true;
+        AddMockedPersonButton.Click += AddMockedPersonButton_Click;
+        // 
+        // AddressesDataGridView
+        // 
+        AddressesDataGridView.AllowUserToAddRows = false;
+        AddressesDataGridView.AllowUserToDeleteRows = false;
+        AddressesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        AddressesDataGridView.Location = new Point(12, 52);
+        AddressesDataGridView.Name = "AddressesDataGridView";
+        AddressesDataGridView.ReadOnly = true;
+        AddressesDataGridView.RowHeadersWidth = 51;
+        AddressesDataGridView.Size = new Size(586, 121);
+        AddressesDataGridView.TabIndex = 4;
+        // 
+        // LastNamesComboBox
+        // 
+        LastNamesComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+        LastNamesComboBox.FormattingEnabled = true;
+        LastNamesComboBox.Location = new Point(12, 18);
+        LastNamesComboBox.Name = "LastNamesComboBox";
+        LastNamesComboBox.Size = new Size(151, 28);
+        LastNamesComboBox.TabIndex = 3;
         // 
         // IdColumn
         // 
@@ -85,42 +129,14 @@ partial class DapperForm
         // BirthDateColumn
         // 
         BirthDateColumn.DataPropertyName = "DateOfBirth";
+        dataGridViewCellStyle1.Format = "d";
+        dataGridViewCellStyle1.NullValue = null;
+        BirthDateColumn.DefaultCellStyle = dataGridViewCellStyle1;
         BirthDateColumn.HeaderText = "Birth";
         BirthDateColumn.MinimumWidth = 6;
         BirthDateColumn.Name = "BirthDateColumn";
         BirthDateColumn.ReadOnly = true;
         BirthDateColumn.Width = 125;
-        // 
-        // panel1
-        // 
-        panel1.Controls.Add(AddressesDataGridView);
-        panel1.Controls.Add(LastNamesComboBox);
-        panel1.Dock = DockStyle.Bottom;
-        panel1.Location = new Point(0, 128);
-        panel1.Name = "panel1";
-        panel1.Size = new Size(625, 183);
-        panel1.TabIndex = 4;
-        // 
-        // AddressesDataGridView
-        // 
-        AddressesDataGridView.AllowUserToAddRows = false;
-        AddressesDataGridView.AllowUserToDeleteRows = false;
-        AddressesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        AddressesDataGridView.Location = new Point(12, 52);
-        AddressesDataGridView.Name = "AddressesDataGridView";
-        AddressesDataGridView.ReadOnly = true;
-        AddressesDataGridView.RowHeadersWidth = 51;
-        AddressesDataGridView.Size = new Size(586, 121);
-        AddressesDataGridView.TabIndex = 4;
-        // 
-        // LastNamesComboBox
-        // 
-        LastNamesComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-        LastNamesComboBox.FormattingEnabled = true;
-        LastNamesComboBox.Location = new Point(12, 18);
-        LastNamesComboBox.Name = "LastNamesComboBox";
-        LastNamesComboBox.Size = new Size(151, 28);
-        LastNamesComboBox.TabIndex = 3;
         // 
         // DapperForm
         // 
@@ -142,11 +158,12 @@ partial class DapperForm
     #endregion
 
     private DataGridView PersonDataGridView;
+    private Panel panel1;
+    private DataGridView AddressesDataGridView;
+    private ComboBox LastNamesComboBox;
+    private Button AddMockedPersonButton;
     private DataGridViewTextBoxColumn IdColumn;
     private DataGridViewTextBoxColumn FirstNameColum;
     private DataGridViewTextBoxColumn LastNameColumn;
     private DataGridViewTextBoxColumn BirthDateColumn;
-    private Panel panel1;
-    private DataGridView AddressesDataGridView;
-    private ComboBox LastNamesComboBox;
 }

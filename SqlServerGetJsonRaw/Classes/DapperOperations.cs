@@ -3,7 +3,10 @@ using System.Data;
 using Dapper;
 using SqlServerGetJsonRaw.Classes.Configuration;
 using SqlServerGetJsonRaw.Models;
-using System.Data.Common;
+using System.Text.Json;
+using Bogus;
+
+// ReSharper disable RedundantAnonymousTypePropertyName
 // ReSharper disable MoveLocalFunctionAfterJumpStatement
 
 namespace SqlServerGetJsonRaw.Classes;
@@ -54,8 +57,10 @@ internal class DapperOperations
         {
 
             var list = new List<PersonDapper1>();
-            using var reader = _cn.QueryMultiple(SqlStatements.GetPersonAddressesDapper, new 
-                { LastName = lastName });
+            using var reader = _cn.QueryMultiple(SqlStatements.GetPersonAddressesDapper, new
+            {
+                LastName = lastName
+            });
 
             while (!reader.IsConsumed)
             {
@@ -69,7 +74,7 @@ internal class DapperOperations
         List<PersonDapper1> result = GetPerson();
 
         var addresses = result.Select(p => 
-            new Address(p.Street, p.City, p.Company)).ToList();
+            new Address(p.Street, p.City, p.AddressType)).ToList();
 
         result.RemoveAt(0);
 
@@ -124,6 +129,50 @@ internal class DapperOperations
         );
 
         return dict.Values.ToList();
+    }
+
+    /// <summary>
+    /// Adds a mock person record to the database for testing or demonstration purposes.
+    /// </summary>
+    /// <remarks>
+    /// This method creates a mock person with predefined details, including a list of addresses, 
+    /// serializes the address list to JSON, and inserts the person into the database using a Dapper SQL statement.
+    /// The method also retrieves the generated primary key for the inserted record and assigns it to the person object.
+    /// </remarks>
+    /// <seealso cref="PersonDapper2"/>
+    /// <seealso cref="Address"/>
+    public void AddPersonMockup()
+    {
+        var faker = new Faker();
+        
+        List<Address> addresses =
+        [
+            new(faker.Address.StreetName(), faker.Address.City(), "Home"),
+            new(faker.Address.StreetName(), faker.Address.City(), "Shipto")
+        ];
+
+
+        PersonDapper2 person = new()
+        {
+            FirstName = faker.Person.FirstName,
+            LastName = faker.Person.LastName,
+            DateOfBirth = faker.Date.Between(
+                new DateTime(1978,1,1,8,0,0),
+                new DateTime(2010, 1, 1, 8, 0, 0)),
+            AddressJson = JsonSerializer.Serialize(addresses)
+        };
+
+        int primaryKey =  (int)_cn.ExecuteScalar(SqlStatements.DapperInsert, 
+            new
+            {
+                person.FirstName,
+                person.LastName,
+                person.DateOfBirth,
+                Addresses = person.AddressJson
+            })!;
+
+        person.Id = primaryKey;
+
     }
 
     /// <summary>

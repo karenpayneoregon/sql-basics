@@ -29,7 +29,7 @@ internal class SqlStatements
                    DateOfBirth,
                    JSON_VALUE(Addresses, '$[' + CAST(@index as nvarchar(1)) + '].Street') AS Street,
                    JSON_VALUE(Addresses, '$[' + CAST(@index as nvarchar(1)) + '].City')   AS City,
-                   JSON_VALUE(Addresses, '$[' + CAST(@index as nvarchar(1)) + '].Company') AS Company
+                   JSON_VALUE(Addresses, '$[' + CAST(@index as nvarchar(1)) + '].AddressType') AS AddressType
             FROM dbo.Person WHERE LastName = @LastName;
             SET @index = @index + 1;
         END;
@@ -56,7 +56,7 @@ internal class SqlStatements
             p.DateOfBirth,
             a.Street,
             a.City,
-            a.Company,
+            a.AddressType,
             ROW_NUMBER() OVER (PARTITION BY p.Id ORDER BY a.Street) AS AddressIndex
           FROM
             dbo.Person p
@@ -65,7 +65,7 @@ internal class SqlStatements
             WITH (
               Street NVARCHAR(MAX),
               City NVARCHAR(MAX),
-              Company NVARCHAR(MAX)
+              AddressType NVARCHAR(MAX)
             ) a
           WHERE
             p.LastName = @LastName
@@ -77,8 +77,24 @@ internal class SqlStatements
           pa.DateOfBirth,
           pa.Street,
           pa.City,
-          pa.Company
+          pa.AddressType
         FROM
           PersonAddresses pa;
+        """;
+
+    /// <summary>
+    /// Represents a SQL statement for inserting a new record into the <c>dbo.Person</c> table 
+    /// and retrieving the generated primary key.
+    /// </summary>
+    /// <remarks>
+    /// This SQL statement is used to insert a person's details, including their first name, 
+    /// last name, date of birth, and addresses (in JSON format), into the database. 
+    /// After the insertion, it retrieves the newly generated primary key using <c>scope_identity()</c>.
+    /// </remarks>
+    public static string DapperInsert =>
+        """
+        INSERT INTO dbo.Person (FirstName, LastName, DateOfBirth, Addresses)
+        VALUES (@FirstName, @LastName, @DateOfBirth, @Addresses);
+        SELECT CAST(scope_identity() AS int);
         """;
 }

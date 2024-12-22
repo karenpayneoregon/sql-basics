@@ -43,5 +43,4 @@ public partial class MainForm : Form
         PersonDataGridView.DataSource = person;
         AddressesDataGridView.DataSource = addresses;
     }
-
 }

@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Text.Json;
 using SqlServerGetJsonRaw.Classes;
+using SqlServerGetJsonRaw.Classes.Configuration;
 using SqlServerGetJsonRaw.Models;
 #pragma warning disable CS8618, CS9264
 
@@ -36,6 +38,12 @@ public partial class DapperForm : Form
 
         PersonDataGridView.DataSource = _bindingSource;
         AddressesDataGridView.DataSource = _bindingList.FirstOrDefault()!.Addresses;
+        AddressesDataGridView.ExpandColumns();
 
+    }
+
+    private void AddMockedPersonButton_Click(object sender, EventArgs e)
+    {
+        _dapperOperations.AddPersonMockup();
     }
 }
