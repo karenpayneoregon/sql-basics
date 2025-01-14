@@ -3,6 +3,9 @@ internal class SqlStatements
 {
     /// <summary>
     /// Gets the SQL query string that retrieves person addresses from the database.
+    /// 
+    /// ===> This is a bad design. <===
+    /// 
     /// </summary>
     /// <remarks>   
     /// The query iterates through a JSON array of address  es for each person, extracting

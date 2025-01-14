@@ -44,6 +44,12 @@ public partial class DapperForm : Form
 
     private void AddMockedPersonButton_Click(object sender, EventArgs e)
     {
-        _dapperOperations.AddPersonMockup();
+        //_dapperOperations.AddPersonMockup();
+
+var str =
+    """
+    first line;
+    also first line
+    """.ReplaceLineEndings("");
     }
 }

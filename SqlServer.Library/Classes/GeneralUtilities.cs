@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Diagnostics;
+using Dapper;
 using Microsoft.Data.SqlClient;
 using SqlServer.Library.Models;
 
@@ -7,17 +8,17 @@ namespace SqlServer.Library.Classes;
 
 public class GeneralUtilities
 {
-/// <summary>
-/// Checks if all tables in the database specified by the connection string are populated with records.
-/// </summary>
-/// <param name="connectionString">The connection string to the database.</param>
-/// <returns><c>true</c> if all tables have records; otherwise, <c>false</c>.</returns>
-public static bool TablesArePopulated(string connectionString)
-{
-    using var cn = new SqlConnection(connectionString);
-    using var cmd = new SqlCommand(
-        """
-               SELECT      t.name AS TableName,
+    /// <summary>
+    /// Checks if all tables in the database specified by the connection string are populated with records.
+    /// </summary>
+    /// <param name="connectionString">The connection string to the database.</param>
+    /// <returns><c>true</c> if all tables have records; otherwise, <c>false</c>.</returns>
+    public static bool TablesArePopulated(string connectionString)
+    {
+        using var cn = new SqlConnection(connectionString);
+        using var cmd = new SqlCommand(
+            """
+               SELECT     t.name AS TableName,
                           p.rows AS [RowCount]
                 FROM      sys.tables t
                INNER JOIN sys.partitions p
@@ -27,13 +28,16 @@ public static bool TablesArePopulated(string connectionString)
                         t.name;
                """, cn);
 
-    DataTable table = new();
-    cn.Open();
+        DataTable table = new();
+        cn.Open();
 
-    table.Load(cmd.ExecuteReader());
-    return table.AsEnumerable().All(row => row.Field<int>("[RowCount]") > 0);
+        table.Load(cmd.ExecuteReader());
+        return table.AsEnumerable().All(row => row.Field<int>("[RowCount]") > 0);
 
-}
+    }
+
+    private static string MasterConnectionString()
+        => "Data Source=.\\SQLEXPRESS;Initial Catalog=master;Integrated Security=True;Encrypt=False";
 
     /// <summary>
     /// Determine the database has records
@@ -42,13 +46,19 @@ public static bool TablesArePopulated(string connectionString)
     /// <returns>true if all tables have records</returns>
     public static bool ExpressDatabaseExists(string databaseName)
     {
-        using var cn = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=master;integrated security=True;Encrypt=False");
+        using var cn = new SqlConnection(MasterConnectionString());
         using var cmd = new SqlCommand($"SELECT DB_ID('{databaseName}'); ", cn);
-
         cn.Open();
         return cmd.ExecuteScalar() != DBNull.Value;
-
     }
+
+    public static bool ExpressDatabaseExists1(string databaseName)
+    {
+        using var cn = new SqlConnection(MasterConnectionString());
+        return cn.QuerySingleOrDefault<int?>("SELECT DB_ID(@DatabaseName);", 
+            new { DatabaseName = databaseName }).HasValue;
+    }
+
     /// <summary>
     /// Determine the database has records
     /// </summary>
@@ -117,12 +127,12 @@ public static bool TablesArePopulated(string connectionString)
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = "sqllocaldb", 
-                    Arguments = "i", 
-                    RedirectStandardOutput = true, 
-                    RedirectStandardError = true, 
-                    UseShellExecute = false, 
-                    CreateNoWindow = true 
+                    FileName = "sqllocaldb",
+                    Arguments = "i",
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
                 }
             };
 
@@ -247,7 +257,7 @@ public static bool TablesArePopulated(string connectionString)
             {
                 Debug.WriteLine($"{key}: {value}");
             }
-            
+
         }
 
         return item;

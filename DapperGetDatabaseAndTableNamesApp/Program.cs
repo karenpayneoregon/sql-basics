@@ -8,6 +8,7 @@ internal partial class Program
 {
     private static void Main()
     {
+        var result = GeneralUtilities.ExpressDatabaseExists("NorthWind2024");
         while (true)
         {
             Console.Clear();
