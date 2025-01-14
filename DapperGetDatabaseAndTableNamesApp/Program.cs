@@ -9,6 +9,7 @@ internal partial class Program
     private static void Main()
     {
         var result = GeneralUtilities.ExpressDatabaseExists("NorthWind2024");
+        var result1 = GeneralUtilities.ExpressDatabaseExists1("NorthWind2024");
         while (true)
         {
             Console.Clear();
