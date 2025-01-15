@@ -1,5 +1,13 @@
 ﻿namespace ProductsCategoriesApp1.Models;
 
+/// <summary>
+/// Represents a customer entity with details such as company information, contact details, 
+/// address, and associated country and contact type.
+/// </summary>
+/// <remarks>
+/// This class is used to model customer data, including relationships to associated entities 
+/// like <see cref="Contact"/>, <see cref="Country"/>, and <see cref="ContactType"/>.
+/// </remarks>
 public class Customer
 {
     public int CustomerIdentifier { get; set; }
