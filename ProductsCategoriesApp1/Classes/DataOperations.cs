@@ -6,8 +6,45 @@ using ProductsCategoriesApp1.Models;
 
 namespace ProductsCategoriesApp1.Classes;
 
+/// <summary>
+/// Provides data access operations for retrieving and managing customer and contact information.
+/// </summary>
+/// <remarks>
+/// This class contains methods that utilize Dapper to execute SQL queries for fetching data
+/// from the database. It includes functionality for retrieving customer details, contact information,
+/// and their associated relationships, such as contact types and devices.
+///
+/// NOTES:
+/// * There is no exception handling to keep focus on Dapper operations.
+/// * Recommend logging e.g. SeriLog to a file.
+/// </remarks>
+
 internal class DataOperations
 {
+    /// <summary>
+    /// Retrieves a collection of customer details, including associated contact, country, and contact type information.
+    /// </summary>
+    /// <remarks>
+    /// This method uses Dapper to execute a SQL query that joins multiple tables to fetch customer details
+    /// along with their related contact, country, and contact type data. The results are mapped into a dictionary
+    /// to ensure unique customer entries.
+    /// </remarks>
+    /// <returns>
+    /// A task representing the asynchronous operation. The task result contains an <see cref="IEnumerable{T}"/> 
+    /// of <see cref="Customer"/> objects with populated related data.
+    /// </returns>
+    /// <exception cref="SqlException">
+    /// Thrown when there is an issue executing the SQL query.
+    /// </exception>
+    /// <example>
+    /// <code>
+    /// var customers = (await DataOperations.GetCustomerDetails()).ToList();
+    /// foreach (var customer in customers)
+    /// {
+    ///     Console.WriteLine(customer.CompanyName);
+    /// }
+    /// </code>
+    /// </example>
     public static async Task<IEnumerable<Customer>> GetCustomerDetails()
     {
 

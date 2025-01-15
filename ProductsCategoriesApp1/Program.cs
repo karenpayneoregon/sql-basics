@@ -10,7 +10,6 @@ internal partial class Program
 
         var customers = (await DataOperations.GetCustomerDetails()).ToList();
         var singleContact = await DataOperations.GetContactByIdAsync(1);
-        Console.WriteLine(customers.Count);
         ExitPrompt();
     }
 }
