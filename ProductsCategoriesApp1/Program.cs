@@ -8,9 +8,9 @@ internal partial class Program
     {
         await Setup();
 
-        var result = DataOperations.GetCustomerDetails().ToList();
-        var contact = await DataOperations.GetContactByIdAsync(1);
-        Console.WriteLine(result.Count);
+        var customers = (await DataOperations.GetCustomerDetails()).ToList();
+        var singleContact = await DataOperations.GetContactByIdAsync(1);
+        Console.WriteLine(customers.Count);
         ExitPrompt();
     }
 }

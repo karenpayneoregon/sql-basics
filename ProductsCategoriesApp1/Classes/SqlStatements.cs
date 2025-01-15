@@ -1,7 +1,16 @@
 ﻿namespace ProductsCategoriesApp1.Classes;
 internal class SqlStatements
 {
-    public static string CustomerWithContacts() =>
+    /// <summary>
+    /// Represents a SQL query that retrieves customer details along with their associated contacts, 
+    /// countries, and contact types from the database.
+    /// </summary>
+    /// <remarks>
+    /// The query joins the <c>Customers</c>, <c>Contacts</c>, <c>Countries</c>, and <c>ContactType</c> tables 
+    /// to provide comprehensive customer information, including identifiers, names, addresses, 
+    /// contact details, and related metadata.
+    /// </remarks>
+    public static string CustomerWithContacts =>
         """
             SELECT CU.CustomerIdentifier,
                    CU.CompanyName,
@@ -33,4 +42,34 @@ internal class SqlStatements
                        AND C.ContactTypeIdentifier = CT.ContactTypeIdentifier;
         """;
 
+    /// <summary>
+    /// Gets the SQL query string to retrieve detailed information about a specific contact.
+    /// </summary>
+    /// <remarks>
+    /// The query joins the <c>Contacts</c>, <c>ContactType</c>, and <c>ContactDevices</c> tables
+    /// to fetch details such as contact's first name, last name, contact type, and associated devices.
+    /// </remarks>
+    /// <returns>
+    /// A SQL query string that includes placeholders for parameters, such as <c>@ContactId</c>.
+    /// </returns>
+    public static string GetContact => 
+        """
+        SELECT      C.ContactId,
+                    C.FirstName,
+                    C.LastName,
+                    C.ContactTypeIdentifier,
+                    CT.ContactTypeIdentifier AS CTIdentifier,
+                    CT.ContactTitle,
+                    CD.DeviceId,
+                    CD.ContactId AS CDContactId,
+                    CD.PhoneTypeIdentifier,
+                    CD.PhoneNumber
+        FROM        dbo.Contacts AS C
+        INNER JOIN  dbo.ContactType AS CT
+            ON C.ContactTypeIdentifier = CT.ContactTypeIdentifier
+        LEFT JOIN   dbo.ContactDevices AS CD
+            ON C.ContactId = CD.ContactId
+        WHERE       C.ContactId = @ContactId
+        """;
 }
+
