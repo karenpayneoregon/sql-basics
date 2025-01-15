@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend projects", "Frontend projects", "{3047B01C-561D-4A3F-A8EC-0930332D8A34}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Main code samples", "Main code samples", "{890D5B16-1421-4721-BCF8-2C1F6E8642DE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Main code samples 7 8 9", "Main code samples 7 8 9", "{890D5B16-1421-4721-BCF8-2C1F6E8642DE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlobalConnection", "GlobalConnection\GlobalConnection.csproj", "{C2F43E2A-2288-43ED-A0FA-FD583789CC51}"
 EndProject
