@@ -1,5 +1,6 @@
-﻿
-using ProductsCategoriesApp1.Classes;
+﻿using ProductsCategoriesApp1.Classes.Configuration;
+using SqlServer.Library.Classes;
+using DataOperations = ProductsCategoriesApp1.Classes.DataOperations;
 
 namespace ProductsCategoriesApp1;
 internal partial class Program
@@ -10,6 +11,7 @@ internal partial class Program
 
         var customers = (await DataOperations.GetCustomerDetails()).ToList();
         var singleContact = await DataOperations.GetContactByIdAsync(1);
+        var all = GeneralUtilities.TablesArePopulated1(DataConnections.Instance.MainConnection);
         ExitPrompt();
     }
 }

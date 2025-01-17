@@ -60,6 +60,10 @@
 		<PackageReference Include="Microsoft.Extensions.Options" Version="8.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\SqlServer.Library\SqlServer.Library.csproj" />
+	</ItemGroup>
+
 
 	<Target Name="MakeMyDir" AfterTargets="Build">
 		<MakeDir Directories="$(OutDir)LogFiles" />

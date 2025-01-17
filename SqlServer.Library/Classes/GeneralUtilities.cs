@@ -35,6 +35,30 @@ public class GeneralUtilities
         return table.AsEnumerable().All(row => row.Field<int>("[RowCount]") > 0);
 
     }
+    /// <summary>
+    /// Checks if all tables in the database specified by the connection string are populated with records.
+    /// </summary>
+    /// <param name="connectionString">The connection string to the database.</param>
+    /// <returns><c>true</c> if all tables have records; otherwise, <c>false</c>.</returns>
+    /// <remarks>Uses the Dapper library for querying the database.</remarks>
+    public static bool TablesArePopulated1(string connectionString)
+    {
+        const string query = 
+            """
+            SELECT t.name AS TableName,
+                   p.rows AS [RowCount]
+            FROM sys.tables t
+            INNER JOIN sys.partitions p
+                ON t.object_id = p.object_id
+            WHERE p.index_id IN (0, 1)
+            ORDER BY p.rows DESC, t.name;
+            """;
+
+        using var cn = new SqlConnection(connectionString);
+
+        var results = cn.Query(query).ToList();
+        return results.All(row => (int)row.RowCount > 0);
+    }
 
     /// <summary>
     /// Gets the connection string for the master database on the SQL Server Express instance.
