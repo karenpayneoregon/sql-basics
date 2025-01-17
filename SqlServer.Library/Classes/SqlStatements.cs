@@ -146,4 +146,16 @@ internal class SqlStatements
            AND TABLE_NAME <> 'sysdiagrams'
          ORDER BY TABLE_NAME;
          """;
+
+    public static string AllTablesPopulatedCheck =>
+        """
+        SELECT     t.name AS TableName,
+                   p.rows AS [RowCount]
+         FROM      sys.tables t
+        INNER JOIN sys.partitions p
+           ON t.object_id = p.object_id
+        WHERE      p.index_id IN ( 0, 1 )
+        ORDER BY p.rows DESC,
+                 t.name;
+        """;
 }

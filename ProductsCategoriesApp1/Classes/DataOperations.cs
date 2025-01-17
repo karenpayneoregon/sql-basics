@@ -71,6 +71,45 @@ internal class DataOperations
 
         return customers;
     }
+    /// <summary>
+    /// Retrieves a customer by their unique identifier, including related details such as contact, country, and contact type.
+    /// </summary>
+    /// <param name="id">The unique identifier of the customer to retrieve.</param>
+    /// <returns>
+    /// A <see cref="Customer"/> object containing the customer's details, or <c>null</c> if no customer is found.
+    /// </returns>
+    /// <remarks>
+    /// This method uses Dapper to execute a SQL query that retrieves customer information along with related entities.
+    /// The query results are mapped to a <see cref="Customer"/> object and its associated properties.
+    /// </remarks>
+    public static async Task<Customer> GetCustomer(int id)
+    {
+        using IDbConnection connection = new SqlConnection(DataConnections.Instance.MainConnection);
+        var customerDictionary = new Dictionary<int, Customer>();
+
+        var customers = await connection.QueryAsync<Customer, Contact, Country, ContactType, Customer>(
+            SqlStatements.GetCustomer,
+            (customer, contact, country, contactType) =>
+            {
+                if (!customerDictionary.TryGetValue(customer.CustomerIdentifier, out var existing))
+                {
+                    existing = customer;
+                    customerDictionary[customer.CustomerIdentifier] = existing;
+                }
+
+                existing.Contact = contact;
+                existing.Country = country;
+                existing.ContactType = contactType;
+
+                return existing;
+            },
+            new { CustomerIdentifier = id }, // Pass the id parameter here
+            splitOn: "ContactId,CountryIdentifier,ContactTypeIdentifier");
+
+
+        return customerDictionary.Values.FirstOrDefault();
+    }
+
 
     /// <summary>
     /// Retrieves a contact by its unique identifier asynchronously.

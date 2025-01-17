@@ -42,6 +42,39 @@ internal class SqlStatements
                        AND C.ContactTypeIdentifier = CT.ContactTypeIdentifier;
         """;
 
+    public static string GetCustomer =>
+        """
+        SELECT      CU.CustomerIdentifier,
+                    CU.CompanyName,
+                    CU.ContactId,
+                    CU.Street,
+                    CU.City,
+                    CU.PostalCode,
+                    CU.CountryIdentifier,
+                    CU.Phone,
+                    CU.Fax,
+                    CU.Region,
+                    CU.ModifiedDate,
+                    CU.ContactTypeIdentifier,
+                    C.ContactId,
+                    C.FirstName,
+                    C.LastName,
+                    C.ContactTypeIdentifier,
+                    CO.CountryIdentifier,
+                    CO.Name,
+                    CT.ContactTypeIdentifier,
+                    CT.ContactTitle
+        FROM        dbo.Customers AS CU
+        INNER JOIN  dbo.Contacts AS C
+            ON CU.ContactId = C.ContactId
+        INNER JOIN  dbo.Countries AS CO
+            ON CU.CountryIdentifier = CO.CountryIdentifier
+        INNER JOIN  dbo.ContactType AS CT
+            ON CU.ContactTypeIdentifier = CT.ContactTypeIdentifier
+               AND C.ContactTypeIdentifier = CT.ContactTypeIdentifier
+        WHERE       CU.CustomerIdentifier = @CustomerIdentifier;
+        """;
+
     /// <summary>
     /// Gets the SQL query string to retrieve detailed information about a specific contact.
     /// </summary>

@@ -10,8 +10,16 @@ internal partial class Program
         await Setup();
 
         var customers = (await DataOperations.GetCustomerDetails()).ToList();
+        var customer = await DataOperations.GetCustomer(1);
+
+
         var singleContact = await DataOperations.GetContactByIdAsync(1);
-        var all = GeneralUtilities.TablesArePopulated1(DataConnections.Instance.MainConnection);
+        var all = GeneralUtilities.TablesArePopulated1(
+            DataConnections.Instance.MainConnection);
+
+        var details = GeneralUtilities.TablesCount(
+            DataConnections.Instance.MainConnection);
+
         ExitPrompt();
     }
 }

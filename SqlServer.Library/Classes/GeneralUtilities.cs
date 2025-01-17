@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Dapper;
 using Microsoft.Data.SqlClient;
 using SqlServer.Library.Models;
+// ReSharper disable BuiltInTypeReferenceStyle
 
 namespace SqlServer.Library.Classes;
 
@@ -16,23 +17,13 @@ public class GeneralUtilities
     public static bool TablesArePopulated(string connectionString)
     {
         using var cn = new SqlConnection(connectionString);
-        using var cmd = new SqlCommand(
-            """
-               SELECT     t.name AS TableName,
-                          p.rows AS [RowCount]
-                FROM      sys.tables t
-               INNER JOIN sys.partitions p
-                  ON t.object_id = p.object_id
-               WHERE      p.index_id IN ( 0, 1 )
-               ORDER BY p.rows DESC,
-                        t.name;
-               """, cn);
+        using var cmd = new SqlCommand(SqlStatements.AllTablesPopulatedCheck, cn);
 
         DataTable table = new();
         cn.Open();
 
         table.Load(cmd.ExecuteReader());
-        return table.AsEnumerable().All(row => row.Field<int>("[RowCount]") > 0);
+        return table.AsEnumerable().All(row => row.Field<Int64>("RowCount") > 0);
 
     }
     /// <summary>
@@ -43,7 +34,21 @@ public class GeneralUtilities
     /// <remarks>Uses the Dapper library for querying the database.</remarks>
     public static bool TablesArePopulated1(string connectionString)
     {
-        const string query = 
+        using var cn = new SqlConnection(connectionString);
+
+        var results = cn.Query(SqlStatements.AllTablesPopulatedCheck).ToList();
+        return results.All(row => (int)row.RowCount > 0);
+    }
+
+    /// <summary>
+    /// Retrieves a list of tables from the database specified by the connection string, 
+    /// along with their respective row counts.
+    /// </summary>
+    /// <param name="connectionString">The connection string to the database.</param>
+    /// <returns>A list of <see cref="TableInfo"/> objects, each containing the name and row count of a table.</returns>
+    public static List<TableInfo> TablesCount(string connectionString)
+    {
+        const string query =
             """
             SELECT t.name AS TableName,
                    p.rows AS [RowCount]
@@ -56,8 +61,7 @@ public class GeneralUtilities
 
         using var cn = new SqlConnection(connectionString);
 
-        var results = cn.Query(query).ToList();
-        return results.All(row => (int)row.RowCount > 0);
+        return cn.Query<TableInfo>(query).ToList();
     }
 
     /// <summary>
