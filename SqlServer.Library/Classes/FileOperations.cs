@@ -19,10 +19,7 @@ public class FileOperations
             builder.AppendLine(groupItem.Key);
             foreach (var item in groupItem)
             {
-                if (Exclude.TableNameList.Contains(item.TableName))
-                {
-                    continue;
-                }
+                if (Exclude.TableNameList.Contains(item.TableName)) continue;
                 builder.AppendLine($"     {item.SchemaName}.{item.TableName}");
             }
         }

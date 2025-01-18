@@ -21,7 +21,7 @@ public class DataOperations
     }
 
     /// <summary>
-    /// Determine if a database exists
+    /// Determine if a database exists - using Dapper
     /// </summary>
     /// <param name="catalog">database name</param>
     /// <returns>If the catalog exists</returns>
@@ -44,10 +44,8 @@ public class DataOperations
     /// </summary>
     public static List<DataContainer> ReadDataContainers()
     {
-
         using var connection = new SqlConnection(ConnectionString());
         return connection.Query<DataContainer>(SqlStatements.GetDatabasesStatement).AsList();
-
     }
 
     /// <summary>
@@ -57,7 +55,6 @@ public class DataOperations
     {
         await using var connection = new SqlConnection(ConnectionString());
         return (await connection.QueryAsync<DataContainer>(SqlStatements.GetDatabasesStatement)).AsList();
-
     }
 
     /// <summary>
@@ -86,10 +83,8 @@ public class DataOperations
     /// </remarks>
     public static List<ViewContainer> ReadViews()
     {
-
         using var connection = new SqlConnection(ConnectionString());
         return connection.Query<ViewContainer>(SqlStatements.GetViewsStatement).AsList();
-
     }
 
     /// <summary>

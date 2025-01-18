@@ -84,14 +84,14 @@ public class JsonOperations
     }
 
     /// <summary>
-    /// Locate and return an <seealso cref="Item"/> by id
+    /// Locate and return a <seealso cref="Item"/> by id
     /// </summary>
     /// <param name="id">Identifier</param>
     /// <returns>Found item or null if not found</returns>
     public static Item Find(int id) => Items.Count > 0 ? Items.FirstOrDefault(x => x.Id == id) : null;
 
     /// <summary>
-    /// Remove an <seealso cref="Item"/> from the json file and items list
+    /// Remove a <seealso cref="Item"/> from the json file and items list
     /// </summary>
     /// <param name="item">Valid item</param>
     public static void Remove(Item item)
