@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using ProductsCategoriesApp1.Classes.Configuration;
 using System.Runtime.CompilerServices;
+using NorthCustomersToolGenerated.Classes.Configuration;
 
 // ReSharper disable once CheckNamespace
-namespace ProductsCategoriesApp1;
+namespace NorthCustomersToolGenerated;
 internal partial class Program
 {
     [ModuleInitializer]

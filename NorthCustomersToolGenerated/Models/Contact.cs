@@ -1,4 +1,4 @@
-﻿namespace ProductsCategoriesApp1.Models;
+﻿namespace NorthCustomersToolGenerated.Models;
 
 public class Contact
 {

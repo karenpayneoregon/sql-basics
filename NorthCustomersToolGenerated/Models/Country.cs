@@ -1,4 +1,4 @@
-﻿namespace ProductsCategoriesApp1.Models;
+﻿namespace NorthCustomersToolGenerated.Models;
 
 /// <summary>
 /// Represents a country entity with a unique identifier and a name.

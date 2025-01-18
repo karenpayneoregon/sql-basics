@@ -1,4 +1,4 @@
-﻿namespace ProductsCategoriesApp1.Classes;
+﻿namespace NorthCustomersToolGenerated.Classes;
 internal class SqlStatements
 {
     /// <summary>

@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ProductsCategoriesApp1.Models.Configuration;
+using NorthCustomersToolGenerated.Models.Configuration;
 
-namespace ProductsCategoriesApp1.Classes.Configuration;
+namespace NorthCustomersToolGenerated.Classes.Configuration;
 internal class ApplicationConfiguration
 {
     /// <summary>

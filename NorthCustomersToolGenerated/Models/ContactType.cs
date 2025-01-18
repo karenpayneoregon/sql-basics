@@ -1,4 +1,4 @@
-﻿namespace ProductsCategoriesApp1.Models;
+﻿namespace NorthCustomersToolGenerated.Models;
 
 /// <summary>
 /// Represents a type of contact, including its identifier and title.

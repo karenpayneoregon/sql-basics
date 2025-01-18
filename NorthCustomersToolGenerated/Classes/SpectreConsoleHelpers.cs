@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace ProductsCategoriesApp1.Classes;
+namespace NorthCustomersToolGenerated.Classes;
 public class SpectreConsoleHelpers
 {
     public static void ExitPrompt()

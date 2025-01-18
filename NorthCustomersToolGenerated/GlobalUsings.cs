@@ -2,4 +2,4 @@
 
 global using ConsoleHelperLibrary.Classes;
 global using Spectre.Console;
-global using static ProductsCategoriesApp1.Classes.SpectreConsoleHelpers;
+global using static NorthCustomersToolGenerated.Classes.SpectreConsoleHelpers;

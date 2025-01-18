@@ -1,10 +1,11 @@
 ﻿using SqlServer.Library.Classes;
-using static ProductsCategoriesApp1.Classes.Configuration.DataConnections;
-using DataOperations = ProductsCategoriesApp1.Classes.DataOperations;
+using static NorthCustomersToolGenerated.Classes.Configuration.DataConnections;
+using DataOperations = NorthCustomersToolGenerated.Classes.DataOperations;
 
-namespace ProductsCategoriesApp1;
+namespace NorthCustomersToolGenerated;
 internal partial class Program
 {
+
     static async Task Main(string[] args)
     {
         await Setup();

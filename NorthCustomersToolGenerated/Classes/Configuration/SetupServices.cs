@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
-using ProductsCategoriesApp1.Models.Configuration;
+using NorthCustomersToolGenerated.Models.Configuration;
 
-namespace ProductsCategoriesApp1.Classes.Configuration;
+namespace NorthCustomersToolGenerated.Classes.Configuration;
 internal class SetupServices
 {
     private readonly ConnectionStrings _options;

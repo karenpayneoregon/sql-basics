@@ -1,4 +1,4 @@
-﻿namespace ProductsCategoriesApp1.Models.Configuration;
+﻿namespace NorthCustomersToolGenerated.Models.Configuration;
 /// <summary>
 /// For application connection strings
 /// </summary>

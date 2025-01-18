@@ -1,4 +1,4 @@
-﻿namespace ProductsCategoriesApp1.Models;
+﻿namespace NorthCustomersToolGenerated.Models;
 
 /// <summary>
 /// Represents a customer entity with details such as company information, contact details, 

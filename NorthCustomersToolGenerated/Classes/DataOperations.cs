@@ -1,10 +1,10 @@
-﻿using Microsoft.Data.SqlClient;
-using System.Data;
+﻿using System.Data;
 using Dapper;
-using ProductsCategoriesApp1.Classes.Configuration;
-using ProductsCategoriesApp1.Models;
+using Microsoft.Data.SqlClient;
+using NorthCustomersToolGenerated.Classes.Configuration;
+using NorthCustomersToolGenerated.Models;
 
-namespace ProductsCategoriesApp1.Classes;
+namespace NorthCustomersToolGenerated.Classes;
 
 /// <summary>
 /// Provides data access operations for retrieving and managing customer and contact information.
