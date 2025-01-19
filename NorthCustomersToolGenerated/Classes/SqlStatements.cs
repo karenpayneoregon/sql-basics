@@ -1,4 +1,9 @@
 ﻿namespace NorthCustomersToolGenerated.Classes;
+
+/// <summary>
+/// Some developers may consider using stored procedures or views to encapsulate SQL queries.
+/// https://dev.to/karenpayneoregon/dapper-stored-procedure-tip-13j4
+/// </summary>
 internal class SqlStatements
 {
     /// <summary>
@@ -42,6 +47,14 @@ internal class SqlStatements
                        AND C.ContactTypeIdentifier = CT.ContactTypeIdentifier;
         """;
 
+    /// <summary>
+    /// Gets the SQL query string for retrieving a specific customer and their associated details,
+    /// including contact information, country, and contact type, based on the provided customer identifier.
+    /// </summary>
+    /// <remarks>
+    /// This query joins the <c>dbo.Customers</c>, <c>dbo.Contacts</c>, <c>dbo.Countries</c>, and <c>dbo.ContactType</c> tables
+    /// to fetch comprehensive customer information. It requires the <c>@CustomerIdentifier</c> parameter to filter the results.
+    /// </remarks>
     public static string GetCustomer =>
         """
         SELECT      CU.CustomerIdentifier,

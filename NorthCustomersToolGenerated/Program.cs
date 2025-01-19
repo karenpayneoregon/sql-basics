@@ -1,4 +1,5 @@
-﻿using SqlServer.Library.Classes;
+﻿using System.Diagnostics;
+using SqlServer.Library.Classes;
 using static NorthCustomersToolGenerated.Classes.Configuration.DataConnections;
 using DataOperations = NorthCustomersToolGenerated.Classes.DataOperations;
 
@@ -8,6 +9,7 @@ internal partial class Program
 
     static async Task Main(string[] args)
     {
+
         await Setup();
 
         var customers = (await DataOperations.GetCustomerDetails()).ToList();
@@ -15,10 +17,6 @@ internal partial class Program
         
         var singleContact = await DataOperations.GetContactByIdAsync(1);
 
-        var all = GeneralUtilities.TablesArePopulated1(Instance.MainConnection);
-
-        var details = GeneralUtilities.TablesCount(Instance.MainConnection);
-
-        ExitPrompt();
+        Debugger.Break(); // use the local window to examine above
     }
 }
