@@ -10,4 +10,4 @@ Source code where the the code in `NorthCustomersToolGenerated.Classes.DataOpera
 - Run the project.
 - Place breakpoint on the line in Program Main method and examine results in the [local window](https://learn.microsoft.com/en-us/visualstudio/debugger/autos-and-locals-windows?view=vs-2022).
 
-![D1](assets/d1.png)
+![diagram](assets/d1.png)
