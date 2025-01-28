@@ -36,7 +36,7 @@ public class GeneralUtilities
     {
         using var cn = new SqlConnection(connectionString);
 
-        var results = cn.Query(SqlStatements.AllTablesPopulatedCheck).ToList();
+        List<dynamic> results = cn.Query(SqlStatements.AllTablesPopulatedCheck).ToList();
         return results.All(row => (int)row.RowCount > 0);
     }
 
@@ -136,6 +136,9 @@ public class GeneralUtilities
     /// <returns>The <see cref="SqlConnectionEncryptOption"/> indicating the encryption setting.</returns>
     public static SqlConnectionEncryptOption EncryptSetting(string connectionString)
         => new SqlConnectionStringBuilder(connectionString).Encrypt;
+
+    public static bool IntegratedSecurity(string connectionString)
+        => new SqlConnectionStringBuilder(connectionString).IntegratedSecurity;
 
     /// <summary>
     /// Checks if the LocalDB instance "MSSQLLocalDB" is available on the system.

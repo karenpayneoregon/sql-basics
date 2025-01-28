@@ -208,10 +208,8 @@ public class PersonRepository : IPerson
         await cn.ExecuteAsync("DBCC CHECKIDENT (Person, RESEED, 0)");
     }
 
-    public async Task<int> Count()
-    {
-        return await _cn.ExecuteScalarAsync<int>(SqlStatements.CountOfPeople);
-    }
+    public async Task<int> Count() => 
+        await _cn.ExecuteScalarAsync<int>(SqlStatements.CountOfPeople);
 
     #endregion
 }

@@ -1,7 +1,9 @@
 ﻿using System.Data;
+using Dapper;
 using InsertNewRecordApp.Extensions;
 using InsertNewRecordApp.Models;
 using Microsoft.Data.SqlClient;
+using Serilog;
 
 namespace InsertNewRecordApp.Classes;
 
@@ -23,7 +25,7 @@ public partial class DataOperations
     /// <returns></returns>
     public static async Task<(bool success, Exception exception)> AddRange(List<Person> list)
     {
-        var ( _, sqlException) = await CanConnect();
+        var (_, sqlException) = await CanConnect();
         if (sqlException is not null)
         {
             return (false, sqlException);
@@ -124,7 +126,7 @@ public partial class DataOperations
         await cn.OpenAsync();
 
         person.Id = Convert.ToInt32(await cmd.ExecuteScalarAsync());
-        
+
     }
 
     /// <summary>
@@ -138,7 +140,7 @@ public partial class DataOperations
             await using SqlConnection cn = new(ConnectionString());
             await using SqlCommand cmd = new()
             {
-                Connection = cn, 
+                Connection = cn,
                 CommandText = SqlStatements.UpdatePerson
             };
 
@@ -192,38 +194,69 @@ public partial class DataOperations
 
 }
 
+/// <summary>
+/// https://learn.microsoft.com/en-us/answers/questions/2150026/sqldatareader-error-invalid-attempt-to-read-when-n
+/// </summary>
 public class Demo
 {
-    public static async Task<Person> Get(int id)
+    /// <summary>
+    /// Generally read from appsettings.json
+    /// </summary>
+    private static readonly string _connectionString =
+        """
+        Data Source=.\SQLEXPRESS;
+        Initial Catalog=NorthWind2024;
+        Integrated Security=True;Encrypt=False
+        """;
+
+    public static async Task<int> GetCountConventional()
     {
-        await using SqlConnection cn = new("TODO");
-        await using SqlCommand cmd = new()
+        try
         {
-            Connection = cn,
-            CommandText = """
-                          SELECT Id,
-                                 FirstName,
-                                 LastName,
-                                 BirthDate
-                          FROM dbo.Person
-                          WHERE Id = @Id;
-                          """
-        };
+            await using SqlConnection cn = new(_connectionString);
+            await using SqlCommand cmd = new()
+            {
+                Connection = cn,
+                CommandText =
+                    """
+                    SELECT Max(Len(CompanyName))
+                    FROM NorthWind2024.dbo.Customers
+                    """
+            };
 
-        cmd.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+            await cn.OpenAsync();
 
-        await cn.OpenAsync();
-        SqlDataReader reader = await cmd.ExecuteReaderAsync();
-        await reader.ReadAsync();
-
-        Person person = new()
+            var result = await cmd.ExecuteScalarAsync();
+            return result != null ? Convert.ToInt32(result) : 0;
+        }
+        catch (Exception ex)
         {
-            Id = id,
-            FirstName = await reader.GetStringAsync(1),
-            LastName = await reader.GetStringAsync(2),
-            BirthDate = await reader.GetDateOnlyAsync(3)
-        };
+            // uses SeriLog
+            Log.Error(ex, "Error occurred while getting the count.");
+            return -1;
+        }
+    }
+    public static async Task<int> GetCountDapper()
+    {
+        try
+        {
+            const string query =
+                """
+            SELECT Max(Len(CompanyName))
+            FROM NorthWind2024.dbo.Customers
+            """;
 
-        return person;
+            await using SqlConnection cn = new(_connectionString);
+
+            var result = await cn.ExecuteScalarAsync<int?>(query);
+
+            return result ?? 0;
+        }
+        catch (Exception ex)
+        {
+            // uses SeriLog
+            Log.Error(ex, "Error occurred while getting the count.");
+            return -1;
+        }
     }
 }
