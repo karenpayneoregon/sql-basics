@@ -1,8 +1,12 @@
 using System.ComponentModel;
 using System.Diagnostics;
+using Microsoft.VisualBasic.Logging;
 using SqlServerLibrary.Classes;
 using SqlServerLibrary.Models;
 using SqlServerTableRulesApp.Extensions;
+using Log = Serilog.Log;
+
+// ReSharper disable AsyncVoidMethod
 
 namespace SqlServerTableRulesApp;
 
@@ -40,10 +44,21 @@ public partial class Form1 : Form
     {
         TableService service = new();
 
-        _bindingList = new BindingList<TableConstraints>(await service.GetAllTableConstraints(DatabaseNamesComboBox.Text));
-        _bindingSource.DataSource = _bindingList;
-        dataGridView1.DataSource = _bindingSource;
-        dataGridView1.ExpandColumns();
+        try
+        {
+            _bindingList = new BindingList<TableConstraints>(
+                await service.GetAllTableConstraints(DatabaseNamesComboBox.Text));
+            
+            _bindingSource.DataSource = _bindingList;
+            dataGridView1.DataSource = _bindingSource;
+
+            dataGridView1.ExpandColumns();
+        }
+        catch (Exception exception)
+        {
+            Log.Error(exception, 
+                $"{nameof(GetRulesButton_Click)} failed to get rules for selected database.");
+        }
     }
 
     private void CurrentButton_Click(object sender, EventArgs e)
