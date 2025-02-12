@@ -22,7 +22,7 @@ internal partial class Program
 
         await using var context = new WineContext();
 
-        CancellationTokenSource cancellationTokenSource = new(TimeSpan.FromSeconds(2));
+        CancellationTokenSource cancellationTokenSource = new(TimeSpan.FromSeconds(5));
 
         var success = context.CanConnectAsync(cancellationTokenSource.Token);
         if (success == false)

@@ -1,5 +1,6 @@
 ﻿using EnumHasConversion.Data;
 using EnumHasConversion.Models;
+using System.Text.Json;
 using static EnumHasConversion.Classes.SpectreConsoleHelpers;
 
 namespace EnumHasConversion.Classes;
@@ -45,10 +46,10 @@ public class WineOperations
 
         LineSeparator("[white]Grouped 2[/]");
 
-        foreach (KeyValuePair<WineType, List<Wine>> kvp in allWinesGrouped2)
+        foreach (var (wineType, wineList) in allWinesGrouped2)
         {
-            AnsiConsole.MarkupLine($"[cyan]{kvp.Key}[/]");
-            foreach (var wine in kvp.Value)
+            AnsiConsole.MarkupLine($"[cyan]{wineType}[/]");
+            foreach (var wine in wineList)
             {
                 Console.WriteLine($"\t{wine.WineId,-5}{wine.Name}");
             }
@@ -90,4 +91,57 @@ public class WineOperations
         }
 
     }
+
+    #region Added by GitHub Copilot - Karen added static and SerializerOptions
+
+    /// <summary>
+    /// Serialize the list of wines to a JSON string
+    /// </summary>
+    /// <param name="wines">List of wines</param>
+    /// <returns>JSON string</returns>
+    public static string SerializeWines(List<Wine> wines)
+    {
+        return JsonSerializer.Serialize(wines, SerializerOptions);
+    }
+
+    /// <summary>
+    /// Save the serialized JSON string to a file
+    /// </summary>
+    /// <param name="json">JSON string</param>
+    /// <param name="filePath">File path to save the JSON string</param>
+    public static void SaveJsonToFile(string json, string filePath)
+    {
+        File.WriteAllText(filePath, json);
+    }
+
+    /// <summary>
+    /// Read the JSON data from a file and deserialize it into a list of wines
+    /// </summary>
+    /// <param name="filePath">File path to read the JSON string from</param>
+    /// <returns>List of wines</returns>
+    public static List<Wine>? ReadJsonFromFile(string filePath)
+    {
+        var json = File.ReadAllText(filePath);
+        return DeserializeWines(json);
+    }
+
+    /// <summary>
+    /// Deserialize a JSON string to a list of wines
+    /// </summary>
+    /// <param name="json">JSON string</param>
+    /// <returns>List of wines</returns>
+    public static List<Wine>? DeserializeWines(string json)
+    {
+        return JsonSerializer.Deserialize<List<Wine>>(json);
+    }
+
+    #endregion
+
+    /// <summary>
+    /// Gets the JSON serializer options used for serializing and deserializing wine data.
+    /// </summary>
+    /// <value>
+    /// A <see cref="JsonSerializerOptions"/> instance configured with specific settings, such as indented formatting.
+    /// </value>
+    public static JsonSerializerOptions SerializerOptions => new() { WriteIndented = true };
 }
