@@ -173,6 +173,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AI Generated", "AI Generate
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NorthCustomersToolGenerated", "NorthCustomersToolGenerated\NorthCustomersToolGenerated.csproj", "{2876DBB5-6921-4B2D-89BE-906404E6FE76}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayneServiceLibrary", "PayneServiceLibrary\PayneServiceLibrary.csproj", "{293C3D8B-C190-F0B3-9A20-6D91835D87FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -423,6 +425,10 @@ Global
 		{2876DBB5-6921-4B2D-89BE-906404E6FE76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2876DBB5-6921-4B2D-89BE-906404E6FE76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2876DBB5-6921-4B2D-89BE-906404E6FE76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{293C3D8B-C190-F0B3-9A20-6D91835D87FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{293C3D8B-C190-F0B3-9A20-6D91835D87FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{293C3D8B-C190-F0B3-9A20-6D91835D87FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{293C3D8B-C190-F0B3-9A20-6D91835D87FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -493,6 +499,7 @@ Global
 		{BB982C92-2B08-4F38-9F1C-26ADA0492911} = {3047B01C-561D-4A3F-A8EC-0930332D8A34}
 		{01CE2009-CCAA-43D7-8652-F724B542CF04} = {F598BDCC-EF45-42AA-859D-E2CE1462731C}
 		{2876DBB5-6921-4B2D-89BE-906404E6FE76} = {6ABBFFBA-9737-43A3-8059-F831ED7DEC1B}
+		{293C3D8B-C190-F0B3-9A20-6D91835D87FB} = {FBF6715D-FC48-443C-A94D-763460A6314C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}

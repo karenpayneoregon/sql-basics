@@ -6,7 +6,18 @@ A basic code sample on working with [enumerations](https://learn.microsoft.com/e
 
 ## Written 
 
-With NET8, EF Core 8
+- With NET8, EF Core 8
+- 02/2025 NET9
+
+## PayneServiceLibrary
+
+This is a class library provides code to determine if the database exists and if not create it using appsetting.json. 
+
+```json
+  "EntityConfiguration": {
+    "CreateNew": true
+  }
+```
 
 # Tables
 

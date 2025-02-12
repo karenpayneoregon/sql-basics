@@ -2,16 +2,25 @@
 using EnumHasConversion.Data;
 using EnumHasConversion.Extensions;
 using EnumHasConversion.Models;
-
+using PayneServiceLibrary;
+using PayneServiceLibrary.Classes.Configuration;
 using static EnumHasConversion.Classes.SpectreConsoleHelpers;
 
 namespace EnumHasConversion;
 
 internal partial class Program
 {
-    static void Main(string[] args)
+    /// <summary>
+    /// This method initializes the application by setting up the necessary configurations, 
+    /// connecting to the database, and performing operations such as creating or populating 
+    /// the database if needed. It also demonstrates retrieving and processing wine data 
+    /// and running examples.
+    /// </summary>
+    private static async Task Main()
     {
-        using var context = new WineContext();
+        await MainConfiguration.Setup();
+
+        await using var context = new WineContext();
 
         CancellationTokenSource cancellationTokenSource = new(TimeSpan.FromSeconds(2));
 
@@ -19,9 +28,18 @@ internal partial class Program
         if (success == false)
         {
             AnsiConsole.MarkupLine("[cyan]Creating and populating database[/]");
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
-            Console.Clear();
+            if (EntitySettings.Instance.CreateNew)
+            {
+                await context.Database.EnsureDeletedAsync(cancellationTokenSource.Token);
+                await context.Database.EnsureCreatedAsync(cancellationTokenSource.Token);
+                Console.Clear();
+            }
+
+        }
+        else
+        {
+            AnsiConsole.MarkupLine("[cyan]Using existing database[/]");
+            Console.WriteLine();
         }
 
         List<Wine> redWines = WineOperations.GetWinesByType(WineType.Red);
@@ -29,5 +47,6 @@ internal partial class Program
         WineOperations.RunExamples();
 
         ExitPrompt();
+
     }
 }
