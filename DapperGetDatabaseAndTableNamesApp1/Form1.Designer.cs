@@ -83,6 +83,7 @@ partial class Form1
         ResultsTextBox.Location = new Point(0, 0);
         ResultsTextBox.Multiline = true;
         ResultsTextBox.Name = "ResultsTextBox";
+        ResultsTextBox.ScrollBars = ScrollBars.Vertical;
         ResultsTextBox.Size = new Size(800, 382);
         ResultsTextBox.TabIndex = 1;
         // 

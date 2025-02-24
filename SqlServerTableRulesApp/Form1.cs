@@ -48,7 +48,7 @@ public partial class Form1 : Form
         {
             _bindingList = new BindingList<TableConstraints>(
                 await service.GetAllTableConstraints(DatabaseNamesComboBox.Text));
-            
+
             _bindingSource.DataSource = _bindingList;
             dataGridView1.DataSource = _bindingSource;
 
@@ -56,7 +56,7 @@ public partial class Form1 : Form
         }
         catch (Exception exception)
         {
-            Log.Error(exception, 
+            Log.Error(exception,
                 $"{nameof(GetRulesButton_Click)} failed to get rules for selected database.");
         }
     }

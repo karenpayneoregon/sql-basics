@@ -13,7 +13,8 @@ namespace SqlServer.Library.Classes;
 internal class SqlStatements
 {
     /// <summary>
-    /// Used to return all foreign keys with rules for a database
+    /// Retrieves all foreign keys and their associated rules for a database.
+    /// Each rule specifies the behavior for updates and deletions.
     /// </summary>
     public static string GetForeignKeysWithRules = 
         """

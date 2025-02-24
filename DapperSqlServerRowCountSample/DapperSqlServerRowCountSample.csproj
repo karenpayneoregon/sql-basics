@@ -19,9 +19,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Dapper" Version="2.1.66" />
-		<!--<PackageReference Include="Dommel" Version="3.3.4" />-->
-		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
 		<PackageReference Include="ConfigurationLibrary" Version="1.0.6" />
 	</ItemGroup>
 
@@ -39,6 +36,15 @@
 		</None>
 	</ItemGroup>
 
+	<!--<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+	</ItemGroup>-->
+
+	<ItemGroup>
+		<PackageReference Include="Dapper" Version="2.1.66" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.2" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="9.0.2" />
@@ -49,10 +55,6 @@
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.2" />
 		<PackageReference Include="Microsoft.Extensions.Options" Version="9.0.2" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\SqlServer.Library\SqlServer.Library.csproj" />
 	</ItemGroup>
 
 

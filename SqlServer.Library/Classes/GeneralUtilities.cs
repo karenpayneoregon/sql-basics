@@ -65,6 +65,44 @@ public class GeneralUtilities
     }
 
     /// <summary>
+    /// Asynchronously retrieves row count information for the specified tables in the database.
+    /// </summary>
+    /// <param name="connectionString">The connection string to the database.</param>
+    /// <param name="tableNames">An array of table names for which to retrieve row count information.</param>
+    /// <returns>
+    /// A task representing the asynchronous operation. The task result contains a list of <see cref="TableInfo"/> objects,
+    /// each representing a table with its schema, name, and row count.
+    /// </returns>
+    /// <remarks>
+    /// This method queries the database using Dapper to fetch row count details for the specified tables.
+    /// </remarks>
+    /// <exception cref="SqlException">Thrown when there is an issue connecting to or querying the database.</exception>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="connectionString"/> or <paramref name="tableNames"/> is null.</exception>
+    public static async Task<List<TableInfo>> GetTableRowCountsAsync(string connectionString,params string[] tableNames)
+    {
+        
+        IDbConnection cn = new SqlConnection(connectionString);
+
+        const string sql =
+            """
+            SELECT 
+                TableSchema = s.name,
+                Name = t.name,
+                [RowCount] = p.rows
+            FROM sys.tables t
+            INNER JOIN sys.schemas s ON t.schema_id = s.schema_id
+            INNER JOIN sys.indexes i ON t.object_id = i.object_id
+            INNER JOIN sys.partitions p ON i.object_id = p.object_id AND i.index_id = p.index_id
+            WHERE t.is_ms_shipped = 0
+            AND t.name IN @TableNames
+            GROUP BY t.name, s.name, p.rows
+            ORDER BY s.name, t.name;
+            """;
+
+        return (await cn.QueryAsync<TableInfo>(sql, new { TableNames = tableNames })).ToList();
+    }
+
+    /// <summary>
     /// Gets the connection string for the master database on the SQL Server Express instance.
     /// </summary>
     /// <returns>A connection string for the master database.</returns>

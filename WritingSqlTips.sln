@@ -175,6 +175,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NorthCustomersToolGenerated
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayneServiceLibrary", "PayneServiceLibrary\PayneServiceLibrary.csproj", "{293C3D8B-C190-F0B3-9A20-6D91835D87FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperSqlServerRowCountSample", "DapperSqlServerRowCountSample\DapperSqlServerRowCountSample.csproj", "{B7840BF4-625D-45B6-AC71-652336F5C600}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -429,6 +431,10 @@ Global
 		{293C3D8B-C190-F0B3-9A20-6D91835D87FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{293C3D8B-C190-F0B3-9A20-6D91835D87FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{293C3D8B-C190-F0B3-9A20-6D91835D87FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7840BF4-625D-45B6-AC71-652336F5C600}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7840BF4-625D-45B6-AC71-652336F5C600}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7840BF4-625D-45B6-AC71-652336F5C600}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7840BF4-625D-45B6-AC71-652336F5C600}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -500,6 +506,7 @@ Global
 		{01CE2009-CCAA-43D7-8652-F724B542CF04} = {F598BDCC-EF45-42AA-859D-E2CE1462731C}
 		{2876DBB5-6921-4B2D-89BE-906404E6FE76} = {6ABBFFBA-9737-43A3-8059-F831ED7DEC1B}
 		{293C3D8B-C190-F0B3-9A20-6D91835D87FB} = {FBF6715D-FC48-443C-A94D-763460A6314C}
+		{B7840BF4-625D-45B6-AC71-652336F5C600} = {0D457154-6C4B-4009-8AA7-A30AFB4BE4D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}
