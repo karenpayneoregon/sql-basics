@@ -40,6 +40,9 @@ internal partial class Program
     /// </remarks>
     private static async Task WriteRecordCountsToFile()
     {
+        
+        PrintCyan();
+
         await File.WriteAllTextAsync(
             $"{InitialCatalogFromConnectionString(DataConnections.Instance.MainConnection)}.json", 
             await GeneralUtilities.GetRecordCountAsJson(
