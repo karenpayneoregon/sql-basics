@@ -2,6 +2,7 @@
 using System.Data;
 using Dapper;
 using DapperSqlServerRowCountSample.Models;
+using System.Text.Json;
 
 namespace DapperSqlServerRowCountSample.Classes;
 
@@ -86,20 +87,79 @@ class GeneralUtilities
 
         const string sql =
             """
-                SELECT 
-                    [Schema] = s.name,
-                    Name = t.name,
-                    [RowCount] = p.rows
-                FROM sys.tables t
-                INNER JOIN sys.schemas s ON t.schema_id = s.schema_id
-                INNER JOIN sys.indexes i ON t.object_id = i.object_id
-                INNER JOIN sys.partitions p ON i.object_id = p.object_id AND i.index_id = p.index_id
-                WHERE t.is_ms_shipped = 0
-                AND t.name IN @TableNames
-                GROUP BY t.name, s.name, p.rows
-                ORDER BY s.name, t.name;
+            SELECT 
+                [Schema] = s.name,
+                Name = t.name,
+                [RowCount] = p.rows
+            FROM sys.tables t
+            INNER JOIN sys.schemas s ON t.schema_id = s.schema_id
+            INNER JOIN sys.indexes i ON t.object_id = i.object_id
+            INNER JOIN sys.partitions p ON i.object_id = p.object_id AND i.index_id = p.index_id
+            WHERE t.is_ms_shipped = 0
+            AND t.name IN @TableNames
+            GROUP BY t.name, s.name, p.rows
+            ORDER BY s.name, t.name;
             """;
 
         return (await cn.QueryAsync<TableInfo>(sql, new { TableNames = tableNames })).ToList();
     }
+
+    /// <summary>
+    /// Retrieves the row counts for the specified tables in a SQL Server database
+    /// and returns the result as a JSON-formatted string.
+    /// </summary>
+    /// <param name="connectionString">
+    /// The connection string used to connect to the SQL Server database.
+    /// </param>
+    /// <param name="tableNames">
+    /// An array of table names for which to retrieve row counts.
+    /// </param>
+    /// <returns>
+    /// A JSON-formatted string containing the schema, table name, and row count
+    /// for each specified table.
+    /// </returns>
+    /// <remarks>
+    /// This method queries the database for row counts of the specified tables
+    /// and serializes the result into a JSON string using <see cref="System.Text.Json.JsonSerializer"/>.
+    /// </remarks>
+    /// <exception cref="System.ArgumentNullException">
+    /// Thrown if <paramref name="connectionString"/> or <paramref name="tableNames"/> is <c>null</c>.
+    /// </exception>
+    /// <exception cref="SqlException">
+    /// Thrown if there is an issue executing the SQL query.
+    /// </exception>
+    /// <example>
+    /// The following example demonstrates how to use this method:
+    /// <code>
+    /// string json = await GeneralUtilities.GetRecordCountAsJson(
+    ///     "YourConnectionString",
+    ///     new[] { "Table1", "Table2" });
+    /// Console.WriteLine(json);
+    /// </code>
+    /// </example>
+    public static async Task<string> GetRecordCountAsJson(string connectionString, string[] tableNames)
+    {
+        const string sql =
+            """
+            SELECT 
+                [Schema] = s.name,
+                Name = t.name,
+                [RowCount] = p.rows
+            FROM sys.tables t
+            INNER JOIN sys.schemas s ON t.schema_id = s.schema_id
+            INNER JOIN sys.indexes i ON t.object_id = i.object_id
+            INNER JOIN sys.partitions p ON i.object_id = p.object_id AND i.index_id = p.index_id
+            WHERE t.is_ms_shipped = 0
+            AND t.name IN @TableNames
+            GROUP BY t.name, s.name, p.rows
+            ORDER BY s.name, t.name;
+            """;
+
+        await using var cn = new SqlConnection(connectionString);
+        var result = await cn.QueryAsync(sql, new { TableNames = tableNames });
+
+        return JsonSerializer.Serialize(result, JsonSerializerOptions);
+    }
+
+    private static JsonSerializerOptions JsonSerializerOptions => new() { WriteIndented = true };
 }

@@ -23,8 +23,36 @@ internal partial class Program
         await GetRowCountsForTables();
         await GetRowCountsForSpecificTables();
 
+        await WriteRecordCountsToFile();
+
+
         ExitPrompt();
 
+    }
+
+    /// <summary>
+    /// Writes the record counts of specified database tables to a JSON file.
+    /// </summary>
+    /// <remarks>
+    /// The method retrieves the row counts for the specified tables in the database
+    /// and writes the data to a JSON file. The file name is derived from the initial catalog
+    /// of the database connection string.
+    /// </remarks>
+    private static async Task WriteRecordCountsToFile()
+    {
+        await File.WriteAllTextAsync(
+            $"{InitialCatalogFromConnectionString(DataConnections.Instance.MainConnection)}.json", 
+            await GeneralUtilities.GetRecordCountAsJson(
+                DataConnections.Instance.MainConnection,
+                
+                [
+                    "Categories", 
+                    "ContactDevices", 
+                    "ContactType", 
+                    "Countries", 
+                    "PhoneType"
+                ])
+            );
     }
 
     /// <summary>
