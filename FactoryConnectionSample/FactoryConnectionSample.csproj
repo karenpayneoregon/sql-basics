@@ -8,33 +8,40 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="DatbaseScripts\CreatePopulate.sql" />
-	  <None Remove="DatbaseScripts\Impersonation.sql" />
 	  <None Remove="readme.md" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Content Include="assets\csharp.ico" />
-	  <Content Include="DatbaseScripts\CreatePopulate.sql" />
-	  <Content Include="DatbaseScripts\Impersonation.sql" />
 	  <Content Include="readme.md" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="ConfigurationLibrary" Version="1.0.6" />
+		<PackageReference Include="ConsoleConfigurationLibrary" Version="1.0.0.10" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="ConsoleConfigurationLibrary.Classes" Alias="Config" />
+	</ItemGroup>
+
 
 	<ItemGroup>
 		<PackageReference Include="ConsoleHelperLibrary" Version="1.0.2" />
 	</ItemGroup>
 
+
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
 		<PackageReference Include="Dapper" Version="2.1.66" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Spectre.Console" Version="0.46.0" />
+		<PackageReference Include="Spectre.Console" Version="0.49.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ConnectionsLibrary\ConnectionsLibrary.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

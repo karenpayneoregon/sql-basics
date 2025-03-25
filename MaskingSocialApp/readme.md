@@ -2,14 +2,14 @@
 
 An example for SQL-Server [Dynamic data masking](https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver16).
 
-The code does not demo data masking, to try out data masking
 
-- First open CreateAndPopulate.sql
-    - Alter the database path
-    - Execute the script
-- Open Impersonations.sql
-    - Run the statements
+## Configuration
 
-Result should look like
+The database resides under `.\SQLEXPRESS` with the connection string in `appsettings.json`, change the connection string to match your database server.
 
-![Masking](assets/Masking.png)
+
+## Create the database
+
+- Create a new database named `ComputedSample4`
+- Under the folder `DatabaseScripts`
+    - Run `CreatePopulateWithUser.sql`

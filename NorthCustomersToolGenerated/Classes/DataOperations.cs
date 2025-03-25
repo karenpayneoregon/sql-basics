@@ -67,10 +67,13 @@ internal class DataOperations
 
                 return existing;
             },
-            splitOn: "ContactId,CountryIdentifier,ContactTypeIdentifier");
+            splitOn: $"{nameof(Customer.ContactId)}," +
+                     $"{nameof(Customer.CountryIdentifier)}," +
+                     $"{nameof(ContactType.ContactTypeIdentifier)}");
 
         return customers;
     }
+
     /// <summary>
     /// Retrieves a customer by their unique identifier, including related details such as contact, country, and contact type.
     /// </summary>

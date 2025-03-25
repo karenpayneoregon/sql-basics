@@ -14,4 +14,5 @@ public partial class Taxpayer
     public string LastName { get; set; }
 
     public string SocialSecurityNumber { get; set; }
+    public string PhoneNumber { get; set; }
 }

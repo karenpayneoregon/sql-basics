@@ -1,18 +1,33 @@
 ﻿using System.Net.Http.Json;
-using MaskingSocialApp.Data;
+using MaskingSocialApp.Classes;
+
 
 namespace MaskingSocialApp;
 
 internal partial class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
-        using (var context = new Context())
+        AnsiConsole.MarkupLine("[cyan]SSN            Phone[/]");
+        var maskedList = await DapperOperations.GetTaxpayersAsNonPrivilegedUserAsync();
+
+        for (var index = 0; index < 5; index++)
         {
-            var list = context.Taxpayer.ToList();
-            AnsiConsole.MarkupLine("[yellow]Hello[/]");
+            Console.WriteLine($"{maskedList[index].SocialSecurityNumber, -15}{maskedList[index].PhoneNumber}");
         }
 
+        Console.WriteLine();
+
+        var unmaskedList = await DapperOperations.GetTaxpayersAsync();
+
+        for (var index = 0; index < 5; index++)
+        {
+            Console.WriteLine($"{unmaskedList[index].SocialSecurityNumber,-15}{unmaskedList[index].PhoneNumber}");
+        }
+
+        Console.WriteLine();
+
+        Console.WriteLine("Done");
         Console.ReadLine();
     }
 }
