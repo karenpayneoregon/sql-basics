@@ -49,25 +49,34 @@ internal class Operations
 
         await FileOperations.WriteToFileAsync(grouped);
 
-        foreach (var groupItem in grouped.Where(groupItem => !Exclude.DatabaseNameList.Contains(groupItem.Key)))
+        var serverName = Utilities.ServerName();
+        var excludeDatabaseNames = Exclude.DatabaseNameList;
+        var excludeTableNames = Exclude.TableNameList;
+
+        foreach (var groupItem in grouped)
         {
+            if (excludeDatabaseNames.Contains(groupItem.Key))
+            {
+                continue;
+            }
+
             builder.AppendLine($"{groupItem.Key}");
             foreach (var item in groupItem)
             {
-                if (Exclude.TableNameList.Contains(item.TableName))
+                if (excludeTableNames.Contains(item.TableName))
                 {
                     continue;
                 }
-                builder.AppendLine($"     {item.SchemaName}.{item.TableName}");
-                var columns = await DataOperations.ReadColumnDetailsForTableAsync(Utilities.ServerName(), groupItem.Key, item.TableName);
+
+                builder.AppendLine($"   {item.SchemaName}.{item.TableName}");
+                var columns = await DataOperations.ReadColumnDetailsForTableAsync(serverName, groupItem.Key, item.TableName);
                 foreach (var column in columns)
                 {
-                    builder.AppendLine($"          {column.IsPrimaryKey.Primary(),-5}{column.Position,-5}{column.ColumnName,-30}{column.DataTypeFull,-15}{column.IsComputed.ToYesNo()}");
+                    builder.AppendLine($"     {column.IsPrimaryKey.Primary(),-5}{column.Position,-5}{column.ColumnName,-30}{column.DataTypeFull,-15}{column.IsComputed.ToYesNo()}");
                 }
             }
         }
 
         return builder.ToString();
-
     }
 }
