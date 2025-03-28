@@ -2,5 +2,5 @@
 
 public static class StringExtensions
 {
-    public static string EscapeApostrophe(this string pSender) => pSender.Replace("'", "''");
+    public static string EscapeApostrophe(this string sender) => sender.Replace("'", "''");
 }

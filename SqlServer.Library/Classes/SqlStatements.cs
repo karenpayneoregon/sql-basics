@@ -75,9 +75,7 @@ internal class SqlStatements
         
         SET @sql
             = STUFF(@sql, 1, 12, '')
-              + N' order by DatabaseName, 
-                                                       SchemaName,
-                                                       TableName';
+              + N' order by DatabaseName, SchemaName,TableName';
         
         EXECUTE (@sql);
         """;
@@ -115,14 +113,43 @@ internal class SqlStatements
     /// </summary>
     public const string GetColumnDetailsForTable =
         """
-        SELECT X.COLUMN_NAME AS ColumnName,
-              X.ORDINAL_POSITION AS Position,
-              X.TABLE_CATALOG AS Catalog,
-              X.TABLE_SCHEMA AS TableSchema,
-              X.COLUMN_DEFAULT AS ColumnDefault,
-              X.DATA_TYPE AS DataType
+        SELECT 
+            X.COLUMN_NAME AS ColumnName,
+            X.ORDINAL_POSITION AS Position,
+            X.TABLE_CATALOG AS Catalog,
+            X.TABLE_SCHEMA AS TableSchema,
+            X.COLUMN_DEFAULT AS ColumnDefault,
+            X.DATA_TYPE AS DataType,
+            CASE 
+                WHEN KCU.COLUMN_NAME IS NOT NULL THEN CAST(1 AS BIT)
+                ELSE CAST(0 AS BIT)
+            END AS IsPrimaryKey,
+            CAST(
+                X.DATA_TYPE + 
+                CASE 
+                    WHEN X.CHARACTER_MAXIMUM_LENGTH IS NOT NULL AND X.DATA_TYPE IN ('char', 'nchar', 'varchar', 'nvarchar') 
+                        THEN '(' + 
+                             CASE 
+                                 WHEN X.CHARACTER_MAXIMUM_LENGTH = -1 THEN 'MAX' 
+                                 ELSE CAST(X.CHARACTER_MAXIMUM_LENGTH AS NVARCHAR)
+                             END + ')'
+                    WHEN X.DATA_TYPE IN ('decimal', 'numeric')
+                        THEN '(' + CAST(X.NUMERIC_PRECISION AS NVARCHAR) + ',' + CAST(X.NUMERIC_SCALE AS NVARCHAR) + ')'
+                    ELSE ''
+                END
+            AS NVARCHAR(MAX)) AS DataTypeFull,
+            CAST(COLUMNPROPERTY(OBJECT_ID(X.TABLE_SCHEMA + '.' + X.TABLE_NAME), X.COLUMN_NAME, 'IsComputed') AS BIT) AS IsComputed
         FROM INFORMATION_SCHEMA.COLUMNS AS X
-        WHERE X.TABLE_NAME = @TableName 
+        LEFT JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE AS KCU
+            ON X.TABLE_NAME = KCU.TABLE_NAME
+            AND X.TABLE_SCHEMA = KCU.TABLE_SCHEMA
+            AND X.COLUMN_NAME = KCU.COLUMN_NAME
+        LEFT JOIN INFORMATION_SCHEMA.TABLE_CONSTRAINTS AS TC
+            ON KCU.CONSTRAINT_NAME = TC.CONSTRAINT_NAME
+            AND TC.CONSTRAINT_TYPE = 'PRIMARY KEY'
+        WHERE X.TABLE_NAME = @TableName
+        
+        
         """;
 
     /// <summary>

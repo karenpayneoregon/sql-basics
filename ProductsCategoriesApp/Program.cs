@@ -11,31 +11,40 @@ internal partial class Program
 {
     static async Task Main(string[] args)
     {
-        await EntityCode();
+        //await EntityCode();
 
 
-        var ddddd = DapperOperations.GetContacts();
+        var ddddd = await DapperOperations.GetContactDetailsAsync();
 
-
-        List<ContactOffice> officeContacts = await Operations.GetContactsForOffice();
-        var test = await Operations.GetContactsAndDevicesSingle(71);
-        var test1 = await Operations.GetContactsWithOfficePhone(3);
-
-        var json = JsonSerializer.Serialize(officeContacts, new JsonSerializerOptions()
+        var qqq = await DapperOperations.GetContactsGroupedByContactTypeAsync();
+        foreach (var dto in qqq)
         {
-            MaxDepth = 257,
-            ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles, 
-            WriteIndented = true
-        }); 
-
-        string fileName = "results.json";
-        if (File.Exists(fileName))
-        {
-            File.Delete(fileName);
+            Console.WriteLine($"{dto.ContactTypeIdentifier,-4}{dto.Contacts.FirstOrDefault().ContactTitle}");
+            foreach (var contact in dto.Contacts)
+            {
+                Console.WriteLine($"    {contact.ContactId,-4}{contact.FirstName,-20}{contact.LastName,-18}{contact.PhoneNumber,-18}{contact.PhoneTypeDescription}");
+            }
         }
-        await File.WriteAllTextAsync(fileName, json);
 
-        //Console.ReadLine();
+        //List<ContactOffice> officeContacts = await Operations.GetContactsForOffice();
+        //var test = await Operations.GetContactsAndDevicesSingle(71);
+        //var test1 = await Operations.GetContactsWithOfficePhone(3);
+
+        //var json = JsonSerializer.Serialize(officeContacts, new JsonSerializerOptions()
+        //{
+        //    MaxDepth = 257,
+        //    ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles, 
+        //    WriteIndented = true
+        //}); 
+
+        //string fileName = "results.json";
+        //if (File.Exists(fileName))
+        //{
+        //    File.Delete(fileName);
+        //}
+        //await File.WriteAllTextAsync(fileName, json);
+
+        Console.ReadLine();
     }
 
     private static async Task EntityCode()

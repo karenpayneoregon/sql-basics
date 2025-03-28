@@ -27,6 +27,21 @@ internal class Operations
 
     }
 
+    /// <summary>
+    /// Asynchronously iterates through databases and their tables, generating a formatted string representation.
+    /// </summary>
+    /// <returns>
+    /// A task representing the asynchronous operation. The task result contains a formatted string that lists
+    /// database names, their tables, and the columns of each table, excluding specified databases and tables.
+    /// </returns>
+    /// <remarks>
+    /// This method retrieves grouped database and table information using <see cref="DataOperations.ReadDataContainersGroupedAsync"/>.
+    /// It writes the grouped data to a file using <see cref="FileOperations.WriteToFileAsync"/> and excludes databases
+    /// and tables specified in <see cref="Exclude.DatabaseNameList"/> and <see cref="Exclude.TableNameList"/>.
+    /// </remarks>
+    /// <exception cref="Exception">
+    /// Thrown if an error occurs during the asynchronous operations or data processing.
+    /// </exception>
     public static async Task<string> IterateDatabases()
     {
         StringBuilder builder = new();
@@ -47,7 +62,7 @@ internal class Operations
                 var columns = await DataOperations.ReadColumnDetailsForTableAsync(Utilities.ServerName(), groupItem.Key, item.TableName);
                 foreach (var column in columns)
                 {
-                    builder.AppendLine($"          {column.Position} {column.ColumnName}");
+                    builder.AppendLine($"          {column.IsPrimaryKey.Primary(),-5}{column.Position,-5}{column.ColumnName,-30}{column.DataTypeFull,-15}{column.IsComputed.ToYesNo()}");
                 }
             }
         }

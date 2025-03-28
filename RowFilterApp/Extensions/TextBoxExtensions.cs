@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RowFilterApp.Extensions;
+﻿namespace RowFilterApp.Extensions;
 public static class TextBoxExtensions
 {
     /// <summary>
@@ -12,8 +6,5 @@ public static class TextBoxExtensions
     /// </summary>
     /// <param name="sender"></param>
     /// <returns></returns>
-    public static bool IsNullOrWhiteSpace(this TextBox sender)
-    {
-        return string.IsNullOrWhiteSpace(sender.Text);
-    }
+    public static bool IsNullOrWhiteSpace(this TextBox sender) => string.IsNullOrWhiteSpace(sender.Text);
 }
