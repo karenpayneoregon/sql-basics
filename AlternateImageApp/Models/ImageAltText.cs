@@ -29,5 +29,5 @@ public class ImageAltText
         get => _ext ??= Path.GetExtension(Src);
         set => _ext = value;
     }
-    public string FileName => $"{Src}{Ext}";
+    public string FileName => Src;
 }

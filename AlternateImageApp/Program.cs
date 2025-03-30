@@ -10,7 +10,7 @@ internal partial class Program
         DataOperations.AddRange(list, @"Images");
         DataOperations.Write();
 
-        AnsiConsole.MarkupLine("[yellow]Hello[/]");
+        AnsiConsole.MarkupLine("[yellow]Done[/]");
         Console.ReadLine();
     }
 }
