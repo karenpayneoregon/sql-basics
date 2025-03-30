@@ -1,0 +1,9 @@
+<img src="Beverages.png" alt="Assorted drinks on a table including a wine bottle, teacups, and a decorative plate." />
+<img src="Condiments.png" alt="Various condiment containers on a table near a blue-patterned plate and a beige bottle." />
+<img src="Confections.png" alt="A large round pie with a slice cut out, surrounded by additional baked goods." />
+<img src="DairyProducts.png" alt="Cheese blocks and slices arranged on a dish beside dairy containers." />
+<img src="GrainsCereals.png" alt="Loaves of bread and grain-based foods on a checkered cloth with a serving utensil." />
+<img src="MeatPoultry.png" alt="Cooked meat slices on a plate with corn on the cob and bread rolls in the background." />
+<img src="Produce.png" alt="Three bowls of fresh produce including apples, pears, and another filled with wrapped items." />
+<img src="Seafood.png" alt="Seafood platter with cooked fish on a decorative blue-rimmed plate, accompanied by dishes and cutlery." />
+<img src="Wine.png" alt="Glass of red wine with a clear stem, filled halfway, on a white background." />

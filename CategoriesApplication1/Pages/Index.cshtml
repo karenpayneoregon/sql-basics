@@ -1,0 +1,62 @@
+﻿@page
+@using CategoriesApplication1.Classes
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<style>
+
+</style>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-12">
+            <h1 class="fs-4">Categories</h1>
+        </div>
+    </div>
+    @for (var index = 0; index < Model.Categories.Count; index += 3)
+    {
+
+        <div class="row mb-4">
+
+            @for (var innerIndex = index; innerIndex < index + 3 && innerIndex < Model.Categories.Count; innerIndex++)
+            {
+                <div class="col-md-4">
+
+                    <div class="rotate">
+
+                        <img src="data:image/png;base64,@Convert.ToBase64String(@Model.Categories[innerIndex].Photo)"
+                             alt="@Model.Categories[innerIndex].AltText"
+                             class="img-fluid "/>
+
+                    </div>
+
+                    <p class="mt-3">@Model.Categories[innerIndex].Name.SplitCase()</p>
+
+                </div>
+            }
+        </div>
+    }
+
+</div>
+
+<script src="lib/payne-debugger/debugHelper.js"></script>
+<script>
+    /*
+    * Karen code
+    * CTRL+ALT+1 toggles adding/removing debugger.css
+    * Passing true allows activation, false or nothing to deactivate
+    * The idea is to toggle between development and production
+    */
+    document.addEventListener('keydown', function (event) {
+
+        if (event.key === '1' && event.altKey && event.ctrlKey) {
+            $debugHelper.toggle(true);
+        }
+
+    });
+</script>
+
+
