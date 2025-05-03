@@ -1,8 +1,8 @@
 ﻿using System.Data;
 using Dapper;
 using Microsoft.Data.SqlClient;
-using NorthCustomersToolGenerated.Classes.Configuration;
 using NorthCustomersToolGenerated.Models;
+using static NorthCustomersToolGenerated.Classes.Configuration.DataConnections;
 
 namespace NorthCustomersToolGenerated.Classes;
 
@@ -48,7 +48,7 @@ internal class DataOperations
     public static async Task<IEnumerable<Customer>> GetCustomerDetails()
     {
 
-        using IDbConnection connection = new SqlConnection(DataConnections.Instance.MainConnection);
+        using IDbConnection connection = new SqlConnection(Instance.MainConnection);
         var customerDictionary = new Dictionary<int, Customer>();
 
         var customers = await connection.QueryAsync<Customer, Contact, Country, ContactType, Customer>(
@@ -87,7 +87,7 @@ internal class DataOperations
     /// </remarks>
     public static async Task<Customer> GetCustomer(int id)
     {
-        using IDbConnection connection = new SqlConnection(DataConnections.Instance.MainConnection);
+        using IDbConnection connection = new SqlConnection(Instance.MainConnection);
         var customerDictionary = new Dictionary<int, Customer>();
 
         var customers = await connection.QueryAsync<Customer, Contact, Country, ContactType, Customer>(
@@ -131,7 +131,7 @@ internal class DataOperations
     public static async Task<Contact> GetContactByIdAsync(int contactId)
     {
 
-        using IDbConnection connection = new SqlConnection(DataConnections.Instance.MainConnection);
+        using IDbConnection connection = new SqlConnection(Instance.MainConnection);
         var contactDictionary = new Dictionary<int, Contact>();
 
         var result = await connection.QueryAsync<Contact, ContactType, ContactDevices, Contact>(

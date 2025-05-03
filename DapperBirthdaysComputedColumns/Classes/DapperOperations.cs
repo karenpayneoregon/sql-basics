@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using ConsoleConfigurationLibrary.Classes;
 using Dapper;
 using DapperBirthdaysComputedColumns.Models;
 using kp.Dapper.Handlers;
@@ -11,7 +12,7 @@ internal class DapperOperations
 
     public DapperOperations()
     {
-        _cn = new SqlConnection(DataConnections.Instance.MainConnection);
+        _cn = new SqlConnection(AppConnections.Instance.MainConnection);
         SqlMapper.AddTypeHandler(new SqlDateOnlyTypeHandler());
     }
 

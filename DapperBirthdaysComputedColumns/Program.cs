@@ -6,7 +6,7 @@ internal partial class Program
 {
     static async Task Main(string[] args)
     {
-        await Setup();
+        Setup();
 
         var table = CreateTable();
         var operations = new DapperOperations();

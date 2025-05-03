@@ -29,35 +29,36 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             System.Windows.Forms.Label idLabel;
             System.Windows.Forms.Label titleLabel;
             System.Windows.Forms.Label priceLabel;
             System.Windows.Forms.Label categoryIdLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.booksDataSet = new TableAdapterSimple.BooksDataSet();
             this.booksBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.booksTableAdapter = new TableAdapterSimple.BooksDataSetTableAdapters.BooksTableAdapter();
             this.tableAdapterManager = new TableAdapterSimple.BooksDataSetTableAdapters.TableAdapterManager();
+            this.categoriesTableAdapter = new TableAdapterSimple.BooksDataSetTableAdapters.CategoriesTableAdapter();
             this.booksBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.booksBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.idLabel1 = new System.Windows.Forms.Label();
             this.titleTextBox = new System.Windows.Forms.TextBox();
             this.priceTextBox = new System.Windows.Forms.TextBox();
             this.GetChangesButton = new System.Windows.Forms.Button();
             this.categoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.categoriesTableAdapter = new TableAdapterSimple.BooksDataSetTableAdapters.CategoriesTableAdapter();
             this.categoryIdTextBox = new System.Windows.Forms.TextBox();
+            this.GetConnectionButton = new System.Windows.Forms.Button();
             idLabel = new System.Windows.Forms.Label();
             titleLabel = new System.Windows.Forms.Label();
             priceLabel = new System.Windows.Forms.Label();
@@ -68,6 +69,42 @@
             this.booksBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // idLabel
+            // 
+            idLabel.AutoSize = true;
+            idLabel.Location = new System.Drawing.Point(60, 68);
+            idLabel.Name = "idLabel";
+            idLabel.Size = new System.Drawing.Size(21, 16);
+            idLabel.TabIndex = 1;
+            idLabel.Text = "Id:";
+            // 
+            // titleLabel
+            // 
+            titleLabel.AutoSize = true;
+            titleLabel.Location = new System.Drawing.Point(45, 124);
+            titleLabel.Name = "titleLabel";
+            titleLabel.Size = new System.Drawing.Size(36, 16);
+            titleLabel.TabIndex = 3;
+            titleLabel.Text = "Title:";
+            // 
+            // priceLabel
+            // 
+            priceLabel.AutoSize = true;
+            priceLabel.Location = new System.Drawing.Point(45, 190);
+            priceLabel.Name = "priceLabel";
+            priceLabel.Size = new System.Drawing.Size(41, 16);
+            priceLabel.TabIndex = 5;
+            priceLabel.Text = "Price:";
+            // 
+            // categoryIdLabel
+            // 
+            categoryIdLabel.AutoSize = true;
+            categoryIdLabel.Location = new System.Drawing.Point(294, 103);
+            categoryIdLabel.Name = "categoryIdLabel";
+            categoryIdLabel.Size = new System.Drawing.Size(79, 16);
+            categoryIdLabel.TabIndex = 8;
+            categoryIdLabel.Text = "Category Id:";
             // 
             // booksDataSet
             // 
@@ -89,6 +126,10 @@
             this.tableAdapterManager.BooksTableAdapter = this.booksTableAdapter;
             this.tableAdapterManager.CategoriesTableAdapter = this.categoriesTableAdapter;
             this.tableAdapterManager.UpdateOrder = TableAdapterSimple.BooksDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // categoriesTableAdapter
+            // 
+            this.categoriesTableAdapter.ClearBeforeFill = true;
             // 
             // booksBindingNavigator
             // 
@@ -120,6 +161,31 @@
             this.booksBindingNavigator.Size = new System.Drawing.Size(601, 27);
             this.booksBindingNavigator.TabIndex = 0;
             this.booksBindingNavigator.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -154,16 +220,9 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorMoveNextItem
@@ -186,26 +245,8 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // booksBindingNavigatorSaveItem
             // 
@@ -216,15 +257,6 @@
             this.booksBindingNavigatorSaveItem.Text = "Save Data";
             this.booksBindingNavigatorSaveItem.Click += new System.EventHandler(this.booksBindingNavigatorSaveItem_Click);
             // 
-            // idLabel
-            // 
-            idLabel.AutoSize = true;
-            idLabel.Location = new System.Drawing.Point(60, 68);
-            idLabel.Name = "idLabel";
-            idLabel.Size = new System.Drawing.Size(21, 16);
-            idLabel.TabIndex = 1;
-            idLabel.Text = "Id:";
-            // 
             // idLabel1
             // 
             this.idLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.booksBindingSource, "Id", true));
@@ -234,15 +266,6 @@
             this.idLabel1.TabIndex = 2;
             this.idLabel1.Text = "label1";
             // 
-            // titleLabel
-            // 
-            titleLabel.AutoSize = true;
-            titleLabel.Location = new System.Drawing.Point(45, 124);
-            titleLabel.Name = "titleLabel";
-            titleLabel.Size = new System.Drawing.Size(36, 16);
-            titleLabel.TabIndex = 3;
-            titleLabel.Text = "Title:";
-            // 
             // titleTextBox
             // 
             this.titleTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.booksBindingSource, "Title", true));
@@ -250,15 +273,6 @@
             this.titleTextBox.Name = "titleTextBox";
             this.titleTextBox.Size = new System.Drawing.Size(100, 22);
             this.titleTextBox.TabIndex = 4;
-            // 
-            // priceLabel
-            // 
-            priceLabel.AutoSize = true;
-            priceLabel.Location = new System.Drawing.Point(45, 190);
-            priceLabel.Name = "priceLabel";
-            priceLabel.Size = new System.Drawing.Size(41, 16);
-            priceLabel.TabIndex = 5;
-            priceLabel.Text = "Price:";
             // 
             // priceTextBox
             // 
@@ -283,19 +297,6 @@
             this.categoriesBindingSource.DataMember = "Categories";
             this.categoriesBindingSource.DataSource = this.booksDataSet;
             // 
-            // categoriesTableAdapter
-            // 
-            this.categoriesTableAdapter.ClearBeforeFill = true;
-            // 
-            // categoryIdLabel
-            // 
-            categoryIdLabel.AutoSize = true;
-            categoryIdLabel.Location = new System.Drawing.Point(294, 103);
-            categoryIdLabel.Name = "categoryIdLabel";
-            categoryIdLabel.Size = new System.Drawing.Size(79, 16);
-            categoryIdLabel.TabIndex = 8;
-            categoryIdLabel.Text = "Category Id:";
-            // 
             // categoryIdTextBox
             // 
             this.categoryIdTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.booksBindingSource, "CategoryId", true));
@@ -304,11 +305,22 @@
             this.categoryIdTextBox.Size = new System.Drawing.Size(100, 22);
             this.categoryIdTextBox.TabIndex = 9;
             // 
+            // GetConnectionButton
+            // 
+            this.GetConnectionButton.Location = new System.Drawing.Point(438, 287);
+            this.GetConnectionButton.Name = "GetConnectionButton";
+            this.GetConnectionButton.Size = new System.Drawing.Size(127, 23);
+            this.GetConnectionButton.TabIndex = 10;
+            this.GetConnectionButton.Text = "Get Connection";
+            this.GetConnectionButton.UseVisualStyleBackColor = true;
+            this.GetConnectionButton.Click += new System.EventHandler(this.GetConnectionButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(601, 337);
+            this.Controls.Add(this.GetConnectionButton);
             this.Controls.Add(categoryIdLabel);
             this.Controls.Add(this.categoryIdTextBox);
             this.Controls.Add(this.GetChangesButton);
@@ -360,6 +372,7 @@
         private BooksDataSetTableAdapters.CategoriesTableAdapter categoriesTableAdapter;
         private System.Windows.Forms.BindingSource categoriesBindingSource;
         private System.Windows.Forms.TextBox categoryIdTextBox;
+        private System.Windows.Forms.Button GetConnectionButton;
     }
 }
 

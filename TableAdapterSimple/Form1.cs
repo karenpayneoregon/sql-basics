@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
+using TableAdapterSimple.BooksDataSetTableAdapters;
 
 namespace TableAdapterSimple
 {
@@ -29,6 +30,7 @@ namespace TableAdapterSimple
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
             categoriesTableAdapter.Fill(booksDataSet.Categories);
             booksTableAdapter.Fill(booksDataSet.Books);
             booksBindingSource.ListChanged += BooksBindingSource_ListChanged;
@@ -62,6 +64,11 @@ namespace TableAdapterSimple
             {
                 // have some added rows
             }
+        }
+
+        private void GetConnectionButton_Click(object sender, EventArgs e)
+        {
+            var result = categoriesTableAdapter.Connection.ConnectionString;
         }
     }
 }

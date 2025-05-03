@@ -9,5 +9,6 @@ internal class SqlStatements
             ,BirthDate
             ,YearsOld
         FROM BirthDaysDatabase.dbo.BirthDays
+        ORDER BY YearsOld DESC
         """;
 }

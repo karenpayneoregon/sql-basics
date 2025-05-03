@@ -22,3 +22,7 @@ CREATE TABLE [dbo].[BirthDays](
 ## EF Core version
 
 See project `EF_CoreBirthdaysComputedColumns`
+
+## Connection string
+
+Uses NuGet package [ConsoleConfigurationLibrary](https://www.nuget.org/packages/ConsoleConfigurationLibrary/1.0.0.10?_src=template) to read connection string from `appsettings.json` file.

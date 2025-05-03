@@ -21,8 +21,13 @@ public class DapperOperations
     }
 
     /// <summary>
-    /// Read people from a table
+    /// Retrieves a list of people from the "ComputedSample1" table in the SQLite database.
     /// </summary>
+    /// <returns>A list of <see cref="Person"/> objects containing Id, FirstName, LastName, and FullName.</returns>
+    /// <remarks>
+    /// This method uses Dapper to execute a SQL query that selects the columns Id, FirstName, LastName, and FullName
+    /// from the "ComputedSample1" table. Ensure the database and table exist before calling this method.
+    /// </remarks>
     public static List<Person> GetPeople()
     {
         var cn = new SQLiteConnection(ConnectionString());

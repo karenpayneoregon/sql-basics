@@ -1,6 +1,10 @@
 ﻿namespace GlobalConnection.Classes;
 public class SqlStatements
 {
+    /// <summary>
+    /// Generates a SQL query to retrieve category IDs and names from the "Categories" table.
+    /// </summary>
+    /// <returns>A SQL query string to select "CategoryID" and "CategoryName" columns from the "dbo.Categories" table.</returns>
     public static string CategoryShort() 
         => "SELECT CategoryID,CategoryName FROM dbo.Categories;";
 
@@ -14,6 +18,17 @@ public class SqlStatements
         WHERE ContactId > @Top
         """;
         
+    /// <summary>
+    /// Generates a SQL query to retrieve customer details filtered by contact type and country.
+    /// </summary>
+    /// <remarks>
+    /// The query joins the "Customers", "Countries", "ContactType", and "Contacts" tables to fetch
+    /// customer information, including identifiers, company name, address, contact details, and contact type.
+    /// </remarks>
+    /// <returns>
+    /// A SQL query string that selects customer details where the country identifier and contact type identifier
+    /// match the specified parameters.
+    /// </returns>
     public static string CustomersByContactTypeAndCountry()
         => """
                 SELECT C.CustomerIdentifier,
