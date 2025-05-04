@@ -185,6 +185,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlternateImageApp", "Altern
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CategoriesApplication1", "CategoriesApplication1\CategoriesApplication1.csproj", "{1D070B18-A0D6-42AE-A5D9-8DA1E5400B42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseInspectorApp", "DatabaseInspectorApp\DatabaseInspectorApp.csproj", "{99831F35-D977-44DE-93F2-1BE9EE468F05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -459,6 +461,10 @@ Global
 		{1D070B18-A0D6-42AE-A5D9-8DA1E5400B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D070B18-A0D6-42AE-A5D9-8DA1E5400B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D070B18-A0D6-42AE-A5D9-8DA1E5400B42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99831F35-D977-44DE-93F2-1BE9EE468F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99831F35-D977-44DE-93F2-1BE9EE468F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99831F35-D977-44DE-93F2-1BE9EE468F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99831F35-D977-44DE-93F2-1BE9EE468F05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -535,6 +541,7 @@ Global
 		{DB73A437-354D-4429-9F8B-3D3B7A709B0A} = {FBF6715D-FC48-443C-A94D-763460A6314C}
 		{9E399289-D015-484C-A41C-15790960F975} = {6ABBFFBA-9737-43A3-8059-F831ED7DEC1B}
 		{1D070B18-A0D6-42AE-A5D9-8DA1E5400B42} = {6ABBFFBA-9737-43A3-8059-F831ED7DEC1B}
+		{99831F35-D977-44DE-93F2-1BE9EE468F05} = {3047B01C-561D-4A3F-A8EC-0930332D8A34}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}
