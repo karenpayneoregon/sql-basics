@@ -3,15 +3,8 @@ using SqlServerLibrary.Models;
 using Dapper;
 
 namespace SqlServerLibrary.Classes;
-public class DatabaseInspector
+public class DatabaseInspector(string connectionString)
 {
-    private readonly string _connectionString;
-
-    public DatabaseInspector(string connectionString)
-    {
-        _connectionString = connectionString;
-    }
-
     /// <summary>
     /// Retrieves the space usage details for all tables in the database.
     /// </summary>
@@ -26,7 +19,7 @@ public class DatabaseInspector
     /// </returns>
     public IEnumerable<TableSpaceUsage> GetTableSpaceUsages()
     {
-        using var connection = new SqlConnection(_connectionString);
+        using var connection = new SqlConnection(connectionString);
         return connection.Query<TableSpaceUsage>(SqlStatements.TableUsage);
     }
 }

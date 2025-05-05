@@ -1,6 +1,13 @@
 ﻿#nullable disable
 
 namespace SqlServerLibrary.Models;
+/// <summary>
+/// Represents the space usage details of a table in a SQL Server database.
+/// </summary>
+/// <remarks>
+/// This class provides information about a table's name, schema, row count, 
+/// total space, used space, and unused space, measured in both kilobytes and megabytes.
+/// </remarks>
 public class TableSpaceUsage
 {
     public string TableName { get; set; }
