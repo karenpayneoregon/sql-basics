@@ -1,0 +1,54 @@
+classDiagram
+    direction TB
+
+    class SqlServerLibrary {
+        <<Namespace>>
+    }
+
+    class SqlServerLibrary.Classes {
+        <<Namespace>>
+    }
+
+    class SqlServerLibrary.Models {
+        <<Namespace>>
+    }
+
+    class TableService {
+        +TableService()
+        +List~string~ TableNames()
+        +Task~List~TableConstraints~~ GetAllTableConstraints(string initialCatalog)
+    }
+
+    class TableConstraints {
+        +string? PrimaryKeyTable
+        +string? ConstraintName
+        +string? PrimaryKeyColumn
+        +string? ForeignKeyTable
+        +string? ForeignKeyColumn
+        +string? UpdateRule
+        +string? DeleteRule
+        +string ToString()
+    }
+
+    class SqlStatements {
+        +string TableNamesForDatabase(string databaseName)
+        +string TableConstraintsForDatabase
+    }
+
+
+
+
+    class Models {
+        <<Folder>>
+    }
+
+    class Services {
+        <<Folder>>
+    }
+
+    %% Relationships
+    SqlServerLibrary --> SqlServerLibrary.Classes
+    SqlServerLibrary --> SqlServerLibrary.Models
+    SqlServerLibrary.Classes --> TableService
+    SqlServerLibrary.Models --> TableConstraints
+    SqlServerLibrary.Classes --> SqlStatements

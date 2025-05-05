@@ -13,9 +13,10 @@ public class ColumnService
     /// </summary>
     /// <param name="tableName">existing table under database in connection string</param>
     public List<ColumnDescriptions> ColumnDetails(string tableName)
-    {
-        return _cn.Query<ColumnDescriptions>(SqlStatements.DescriptionStatement, new { TableName = tableName}).AsList();
-    }
-
-
+        => _cn.Query<ColumnDescriptions>(SqlStatements.DescriptionStatement, 
+            new
+            {
+                TableName = tableName
+            })
+            .AsList();
 }

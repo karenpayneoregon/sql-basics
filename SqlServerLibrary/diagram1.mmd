@@ -1,0 +1,35 @@
+
+classDiagram
+    direction TB
+
+    class SqlServerLibrary {
+        <<Namespace>>
+    }
+
+    class SqlServerLibrary.Classes {
+        <<Namespace>>
+    }
+
+    class SqlServerLibrary.Models {
+        <<Namespace>>
+    }
+
+    class ColumnService {
+        - IDbConnection _cn
+        + List~ColumnDescriptions~ ColumnDetails(string tableName)
+    }
+
+    class ColumnDescriptions {
+        + string Name
+        + int Ordinal
+        + string Description
+    }
+
+    %% Relationships
+    SqlServerLibrary --> SqlServerLibrary.Classes
+    SqlServerLibrary --> SqlServerLibrary.Models
+    SqlServerLibrary.Classes --> ColumnService
+    SqlServerLibrary.Models --> ColumnDescriptions
+    ColumnService --> ColumnDescriptions : Uses
+
+
