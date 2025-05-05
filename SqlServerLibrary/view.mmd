@@ -1,0 +1,12 @@
+graph TD
+    A[SqlServerLibrary] --> B[Models]
+    B --> C[TableSpaceUsage.cs]
+    A --> D[Services]
+    A --> E[Repositories]
+    A --> F[Utilities]
+    A --> G[Interfaces]
+
+    subgraph Application
+        H[WebAPI or ConsoleApp]
+        H --> A
+    end

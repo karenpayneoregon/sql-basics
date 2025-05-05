@@ -1,4 +1,5 @@
-﻿#nullable disable
+﻿// ReSharper disable InconsistentNaming
+#nullable disable
 
 namespace SqlServerLibrary.Models;
 /// <summary>
