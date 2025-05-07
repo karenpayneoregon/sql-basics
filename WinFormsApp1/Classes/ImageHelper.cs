@@ -5,11 +5,11 @@ namespace WinFormsApp1.Classes;
 
 public class ImageHelper
 {
-
     /// <summary>
     /// Retrieves a list of <see cref="ResourceItem"/> objects from the specified <see cref="ResourceManager"/>.
     /// </summary>
     /// <param name="sender">The <see cref="ResourceManager"/> instance containing the resources to process.</param>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     /// <returns>
     /// A list of <see cref="ResourceItem"/> objects, where each item represents a resource.
     /// The resource can be an image, an icon, or a bitmap.
@@ -18,7 +18,7 @@ public class ImageHelper
     /// This method iterates through the resource names provided by the <see cref="ResourceManager"/>.
     /// For each resource, it determines whether it is an icon, a bitmap, or a byte array representing an image.
     /// It then creates a corresponding <see cref="ResourceItem"/> object and adds it to the list.
-    ///
+    /// 
     /// In the past, adding an image to the resources would add it as a Bitmap but now as a byte array.
     /// </remarks>
     public static List<ResourceItem> ResourceItemList(ResourceManager sender)
@@ -35,32 +35,46 @@ public class ImageHelper
             var imageType = GetImageType(test);
 
 
-            if (imageType == ImageType.Icon)
+            switch (imageType)
             {
-                var b = sender.GetObject(name) as byte[];
-                var icon = IconHelper.ByteArrayToIcon(b);
-                if (icon != null)
+                case ImageType.Icon:
                 {
-                    item.Image = icon.ToBitmap();
-                    item.Icon = icon;
-                    item.IsIcon = true;
+                    var b = sender.GetObject(name) as byte[];
+                    var icon = IconHelper.ByteArrayToIcon(b);
+                    if (icon != null)
+                    {
+                        item.Image = icon.ToBitmap();
+                        item.Icon = icon;
+                        item.IsIcon = true;
+                    }
+
+                    break;
                 }
-            }
-            else if (imageType == ImageType.Bitmap)
-            {
-                if (sender.GetObject(name) is byte[] bytes)
+                case ImageType.Bitmap:
                 {
-                    using MemoryStream ms = new(bytes);
+                    if (sender.GetObject(name) is byte[] bytes)
+                    {
+                        using MemoryStream ms = new(bytes);
+                        item.Image = new Bitmap(ms);
+                    }
+
+                    break;
+                }
+                case ImageType.Png when sender.GetObject(name) is byte[] pngBytes:
+                {
+                    using MemoryStream ms = new(pngBytes);
                     item.Image = new Bitmap(ms);
+                    break;
                 }
-            }
-            else if (imageType == ImageType.Png && sender.GetObject(name) is byte[] pngBytes)
-            {
-                using MemoryStream ms = new(pngBytes);
-                item.Image = new Bitmap(ms);
+                case ImageType.Unknown:
+                case ImageType.Jpeg:
+                    break;
             }
 
-            items.Add(item);
+            if (item.Image is not null)
+            {
+                items.Add(item);
+            }
 
         }
 
@@ -95,6 +109,7 @@ public class ImageHelper
             return ImageType.Jpeg;
 
         return ImageType.Unknown;
+
     }
 
 
