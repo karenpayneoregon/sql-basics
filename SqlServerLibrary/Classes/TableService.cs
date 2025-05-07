@@ -1,6 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
-using System.Diagnostics;
 using Dapper;
 using SqlServerLibrary.Models;
 

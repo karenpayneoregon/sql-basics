@@ -3,6 +3,14 @@ using SqlServerLibrary.Models;
 using Dapper;
 
 namespace SqlServerLibrary.Classes;
+/// <summary>
+/// Provides functionality to inspect and retrieve information about a SQL Server database.
+/// </summary>
+/// <remarks>
+/// This class is designed to interact with a SQL Server database using a provided connection string.
+/// It includes methods to query and analyze database objects, such as tables, and retrieve detailed
+/// information about their structure and usage.
+/// </remarks>
 public class DatabaseInspector(string connectionString)
 {
     /// <summary>
