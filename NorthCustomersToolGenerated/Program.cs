@@ -16,6 +16,7 @@ internal partial class Program
         var customer = await DataOperations.GetCustomer(1);
         
         var singleContact = await DataOperations.GetContactByIdAsync(1);
+        var contactTypes = await DataOperations.ContactsByType(1);
 
         Debugger.Break(); // use the local window to examine above
     }

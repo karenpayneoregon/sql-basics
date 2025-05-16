@@ -157,4 +157,39 @@ internal class DataOperations
 
         return contactDictionary.Values.FirstOrDefault();
     }
+
+    /// <summary>
+    /// Retrieves a list of contacts filtered by the specified contact type identifier.
+    /// </summary>
+    /// <param name="contactTypeIdentifier">
+    /// The identifier of the contact type used to filter the contacts.
+    /// </param>
+    /// <returns>
+    /// A task that represents the asynchronous operation. The task result contains a list of 
+    /// <see cref="Models.Contact"/> objects associated with the specified contact type.
+    /// </returns>
+    /// <remarks>
+    /// This method uses Dapper to execute a SQL query that retrieves contacts and their associated contact type.
+    /// The query results are mapped to <see cref="Models.Contact"/> and 
+    /// <see cref="Models.ContactType"/> objects.
+    /// </remarks>
+    public static async Task<List<Contact>> ContactsByType(int contactTypeIdentifier)
+    {
+
+        using IDbConnection connection = new SqlConnection(Instance.MainConnection);
+        var contactList = new List<Contact>();
+
+        var contacts = await connection.QueryAsync<Contact, ContactType, Contact>(
+            SqlStatements.GetContactsByType,
+            (contact, contactType) =>
+            {
+                contact.ContactTypeIdentifierNavigation = contactType;
+                contactList.Add(contact);
+                return contact;
+            },
+            param: new { ContactTypeIdentifier = contactTypeIdentifier },
+            splitOn: "CTIdentifier");
+
+        return contactList;
+    }
 }

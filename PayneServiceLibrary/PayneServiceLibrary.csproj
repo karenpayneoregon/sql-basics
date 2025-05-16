@@ -21,7 +21,7 @@
 
 
 	<ItemGroup>
-		<PackageReference Include="ConsoleConfigurationLibrary" Version="1.0.0.4" />
+		<PackageReference Include="ConsoleConfigurationLibrary" Version="1.0.0.10" />
 	</ItemGroup>
 	<ItemGroup>
 		<Using Include="ConsoleConfigurationLibrary.Classes" Alias="Config" />

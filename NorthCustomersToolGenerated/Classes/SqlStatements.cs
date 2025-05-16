@@ -117,5 +117,25 @@ internal class SqlStatements
             ON C.ContactId = CD.ContactId
         WHERE       C.ContactId = @ContactId
         """;
+
+    public static string GetContactsByType => 
+        """
+        SELECT      C.ContactId,
+                    C.FirstName,
+                    C.LastName,
+                    C.ContactTypeIdentifier,
+                    CT.ContactTypeIdentifier AS CTIdentifier,
+                    CT.ContactTitle,
+                    CD.DeviceId,
+                    CD.ContactId AS CDContactId,
+                    CD.PhoneTypeIdentifier,
+                    CD.PhoneNumber
+        FROM        dbo.Contacts AS C
+        INNER JOIN  dbo.ContactType AS CT
+            ON C.ContactTypeIdentifier = CT.ContactTypeIdentifier
+        LEFT JOIN   dbo.ContactDevices AS CD
+            ON C.ContactId = CD.ContactId
+        WHERE       C.ContactTypeIdentifier = @ContactTypeIdentifier
+        """;
 }
 
