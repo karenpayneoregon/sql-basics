@@ -56,7 +56,7 @@ internal class DapperOperations
             .RuleFor(c => c.CategoryName,
                 f => f.Commerce.Categories(1)[0])   
             .RuleFor(c => c.Description,
-                f => $"{f.Commerce.ProductAdjective()} {f.Commerce.ProductMaterial()} {f.Commerce.Product()}");                      // “Savory steel chair”
+                f => $"{f.Commerce.ProductAdjective()} {f.Commerce.ProductMaterial()} {f.Commerce.Product()}");  
 
         return faker.Generate(count).ToArray();
     }
