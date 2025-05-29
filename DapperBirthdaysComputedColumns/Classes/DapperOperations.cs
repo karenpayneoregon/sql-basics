@@ -21,7 +21,11 @@ internal class DapperOperations
 
     public DapperOperations()
     {
-        _cn = new SqlConnection(AppConnections.Instance.MainConnection);
+        var builder = new SqlConnectionStringBuilder(AppConnections.Instance.MainConnection)
+        {
+            ConnectTimeout = 2
+        };
+        _cn = new SqlConnection(builder.ConnectionString);
         SqlMapper.AddTypeHandler(new SqlDateOnlyTypeHandler());
     }
 
