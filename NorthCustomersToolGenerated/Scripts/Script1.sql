@@ -1,1 +1,3 @@
-﻿--- 
+﻿SELECT *
+FROM dbo.Customers;
+

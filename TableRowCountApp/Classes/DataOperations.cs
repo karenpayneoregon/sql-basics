@@ -6,6 +6,9 @@ using SqlServerLibrary.Models;
 namespace TableRowCountApp.Classes;
 internal class DataOperations
 {
+    public static string DatabaseConnectionString(string server, string catalog)
+        => $"Data Source=.{server};Initial Catalog={catalog};Integrated Security=True;Encrypt=False";
+
     public static string DatabaseConnectionString(string catalog)
         => $"Data Source=.\\SQLEXPRESS;Initial Catalog={catalog};Integrated Security=True;Encrypt=False";
 

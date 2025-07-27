@@ -48,7 +48,7 @@ internal class DataOperations
     public static async Task<IEnumerable<Customer>> GetCustomerDetails()
     {
 
-        using IDbConnection connection = new SqlConnection(Instance.MainConnection);
+        using var connection = DbConnection();
         var customerDictionary = new Dictionary<int, Customer>();
 
         var customers = await connection.QueryAsync<Customer, Contact, Country, ContactType, Customer>(
@@ -74,6 +74,21 @@ internal class DataOperations
         return customers;
     }
 
+    private static IDbConnection DbConnection()
+    {
+        IDbConnection connection = null;
+        try
+        {
+            connection = new SqlConnection(Instance.MainConnection);
+            return connection;
+        }
+        catch
+        {
+            connection?.Dispose();
+            throw;
+        }
+    }
+
     /// <summary>
     /// Retrieves a customer by their unique identifier, including related details such as contact, country, and contact type.
     /// </summary>
@@ -87,7 +102,7 @@ internal class DataOperations
     /// </remarks>
     public static async Task<Customer> GetCustomer(int id)
     {
-        using IDbConnection connection = new SqlConnection(Instance.MainConnection);
+        using var connection = DbConnection();
         var customerDictionary = new Dictionary<int, Customer>();
 
         var customers = await connection.QueryAsync<Customer, Contact, Country, ContactType, Customer>(
@@ -131,7 +146,7 @@ internal class DataOperations
     public static async Task<Contact> GetContactByIdAsync(int contactId)
     {
 
-        using IDbConnection connection = new SqlConnection(Instance.MainConnection);
+        using var connection = DbConnection();
         var contactDictionary = new Dictionary<int, Contact>();
 
         var result = await connection.QueryAsync<Contact, ContactType, ContactDevices, Contact>(
@@ -155,6 +170,16 @@ internal class DataOperations
             param: new { ContactId = contactId },
             splitOn: "CTIdentifier,DeviceId");
 
+        var contact = contactDictionary.Values.FirstOrDefault();
+
+        contact.ContactTypeIdentifierNavigation.ContactTypeIdentifier =
+            contact.ContactTypeIdentifier;
+
+        foreach (var device in contact.ContactDevices)
+        {
+            device.ContactId = contact.ContactId;
+            device.Contact = contact;
+        }
         return contactDictionary.Values.FirstOrDefault();
     }
 

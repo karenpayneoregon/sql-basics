@@ -73,4 +73,13 @@ public class JsonHelpers
         return doc.RootElement.TryGetProperty("ConnectionStrings", out JsonElement connectionStrings) && 
                connectionStrings.TryGetProperty("MainConnection", out _);
     }
+
+
+    public static bool PropertyExists(string section, string propertyName)
+    {
+        string jsonContent = File.ReadAllText(FileName);
+        using JsonDocument doc = JsonDocument.Parse(jsonContent);
+        return doc.RootElement.TryGetProperty(section, out JsonElement sectionElement) &&
+               sectionElement.TryGetProperty(propertyName, out _);
+    }
 }
