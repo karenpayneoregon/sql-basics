@@ -51,8 +51,7 @@ internal class DataOperations
         using var connection = DbConnection();
         var customerDictionary = new Dictionary<int, Customer>();
 
-        var customers = await connection.QueryAsync<Customer, Contact, Country, ContactType, Customer>(
-            SqlStatements.CustomerWithContacts,
+        var customers = await connection.QueryAsync<Customer, Contact, Country, ContactType, Customer>(SqlStatements.CustomerWithContacts,
             (customer, contact, country, contactType) =>
             {
                 if (!customerDictionary.TryGetValue(customer.CustomerIdentifier, out var existing))
@@ -149,23 +148,22 @@ internal class DataOperations
         using var connection = DbConnection();
         var contactDictionary = new Dictionary<int, Contact>();
 
-        var result = await connection.QueryAsync<Contact, ContactType, ContactDevices, Contact>(
-            SqlStatements.GetContact,
+        var result = await connection.QueryAsync<Contact, ContactType, ContactDevices, Contact>(SqlStatements.GetContact,
             (contact, contactType, contactDevice) =>
             {
-                if (!contactDictionary.TryGetValue(contact.ContactId, out var contactEntry))
+                if (!contactDictionary.TryGetValue(contact.ContactId, out var thecontact))
                 {
-                    contactEntry = contact;
-                    contactEntry.ContactTypeIdentifierNavigation = contactType;
-                    contactDictionary.Add(contact.ContactId, contactEntry);
+                    thecontact = contact;
+                    thecontact.ContactTypeIdentifierNavigation = contactType;
+                    contactDictionary.Add(contact.ContactId, thecontact);
                 }
 
                 if (contactDevice != null)
                 {
-                    contactEntry.ContactDevices.Add(contactDevice);
+                    thecontact.ContactDevices.Add(contactDevice);
                 }
 
-                return contactEntry;
+                return thecontact;
             },
             param: new { ContactId = contactId },
             splitOn: "CTIdentifier,DeviceId");

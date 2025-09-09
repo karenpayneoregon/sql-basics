@@ -7,16 +7,17 @@ using static ConfigurationLibrary.Classes.ConfigurationHelper;
 
 namespace EntityLibrary.Data;
 
-public partial class Context : DbContext
+public partial class Context : BaseContext
 {
     public Context()
     {
     }
 
-    public Context(DbContextOptions<Context> options)
-        : base(options)
-    {
-    }
+    //public Context(DbContextOptions<Context> options)
+    //    : base(options)
+    //{
+    //}
+
     public DbSet<CurrentWeek> CurrentWeeks { get; set; }
     public virtual DbSet<Birthdays> Birthdays { get; set; }
 
@@ -38,9 +39,9 @@ public partial class Context : DbContext
 
     public virtual DbSet<TimeTable> TimeTable { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer(ConnectionString()).EnableSensitiveDataLogging()
-            .LogTo(message => Debug.WriteLine(message), LogLevel.Information);
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //    => optionsBuilder.UseSqlServer(ConnectionString()).EnableSensitiveDataLogging()
+    //        .LogTo(message => Debug.WriteLine(message), LogLevel.Information);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

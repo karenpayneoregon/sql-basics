@@ -30,7 +30,7 @@ internal partial class Program
         int year = 2023;
         int month = 5;
         bool businessDay = true;
-        string dow = DayOfWeek.Monday.ToString();
+        string dow = nameof(DayOfWeek.Monday);
 
         using var context = new Context();
 
