@@ -191,6 +191,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperMultipleInsertsApp", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTimeNullDapperApp", "DateTimeNullDapperApp\DateTimeNullDapperApp.csproj", "{4178573D-6E95-41C1-90B9-9AC2B2A246DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccessToExcelApp", "AccessToExcelApp\AccessToExcelApp.csproj", "{77508580-10FE-41C8-BC3B-55BE8E32346E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -477,6 +479,10 @@ Global
 		{4178573D-6E95-41C1-90B9-9AC2B2A246DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4178573D-6E95-41C1-90B9-9AC2B2A246DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4178573D-6E95-41C1-90B9-9AC2B2A246DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77508580-10FE-41C8-BC3B-55BE8E32346E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77508580-10FE-41C8-BC3B-55BE8E32346E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77508580-10FE-41C8-BC3B-55BE8E32346E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77508580-10FE-41C8-BC3B-55BE8E32346E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -556,6 +562,7 @@ Global
 		{99831F35-D977-44DE-93F2-1BE9EE468F05} = {3047B01C-561D-4A3F-A8EC-0930332D8A34}
 		{23823AA6-ECE4-4989-8A02-4EB881766CBC} = {3047B01C-561D-4A3F-A8EC-0930332D8A34}
 		{4178573D-6E95-41C1-90B9-9AC2B2A246DA} = {65FDB35C-3D56-48A9-93FB-2D32028F167B}
+		{77508580-10FE-41C8-BC3B-55BE8E32346E} = {2BA082AA-41F5-40BC-B31F-BAD9180A8202}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}

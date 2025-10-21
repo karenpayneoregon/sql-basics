@@ -7,11 +7,11 @@ namespace DapperNorthWind2024.Classes;
 
 public class Operations
 {
-    private IDbConnection db = new SqlConnection(ConnectionString());
+    private IDbConnection _db = new SqlConnection(ConnectionString());
 
     public int CategoryCount()
     {
-        return db.QuerySingle<int>("SELECT COUNT(CategoryID) FROM dbo.Categories");
+        return _db.QuerySingle<int>("SELECT COUNT(CategoryID) FROM dbo.Categories");
     }
 
     public List<Category> CategoryList()
@@ -24,12 +24,12 @@ public class Operations
             FROM dbo.Categories
             """;
 
-        return db.Query<Category>(statement).AsList();
+        return _db.Query<Category>(statement).AsList();
     }
 
     private List<Countries> CountriesList()
     {
-        List<Countries> countries = db.Query<Countries>(
+        List<Countries> countries = _db.Query<Countries>(
                 """
                 SELECT [CountryIdentifier],[Name]
                 FROM [dbo].[Countries];
@@ -42,7 +42,7 @@ public async Task<List<ProcedureProperty>> ProcedureProperties()
 {
 
     var name = "usp_GetExtendedPropertiesForUserStoredProcedures";
-    return  (await db.QueryAsync<ProcedureProperty>(name, commandType: CommandType.StoredProcedure)).AsList();
+    return  (await _db.QueryAsync<ProcedureProperty>(name, commandType: CommandType.StoredProcedure)).AsList();
 }
 
     public List<Product> GetAllProductsByCategory(int categoryId)
@@ -70,7 +70,7 @@ public async Task<List<ProcedureProperty>> ProcedureProperties()
              """;
 
 
-        var result = db.Query<Product, Category, Supplier, Product>(statement,
+        var result = _db.Query<Product, Category, Supplier, Product>(statement,
             param: new
             {
                 CategoryId = categoryId
@@ -106,7 +106,7 @@ public async Task<List<ProcedureProperty>> ProcedureProperties()
             JOIN dbo.Suppliers ON Products.SupplierID = Suppliers.SupplierID AND Suppliers.SupplierID = @supplierId;
             """;
 
-        IEnumerable<Product> products = db.Query<Product, Supplier, Product>(statement, (product, supplier) => 
+        IEnumerable<Product> products = _db.Query<Product, Supplier, Product>(statement, (product, supplier) => 
             {
                     supplier.Country = countries.FirstOrDefault(x => x.CountryIdentifier == supplier.SupplierId)!.Name;
                     Category localCategory = categories.FirstOrDefault(x => x.CategoryId == product.CategoryId);

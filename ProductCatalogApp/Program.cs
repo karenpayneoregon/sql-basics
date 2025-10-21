@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using ProductCatalogApp.Models;
-using System.Data.SqlClient;
 using System.Text.Json;
+using Microsoft.Data.SqlClient;
 using ProductCatalogApp.Classes;
 using static ProductCatalogApp.Classes.SpectreConsoleHelpers;
 

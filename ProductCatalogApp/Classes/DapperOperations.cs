@@ -1,8 +1,8 @@
 ﻿using System.Data;
-using System.Data.SqlClient;
 using System.Text.Json;
 using Bogus;
 using Dapper;
+using Microsoft.Data.SqlClient;
 using ProductCatalogApp.Models;
 using static System.DateTime;
 
