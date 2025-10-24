@@ -28,18 +28,45 @@ partial class MainForm
     /// </summary>
     private void InitializeComponent()
     {
+        FindDatabasesButton = new Button();
+        LocalExportTestButton = new Button();
         SuspendLayout();
         // 
-        // Form1
+        // FindDatabasesButton
+        // 
+        FindDatabasesButton.Location = new Point(35, 46);
+        FindDatabasesButton.Name = "FindDatabasesButton";
+        FindDatabasesButton.Size = new Size(278, 29);
+        FindDatabasesButton.TabIndex = 0;
+        FindDatabasesButton.Text = "Find databases";
+        FindDatabasesButton.UseVisualStyleBackColor = true;
+        FindDatabasesButton.Click += FindDatabasesButton_Click;
+        // 
+        // LocalExportTestButton
+        // 
+        LocalExportTestButton.Location = new Point(35, 92);
+        LocalExportTestButton.Name = "LocalExportTestButton";
+        LocalExportTestButton.Size = new Size(278, 29);
+        LocalExportTestButton.TabIndex = 1;
+        LocalExportTestButton.Text = "Local export test";
+        LocalExportTestButton.UseVisualStyleBackColor = true;
+        LocalExportTestButton.Click += LocalExportTestButton_Click;
+        // 
+        // MainForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
-        Name = "Form1";
+        Controls.Add(LocalExportTestButton);
+        Controls.Add(FindDatabasesButton);
+        Name = "MainForm";
         StartPosition = FormStartPosition.CenterScreen;
         Text = "Form1";
         ResumeLayout(false);
     }
 
     #endregion
+
+    private Button FindDatabasesButton;
+    private Button LocalExportTestButton;
 }

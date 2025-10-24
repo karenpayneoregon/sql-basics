@@ -2,7 +2,6 @@
 using SpreadsheetLight;
 using System.Data;
 
-// ReSharper disable CollectionNeverQueried.Local
 
 namespace AccessToExcelApp.Classes;
 internal class ExcelOperations
