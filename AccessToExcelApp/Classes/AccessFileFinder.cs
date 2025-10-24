@@ -12,16 +12,13 @@ public class AccessFileFinder
         var directoryInfo = new DirectoryInfo(directoryPath);
         var directoryWrapper = new DirectoryInfoWrapper(directoryInfo);
 
-        // Globbing matcher
         var matcher = new Matcher(StringComparison.OrdinalIgnoreCase);
 
-        // Match patterns
         matcher.AddInclude("**/*.mdb");
         matcher.AddInclude("**/*.accdb");
 
         var matches = matcher.Execute(directoryWrapper);
 
-        // Split into two lists
         var mdbFiles = new List<string>();
         var accdbFiles = new List<string>();
 
