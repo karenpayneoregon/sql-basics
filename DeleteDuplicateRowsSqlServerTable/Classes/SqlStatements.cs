@@ -20,7 +20,7 @@ internal class SqlStatements
 
     
     /// <summary>
-    /// Gets the SQL statement for creating and populating a table 
+    /// Gets the SQL statement for creating and populating a temp table 
     /// with duplicate records based on specific criteria.
     /// </summary>
     /// <remarks>
