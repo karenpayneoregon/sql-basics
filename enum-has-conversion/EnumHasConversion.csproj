@@ -69,6 +69,4 @@
 	  <ProjectReference Include="..\PayneServiceLibrary\PayneServiceLibrary.csproj" />
 	</ItemGroup>
 
-
-
 </Project>

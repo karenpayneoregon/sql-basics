@@ -69,20 +69,12 @@ public async Task<List<ProcedureProperty>> ProcedureProperties()
              ORDER BY p.[ProductName]
              """;
 
-
-        var result = _db.Query<Product, Category, Supplier, Product>(statement,
-            param: new
-            {
-                CategoryId = categoryId
-            },
+        var result = _db.Query<Product, Category, Supplier, Product>(statement, param: new { CategoryId = categoryId },
             map: (product, category, supplier) =>
             {
 
-                Category localCategory = categories.FirstOrDefault(x => x.CategoryId == category.CategoryId);
-                Countries localCountries = countries.FirstOrDefault(x => x.CountryIdentifier == supplier.CountryIdentifier);
-
-                supplier.Country = localCountries.Name;
-                product.Category = localCategory;
+                supplier.Country = countries.FirstOrDefault(x => x.CountryIdentifier == supplier.CountryIdentifier)?.Name;
+                product.Category = categories.FirstOrDefault(x => x.CategoryId == category.CategoryId);
                 product.CategoryId = categoryId;
                 product.Supplier = supplier;
 

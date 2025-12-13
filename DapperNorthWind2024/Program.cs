@@ -11,15 +11,15 @@ internal partial class Program
 
         Operations operations = new();
 
-        //List<Category> categories = operations.CategoryList();
-        //Category category = Random.Shared.GetItems( categories.ToArray(), 1)[0];
-        //Console.WriteLine(category.CategoryName);
-        //List<Product> products = operations.GetAllProductsByCategory(category.CategoryId);
+        List<Category> categories = operations.CategoryList();
+        Category category = Random.Shared.GetItems(categories.ToArray(), 1)[0];
+        Console.WriteLine(category.CategoryName);
+        List<Product> products = operations.GetAllProductsByCategory(category.CategoryId);
 
         //var test = operations.GetAllProductsBySupplier();
 
 
-        var descriptions = await operations.ProcedureProperties();
+        //var descriptions = await operations.ProcedureProperties();
 
         Console.ReadLine();
     }

@@ -28,6 +28,7 @@ public class WineOperations
             ORDER BY Name, WineType
             """;
 
+        var temp = db.Query<Wine>(statement).AsList();
         return db.Query<Wine>(statement).AsList();
     }
 

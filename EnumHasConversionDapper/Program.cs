@@ -8,13 +8,13 @@ internal partial class Program
 {
     static async Task Main(string[] args)
     {
-        AddWineIfNotExists();
+        //AddWineIfNotExists();
         GetAllWines();
-        WhiteWines();
-        GetAllWinesByType();
-        GroupedWines();
-
-        await WhereInMultipleWineTypes();
+        //WhiteWines();
+        //GetAllWinesByType();
+        //GroupedWines();
+        await Task.Delay(0);
+        //await WhereInMultipleWineTypes();
 
         Console.ReadLine();
     }
