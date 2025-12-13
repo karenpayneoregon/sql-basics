@@ -113,8 +113,8 @@ internal class Operations
     public void YourTableDuplicates()
     {
 
-        List<ItemContainer> list = _cn.Query<ItemContainer>(
-            SqlStatements.CreatePopulateTableGetDuplicates).ToList();
+        var list = _cn.Query<ItemContainer>(SqlStatements.CreatePopulateTableGetDuplicates).ToList();
+        
         var result = list.GroupBy(x => 
             new { x.Name, x.Email }, (key, group) => new
         {
