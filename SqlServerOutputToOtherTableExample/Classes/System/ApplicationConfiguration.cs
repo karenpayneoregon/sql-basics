@@ -1,8 +1,16 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SqlServerOutputToOtherTableExample.Models;
 using ConsoleConfigurationLibrary.Classes;
-namespace SqlServerOutputToOtherTableExample.Classes;
+namespace SqlServerOutputToOtherTableExample.Classes.System;
 
+/// <summary>
+/// Provides configuration for the application, including setting up services and dependencies.
+/// </summary>
+/// <remarks>
+/// This class is responsible for configuring the application's dependency injection container
+/// and registering required services. It ensures that the necessary configurations, such as
+/// connection strings, are properly set up for the application to function correctly.
+/// </remarks>
 internal class ApplicationConfiguration
 {
     public static ServiceCollection ConfigureServices()

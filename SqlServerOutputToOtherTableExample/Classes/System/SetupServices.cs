@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using SqlServerOutputToOtherTableExample.Models;
 
-namespace SqlServerOutputToOtherTableExample.Classes;
+namespace SqlServerOutputToOtherTableExample.Classes.System;
 
 internal class SetupServices
 {

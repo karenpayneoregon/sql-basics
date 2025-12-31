@@ -1,0 +1,6 @@
+"Spectre.Console" is a .NET library that makes it easier to create beautiful console applications. 
+It provides a rich set of features for formatting text, creating tables, progress bars, and more.
+
+Documentation: https://spectreconsole.net/
+
+Colors: https://spectreconsole.net/appendix/colors

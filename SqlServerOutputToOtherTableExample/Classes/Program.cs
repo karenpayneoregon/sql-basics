@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SqlServerOutputToOtherTableExample.Classes;
+using SqlServerOutputToOtherTableExample.Classes.System;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 // ReSharper disable once CheckNamespace
@@ -10,7 +11,12 @@ internal partial class Program
     [ModuleInitializer]
     public static void Init()
     {
-        Console.Title = "Code sample";
+        SpectreConsoleHelpers.SetEncoding();
+
+        var assembly = Assembly.GetEntryAssembly();
+        var product = assembly?.GetCustomAttribute<AssemblyProductAttribute>()?.Product;
+        Console.Title = product!;
+        
         WindowUtility.SetConsoleWindowPosition(WindowUtility.AnchorWindow.Center);
     }
     private static async Task Setup()

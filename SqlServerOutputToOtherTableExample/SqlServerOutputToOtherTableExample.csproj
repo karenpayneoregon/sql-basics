@@ -7,6 +7,10 @@
 		<Nullable>disable</Nullable>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<Product>Insert data code sample</Product>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<None Remove="readme.md" />
 	</ItemGroup>

@@ -2,6 +2,7 @@
 using Dapper;
 using Microsoft.Data.SqlClient;
 using SqlServerOutputToOtherTableExample.Classes;
+using SqlServerOutputToOtherTableExample.Classes.System;
 using SqlServerOutputToOtherTableExample.Models;
 
 namespace SqlServerOutputToOtherTableExample;
@@ -12,9 +13,15 @@ internal partial class Program
         
         await Setup();
 
-        RefreshData.Reset();
+        AnsiConsole.Status()
+            .Spinner(Spinner.Known.DotsCircle)
+            .Start("Resetting the database...", ctx =>
+            {
+                Thread.Sleep(1000);
+                RefreshData.Reset();
+            });
 
-
+        
         List<Person> list =
         [
             new() { FirstName = "Mary", LastName = "Adams", Gender = "Female" },
@@ -32,7 +39,9 @@ internal partial class Program
         AnsiConsole.MarkupLine("[yellow]Adding records[/]");
         await cn.ExecuteAsync(SqlStatements.InsertPersonToTransactions, list);
         AnsiConsole.MarkupLine("[green]Records added[/]");
-        ExitPrompt();
+
+
+        SpectreConsoleHelpers.ExitPrompt(Justify.Left);
 
  
     }
