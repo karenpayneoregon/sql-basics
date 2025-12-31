@@ -1,7 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Text;
 using OED_Console2026.Classes.System;
-using OED_Console2026.Classes.System.Models;
 using SqlServerOutputToOtherTableExample.Classes.System.Models;
 
 namespace SqlServerOutputToOtherTableExample.Classes.System;

@@ -1,8 +1,7 @@
 ﻿using Spectre.Console;
 using Spectre.Console.Rendering;
-using SqlServerOutputToOtherTableExample.Classes.System.Models;
 
-namespace OED_Console2026.Classes.System.Models;
+namespace SqlServerOutputToOtherTableExample.Classes.System.Models;
 
 /// <summary>
 /// Represents a styled pill-shaped UI element that can be rendered in the console.

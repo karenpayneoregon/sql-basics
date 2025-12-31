@@ -1,6 +1,4 @@
-﻿using OED_Console2026.Classes.System.Models;
-
-namespace SqlServerOutputToOtherTableExample.Classes.System.Models;
+﻿namespace SqlServerOutputToOtherTableExample.Classes.System.Models;
 /// <summary>
 /// Represents the type of pill-shaped UI element, determining its visual style and color scheme.
 /// </summary>
