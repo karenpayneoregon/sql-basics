@@ -9,7 +9,12 @@ internal partial class Program
 {
     static async Task Main(string[] args)
     {
+        
         await Setup();
+
+        RefreshData.Reset();
+
+
         List<Person> list =
         [
             new() { FirstName = "Mary", LastName = "Adams", Gender = "Female" },
