@@ -10,8 +10,9 @@ internal class Operations
         var catalog = Utilities.Catalog();
         if (DataOperations.CatalogExists(catalog))
         {
-            var foreignKeyContainers = 
-                DataOperations.ReadForeignKeys(Utilities.ServerName(), catalog);
+            var foreignKeyContainers = DataOperations.ReadForeignKeys(
+                Utilities.ServerName(), catalog);
+            
             foreach (var item in foreignKeyContainers)
             {
                 Console.WriteLine($"{item.TableName}");
@@ -70,8 +71,11 @@ internal class Operations
                 }
             }
         }
+        
         Console.Clear();
+        
         AnsiConsole.Write(root);
+        
         Continue();
 
     }
