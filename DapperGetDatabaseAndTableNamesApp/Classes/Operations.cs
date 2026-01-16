@@ -47,6 +47,7 @@ internal class Operations
 
             });
 
+        AnsiConsole.MarkupLine("[yellow]Creating tree, this may take a while...[/]");
         //FileOperations.WriteToFile(grouped);
         var root = new Tree("[darkseagreen2_1]Databases[/]");
 
@@ -73,10 +74,10 @@ internal class Operations
         }
         
         Console.Clear();
-        
+        Console.WriteLine();
         AnsiConsole.Write(root);
         
         Continue();
-
+        
     }
 }

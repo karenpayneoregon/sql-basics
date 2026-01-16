@@ -71,14 +71,14 @@ internal class DapperOperations
             return list;
         }
 
-        List<PersonDapper1> result = GetPerson();
+        List<PersonDapper1> people = GetPerson();
 
-        var addresses = result.Select(p => 
+        var addresses = people.Select(p => 
             new Address(p.Street, p.City, p.AddressType)).ToList();
 
-        result.RemoveAt(0);
+        people.RemoveAt(0);
 
-        return (result, addresses);
+        return (people, addresses);
     }
 
     /// <summary>

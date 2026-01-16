@@ -6,5 +6,6 @@ public static class TextBoxExtensions
     /// </summary>
     /// <param name="sender"></param>
     /// <returns></returns>
-    public static bool IsNullOrWhiteSpace(this TextBox sender) => string.IsNullOrWhiteSpace(sender.Text);
+    public static bool IsNullOrWhiteSpace(this TextBox sender) 
+        => string.IsNullOrWhiteSpace(sender.Text);
 }
