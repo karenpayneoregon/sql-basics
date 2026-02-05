@@ -11,6 +11,7 @@ internal partial class Program
     {
 
         DataOperations.DisplayTop5Customers();
+        DataOperations.CustomerWithJoins();
         DataOperations.UpdateCustomerById();
         DataOperations.DisplayTop5Customers();
         DataOperations.GetCustomersCount();

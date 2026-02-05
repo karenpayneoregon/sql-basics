@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NorthWindSqlLiteApp1.Models;
 
@@ -17,7 +18,7 @@ public partial class Customers
 
     public string City { get; set; }
 
-    public string Region { get; set; }
+    //public string Region { get; set; }
 
     public string PostalCode { get; set; }
 
@@ -25,7 +26,7 @@ public partial class Customers
 
     public string Phone { get; set; }
 
-    public string Fax { get; set; }
+    //public string Fax { get; set; }
 
     public int? ContactTypeIdentifier { get; set; }
 

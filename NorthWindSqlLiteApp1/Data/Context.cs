@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using NorthWindSqlLiteApp1.Models;
 using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
+using NorthWindSqlLiteApp1.Classes;
 
 namespace NorthWindSqlLiteApp1.Data;
 
@@ -52,7 +54,12 @@ public partial class Context : DbContext
     public virtual DbSet<Territories> Territories { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlite(AppConnections.Instance.MainConnection);
+    {
+        optionsBuilder.UseSqlite(AppConnections.Instance.MainConnection)
+            .EnableSensitiveDataLogging()
+            .LogTo(new DbContextToFileLogger().Log, [DbLoggerCategory.Database.Command.Name],
+                LogLevel.Information) ;
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -140,7 +147,7 @@ public partial class Context : DbContext
 
             entity.HasIndex(e => e.PostalCode, "Customers_PostalCode").IsDescending();
 
-            entity.HasIndex(e => e.Region, "Customers_Region").IsDescending();
+            //entity.HasIndex(e => e.Region, "Customers_Region").IsDescending();
 
             entity.Property(e => e.City)
                 .UseCollation("NOCASE")
@@ -149,9 +156,11 @@ public partial class Context : DbContext
                 .IsRequired()
                 .UseCollation("NOCASE")
                 .HasColumnType("nvarchar(40)");
-            entity.Property(e => e.Fax)
-                .UseCollation("NOCASE")
-                .HasColumnType("nvarchar(24)");
+            
+            //entity.Property(e => e.Fax)
+            //    .UseCollation("NOCASE")
+            //    .HasColumnType("nvarchar(24)");
+            
             entity.Property(e => e.ModifiedDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .UseCollation("NOCASE")
@@ -162,9 +171,11 @@ public partial class Context : DbContext
             entity.Property(e => e.PostalCode)
                 .UseCollation("NOCASE")
                 .HasColumnType("nvarchar(10)");
-            entity.Property(e => e.Region)
-                .UseCollation("NOCASE")
-                .HasColumnType("nvarchar(15)");
+            
+            //entity.Property(e => e.Region)
+            //    .UseCollation("NOCASE")
+            //    .HasColumnType("nvarchar(15)");
+            
             entity.Property(e => e.Street)
                 .UseCollation("NOCASE")
                 .HasColumnType("nvarchar(60)");
@@ -174,6 +185,7 @@ public partial class Context : DbContext
             entity.HasOne(d => d.ContactTypeIdentifierNavigation).WithMany(p => p.Customers).HasForeignKey(d => d.ContactTypeIdentifier);
 
             entity.HasOne(d => d.CountryIdentifierNavigation).WithMany(p => p.Customers).HasForeignKey(d => d.CountryIdentifier);
+
         });
 
         modelBuilder.Entity<Employees>(entity =>
