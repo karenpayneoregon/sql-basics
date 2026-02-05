@@ -9,6 +9,6 @@ internal partial class Program
     {
         AnsiConsole.MarkupLine("");
         Console.Title = "Code sample";
-        WindowUtility.SetConsoleWindowPosition(WindowUtility.AnchorWindow.Fill);
+        WindowUtility.SetConsoleWindowPosition(WindowUtility.AnchorWindow.Center);
     }
 }

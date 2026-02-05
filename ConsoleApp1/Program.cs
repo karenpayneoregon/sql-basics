@@ -34,9 +34,14 @@ internal class Program
 
         //operations.OrdersPaginationStatementInResourcesNotBrokenStatement();
 
-        const decimal decimalValue = 123_456_789.43534m;
+        
+        const int intValue = 123__456___789;
+        const decimal decimalValue = 123_456_789.43_534m;
         const double doubleValue = 123_456_789.43534;
 
+        
+        
+        
         int places = 3;
 
         Console.WriteLine($"{decimalValue.Truncate(places).ToCurrency(places)}");

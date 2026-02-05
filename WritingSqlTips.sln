@@ -195,6 +195,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dapper Get duplicates", "Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeleteDuplicateRowsSqlServerTable", "DeleteDuplicateRowsSqlServerTable\DeleteDuplicateRowsSqlServerTable.csproj", "{E2F02842-7288-CCD8-8E43-8B16C3788EFE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlLite", "SqlLite", "{E6B17769-ABC0-0A56-D1A8-1E62C75C57AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NorthWindSqlLiteApp1", "NorthWindSqlLiteApp1\NorthWindSqlLiteApp1.csproj", "{23810FE8-0707-4ECF-9850-4F88157703CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -485,6 +489,10 @@ Global
 		{E2F02842-7288-CCD8-8E43-8B16C3788EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2F02842-7288-CCD8-8E43-8B16C3788EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2F02842-7288-CCD8-8E43-8B16C3788EFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23810FE8-0707-4ECF-9850-4F88157703CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23810FE8-0707-4ECF-9850-4F88157703CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23810FE8-0707-4ECF-9850-4F88157703CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23810FE8-0707-4ECF-9850-4F88157703CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -566,6 +574,8 @@ Global
 		{4178573D-6E95-41C1-90B9-9AC2B2A246DA} = {65FDB35C-3D56-48A9-93FB-2D32028F167B}
 		{642649BD-B90A-3738-91B8-47EF43830D1C} = {3047B01C-561D-4A3F-A8EC-0930332D8A34}
 		{E2F02842-7288-CCD8-8E43-8B16C3788EFE} = {642649BD-B90A-3738-91B8-47EF43830D1C}
+		{E6B17769-ABC0-0A56-D1A8-1E62C75C57AD} = {657E776F-9022-4416-8A69-149A718688E3}
+		{23810FE8-0707-4ECF-9850-4F88157703CA} = {E6B17769-ABC0-0A56-D1A8-1E62C75C57AD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}

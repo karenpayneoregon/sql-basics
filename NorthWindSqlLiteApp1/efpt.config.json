@@ -1,0 +1,114 @@
+﻿{
+   "CodeGenerationMode": 4,
+   "ContextClassName": "C:\\OED\\DotnetLand\\VS2022\\WritingSqlTips\\NorthWindSqlLiteApp1\\bin\\Debug\\net9.0\\Database\\NorthWind2024.dbContext",
+   "ContextNamespace": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": true,
+   "MinimumProductVersion": "2.6.1093",
+   "ModelNamespace": null,
+   "OutputContextPath": "Data",
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "NorthWindSqlLiteApp1",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "Categories",
+         "ObjectType": 0
+      },
+      {
+         "Name": "ContactDevices",
+         "ObjectType": 0
+      },
+      {
+         "Name": "Contacts",
+         "ObjectType": 0
+      },
+      {
+         "Name": "ContactType",
+         "ObjectType": 0
+      },
+      {
+         "Name": "Countries",
+         "ObjectType": 0
+      },
+      {
+         "Name": "Customers",
+         "ObjectType": 0
+      },
+      {
+         "Name": "Employees",
+         "ObjectType": 0
+      },
+      {
+         "Name": "EmployeeTerritories",
+         "ObjectType": 0
+      },
+      {
+         "Name": "OrderDetails",
+         "ObjectType": 0
+      },
+      {
+         "Name": "Orders",
+         "ObjectType": 0
+      },
+      {
+         "Name": "PhoneType",
+         "ObjectType": 0
+      },
+      {
+         "Name": "Products",
+         "ObjectType": 0
+      },
+      {
+         "Name": "Region",
+         "ObjectType": 0
+      },
+      {
+         "Name": "Shippers",
+         "ObjectType": 0
+      },
+      {
+         "Name": "SupplierRegion",
+         "ObjectType": 0
+      },
+      {
+         "Name": "Suppliers",
+         "ObjectType": 0
+      },
+      {
+         "Name": "Territories",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": null,
+   "UncountableWords": null,
+   "UseAsyncStoredProcedureCalls": true,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDatabaseNamesForRoutines": true,
+   "UseDateOnlyTimeOnly": true,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseInternalAccessModifiersForSprocsAndFunctions": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UsePrefixNavigationNaming": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false,
+   "UseT4Split": false
+}

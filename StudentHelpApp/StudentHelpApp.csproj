@@ -44,6 +44,7 @@
 
 	<ItemGroup>
 	  <Folder Include="DatabaseScript\" />
+	  <Folder Include="Properties\" />
 	</ItemGroup>
 	<Target Name="MakeMyDir" AfterTargets="Build">
 		<MakeDir Directories="$(OutDir)LogFiles" />
