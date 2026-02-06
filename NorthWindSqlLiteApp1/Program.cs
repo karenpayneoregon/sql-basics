@@ -10,12 +10,19 @@ internal partial class Program
     static void Main(string[] args)
     {
 
+        DataOperations.GetCustomersCount();
         DataOperations.DisplayTop5Customers();
         DataOperations.CustomerWithJoins();
         DataOperations.UpdateCustomerById();
-        DataOperations.DisplayTop5Customers();
+        DataOperations.DisplayTop5Customers(); // Display updated customer
+        DataOperations.RemoveCustomerDenied();
         DataOperations.GetCustomersCount();
-        
+        DataOperations.WhereInCustomersIdentifiers();
+        DataOperations.WhereInCompanyName();
+        DataOperations.AddCustomer();
+        DataOperations.GetCustomersCount();
+
+
         SpectreConsoleHelpers.ExitPrompt(Justify.Left);
     }
 

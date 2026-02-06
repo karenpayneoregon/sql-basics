@@ -2,11 +2,12 @@
 #nullable disable
 using ConsoleConfigurationLibrary.Classes;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using NorthWindSqlLiteApp1.Classes;
 using NorthWindSqlLiteApp1.Models;
 using System;
 using System.Collections.Generic;
-using Microsoft.Extensions.Logging;
-using NorthWindSqlLiteApp1.Classes;
+using System.Diagnostics;
 
 namespace NorthWindSqlLiteApp1.Data;
 
@@ -53,14 +54,31 @@ public partial class Context : DbContext
 
     public virtual DbSet<Territories> Territories { get; set; }
 
+    /// <summary>
+    /// Configures the database context options for the application.
+    /// </summary>
+    /// <param name="optionsBuilder">
+    /// An instance of <see cref="DbContextOptionsBuilder"/> used to configure the database context.
+    /// </param>
+    /// <remarks>
+    /// This method sets up the SQLite connection string, enables sensitive data logging in development
+    /// environments, and configures logging of database commands to a file.
+    /// </remarks>
+    /// <seealso cref="DbContext.OnConfiguring(DbContextOptionsBuilder)"/>
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite(AppConnections.Instance.MainConnection)
-            .EnableSensitiveDataLogging()
-            .LogTo(new DbContextToFileLogger().Log, [DbLoggerCategory.Database.Command.Name],
-                LogLevel.Information) ;
-    }
+        // Configure SQLite connection
+        optionsBuilder.UseSqlite(AppConnections.Instance.MainConnection);
 
+        // Enable sensitive data logging only in Development environment
+        if (Debugger.IsAttached)
+        {
+            optionsBuilder.EnableSensitiveDataLogging();
+        }
+
+        // Log database commands to file
+        optionsBuilder.LogTo(new DbContextToFileLogger().Log, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information);
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Categories>(entity =>

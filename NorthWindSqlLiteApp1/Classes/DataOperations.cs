@@ -31,7 +31,8 @@ internal class DataOperations
         using (var context = new Context())
         {
             var customers = context.Customers.AsNoTracking().Take(5).ToList();
-            customers.ForEach(c => Console.WriteLine($"CustomerID: {c.CustomerIdentifier}, CompanyName: {c.CompanyName}"));
+            customers.ForEach(c => 
+                Console.WriteLine($"CustomerID: {c.CustomerIdentifier}, CompanyName: {c.CompanyName}"));
         }
 
         Console.WriteLine();
@@ -122,8 +123,10 @@ internal class DataOperations
             if (customer != null)
             {
                 customer.CompanyName = "Updated Company Name";
+                
                 context.Attach(customer).State = EntityState.Modified;
                 var result = context.SaveChanges();
+                
                 if (result == 1)
                 {
                     SuccessPill(Justify.Left, $"Customer '{customer.CompanyName}' updated successfully.");
@@ -141,5 +144,162 @@ internal class DataOperations
 
         Console.WriteLine();
         
+    }
+
+    /// <summary>
+    /// Attempts to remove a customer with a specific identifier from the database.
+    /// </summary>
+    /// <remarks>
+    /// This method checks if the customer with the specified identifier has any related orders.
+    /// If related orders exist, the deletion is denied, and an error message is displayed.
+    /// If no related orders are found, the customer is marked for deletion, and the changes are saved to the database.
+    /// Feedback is provided on whether the operation was successful or not.
+    ///
+    /// Perfect candidate for soft delete implementation.
+    /// 
+    /// </remarks>
+    public static void RemoveCustomerDenied()
+    {
+        PrintPink();
+
+        using (var context = new Context())
+        {
+            // check for related orders before attempting to delete the customer
+            if (context.Orders.FirstOrDefault(x => x.CustomerIdentifier == 15) != null)
+            {
+                ErrorPill(Justify.Left,"Cannot delete customer with ID 15 because there are related orders.");
+                return;
+            }
+            
+            var customerToDelete = context.Customers
+                .AsNoTracking()
+                .FirstOrDefault(c => c.CustomerIdentifier == 15);
+
+            if (customerToDelete != null)
+            {
+                context.Customers.Attach(customerToDelete).State = EntityState.Deleted;
+                var result = context.SaveChanges();
+
+                if (result == 1)
+                {
+                    SuccessPill(Justify.Left, $"Customer with ID {customerToDelete.CustomerIdentifier} removed successfully.");
+                }
+                else
+                {
+                    ErrorPill(Justify.Left, $"Customer with ID {customerToDelete.CustomerIdentifier} was not removed.");
+                }
+            }
+            else
+            {
+                ErrorPill(Justify.Left, "Customer not found with the specified ID.");
+            }
+        }
+
+        Console.WriteLine();
+    }
+    
+    public static void AddCustomer()
+    {
+        
+        PrintPink();
+        
+        using (var context = new Context())
+        {
+            var newCustomer = new Models.Customers
+            {
+                CompanyName = "New Customer",
+                Street = "123 New St",
+                City = "New City",
+                PostalCode = "12345",
+                Phone = "555-1234",
+                CountryIdentifier = 20, 
+                ContactTypeIdentifier = 7,
+                ContactId = 5
+            };
+            
+            context.Customers.Add(newCustomer);
+            
+            var result = context.SaveChanges();
+            
+            if (result == 1)
+            {
+                SuccessPill(Justify.Left, $"Customer added successfully with ID {newCustomer.CustomerIdentifier}.");
+            }
+            else
+            {
+                ErrorPill(Justify.Left, "Failed to add the new customer.");
+            }
+        }
+        Console.WriteLine();
+    }
+
+    /// <summary>
+    /// Retrieves and displays customers whose identifiers match a specified list of IDs.
+    /// </summary>
+    /// <remarks>
+    /// This method queries the database for customers whose <c>CustomerIdentifier</c> matches
+    /// any of the IDs in a predefined list. The results are displayed in the console.
+    /// If no customers are found, a message indicating this is displayed.
+    /// </remarks>
+    public static void WhereInCustomersIdentifiers()
+    {
+        PrintPink();
+
+        using (var context = new Context())
+        {
+            var customerIds = new List<int> { 1, 5, 30, 78 }; 
+
+            var customers = context.Customers.AsNoTracking()
+                .Where(c => customerIds.Contains(c.CustomerIdentifier))
+                .ToList();
+
+            if (customers.Any())
+            {
+                customers.ForEach(c => Console.WriteLine($"{c.CustomerIdentifier, -4}{c.CompanyName}"));
+            }
+            else
+            {
+                InfoPill(Justify.Left, "No customers found for the specified IDs.");
+            }
+        }
+
+        Console.WriteLine();
+    }
+
+    /// <summary>
+    /// Retrieves a list of customers whose company names match the specified list of company names.
+    /// </summary>
+    /// <remarks>
+    /// This method queries the database using Entity Framework Core to find customers with company names
+    /// that are included in a predefined list. The results are displayed in the console.
+    /// </remarks>
+    public static void WhereInCompanyName()
+    {
+        PrintPink();
+
+        using (var context = new Context())
+        {
+            List<string> companyNames = 
+                [
+                    "Alfreds Futterkiste", 
+                    "Around the Horn"
+                ]; 
+
+            var customers = context.Customers
+                .AsNoTracking()
+                .Where(c => companyNames.Contains(c.CompanyName))
+                .ToList();
+
+            if (customers.Any())
+            {
+                customers.ForEach(c => Console.WriteLine($"{c.CustomerIdentifier, -4}{c.CompanyName}"));
+            }
+            else
+            {
+                InfoPill(Justify.Left, "No customers found for the specified company names.");
+            }
+        }
+
+        Console.WriteLine();
     }
 }
