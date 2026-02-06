@@ -13,17 +13,25 @@ internal partial class Program
         
         DataOperations.GetCustomersCount();
         DataOperations.GetCustomersCountIgnoreQueryFilters();
+        
         DataOperations.DisplayTop5Customers();
         DataOperations.CustomerWithJoins();
+        
         DataOperations.UpdateCustomerById();
         DataOperations.DisplayTop5Customers(); // Display updated customer
+        
         DataOperations.RemoveCustomerDenied();
+        
         DataOperations.GetCustomersCount();
+        
         DataOperations.WhereInCustomersIdentifiers();
         DataOperations.WhereInCompanyName();
+        
         DataOperations.AddCustomer();
         DataOperations.AddCustomerDebugView();
+        
         DataOperations.GetCustomersCountIgnoreQueryFilters();
+        
         DataOperations.GetModelNames();
 
         await DataOperations.SortCustomerOnContactTitle();
