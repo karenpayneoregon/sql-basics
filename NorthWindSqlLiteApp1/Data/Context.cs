@@ -8,6 +8,7 @@ using NorthWindSqlLiteApp1.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using NorthWindSqlLiteApp1.Classes.Core;
 
 namespace NorthWindSqlLiteApp1.Data;
 
@@ -77,7 +78,9 @@ public partial class Context : DbContext
         }
 
         // Log database commands to file
-        optionsBuilder.LogTo(new DbContextToFileLogger().Log, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information);
+        optionsBuilder.LogTo(new DbContextToFileLogger().Log, 
+            new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information);
+        
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -1,6 +1,6 @@
 ﻿using static System.DateTime;
 
-namespace NorthWindSqlLiteApp1.Classes;
+namespace NorthWindSqlLiteApp1.Classes.Core;
 
 /// <summary>
 /// Provides a mechanism for logging Entity Framework Core (EF Core) database context activities to a file.

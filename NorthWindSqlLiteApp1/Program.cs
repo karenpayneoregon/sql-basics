@@ -7,20 +7,25 @@ using Spectre.Console;
 namespace NorthWindSqlLiteApp1;
 internal partial class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
-
-        DataOperations.GetCustomersCount();
-        DataOperations.DisplayTop5Customers();
-        DataOperations.CustomerWithJoins();
-        DataOperations.UpdateCustomerById();
-        DataOperations.DisplayTop5Customers(); // Display updated customer
-        DataOperations.RemoveCustomerDenied();
-        DataOperations.GetCustomersCount();
-        DataOperations.WhereInCustomersIdentifiers();
-        DataOperations.WhereInCompanyName();
-        DataOperations.AddCustomer();
-        DataOperations.GetCustomersCount();
+        await Task.Delay(0);
+        
+        //DataOperations.GetCustomersCount();
+        //DataOperations.DisplayTop5Customers();
+        //DataOperations.CustomerWithJoins();
+        //DataOperations.UpdateCustomerById();
+        //DataOperations.DisplayTop5Customers(); // Display updated customer
+        //DataOperations.RemoveCustomerDenied();
+        //DataOperations.GetCustomersCount();
+        //DataOperations.WhereInCustomersIdentifiers();
+        //DataOperations.WhereInCompanyName();
+        //DataOperations.AddCustomer();
+        DataOperations.AddCustomerDebugView();
+        //DataOperations.GetCustomersCount();
+        //DataOperations.GetModelNames();
+        
+        //await DataOperations.SortCustomerOnContactTitle();
 
 
         SpectreConsoleHelpers.ExitPrompt(Justify.Left);

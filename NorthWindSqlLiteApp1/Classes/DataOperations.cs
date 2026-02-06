@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Spectre.Console;
+using NorthWindSqlLiteApp1.Classes.Extensions;
 using NorthWindSqlLiteApp1.Data;
-
+using NorthWindSqlLiteApp1.Models.Sorting;
+using Spectre.Console;
+using System.Collections;
+using NorthWindSqlLiteApp1.Models;
 using static NorthWindSqlLiteApp1.Classes.Core.SpectreConsoleHelpers;
 
 namespace NorthWindSqlLiteApp1.Classes;
@@ -25,18 +28,18 @@ internal class DataOperations
     /// </summary>
     public static void DisplayTop5Customers()
     {
-        
+
         PrintPink();
-        
+
         using (var context = new Context())
         {
             var customers = context.Customers.AsNoTracking().Take(5).ToList();
-            customers.ForEach(c => 
+            customers.ForEach(c =>
                 Console.WriteLine($"CustomerID: {c.CustomerIdentifier}, CompanyName: {c.CompanyName}"));
         }
 
         Console.WriteLine();
-        
+
     }
 
     /// <summary>
@@ -87,7 +90,7 @@ internal class DataOperations
     {
 
         PrintPink();
-        
+
         using (var context = new Context())
         {
             var count = context.Customers.AsNoTracking().Count();
@@ -95,7 +98,7 @@ internal class DataOperations
         }
 
         Console.WriteLine();
-        
+
     }
 
     /// <summary>
@@ -116,17 +119,17 @@ internal class DataOperations
     {
 
         PrintPink();
-        
+
         using (var context = new Context())
         {
             var customer = context.Customers.AsNoTracking().FirstOrDefault(x => x.CustomerIdentifier == 3);
             if (customer != null)
             {
                 customer.CompanyName = "Updated Company Name";
-                
+
                 context.Attach(customer).State = EntityState.Modified;
                 var result = context.SaveChanges();
-                
+
                 if (result == 1)
                 {
                     SuccessPill(Justify.Left, $"Customer '{customer.CompanyName}' updated successfully.");
@@ -143,7 +146,7 @@ internal class DataOperations
         }
 
         Console.WriteLine();
-        
+
     }
 
     /// <summary>
@@ -167,10 +170,10 @@ internal class DataOperations
             // check for related orders before attempting to delete the customer
             if (context.Orders.FirstOrDefault(x => x.CustomerIdentifier == 15) != null)
             {
-                ErrorPill(Justify.Left,"Cannot delete customer with ID 15 because there are related orders.");
+                ErrorPill(Justify.Left, "Cannot delete customer with ID 15 because there are related orders.");
                 return;
             }
-            
+
             var customerToDelete = context.Customers
                 .AsNoTracking()
                 .FirstOrDefault(c => c.CustomerIdentifier == 15);
@@ -197,12 +200,12 @@ internal class DataOperations
 
         Console.WriteLine();
     }
-    
+
     public static void AddCustomer()
     {
-        
+
         PrintPink();
-        
+
         using (var context = new Context())
         {
             var newCustomer = new Models.Customers
@@ -212,15 +215,15 @@ internal class DataOperations
                 City = "New City",
                 PostalCode = "12345",
                 Phone = "555-1234",
-                CountryIdentifier = 20, 
+                CountryIdentifier = 20,
                 ContactTypeIdentifier = 7,
                 ContactId = 5
             };
-            
+
             context.Customers.Add(newCustomer);
-            
+
             var result = context.SaveChanges();
-            
+
             if (result == 1)
             {
                 SuccessPill(Justify.Left, $"Customer added successfully with ID {newCustomer.CustomerIdentifier}.");
@@ -231,6 +234,44 @@ internal class DataOperations
             }
         }
         Console.WriteLine();
+    }
+
+
+    /// <summary>
+    /// Adds a new customer to the database and displays the Entity Framework Core change tracker debug view.
+    /// </summary>
+    /// <remarks>
+    /// This method creates a new customer with predefined details and adds it to the database context.
+    /// It then outputs the detailed debug view of the change tracker to the console, which provides
+    /// insights into the state of tracked entities within the context.
+    /// </remarks>
+    public static void AddCustomerDebugView()
+    {
+
+        PrintPink();
+
+        using (var context = new Context())
+        {
+            var newCustomer = new Customers
+            {
+                CompanyName = "New Customer",
+                Street = "123 New St",
+                City = "New City",
+                PostalCode = "12345",
+                Phone = "555-1234",
+                CountryIdentifier = 20,
+                ContactTypeIdentifier = 7,
+                ContactId = 5
+            };
+
+            context.Customers.Add(newCustomer);
+            
+            Console.WriteLine(context.ChangeTracker.DebugView.LongView);
+            
+        }
+        
+        Console.WriteLine();
+        
     }
 
     /// <summary>
@@ -247,7 +288,7 @@ internal class DataOperations
 
         using (var context = new Context())
         {
-            var customerIds = new List<int> { 1, 5, 30, 78 }; 
+            var customerIds = new List<int> { 1, 5, 30, 78 };
 
             var customers = context.Customers.AsNoTracking()
                 .Where(c => customerIds.Contains(c.CustomerIdentifier))
@@ -255,7 +296,7 @@ internal class DataOperations
 
             if (customers.Any())
             {
-                customers.ForEach(c => Console.WriteLine($"{c.CustomerIdentifier, -4}{c.CompanyName}"));
+                customers.ForEach(c => Console.WriteLine($"{c.CustomerIdentifier,-4}{c.CompanyName}"));
             }
             else
             {
@@ -279,11 +320,11 @@ internal class DataOperations
 
         using (var context = new Context())
         {
-            List<string> companyNames = 
+            List<string> companyNames =
                 [
-                    "Alfreds Futterkiste", 
+                    "Alfreds Futterkiste",
                     "Around the Horn"
-                ]; 
+                ];
 
             var customers = context.Customers
                 .AsNoTracking()
@@ -292,7 +333,7 @@ internal class DataOperations
 
             if (customers.Any())
             {
-                customers.ForEach(c => Console.WriteLine($"{c.CustomerIdentifier, -4}{c.CompanyName}"));
+                customers.ForEach(c => Console.WriteLine($"{c.CustomerIdentifier,-4}{c.CompanyName}"));
             }
             else
             {
@@ -301,5 +342,58 @@ internal class DataOperations
         }
 
         Console.WriteLine();
+    }
+
+    public static void GetModelNames()
+    {
+        PrintPink();
+
+        using (var context = new Context())
+        {
+            var modelTypes = context.GetModelTypes();
+
+            foreach (var modelName in modelTypes)
+            {
+                Console.WriteLine(modelName.Name);
+            }
+        }
+
+        Console.WriteLine();
+    }
+    public static async Task SortCustomerOnContactTitle()
+    {
+        await using var context = new Context();
+
+        List<Customers> customers = await context.Customers
+            .Include(c => c.Contact)
+            .Include(c => c.ContactTypeIdentifierNavigation)
+            .OrderByEnum(PropertyName.Title, Direction.Descending)
+            .ToListAsync();
+
+        var table = CreateTableForContactTitle();
+
+        for (int index = 0; index < customers.Count; index++)
+        {
+            table.AddRow(
+                customers[index].CompanyName,
+                customers[index].ContactTypeIdentifierNavigation.ContactTitle,
+                customers[index].Contact.LastName);
+        }
+
+        AnsiConsole.Write(table);
+
+    }
+
+
+    private static Table CreateTableForContactTitle()
+    {
+        return new Table()
+            .RoundedBorder()
+            .BorderColor(Color.LightSlateGrey)
+            .AddColumn("[b]Customer[/]")
+            .AddColumn("[b]Title[/]")
+            .AddColumn("[b]Contact last name[/]")
+            .Title("[cyan]By title[/]")
+            .Alignment(Justify.Center);
     }
 }
