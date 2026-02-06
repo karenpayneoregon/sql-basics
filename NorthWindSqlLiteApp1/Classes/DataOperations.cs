@@ -3,7 +3,6 @@ using NorthWindSqlLiteApp1.Classes.Extensions;
 using NorthWindSqlLiteApp1.Data;
 using NorthWindSqlLiteApp1.Models.Sorting;
 using Spectre.Console;
-using System.Collections;
 using NorthWindSqlLiteApp1.Models;
 using static NorthWindSqlLiteApp1.Classes.Core.SpectreConsoleHelpers;
 
@@ -20,6 +19,8 @@ namespace NorthWindSqlLiteApp1.Classes;
 /// 
 /// It utilizes Entity Framework Core for database interactions and includes helper methods 
 /// for displaying formatted output using Spectre.Console.
+///
+/// IgnoreQueryFilters see Cotext.cs HasQueryFilter.
 /// </remarks>
 internal class DataOperations
 {
@@ -33,7 +34,11 @@ internal class DataOperations
 
         using (var context = new Context())
         {
-            var customers = context.Customers.AsNoTracking().Take(5).ToList();
+            var customers = context.Customers
+                .IgnoreQueryFilters()
+                .AsNoTracking()
+                .Take(5)
+                .ToList();
             customers.ForEach(c =>
                 Console.WriteLine($"CustomerID: {c.CustomerIdentifier}, CompanyName: {c.CompanyName}"));
         }
@@ -63,6 +68,7 @@ internal class DataOperations
         {
             var customer = context
                 .Customers
+                .IgnoreQueryFilters()
                 .AsNoTracking()
                 .Include(x => x.Contact)
                 .Include(x => x.ContactTypeIdentifierNavigation)
@@ -93,7 +99,40 @@ internal class DataOperations
 
         using (var context = new Context())
         {
-            var count = context.Customers.AsNoTracking().Count();
+            var count = context.Customers
+                .AsNoTracking()
+                .Count();
+            PanelDisplay("Total Customers", $"Count: {count}");
+        }
+
+        Console.WriteLine();
+
+    }
+
+    /// <summary>
+    /// Retrieves the total count of customers from the database, ignoring any query filters.
+    /// </summary>
+    /// <remarks>
+    /// This method uses Entity Framework Core's <see cref="EntityFrameworkQueryableExtensions.IgnoreQueryFilters"/> 
+    /// to bypass any global query filters applied to the <see cref="Context.Customers"/> DbSet.
+    /// The result is displayed in a formatted panel using Spectre.Console.
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// DataOperations.GetCustomersCountIgnoreQueryFilters();
+    /// </code>
+    /// </example>
+    public static void GetCustomersCountIgnoreQueryFilters()
+    {
+
+        PrintPink();
+
+        using (var context = new Context())
+        {
+            var count = context.Customers
+                .IgnoreQueryFilters()
+                .AsNoTracking()
+                .Count();
             PanelDisplay("Total Customers", $"Count: {count}");
         }
 
@@ -122,7 +161,11 @@ internal class DataOperations
 
         using (var context = new Context())
         {
-            var customer = context.Customers.AsNoTracking().FirstOrDefault(x => x.CustomerIdentifier == 3);
+            var customer = context.Customers
+                .IgnoreQueryFilters()
+                .AsNoTracking()
+                .FirstOrDefault(x => x.CustomerIdentifier == 3);
+            
             if (customer != null)
             {
                 customer.CompanyName = "Updated Company Name";
@@ -208,7 +251,7 @@ internal class DataOperations
 
         using (var context = new Context())
         {
-            var newCustomer = new Models.Customers
+            var newCustomer = new Customers
             {
                 CompanyName = "New Customer",
                 Street = "123 New St",
@@ -290,7 +333,9 @@ internal class DataOperations
         {
             var customerIds = new List<int> { 1, 5, 30, 78 };
 
-            var customers = context.Customers.AsNoTracking()
+            var customers = context.Customers
+                .IgnoreQueryFilters()
+                .AsNoTracking()
                 .Where(c => customerIds.Contains(c.CustomerIdentifier))
                 .ToList();
 
@@ -327,6 +372,7 @@ internal class DataOperations
                 ];
 
             var customers = context.Customers
+                .IgnoreQueryFilters()
                 .AsNoTracking()
                 .Where(c => companyNames.Contains(c.CompanyName))
                 .ToList();
@@ -365,6 +411,7 @@ internal class DataOperations
         await using var context = new Context();
 
         List<Customers> customers = await context.Customers
+            .IgnoreQueryFilters()
             .Include(c => c.Contact)
             .Include(c => c.ContactTypeIdentifierNavigation)
             .OrderByEnum(PropertyName.Title, Direction.Descending)

@@ -480,6 +480,11 @@ public partial class Context : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
 
+        var cust = new Customers();
+        modelBuilder.Entity<Customers>()
+            .HasQueryFilter(c => 
+                EF.Property<int?>(c, nameof(cust.CountryIdentifier)) == 20); // USA
+        
         OnModelCreatingPartial(modelBuilder);
     }
 
