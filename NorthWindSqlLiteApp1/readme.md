@@ -2,6 +2,8 @@
 
 Provides starter/basic EF Core code for SQLite database.
 
+:bulb: The benefit here is that the database is copied over each time so that developers can experiment with the code and database without worrying about breaking anything. The database is copied from the `Database` folder to the `bin` folder on build.
+
 The database was ported from SQL Server using the following [tool](https://github.com/karenpayneoregon/sqlserver-to-sqllite).
 
 > **Note**
