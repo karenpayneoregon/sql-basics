@@ -35,6 +35,8 @@ internal partial class Program
         DataOperations.GetModelNames();
 
         await DataOperations.SortCustomerOnContactTitle();
+        
+        DataOperations.CustomersFormattableString();
     
         SpectreConsoleHelpers.ExitPrompt(Justify.Left);
     }

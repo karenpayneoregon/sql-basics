@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 using NorthWindSqlLiteApp1.Classes.Extensions;
 using NorthWindSqlLiteApp1.Data;
 using NorthWindSqlLiteApp1.Models.Sorting;
@@ -431,6 +432,36 @@ internal class DataOperations
 
     }
 
+    public static void CustomersFormattableString()
+    {
+
+        PrintPink();
+        
+        const int contactTypeIdentifier = 5;
+        
+        FormattableString statement =
+            $"""
+             SELECT *
+              FROM Customers
+             WHERE ContactTypeIdentifier = {contactTypeIdentifier}
+             """;
+
+        using var context = new Context();
+        var list = context.Customers
+            .FromSqlInterpolated(statement)
+            .IgnoreQueryFilters()
+            .Include(c => c.Contact)
+            .ToList();
+
+        foreach (var customer in list)
+        {
+            Console.WriteLine($"{customer.CustomerIdentifier, -4}" +
+                              $"{customer.CompanyName, -35}" +
+                              $"{customer.Contact.FullName}");
+        }
+
+        Console.WriteLine();
+    }
 
     private static Table CreateTableForContactTitle()
     {
