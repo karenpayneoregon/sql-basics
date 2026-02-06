@@ -432,6 +432,26 @@ internal class DataOperations
 
     }
 
+    /// <summary>
+    /// Retrieves and displays a list of customers filtered by a specific contact type identifier.
+    /// </summary>
+    /// <remarks>
+    /// This method constructs a SQL query using a <see cref="FormattableString"/> to filter customers
+    /// by a predefined contact type identifier. It executes the query using Entity Framework Core's
+    /// <see cref="Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.FromSqlInterpolated{TEntity}(IQueryable{TEntity}, FormattableString)"/> 
+    /// method, applies query filters, and includes related contact data.
+    /// 
+    /// The results are displayed in a formatted output, showing the customer identifier, company name,
+    /// and the full name of the associated contact.
+    /// </remarks>
+    /// <example>
+    /// Example usage:
+    /// <code>
+    /// DataOperations.CustomersFormattableString();
+    /// </code>
+    /// </example>
+    /// <seealso cref="Microsoft.EntityFrameworkCore.RelationalQueryableExtensions.FromSqlInterpolated{TEntity}(IQueryable{TEntity}, FormattableString)"/>
+    /// <seealso cref="Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.IgnoreQueryFilters{TEntity}(IQueryable{TEntity})"/>
     public static void CustomersFormattableString()
     {
 
