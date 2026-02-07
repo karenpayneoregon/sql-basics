@@ -4,11 +4,13 @@ using ConsoleConfigurationLibrary.Classes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NorthWindSqlLiteApp1.Classes;
+using NorthWindSqlLiteApp1.Classes.Configuration;
+using NorthWindSqlLiteApp1.Classes.Core;
+using NorthWindSqlLiteApp1.Classes.Interceptor;
 using NorthWindSqlLiteApp1.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using NorthWindSqlLiteApp1.Classes.Core;
 
 namespace NorthWindSqlLiteApp1.Data;
 
@@ -75,12 +77,17 @@ public partial class Context : DbContext
         if (Debugger.IsAttached)
         {
             optionsBuilder.EnableSensitiveDataLogging();
+            
+            if (ContextSettings.Instance.UseAuditInterceptor)
+            {
+                optionsBuilder.AddInterceptors(new AuditInterceptor());
+            }
         }
 
         // Log database commands to file
-        optionsBuilder.LogTo(new DbContextToFileLogger().Log, 
+        optionsBuilder.LogTo(new DbContextToFileLogger().Log,
             new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information);
-        
+
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -177,11 +184,11 @@ public partial class Context : DbContext
                 .IsRequired()
                 .UseCollation("NOCASE")
                 .HasColumnType("nvarchar(40)");
-            
+
             //entity.Property(e => e.Fax)
             //    .UseCollation("NOCASE")
             //    .HasColumnType("nvarchar(24)");
-            
+
             entity.Property(e => e.ModifiedDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .UseCollation("NOCASE")
@@ -192,11 +199,11 @@ public partial class Context : DbContext
             entity.Property(e => e.PostalCode)
                 .UseCollation("NOCASE")
                 .HasColumnType("nvarchar(10)");
-            
+
             //entity.Property(e => e.Region)
             //    .UseCollation("NOCASE")
             //    .HasColumnType("nvarchar(15)");
-            
+
             entity.Property(e => e.Street)
                 .UseCollation("NOCASE")
                 .HasColumnType("nvarchar(60)");
@@ -480,11 +487,16 @@ public partial class Context : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
 
-        var cust = new Customers();
-        modelBuilder.Entity<Customers>()
-            .HasQueryFilter(c => 
-                EF.Property<int?>(c, nameof(cust.CountryIdentifier)) == 20); // USA
-        
+        if (ContextSettings.Instance.CustomerOptions.UseQueryFilter)
+        {
+
+            var cust = new Customers(); // for nameof operator
+
+            modelBuilder.Entity<Customers>()
+                .HasQueryFilter(c =>
+                    EF.Property<int?>(c, nameof(cust.CountryIdentifier)) == 20); // USA
+        }
+
         OnModelCreatingPartial(modelBuilder);
     }
 

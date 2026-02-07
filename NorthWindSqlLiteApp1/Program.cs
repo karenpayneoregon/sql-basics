@@ -1,4 +1,5 @@
 ﻿using NorthWindSqlLiteApp1.Classes;
+using NorthWindSqlLiteApp1.Classes.Configuration;
 using NorthWindSqlLiteApp1.Classes.Core;
 using Spectre.Console;
 
@@ -8,7 +9,8 @@ internal partial class Program
     static async Task Main(string[] args)
     {
         await Task.Delay(0);
-        
+
+    
         CustomerOperations.GetCustomersCount();
         CustomerOperations.GetCustomersCountIgnoreQueryFilters();
         
@@ -39,9 +41,6 @@ internal partial class Program
         Console.WriteLine();
 
         EmployeeOperations.ReportsToManager();
-
-        Console.WriteLine();
-
         EmployeeOperations.GetSingleEmployee();
 
         SpectreConsoleHelpers.ExitPrompt(Justify.Left);

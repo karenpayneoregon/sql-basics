@@ -20,13 +20,12 @@ internal class EmployeeOperations
     /// such as contact type, country, and manager information. If the employee is found, their details are displayed
     /// in a formatted table using Spectre.Console. If no employee is found, a message is displayed indicating this.
     /// </remarks>
-    public static void GetSingleEmployee(int id = 1)
+    public static void GetSingleEmployee(int id = 5)
     {
         PrintPink();
 
         using var context = new Context();
 
-  
         var employee = context.Employees.Include(employees => employees.ContactTypeIdentifierNavigation)
             .Include(employees => employees.CountryIdentifierNavigation)
             .Include(employees => employees.ReportsToNavigationEmployee)
@@ -36,13 +35,11 @@ internal class EmployeeOperations
         {
             var table = new Table().Border(TableBorder.Rounded)
                 .BorderColor(Color.Teal)
-                .Title($"[bold blue]Employee Details[/] - [white]{employee.FullName}[/]")
+                .Title($"[white]{employee.FullName}[/]")
                 .AddColumn(new TableColumn("[u]Field[/]"))
                 .AddColumn(new TableColumn("[u]Value[/]"));
 
             table.AddRow("Employee ID", employee.EmployeeID.ToString());
-            table.AddRow("Last Name", employee.LastName);
-            table.AddRow("First Name", employee.FirstName);
             table.AddRow("Title", employee.ContactTypeIdentifierNavigation?.ContactTitle ?? "N/A");
             table.AddRow("Birth Date", employee.BirthDate?.ToString("yyyy-MM-dd") ?? "N/A");
             table.AddRow("Hire Date", employee.HireDate?.ToString("yyyy-MM-dd") ?? "N/A");
@@ -136,6 +133,8 @@ internal class EmployeeOperations
         }
 
         AnsiConsole.Write(root);
+
+        Console.WriteLine();
 
     }
 
