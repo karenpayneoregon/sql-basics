@@ -42,6 +42,8 @@ internal partial class Program
 
         Console.WriteLine();
 
+        EmployeeOperations.GetSingleEmployee();
+
         SpectreConsoleHelpers.ExitPrompt(Justify.Left);
     }
 

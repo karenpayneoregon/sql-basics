@@ -1,4 +1,5 @@
-﻿using NorthWindSqlLiteApp1.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using NorthWindSqlLiteApp1.Data;
 using NorthWindSqlLiteApp1.Models;
 using Spectre.Console;
 
@@ -7,6 +8,58 @@ using static NorthWindSqlLiteApp1.Classes.Core.SpectreConsoleHelpers;
 namespace NorthWindSqlLiteApp1.Classes;
 internal class EmployeeOperations
 {
+
+    /// <summary>
+    /// Retrieves and displays detailed information about a single employee based on the specified employee ID.
+    /// </summary>
+    /// <param name="id">
+    /// The ID of the employee to retrieve. Defaults to <c>1</c> if no value is provided.
+    /// </param>
+    /// <remarks>
+    /// This method queries the database for an employee with the specified ID, including related navigation properties
+    /// such as contact type, country, and manager information. If the employee is found, their details are displayed
+    /// in a formatted table using Spectre.Console. If no employee is found, a message is displayed indicating this.
+    /// </remarks>
+    public static void GetSingleEmployee(int id = 1)
+    {
+        PrintPink();
+
+        using var context = new Context();
+
+  
+        var employee = context.Employees.Include(employees => employees.ContactTypeIdentifierNavigation)
+            .Include(employees => employees.CountryIdentifierNavigation)
+            .Include(employees => employees.ReportsToNavigationEmployee)
+            .FirstOrDefault(e => e.EmployeeID == id);
+
+        if (employee != null)
+        {
+            var table = new Table().Border(TableBorder.Rounded)
+                .BorderColor(Color.Teal)
+                .Title($"[bold blue]Employee Details[/] - [white]{employee.FullName}[/]")
+                .AddColumn(new TableColumn("[u]Field[/]"))
+                .AddColumn(new TableColumn("[u]Value[/]"));
+
+            table.AddRow("Employee ID", employee.EmployeeID.ToString());
+            table.AddRow("Last Name", employee.LastName);
+            table.AddRow("First Name", employee.FirstName);
+            table.AddRow("Title", employee.ContactTypeIdentifierNavigation?.ContactTitle ?? "N/A");
+            table.AddRow("Birth Date", employee.BirthDate?.ToString("yyyy-MM-dd") ?? "N/A");
+            table.AddRow("Hire Date", employee.HireDate?.ToString("yyyy-MM-dd") ?? "N/A");
+            table.AddRow("Address", employee.Address ?? "N/A");
+            table.AddRow("City", employee.City ?? "N/A");
+            table.AddRow("Region", employee.Region ?? "N/A");
+            table.AddRow("Postal Code", employee.PostalCode ?? "N/A");
+            table.AddRow("Country", employee.CountryIdentifierNavigation?.Name ?? "N/A");
+            table.AddRow("Home Phone", employee.HomePhone ?? "N/A");
+
+            AnsiConsole.Write(table);
+        }
+        else
+        {
+            AnsiConsole.MarkupLine("[red]Employee not found.[/]");
+        }
+    }
     /// <summary>
     /// Displays a hierarchical view of employees and their respective managers
     /// in a tree structure using Spectre.Console.
