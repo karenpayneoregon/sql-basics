@@ -1,11 +1,10 @@
-﻿using System.Diagnostics;
-using Microsoft.EntityFrameworkCore;
-using NorthWindSqlLiteApp1.Classes.Extensions;
+﻿using Microsoft.EntityFrameworkCore;
 using NorthWindSqlLiteApp1.Data;
 using NorthWindSqlLiteApp1.Models.Sorting;
 using Spectre.Console;
 using NorthWindSqlLiteApp1.Models;
 using static NorthWindSqlLiteApp1.Classes.Core.SpectreConsoleHelpers;
+using NorthWindSqlLiteApp1.Classes.Core;
 
 namespace NorthWindSqlLiteApp1.Classes;
 /// <summary>
@@ -23,7 +22,7 @@ namespace NorthWindSqlLiteApp1.Classes;
 ///
 /// IgnoreQueryFilters see Cotext.cs HasQueryFilter.
 /// </remarks>
-internal class DataOperations
+internal class CustomerOperations
 {
     /// <summary>
     /// Displays the top 5 customers from the database.
@@ -391,22 +390,7 @@ internal class DataOperations
         Console.WriteLine();
     }
 
-    public static void GetModelNames()
-    {
-        PrintPink();
 
-        using (var context = new Context())
-        {
-            var modelTypes = context.GetModelTypes();
-
-            foreach (var modelName in modelTypes)
-            {
-                Console.WriteLine(modelName.Name);
-            }
-        }
-
-        Console.WriteLine();
-    }
     public static async Task SortCustomerOnContactTitle()
     {
         await using var context = new Context();
@@ -429,6 +413,9 @@ internal class DataOperations
         }
 
         AnsiConsole.Write(table);
+
+        Console.WriteLine();
+        Console.WriteLine();
 
     }
 

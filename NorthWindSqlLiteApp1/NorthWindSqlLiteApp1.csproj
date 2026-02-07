@@ -11,6 +11,14 @@
 		<Product>Basic</Product>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <NoWarn>1701;1702;CS8629</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <NoWarn>1701;1702;CS8629</NoWarn>
+	</PropertyGroup>
+
 	<ItemGroup>
 	  <None Remove="readme.md" />
 	</ItemGroup>
@@ -58,5 +66,9 @@
 	  <None Update="Database\NorthWind2024.db">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="SqlServerScript\" />
 	</ItemGroup>
 </Project>

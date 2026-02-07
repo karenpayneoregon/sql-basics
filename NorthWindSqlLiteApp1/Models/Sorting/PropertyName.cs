@@ -1,4 +1,4 @@
-﻿using NorthWindSqlLiteApp1.Classes;
+﻿using NorthWindSqlLiteApp1.Classes.Core;
 
 namespace NorthWindSqlLiteApp1.Models.Sorting;
 /// <summary>

@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using NorthWindSqlLiteApp1.Models;
 
-namespace NorthWindSqlLiteApp1.Classes;
+namespace NorthWindSqlLiteApp1.Classes.Core;
 public static class OrderingHelpers
 {
     /// <summary>

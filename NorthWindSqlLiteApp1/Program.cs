@@ -1,7 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using NorthWindSqlLiteApp1.Classes;
+﻿using NorthWindSqlLiteApp1.Classes;
 using NorthWindSqlLiteApp1.Classes.Core;
-using NorthWindSqlLiteApp1.Data;
 using Spectre.Console;
 
 namespace NorthWindSqlLiteApp1;
@@ -11,33 +9,39 @@ internal partial class Program
     {
         await Task.Delay(0);
         
-        DataOperations.GetCustomersCount();
-        DataOperations.GetCustomersCountIgnoreQueryFilters();
+        CustomerOperations.GetCustomersCount();
+        CustomerOperations.GetCustomersCountIgnoreQueryFilters();
         
-        DataOperations.DisplayTop5Customers();
-        DataOperations.CustomerWithJoins();
+        CustomerOperations.DisplayTop5Customers();
+        CustomerOperations.CustomerWithJoins();
         
-        DataOperations.UpdateCustomerById();
-        DataOperations.DisplayTop5Customers(); // Display updated customer
+        CustomerOperations.UpdateCustomerById();
+        CustomerOperations.DisplayTop5Customers(); // Display updated customer
         
-        DataOperations.RemoveCustomerDenied();
+        CustomerOperations.RemoveCustomerDenied();
         
-        DataOperations.GetCustomersCount();
+        CustomerOperations.GetCustomersCount();
         
-        DataOperations.WhereInCustomersIdentifiers();
-        DataOperations.WhereInCompanyName();
+        CustomerOperations.WhereInCustomersIdentifiers();
+        CustomerOperations.WhereInCompanyName();
         
-        DataOperations.AddCustomer();
-        DataOperations.AddCustomerDebugView();
+        CustomerOperations.AddCustomer();
+        CustomerOperations.AddCustomerDebugView();
         
-        DataOperations.GetCustomersCountIgnoreQueryFilters();
-        
-        DataOperations.GetModelNames();
+        CustomerOperations.GetCustomersCountIgnoreQueryFilters();
 
-        await DataOperations.SortCustomerOnContactTitle();
+        UtilityCode.GetModelNames();
+
+        CustomerOperations.CustomersFormattableString();
         
-        DataOperations.CustomersFormattableString();
-    
+        await CustomerOperations.SortCustomerOnContactTitle();
+        
+        Console.WriteLine();
+
+        EmployeeOperations.ReportsToManager();
+
+        Console.WriteLine();
+
         SpectreConsoleHelpers.ExitPrompt(Justify.Left);
     }
 

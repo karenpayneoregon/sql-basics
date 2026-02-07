@@ -1,0 +1,1 @@
+:small_orange_diamond: Script is not needed to run this project.
