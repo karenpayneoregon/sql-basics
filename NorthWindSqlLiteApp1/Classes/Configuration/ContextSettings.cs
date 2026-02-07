@@ -32,13 +32,17 @@ public sealed class ContextSettings
     /// </remarks>
     public CustomerOptions CustomerOptions { get; set; } 
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ContextSettings"/> class.
+    /// </summary>
+    /// <remarks>
+    /// This constructor is private to enforce the singleton pattern.
+    /// It retrieves configuration settings from the application's configuration file
+    /// and binds them to the <see cref="ContextOptions"/> class. The settings are then
+    /// used to initialize the <see cref="UseAuditInterceptor"/> and <see cref="CustomerOptions"/> properties.
+    /// </remarks>
     private ContextSettings()
     {
-        IConfiguration config = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-            .Build();
-
         // Config is set up in the project file to bind the configuration
         // to the ContextOptions class, so we can directly retrieve it here.
         ContextOptions options = Config.Configuration.JsonRoot()

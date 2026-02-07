@@ -25,6 +25,12 @@ The database was ported from SQL Server using the following [tool](https://githu
   },
   "EntityConfiguration": {
     "CreateNew": true
+  },
+  "ContextOptions": {
+    "UseAuditInterceptor": true,
+    "CustomersOptions": {
+      "UseQueryFilter": true
+    }
   }
 }
 ```
