@@ -130,7 +130,7 @@ internal class CustomerOperations
         using (var context = new Context())
         {
             var count = context.Customers
-                .IgnoreQueryFilters()
+                .IgnoreQueryFilters() // NOTE: This will ignore any global query filters defined in the DbContext
                 .AsNoTracking()
                 .Count();
             PanelDisplay("Total Customers", $"Count: {count}");

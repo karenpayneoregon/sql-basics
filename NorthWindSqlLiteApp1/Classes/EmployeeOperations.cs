@@ -65,7 +65,20 @@ internal class EmployeeOperations
 
             foreach (var worker in manager.Workers)
             {
-                currentNode.AddNode(worker.FullName);
+                /*
+                 * Here a worker can also be a manager, so we check if the worker is also listed as a manager
+                 * in our managers list. If they are, we format their name differently to indicate that
+                 * they are both a worker and a manager.
+                 */
+                if (managers.Any(m => m.Employee.EmployeeID == worker.EmployeeID))
+                {
+                    currentNode.AddNode($"{worker.FullName} [Gray37](Manager)[/]");
+                }
+                else
+                {
+                    currentNode.AddNode(worker.FullName);
+                }
+                
             }
         }
 
