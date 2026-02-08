@@ -69,4 +69,60 @@ internal class OrderOperations
             ErrorPill(Justify.Left, $"{orderId} was not found.");
         }
     }
+
+    /// <summary>
+    /// Modifies the property values of a specific order in the database w/o saving changes.
+    /// </summary>
+    /// <param name="orderId">
+    /// The identifier of the order to be modified. Defaults to <c>10311</c> if not specified.
+    /// </param>
+    /// <remarks>
+    /// This method retrieves the original and modified versions of the specified order,
+    /// including associated employee details, and applies changes to the order's properties.
+    ///
+    /// - Anonymous types are used but needs to be strongly typed to use as a return type.
+    /// - ShipAddress could be in a getter of the property
+    /// 
+    /// </remarks>
+    public static void AlterPropertyValue(int orderId = 10311)
+    {
+        PrintPink();
+
+        using var context = new Context();
+
+        var original = context.Orders
+            .Include(x => x.Employee)
+            .Select(o => new
+            {
+                o.OrderID,
+                o.OrderDate,
+                o.RequiredDate,
+                o.ShippedDate,
+                o.ShipAddress,
+                o.ShipCity,
+                o.ShipPostalCode,
+                o.ShipCountry,
+                o.Employee.FullName
+            })
+            .FirstOrDefault(o => o.OrderID == orderId);
+
+        var changed = context.Orders
+            .Include(x => x.Employee)
+            .Select(o => new
+            {
+                o.OrderID,
+                o.OrderDate,
+                o.RequiredDate,
+                o.ShippedDate,
+                ShipAddress = o.ShipAddress.Replace(",", " "),
+                o.ShipCity,
+                o.ShipPostalCode,
+                o.ShipCountry,
+                o.Employee.FullName
+            })
+            .FirstOrDefault(o => o.OrderID == orderId);
+
+        Console.WriteLine(original!.ShipAddress);
+        Console.WriteLine(changed!.ShipAddress);
+    }
 }

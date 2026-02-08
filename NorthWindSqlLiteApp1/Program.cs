@@ -43,7 +43,8 @@ internal partial class Program
         //EmployeeOperations.ReportsToManager();
         //EmployeeOperations.GetSingleEmployee();
         
-        OrderOperations.GetSingleOrderByIdentifier();
+        //OrderOperations.GetSingleOrderByIdentifier();
+        OrderOperations.AlterPropertyValue();
 
         SpectreConsoleHelpers.ExitPrompt(Justify.Left);
     }
