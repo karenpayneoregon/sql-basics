@@ -346,7 +346,9 @@ public partial class Context : DbContext
                 .UseCollation("NOCASE")
                 .HasColumnType("datetime");
 
-            entity.HasOne(d => d.CustomerIdentifierNavigation).WithMany(p => p.Orders).HasForeignKey(d => d.CustomerIdentifier);
+            entity.HasOne(d => d.CustomerIdentifierNavigation)
+                .WithMany(p => p.Orders)
+                .HasForeignKey(d => d.CustomerIdentifier);
 
             entity.HasOne(d => d.Employee).WithMany(p => p.Orders).HasForeignKey(d => d.EmployeeID);
 

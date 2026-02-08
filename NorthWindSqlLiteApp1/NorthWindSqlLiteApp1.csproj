@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Product>Basic</Product>
+		<Product>EF Core Sqlite</Product>
 	</PropertyGroup>
 
 	<ItemGroup>

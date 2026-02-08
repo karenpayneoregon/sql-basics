@@ -6,6 +6,18 @@ using Spectre.Console;
 using static NorthWindSqlLiteApp1.Classes.Core.SpectreConsoleHelpers;
 
 namespace NorthWindSqlLiteApp1.Classes;
+
+
+/// <summary>
+/// Provides operations related to managing and displaying employee data.
+/// </summary>
+/// <remarks>
+/// This class includes methods for retrieving detailed information about individual employees,
+/// displaying hierarchical relationships between employees and their managers, and other
+/// employee-related functionalities. It interacts with the database to fetch and process
+/// employee data, leveraging navigation properties and grouping techniques for efficient
+/// data organization and presentation.
+/// </remarks>
 internal class EmployeeOperations
 {
 

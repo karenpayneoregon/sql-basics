@@ -3,8 +3,9 @@ using NorthWindSqlLiteApp1.Data;
 using NorthWindSqlLiteApp1.Models.Sorting;
 using Spectre.Console;
 using NorthWindSqlLiteApp1.Models;
-using static NorthWindSqlLiteApp1.Classes.Core.SpectreConsoleHelpers;
 using NorthWindSqlLiteApp1.Classes.Core;
+
+using static NorthWindSqlLiteApp1.Classes.Core.SpectreConsoleHelpers;
 
 namespace NorthWindSqlLiteApp1.Classes;
 /// <summary>

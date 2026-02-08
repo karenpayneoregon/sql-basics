@@ -1,7 +1,7 @@
 ﻿using NorthWindSqlLiteApp1.Classes.Extensions;
 using NorthWindSqlLiteApp1.Data;
 
-namespace NorthWindSqlLiteApp1.Classes;
+namespace NorthWindSqlLiteApp1.Classes.Core;
 
 using static Core.SpectreConsoleHelpers;
 
@@ -11,8 +11,8 @@ internal class UtilityCode
     /// Retrieves and displays the names of all model types defined in the database context.
     /// </summary>
     /// <remarks>
-    /// This method utilizes the <see cref="NorthWindSqlLiteApp1.Data.Context"/> class to access the database context
-    /// and the <see cref="NorthWindSqlLiteApp1.Classes.Extensions.EntityExtensions.GetModelTypes"/> extension method
+    /// This method utilizes the <see cref="Context"/> class to access the database context
+    /// and the <see cref="EntityExtensions.GetModelTypes"/> extension method
     /// to retrieve the model types. The names of the models are printed to the console.
     /// </remarks>
     public static void GetModelNames()

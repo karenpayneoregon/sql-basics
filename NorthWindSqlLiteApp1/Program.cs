@@ -11,37 +11,39 @@ internal partial class Program
         await Task.Delay(0);
 
     
-        CustomerOperations.GetCustomersCount();
-        CustomerOperations.GetCustomersCountIgnoreQueryFilters();
+        //CustomerOperations.GetCustomersCount();
+        //CustomerOperations.GetCustomersCountIgnoreQueryFilters();
         
-        CustomerOperations.DisplayTop5Customers();
-        CustomerOperations.CustomerWithJoins();
+        //CustomerOperations.DisplayTop5Customers();
+        //CustomerOperations.CustomerWithJoins();
         
-        CustomerOperations.UpdateCustomerById();
-        CustomerOperations.DisplayTop5Customers(); // Display updated customer
+        //CustomerOperations.UpdateCustomerById();
+        //CustomerOperations.DisplayTop5Customers(); // Display updated customer
         
-        CustomerOperations.RemoveCustomerDenied();
+        //CustomerOperations.RemoveCustomerDenied();
         
-        CustomerOperations.GetCustomersCount();
+        //CustomerOperations.GetCustomersCount();
         
-        CustomerOperations.WhereInCustomersIdentifiers();
-        CustomerOperations.WhereInCompanyName();
+        //CustomerOperations.WhereInCustomersIdentifiers();
+        //CustomerOperations.WhereInCompanyName();
         
-        CustomerOperations.AddCustomer();
-        CustomerOperations.AddCustomerDebugView();
+        //CustomerOperations.AddCustomer();
+        //CustomerOperations.AddCustomerDebugView();
         
-        CustomerOperations.GetCustomersCountIgnoreQueryFilters();
+        //CustomerOperations.GetCustomersCountIgnoreQueryFilters();
 
-        UtilityCode.GetModelNames();
+        //UtilityCode.GetModelNames();
 
-        CustomerOperations.CustomersFormattableString();
+        //CustomerOperations.CustomersFormattableString();
         
-        await CustomerOperations.SortCustomerOnContactTitle();
+        //await CustomerOperations.SortCustomerOnContactTitle();
         
-        Console.WriteLine();
+        //Console.WriteLine();
 
-        EmployeeOperations.ReportsToManager();
-        EmployeeOperations.GetSingleEmployee();
+        //EmployeeOperations.ReportsToManager();
+        //EmployeeOperations.GetSingleEmployee();
+        
+        OrderOperations.GetSingleOrderByIdentifier();
 
         SpectreConsoleHelpers.ExitPrompt(Justify.Left);
     }

@@ -65,7 +65,9 @@ public class AuditInterceptor : SaveChangesInterceptor
                         NewValue = entry.CurrentValues.ToObject(),
                         EntityState = nameof(EntityState.Added)
                     });
+                    
                     break;
+                
                 case EntityState.Deleted:
                     changesList.Add(new CompareModel()
                     {
@@ -73,7 +75,9 @@ public class AuditInterceptor : SaveChangesInterceptor
                         NewValue = null,
                         EntityState = nameof(EntityState.Deleted)
                     });
+                    
                     break;
+                
                 case EntityState.Modified:
                     changesList.Add(new CompareModel()
                     {
@@ -81,10 +85,13 @@ public class AuditInterceptor : SaveChangesInterceptor
                         NewValue = entry.CurrentValues.ToObject(),
                         EntityState = nameof(EntityState.Modified)
                     });
+                    
                     break;
+                
                 case EntityState.Detached:
                 case EntityState.Unchanged:
                     break;
+                
                 default:
                     throw new ArgumentOutOfRangeException();
             }
