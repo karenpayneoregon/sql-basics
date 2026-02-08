@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NorthWindSqlLiteApp1.Data;
 using Spectre.Console;
 using static NorthWindSqlLiteApp1.Classes.Core.SpectreConsoleHelpers;
-
 
 namespace NorthWindSqlLiteApp1.Classes;
 internal class OrderOperations
@@ -30,7 +25,6 @@ internal class OrderOperations
     /// </remarks>
     public static void GetSingleOrderByIdentifier(int orderId = 10314)
     {
-
         PrintPink();
 
         using var context = new Context();
@@ -40,28 +34,34 @@ internal class OrderOperations
             .ThenInclude(x => x.Category)
             .Include(o => o.CustomerIdentifierNavigation)
             .FirstOrDefault(o => o.OrderID == orderId);
-        
-        var contact = context.Contacts
-            .Include(c => c.ContactTypeIdentifierNavigation)
-            .Include(c => c.ContactDevices)
-            .FirstOrDefault(c => c.ContactId == order!.CustomerIdentifier);
 
         if (order != null)
         {
+            
+            var contact = context.Contacts
+                .Include(c => c.ContactTypeIdentifierNavigation)
+                .Include(c => c.ContactDevices)
+                .FirstOrDefault(c => c.ContactId == order.CustomerIdentifier);
+
             Console.WriteLine($"    Order ID: {order.OrderID}");
             Console.WriteLine($"    Customer: {order.CustomerIdentifierNavigation?.CompanyName}");
             Console.WriteLine($"     Contact: {contact?.FullName ?? "N/A"}");
             Console.WriteLine($"       Title: {contact?.ContactTypeIdentifierNavigation?.ContactTitle ?? "N/A"}");
             Console.WriteLine($"       Phone: {contact?.ContactDevices.FirstOrDefault()?.PhoneNumber ?? "N/A"}");
             Console.WriteLine($"  Order Date: {order.OrderDate:MM/dd/yyyy}");
-            Console.WriteLine($"Total Amount: {order.OrderDetails.Sum(od => od.Quantity * od.UnitPrice)}");
 
-            AnsiConsole.MarkupLine($"{new string('_', 45)}");
+            // Compute total amount including discounts per line
+            var totalAmount = order.OrderDetails.Sum(od => od.Quantity * od.UnitPrice * (1 - od.Discount));
+            Console.WriteLine($"Total Amount: {totalAmount:C}");
 
+            AnsiConsole.MarkupLine($"{new string('_', 80)}");
+
+            AnsiConsole.MarkupLine($"   [CadetBlue_1]{"Product",-30}{"Qty",-5}{"Unit Price",12}{"Discount",10}{"Line Total",14}[/]");
 
             foreach (var detail in order.OrderDetails)
             {
-                AnsiConsole.MarkupLine($"   [CadetBlue_1]{detail.Product?.ProductName, -30}{detail.Quantity, -5}{detail.UnitPrice:C}[/]");
+                var lineTotal = detail.Quantity * detail.UnitPrice * (1 - detail.Discount);
+                AnsiConsole.MarkupLine($"   [CadetBlue_1]{detail.Product?.ProductName,-30}{detail.Quantity,-5}{detail.UnitPrice,12:C}{detail.Discount,10:P0}{lineTotal,14:C}[/]");
             }
         }
         else
