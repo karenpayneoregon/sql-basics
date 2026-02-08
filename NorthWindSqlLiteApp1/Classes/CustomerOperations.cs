@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 using NorthWindSqlLiteApp1.Data;
 using NorthWindSqlLiteApp1.Models.Sorting;
 using Spectre.Console;
@@ -83,6 +84,8 @@ internal class CustomerOperations
         }
 
         Console.WriteLine();
+        
+        Debugger.Break(); // pause execution to inspect the 'customer' variable
 
     }
 
