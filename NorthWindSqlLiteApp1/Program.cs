@@ -10,42 +10,44 @@ internal partial class Program
     {
         await Task.Delay(0);
 
-    
+
         //CustomerOperations.GetCustomersCount();
         //CustomerOperations.GetCustomersCountIgnoreQueryFilters();
-        
+
         //CustomerOperations.DisplayTop5Customers();
         //CustomerOperations.CustomerWithJoins();
-        
+
         //CustomerOperations.UpdateCustomerById();
         //CustomerOperations.DisplayTop5Customers(); // Display updated customer
-        
+
         //CustomerOperations.RemoveCustomerDenied();
-        
+
         //CustomerOperations.GetCustomersCount();
-        
+
         //CustomerOperations.WhereInCustomersIdentifiers();
         //CustomerOperations.WhereInCompanyName();
-        
+
         //CustomerOperations.AddCustomer();
         //CustomerOperations.AddCustomerDebugView();
-        
+
         //CustomerOperations.GetCustomersCountIgnoreQueryFilters();
 
         //UtilityCode.GetModelNames();
 
         //CustomerOperations.CustomersFormattableString();
-        
+
         //await CustomerOperations.SortCustomerOnContactTitle();
-        
+
         //Console.WriteLine();
 
         //EmployeeOperations.ReportsToManager();
         //EmployeeOperations.GetSingleEmployee();
-        
+
         //OrderOperations.GetSingleOrderByIdentifier();
         //OrderOperations.AlterPropertyValue();
-
+        
+        OrderOperations.CreateNewOrder();
+        
         SpectreConsoleHelpers.ExitPrompt(Justify.Left);
     }
 

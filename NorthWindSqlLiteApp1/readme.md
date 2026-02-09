@@ -39,3 +39,4 @@ The database was ported from SQL Server using the following [tool](https://githu
 
 - Microsoft (C#) [data documentation hub](https://learn.microsoft.com/en-us/ef/dotnet-data/)
 - Microsoft [Entity Framework documentation hub](https://learn.microsoft.com/en-us/ef/)
+- XML [documentation](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/recommended-tags) for code

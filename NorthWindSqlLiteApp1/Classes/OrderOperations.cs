@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using NorthWindSqlLiteApp1.Data;
+using NorthWindSqlLiteApp1.Models;
 using Spectre.Console;
 using static NorthWindSqlLiteApp1.Classes.Core.SpectreConsoleHelpers;
 
@@ -124,5 +125,79 @@ internal class OrderOperations
 
         Console.WriteLine(original!.ShipAddress);
         Console.WriteLine(changed!.ShipAddress);
+    }
+
+    /// <summary>
+    /// Creates a <b>new order</b> in the database with <b>predefined</b> customer, employee, and shipper details.<br/><br/>
+    /// See <see href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/recommended-tags">DbContext.SaveChanges</see> for more on saving data with EF Core.<br/>
+    /// </summary>
+    /// <remarks>
+    /// This method performs the following steps:
+    /// <list type="number">
+    /// <item>Retrieves a customer, employee, and shipper from the database.</item>
+    /// <item>Validates that the required entities are found.</item>
+    /// <item>Creates a new order with the retrieved entities and predefined values.</item>
+    /// <item>Saves the new order to the database to get new primary key.</item>
+    /// <item>Adds order details for the new order using a subset of products.</item>
+    /// <item>Saves the order details to the database.</item>
+    /// </list>
+    /// </remarks>
+    public static void CreateNewOrder()
+    {
+        PrintPink();
+
+        using var context = new Context();
+
+        var customer = context.Customers
+            .IgnoreQueryFilters()
+            .Include(customers => customers.CountryIdentifierNavigation)
+            .FirstOrDefault(x => x.CustomerIdentifier == 2);
+        
+        var employee = context.Employees.FirstOrDefault(x => x.EmployeeID == 1);
+        var shipper = context.Shippers.FirstOrDefault(x => x.ShipperID == 1);
+
+        if (customer == null || employee == null || shipper == null)
+        {
+            ErrorPill(Justify.Left, "Could not find required entities to create a new order.");
+            return;
+        }
+
+        var newOrder = new Orders
+        {
+            OrderDate = DateTime.UtcNow,
+            RequiredDate = DateTime.UtcNow.AddDays(7),
+            ShippedDate = DateTime.UtcNow.AddDays(3), // Simulate shipping
+            ShipVia = shipper.ShipperID,
+            Freight = 15.50,
+            ShipAddress = customer.Street,
+            ShipCity = customer.City,
+            ShipPostalCode = customer.PostalCode,
+            ShipCountry = customer.CountryIdentifierNavigation.Name,
+            CustomerIdentifier = customer.CustomerIdentifier,
+            EmployeeID = employee.EmployeeID
+        };
+
+        context.Orders.Add(newOrder);
+
+        // Save changes to generate OrderID for the new order
+        context.SaveChanges();
+
+        // Add some order details
+        var products = context.Products.Take(2).ToList();
+
+        foreach (var product in products)
+        {
+            context.OrderDetails.Add(new OrderDetails
+            {
+                OrderID = newOrder.OrderID,
+                ProductID = product.ProductID,
+                UnitPrice = product.UnitPrice ?? 0,
+                Quantity = 1,
+                Discount = 0
+            });
+        }
+
+        var count = context.SaveChanges();
+        SuccessPill(Justify.Left, $"New order created with ID: {newOrder.OrderID} with {count} products");
     }
 }
