@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using NorthWindSqlLiteApp1.Data;
 using NorthWindSqlLiteApp1.Models;
 using Spectre.Console;
@@ -129,16 +127,16 @@ internal class OrderOperations
 
     /// <summary>
     /// Creates a <b>new order</b> in the database with <b>predefined</b> customer, employee, and shipper details.<br/><br/>
-    /// See <see href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/recommended-tags">DbContext.SaveChanges</see> for more on saving data with EF Core.<br/>
+    /// See DbContext.<seealso href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/recommended-tags">SaveChanges</seealso> for more on saving data with EF Core.<br/>
     /// </summary>
     /// <remarks>
     /// This method performs the following steps:
     /// <list type="number">
-    /// <item>Retrieves a customer, employee, and shipper from the database.</item>
+    /// <item>Retrieves a <see cref="Customers"/>, <seealso cref="Employees"/> , and <seealso cref="Shippers"/> from the database.</item>
     /// <item>Validates that the required entities are found.</item>
-    /// <item>Creates a new order with the retrieved entities and predefined values.</item>
+    /// <item>Creates a new <seealso cref="Orders"/> with the retrieved entities and predefined values.</item>
     /// <item>Saves the new order to the database to get new primary key.</item>
-    /// <item>Adds order details for the new order using a subset of products.</item>
+    /// <item>Adds <seealso cref="OrderDetails"/> for the new order using a subset of products.</item>
     /// <item>Saves the order details to the database.</item>
     /// </list>
     /// </remarks>

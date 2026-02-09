@@ -10,7 +10,7 @@ internal partial class Program
     public static void Init()
     {
         Console.Title = "Code sample";
-        WindowUtility.SetConsoleWindowPosition(WindowUtility.AnchorWindow.Fill);
+        WindowUtility.SetConsoleWindowPosition(WindowUtility.AnchorWindow.Center);
     }
     private static async Task Setup()
     {
