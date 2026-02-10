@@ -44,7 +44,7 @@ public sealed class ContextSettings
     /// 
     /// <br/><br/>
     /// <para>
-    /// For a real application, you might want to consider <a href="https://dev.to/karenpayneoregon/aspnet-core-startup-validation-20e7">ValidateOnStart</a>
+    ///    For a real application, you might want to consider <a href="https://dev.to/karenpayneoregon/aspnet-core-startup-validation-20e7">ValidateOnStart</a>
     /// </para>
     /// </remarks>
     private ContextSettings()
