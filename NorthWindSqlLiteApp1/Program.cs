@@ -12,9 +12,9 @@ internal partial class Program
 
         //MemberAccessSamples.NullCondition();
 
-        //await PerformCustomerOperations();
+        await PerformCustomerOperations();
         //PerformEmployeeOperations();
-        await PerformOrderOperations();
+        //await PerformOrderOperations();
 
         //Console.WriteLine();
         //UtilityCode.GetModelNames();

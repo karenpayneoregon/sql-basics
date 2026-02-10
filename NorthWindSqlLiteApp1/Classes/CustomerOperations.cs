@@ -5,7 +5,7 @@ using NorthWindSqlLiteApp1.Models.Sorting;
 using Spectre.Console;
 using NorthWindSqlLiteApp1.Models;
 using NorthWindSqlLiteApp1.Classes.Core;
-
+using NorthWindSqlLiteApp1.Classes.Extensions;
 using static NorthWindSqlLiteApp1.Classes.Core.SpectreConsoleHelpers;
 
 namespace NorthWindSqlLiteApp1.Classes;
@@ -34,16 +34,15 @@ internal class CustomerOperations
 
         PrintPink();
 
-        using (var context = new Context())
-        {
-            var customers = context.Customers
-                .IgnoreQueryFilters()
-                .AsNoTracking()
-                .Take(5)
-                .ToList();
-            customers.ForEach(c =>
-                Console.WriteLine($"CustomerID: {c.CustomerIdentifier}, CompanyName: {c.CompanyName}"));
-        }
+        using var context = new Context();
+        var customers = context.Customers
+            .IgnoreQueryFilters()
+            .TagWithDebugInfo("With ignore filter")
+            .AsNoTracking()
+            .Take(5)
+            .ToList();
+        customers.ForEach(c =>
+            Console.WriteLine($"CustomerID: {c.CustomerIdentifier}, CompanyName: {c.CompanyName}"));
 
         Console.WriteLine();
 
@@ -86,7 +85,7 @@ internal class CustomerOperations
         }
 
         Console.WriteLine();
-        
+
 
     }
 
@@ -170,7 +169,7 @@ internal class CustomerOperations
                 .IgnoreQueryFilters()
                 .AsNoTracking()
                 .FirstOrDefault(x => x.CustomerIdentifier == 3);
-            
+
             if (customer != null)
             {
                 customer.CompanyName = "Updated Company Name";
@@ -332,13 +331,13 @@ internal class CustomerOperations
             };
 
             context.Customers.Add(newCustomer);
-            
+
             Console.WriteLine(context.ChangeTracker.DebugView.LongView);
-            
+
         }
-        
+
         Console.WriteLine();
-        
+
     }
 
     /// <summary>
@@ -484,9 +483,9 @@ internal class CustomerOperations
     {
 
         PrintPink();
-        
+
         const int contactTypeIdentifier = 5;
-        
+
         FormattableString statement =
             $"""
              SELECT *
@@ -503,8 +502,8 @@ internal class CustomerOperations
 
         foreach (var customer in list)
         {
-            Console.WriteLine($"{customer.CustomerIdentifier, -4}" +
-                              $"{customer.CompanyName, -35}" +
+            Console.WriteLine($"{customer.CustomerIdentifier,-4}" +
+                              $"{customer.CompanyName,-35}" +
                               $"{customer.Contact.FullName}");
         }
 

@@ -1,13 +1,14 @@
-﻿using ConsoleConfigurationLibrary.Classes;
-using NorthWindSqlLiteApp1.Models.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NorthWindSqlLiteApp1.Models.Configuration;
 using Microsoft.Extensions.Configuration;
 
 namespace NorthWindSqlLiteApp1.Classes.Configuration;
+/// <summary>
+/// Represents the configuration settings for the application's database context.
+/// </summary>
+/// <remarks>
+/// This class implements the singleton pattern to ensure a single instance is used throughout the application.
+/// It retrieves and binds configuration settings from the application's configuration file to initialize its properties.
+/// </remarks>
 public sealed class ContextSettings
 {
     private static readonly Lazy<ContextSettings> Lazy = new Lazy<ContextSettings>(() => new ContextSettings());
@@ -30,7 +31,7 @@ public sealed class ContextSettings
     /// This property is initialized from the <c>Customers</c> section of the application configuration file.
     /// It provides settings such as whether to use query filters for customer-related operations.
     /// </remarks>
-    public CustomerOptions CustomerOptions { get; set; } 
+    public CustomerOptions CustomerOptions { get; set; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ContextSettings"/> class.
@@ -40,6 +41,11 @@ public sealed class ContextSettings
     /// It retrieves configuration settings from the application's configuration file
     /// and binds them to the <see cref="ContextOptions"/> class. The settings are then
     /// used to initialize the <see cref="UseAuditInterceptor"/> and <see cref="CustomerOptions"/> properties.
+    /// 
+    /// <br/><br/>
+    /// <para>
+    /// For a real application, you might want to consider <a href="https://dev.to/karenpayneoregon/aspnet-core-startup-validation-20e7">ValidateOnStart</a>
+    /// </para>
     /// </remarks>
     private ContextSettings()
     {
