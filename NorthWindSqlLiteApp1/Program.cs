@@ -10,11 +10,11 @@ internal partial class Program
     {
         await Task.Delay(0);
 
-        MemberAccessSamples.NullCondition();
+        //MemberAccessSamples.NullCondition();
 
         //await PerformCustomerOperations();
         //PerformEmployeeOperations();
-        //PerformOrderOperations();
+        await PerformOrderOperations();
 
         //Console.WriteLine();
         //UtilityCode.GetModelNames();
@@ -34,9 +34,9 @@ internal partial class Program
     /// 
     /// These operations utilize the <c>OrderOperations</c> class to interact with the database.
     /// </remarks>
-    private static void PerformOrderOperations()
+    private static async Task PerformOrderOperations()
     {
-        OrderOperations.GetSingleOrderByIdentifier();
+        await OrderOperations.GetSingleOrderByIdentifier();
         OrderOperations.AlterPropertyValue();
         OrderOperations.CreateNewOrder();
     }
@@ -100,8 +100,7 @@ internal partial class Program
         CustomerOperations.AddCustomerDebugView();
 
         CustomerOperations.GetCustomersCountIgnoreQueryFilters();
-
-
+        
         CustomerOperations.CustomersFormattableString();
 
         await CustomerOperations.SortCustomerOnContactTitle();

@@ -17,30 +17,30 @@ internal class OrderOperations
     /// This method fetches the order along with its associated details, including products, categories,
     /// and customer information. If the order is found, it displays the order details and a breakdown
     /// of the order items. If the order is not found, no output is displayed.
-    ///
-    /// In some cases CustomerIdentifierNavigation may be null even when there is a
+    /// <para>
+    /// In some cases <see cref="Orders.CustomerIdentifierNavigation"/>  may be null even when there is a
     /// valid CustomerIdentifier in the Orders table.
-    /// 
+    /// </para>
     /// </remarks>
-    public static void GetSingleOrderByIdentifier(int orderId = 10314)
+    public static async Task GetSingleOrderByIdentifier(int orderId = 10314)
     {
         PrintPink();
 
-        using var context = new Context();
-        var order = context.Orders
+        await using var context = new Context();
+        var order = await context.Orders
             .Include(o => o.OrderDetails)
             .ThenInclude(x => x.Product)
             .ThenInclude(x => x.Category)
             .Include(o => o.CustomerIdentifierNavigation)
-            .FirstOrDefault(o => o.OrderID == orderId);
+            .FirstOrDefaultAsync(o => o.OrderID == orderId);
 
         if (order != null)
         {
 
-            var contact = context.Contacts
+            var contact = await context.Contacts
                 .Include(c => c.ContactTypeIdentifierNavigation)
                 .Include(c => c.ContactDevices)
-                .FirstOrDefault(c => c.ContactId == order.CustomerIdentifier);
+                .FirstOrDefaultAsync(c => c.ContactId == order.CustomerIdentifier);
 
             Console.WriteLine($"    Order ID: {order.OrderID}");
             Console.WriteLine($"    Customer: {order.CustomerIdentifierNavigation?.CompanyName}");
@@ -79,9 +79,10 @@ internal class OrderOperations
     /// This method retrieves the original and modified versions of the specified order,
     /// including associated employee details, and applies changes to the order's properties.
     ///
-    /// - Anonymous types are used but needs to be strongly typed to use as a return type.
-    /// - ShipAddress could be in a getter of the property
-    /// 
+    /// <list type="bullet">
+    /// <item>Anonymous types are used but needs to be strongly typed to use as a return type.</item>
+    /// <item> <see cref="Orders.ShipAddress"/> could be in a getter of the property</item>
+    /// </list>
     /// </remarks>
     public static void AlterPropertyValue(int orderId = 10311)
     {
@@ -134,9 +135,9 @@ internal class OrderOperations
     /// <remarks>
     /// This method performs the following steps:
     /// <list type="number">
-    /// <item>Retrieves a <see cref="Customers"/>, <seealso cref="Employees"/> , and <seealso cref="Shippers"/> from the database.</item>
+    /// <item>Retrieves a <see cref="Customers"/>, <seealso cref="Employees"/> ,<br/><br/> and <seealso cref="Shippers"/> from the database.</item>
     /// <item>Validates that the required entities are found.</item>
-    /// <item>Creates a new <seealso cref="Orders"/> with the retrieved entities and predefined values.</item>
+    /// <item>Creates a new <seealso cref="Orders"/> with the retrieved <br></br>entities and predefined values.</item>
     /// <item>Saves the new order to the database to get new primary key.</item>
     /// <item>Adds <seealso cref="OrderDetails"/> for the new order using a subset of products.</item>
     /// <item>Saves the order details to the database.</item>

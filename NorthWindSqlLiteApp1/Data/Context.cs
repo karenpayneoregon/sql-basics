@@ -496,7 +496,9 @@ public partial class Context : DbContext
 
             modelBuilder.Entity<Customers>()
                 .HasQueryFilter(c =>
-                    EF.Property<int?>(c, nameof(cust.CountryIdentifier)) == 20); // USA
+                    EF.Property<int?>(c, 
+                        nameof(cust.CountryIdentifier)) == 
+                    ContextSettings.Instance.CustomerOptions.CountryCode); 
         }
 
         OnModelCreatingPartial(modelBuilder);

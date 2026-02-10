@@ -54,12 +54,14 @@ internal class CustomerOperations
     /// </summary>
     /// <remarks>
     /// This method fetches a customer with a specific identifier and includes related entities such as:
-    /// - Contact information
-    /// - Contact type
-    /// - Country details
-    /// - Orders and their details
-    /// - Products and their suppliers
-    /// - Supplier's country details
+    /// <list type="bullet">
+    /// <item>Contact information</item>
+    /// <item>Contact type</item>
+    /// <item>Country details</item>
+    /// <item>Orders and their details</item>
+    /// <item>Products and their suppliers</item>
+    /// <item>Supplier's country details</item>
+    /// </list>
     /// </remarks>
     public static void CustomerWithJoins()
     {

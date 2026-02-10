@@ -30,7 +30,7 @@ internal class EmployeeOperations
     /// <remarks>
     /// This method queries the database for an employee with the specified ID, including related navigation properties
     /// such as contact type, country, and manager information. If the employee is found, their details are displayed
-    /// in a formatted table using Spectre.Console. If no employee is found, a message is displayed indicating this.
+    /// in a formatted table using NuGet package <a href="https://www.nuget.org/packages/Spectre.Console/0.54.0?_src=template#readme-body-tab">Spectre.Console</a>. If no employee is found, a message is displayed indicating this.
     /// </remarks>
     public static void GetSingleEmployee(int id = 5)
     {

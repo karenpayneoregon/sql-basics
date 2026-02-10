@@ -6,7 +6,7 @@ namespace NorthWindSqlLiteApp1.Classes.MemberAccess;
 /// Provides sample methods to demonstrate safe member access techniques in C#.
 /// </summary>
 /// <remarks>
-/// This class focuses on showcasing best practices for accessing object members
+/// This class focuses on showcasing <b>best practices</b> for accessing object members
 /// while handling potential null values. It includes examples of using null-conditional
 /// and null-coalescing operators to ensure safe and efficient code execution.
 /// </remarks>
@@ -62,6 +62,6 @@ internal class MemberAccessSamples
         customer1.CountryIdentifierNavigation = new Countries { Name = "USA" };
         var country3 = customer1.CountryIdentifierNavigation.Name;
 
-
+        Debugger.Break();
     }
 }

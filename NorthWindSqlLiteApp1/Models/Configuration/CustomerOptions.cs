@@ -9,4 +9,6 @@ public class CustomerOptions
     /// <c>true</c> if the query filter should be applied; otherwise, <c>false</c>.
     /// </value>
     public bool UseQueryFilter { get; set; }
+
+    public int CountryCode { get; set; }
 }
