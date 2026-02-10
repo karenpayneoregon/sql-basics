@@ -85,7 +85,6 @@ internal class CustomerOperations
 
         Console.WriteLine();
         
-        Debugger.Break(); // pause execution to inspect the 'customer' variable
 
     }
 
@@ -248,6 +247,25 @@ internal class CustomerOperations
         Console.WriteLine();
     }
 
+    /// <summary>
+    /// Adds a new customer to the NorthWind SQLite database.
+    /// </summary>
+    /// <remarks>
+    /// This method creates a new customer with predefined details and saves it to the database.
+    /// It uses the <see cref="Context"/> class for database operations and displays a success or error message
+    /// using Spectre.Console helpers.
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// CustomerOperations.AddCustomer();
+    /// </code>
+    /// </example>
+    /// <exception cref="DbUpdateException">
+    /// Thrown when an error occurs while saving changes to the database.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    /// Thrown when the database context is not properly configured.
+    /// </exception>
     public static void AddCustomer()
     {
 
@@ -395,6 +413,23 @@ internal class CustomerOperations
     }
 
 
+    /// <summary>
+    /// Asynchronously sorts customers based on their contact title in descending order,
+    /// displays the sorted data in a formatted table, and outputs it to the console.
+    /// </summary>
+    /// <remarks>
+    /// This method retrieves customer data from the database, including related contact
+    /// and contact type information, while ignoring query filters. The data is then
+    /// sorted by the contact title in descending order using the <see cref="PropertyName.Title"/> 
+    /// property and displayed in a table format using Spectre.Console.
+    /// </remarks>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+    /// <exception cref="DbUpdateException">Thrown if there is an issue updating the database context.</exception>
+    /// <example>
+    /// <code>
+    /// await CustomerOperations.SortCustomerOnContactTitle();
+    /// </code>
+    /// </example>
     public static async Task SortCustomerOnContactTitle()
     {
         await using var context = new Context();

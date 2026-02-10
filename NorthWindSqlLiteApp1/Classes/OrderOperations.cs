@@ -36,7 +36,7 @@ internal class OrderOperations
 
         if (order != null)
         {
-            
+
             var contact = context.Contacts
                 .Include(c => c.ContactTypeIdentifierNavigation)
                 .Include(c => c.ContactDevices)
@@ -91,6 +91,7 @@ internal class OrderOperations
 
         var original = context.Orders
             .Include(x => x.Employee)
+            // Anonymous type to capture the original values of the order properties
             .Select(o => new
             {
                 o.OrderID,
@@ -107,6 +108,7 @@ internal class OrderOperations
 
         var changed = context.Orders
             .Include(x => x.Employee)
+            // Anonymous type to capture the modified values of the order properties
             .Select(o => new
             {
                 o.OrderID,
@@ -150,7 +152,7 @@ internal class OrderOperations
             .IgnoreQueryFilters()
             .Include(customers => customers.CountryIdentifierNavigation)
             .FirstOrDefault(x => x.CustomerIdentifier == 2);
-        
+
         var employee = context.Employees.FirstOrDefault(x => x.EmployeeID == 1);
         var shipper = context.Shippers.FirstOrDefault(x => x.ShipperID == 1);
 
@@ -185,14 +187,15 @@ internal class OrderOperations
 
         foreach (var product in products)
         {
-            context.OrderDetails.Add(new OrderDetails
-            {
-                OrderID = newOrder.OrderID,
-                ProductID = product.ProductID,
-                UnitPrice = product.UnitPrice ?? 0,
-                Quantity = 1,
-                Discount = 0
-            });
+            context.OrderDetails.Add(
+                new OrderDetails
+                {
+                    OrderID = newOrder.OrderID,
+                    ProductID = product.ProductID,
+                    UnitPrice = product.UnitPrice ?? 0,
+                    Quantity = 1,
+                    Discount = 0
+                });
         }
 
         var count = context.SaveChanges();

@@ -1,21 +1,24 @@
 ﻿using NorthWindSqlLiteApp1.Classes;
 using NorthWindSqlLiteApp1.Classes.Core;
+using NorthWindSqlLiteApp1.Classes.MemberAccess;
 using Spectre.Console;
 
 namespace NorthWindSqlLiteApp1;
 internal partial class Program
 {
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         await Task.Delay(0);
 
-        await PerformCustomerOperations();
-        PerformEmployeeOperations();
-        PerformOrderOperations();
+        MemberAccessSamples.NullCondition();
+
+        //await PerformCustomerOperations();
+        //PerformEmployeeOperations();
+        //PerformOrderOperations();
 
         //Console.WriteLine();
         //UtilityCode.GetModelNames();
-        
+
         SpectreConsoleHelpers.ExitPrompt(Justify.Left);
     }
 
