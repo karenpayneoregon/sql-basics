@@ -13,15 +13,15 @@ namespace NorthWindSqlLiteApp1.Classes.MemberAccess;
 internal class MemberAccessSamples
 {
     /// <summary>
-    /// Demonstrates the usage of null-conditional and null-coalescing operators
+    /// Demonstrates the usage of <b>null-conditional</b> and <b>null-coalescing</b> operators
     /// to safely access object members and handle potential null values.
     /// </summary>
     /// <remarks>
     /// This method showcases the following:
     /// <list type="bullet">
-    /// <item>The behavior of accessing a null object's member, which results in a <see cref="NullReferenceException"/>.</item>
-    /// <item>The use of the null-conditional operator (<c>?.</c>) to safely access members of potentially null objects.</item>
-    /// <item>The use of the null-coalescing operator (<c>??</c>) to provide a default value when a null value is encountered.</item>
+    /// <item>The behavior of accessing a null object's member, which results <br/>in a <see cref="NullReferenceException"/>.</item>
+    /// <item>The use of the null-conditional operator (<c>?.</c>) to safely access<br/> members of potentially null objects.</item>
+    /// <item>The use of the null-coalescing operator (<c>??</c>) to provide a default<br/> value when a null value is encountered.</item>
     /// </list>
     /// <br/><br/>
     /// <para>
@@ -29,9 +29,9 @@ internal class MemberAccessSamples
     /// </para>
     /// 
     /// <para>
-    ///     Member access operators <seealso href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/member-access-operators#null-conditional-operators--and-"/>
+    ///      <see href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/member-access-operators#null-conditional-operators--and-">Member access operators</see>
     /// </para>
-    /// null-coalescing operators <seealso href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-coalescing-operator"/>
+    /// <see href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-coalescing-operator">null-coalescing operators </see>
     /// </remarks>
     public static void NullCondition()
     {
