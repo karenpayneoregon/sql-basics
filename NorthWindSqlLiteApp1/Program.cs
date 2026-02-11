@@ -12,7 +12,7 @@ internal partial class Program
 
         //MemberAccessSamples.NullCondition();
 
-        await PerformCustomerOperations();
+        //await PerformCustomerOperations();
         //PerformEmployeeOperations();
         //await PerformOrderOperations();
 
