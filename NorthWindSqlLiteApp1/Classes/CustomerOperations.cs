@@ -510,6 +510,40 @@ internal class CustomerOperations
         Console.WriteLine();
     }
 
+    /// <summary>
+    /// Updates the city name for customers in the database from <b>"MÃ©xico D.F."</b> to <b>"Mexico D.F."</b>.
+    /// </summary>
+    /// <remarks>
+    /// This method performs the following operations:
+    /// <list type="bullet">
+    /// <item>Counts the number of customers with the city name "MÃ©xico D.F.".</item>
+    /// <item>Updates all occurrences of "MÃ©xico D.F." in <br/>the <see cref="Customers.City"/> property to "Mexico D.F.".</item>
+    /// <item>Counts the number of customers with the city name "MÃ©xico D.F." after the update to verify the changes.</item>
+    /// </list>
+    /// 
+    /// The method uses Entity Framework Core's <a href="https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.relationalqueryableextensions.executeupdateasync?view=efcore-8.0">ExecuteUpdateAsync</a> for efficient bulk updates and 
+    /// <a href="https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.ignorequeryfilters?view=efcore-10.0">IgnoreQueryFilters</a> to bypass any global query filters applied to the <see cref="Customers"/> entity.
+    /// </remarks>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+    public static async Task FixCityMexico()
+    {
+
+        var name = "MÃ©xico D.F.";
+        await using var context = new Context();
+        
+        Console.WriteLine(context.Customers.IgnoreQueryFilters().Count(x => x.City == name));
+        
+        await context.Customers
+            .IgnoreQueryFilters()
+            .Where(e => e.City == name)
+            .ExecuteUpdateAsync(cust => cust.SetProperty(b => b.City, "Mexico D.F."));
+
+        // Save changes is not needed when using ExecuteUpdateAsync as
+        // it executes the update directly in the database without tracking changes in the context.
+
+        Console.WriteLine(context.Customers.IgnoreQueryFilters().Count(x => x.City == name));
+    }
+    
     private static Table CreateTableForContactTitle()
     {
         return new Table()

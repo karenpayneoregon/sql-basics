@@ -13,6 +13,7 @@ internal partial class Program
         //MemberAccessSamples.NullCondition();
 
         //await PerformCustomerOperations();
+        await CustomerOperations.FixCityMexico();
         //PerformEmployeeOperations();
         //await PerformOrderOperations();
 

@@ -497,7 +497,7 @@ public partial class Context : DbContext
             modelBuilder.Entity<Customers>()
                 .HasQueryFilter(c =>
                     EF.Property<int?>(c, 
-                        nameof(cust.CountryIdentifier)) == 
+                        nameof(Models.Customers.CountryIdentifier)) == 
                     ContextSettings.Instance.CustomerOptions.CountryCode); 
         }
 

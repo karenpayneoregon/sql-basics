@@ -8,6 +8,10 @@
     {
       "name": "Program.cs",
       "path": "DapperGetDatabaseAndTableNamesApp\\Program.cs"
+    },
+    {
+      "name": "Program.cs",
+      "path": "GlobalConnection\\Program.cs"
     }
   ]
 }
