@@ -10,10 +10,10 @@ internal partial class Program
     {
         await Task.Delay(0);
 
-        //MemberAccessSamples.NullCondition();
+        MemberAccessSamples.NullCondition();
 
         //await PerformCustomerOperations();
-        await CustomerOperations.FixCityMexico();
+        //await CustomerOperations.FixCityMexico();
         //PerformEmployeeOperations();
         //await PerformOrderOperations();
 
