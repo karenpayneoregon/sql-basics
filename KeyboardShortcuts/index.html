@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Visual studio common keyboard shortcuts</title>
+
+    <link href="Lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="Lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="Lib/styles/headers.css" rel="stylesheet" />
+    <script src="lib/debugHelper.js"></script>
+    <link href="Lib/styles/index.css" rel="stylesheet" />
+    <!--suppress no favicon-->
+    <link rel="shortcut icon" href="#">
+
+    <style>
+        .alt-row {
+            background-color: lightgray;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+        }
+    </style>
+
+</head>
+<body>
+    <div class="nine mt-3">
+        <h1>Visual studio <span> common keyboard shortcuts</span></h1>
+    </div>
+
+    <main>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-3 text-end">
+                    Comment selection
+                </div>
+                <div class="col-2">
+                    <kbd>ctrl</kbd> + <kbd>K</kbd> + <kbd>C</kbd>
+                </div>
+                <div class="col-auto">
+                    Comment the selected code.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3 text-end alt-row">
+                    Un-Comment selection
+                </div>
+                <div class="col-2 alt-row">
+                    <kbd>ctrl</kbd> + <kbd>K</kbd> + <kbd>U</kbd>
+                </div>
+                <div class="col-auto">
+                    Uncomment the selected code.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3 text-end">
+                    Locate current file in solution explorer
+                </div>
+                <div class="col-2">
+                    <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>L</kbd>
+                </div>
+                <div class="col-auto">
+                    Opens the solution explorer and highlights the current file.
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-3 text-end alt-row">
+                    Duplicate current line
+                </div>
+                <div class="col-2 alt-row">
+                    <kbd>ctrl</kbd> + <kbd>D</kbd>
+                </div>
+                <div class="col-auto">
+                    Duplicates the current line or selection.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3 text-end">
+                    Expand selection
+                </div>
+                <div class="col-2">
+                    <kbd>shift</kbd> + <kbd>alt</kbd> + <kbd>=</kbd>
+                </div>
+                <div class="col-auto">
+                    Incrementally expands the selection based on the syntax of the code.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3 text-end alt-row">
+                    Surround with
+                </div>
+                <div class="col-2 alt-row">
+                    <kbd>ctrl</kbd> + <kbd>S</kbd>
+                </div>
+                <div class="col-auto">
+                    Surrounds the selected code with a snippet e.g. for, try/catch
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-3 text-end">
+                    Move line up
+                </div>
+                <div class="col-2">
+                    <kbd>alt</kbd> + <kbd><i class="bi bi-arrow-up-circle"></i></kbd>
+                </div>
+                <div class="col-auto">
+                    for a line or selection, moves it up.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3 text-end alt-row">
+                    Move line down
+                </div>
+                <div class="col-2 alt-row">
+                    <kbd>alt</kbd> + <kbd><i class="bi bi-arrow-down-circle"></i></kbd>
+                </div>
+                <div class="col-auto">
+                    for a line or selection, moves it down.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3 text-end">
+                    Toggle breakpoint
+                </div>
+                <div class="col-2">
+                    <kbd>F9</kbd>
+                </div>
+                <div class="col-auto">
+                    Toggles a breakpoint on the current line of code.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3 text-end alt-row">
+                    Reopen last closed document
+                </div>
+                <div class="col-2 alt-row">
+                    <kbd>ctrl</kbd> + <kbd>K</kbd> + <kbd>Z</kbd>
+                </div>
+                <div class="col-auto">
+                    Reopens the last closed document in the editor.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3 text-end">
+                    Feature specific help
+                </div>
+                <div class="col-2">
+                    <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>P</kbd>
+                </div>
+                <div class="col-auto">
+                    Searches for the focused feature and activate if found.
+                </div>
+            </div>
+
+            <hr />
+
+
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            /*
+             * Provides the ability to add outlines to every single element on a page
+             * Usage: Pass true to toggle for development environment, false for other environments
+             * To invoke, press ALT+CTRL+1 which toggles adding/removing debugger.css
+            */
+            document.addEventListener('keydown', function (event) {
+
+                if (event.key === '1' && event.altKey && event.ctrlKey) {
+                    // this is for development environment
+                    $debugHelper.toggle(true);
+                }
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>

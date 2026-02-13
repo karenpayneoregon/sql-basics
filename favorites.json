@@ -12,6 +12,10 @@
     {
       "name": "Program.cs",
       "path": "GlobalConnection\\Program.cs"
+    },
+    {
+      "name": "WineOperations.cs",
+      "path": "EnumHasConversionDapper\\Classes\\WineOperations.cs"
     }
   ]
 }

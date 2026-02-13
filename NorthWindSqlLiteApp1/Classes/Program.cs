@@ -34,6 +34,7 @@ internal partial class Program
         var setup = provider.GetService<SetupServices>();
         setup.GetConnectionStrings();
         setup.GetEntitySettings();
+        
 
         SpectreConsoleHelpers.SetEncoding();
     }

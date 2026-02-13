@@ -1,6 +1,7 @@
 ﻿using NorthWindSqlLiteApp1.Classes;
 using NorthWindSqlLiteApp1.Classes.Core;
 using NorthWindSqlLiteApp1.Classes.MemberAccess;
+using NorthWindSqlLiteApp1.Models;
 using Spectre.Console;
 
 namespace NorthWindSqlLiteApp1;
@@ -10,7 +11,9 @@ internal partial class Program
     {
         await Task.Delay(0);
 
-        MemberAccessSamples.NullCondition();
+        //MemberAccessSamples.NullCondition();
+
+        await ExecuteImplicitOperators();
 
         //await PerformCustomerOperations();
         //await CustomerOperations.FixCityMexico();
@@ -21,6 +24,23 @@ internal partial class Program
         //UtilityCode.GetModelNames();
 
         SpectreConsoleHelpers.ExitPrompt(Justify.Left);
+    }
+
+    /// <summary>
+    /// Executes implicit operator demonstrations for products and categories.
+    /// </summary>
+    /// <remarks>
+    /// This method calls the implicit operator demonstration methods from 
+    /// <see cref="ProductsOperations"/> and <see cref="CategoryOperations"/>.
+    /// These methods showcase the conversion of database entities into their 
+    /// corresponding DTOs using implicit operators.
+    /// </remarks>
+    /// <seealso cref="ProductsOperations.ImplicitOperator"/>
+    /// <seealso cref="CategoryOperations.ImplicitOperator"/>
+    private static async Task ExecuteImplicitOperators()
+    {
+        await ProductsOperations.ImplicitOperator();
+        await CategoryOperations.ImplicitOperator();
     }
 
     /// <summary>
@@ -101,7 +121,7 @@ internal partial class Program
         CustomerOperations.AddCustomerDebugView();
 
         CustomerOperations.GetCustomersCountIgnoreQueryFilters();
-        
+
         CustomerOperations.CustomersFormattableString();
 
         await CustomerOperations.SortCustomerOnContactTitle();
