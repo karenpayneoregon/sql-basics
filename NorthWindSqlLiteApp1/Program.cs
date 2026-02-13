@@ -10,12 +10,13 @@ internal partial class Program
     private static async Task Main(string[] args)
     {
         await Task.Delay(0);
+        //await Warmup();
 
-        MemberAccessSamples.NullCondition();
+        //MemberAccessSamples.NullCondition();
 
         //await ExecuteImplicitOperators();
 
-        //await PerformCustomerOperations();
+        await PerformCustomerOperations();
         //await CustomerOperations.FixCityMexico();
         //PerformEmployeeOperations();
         //await PerformOrderOperations();
