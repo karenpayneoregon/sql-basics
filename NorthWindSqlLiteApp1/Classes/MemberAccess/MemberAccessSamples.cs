@@ -45,10 +45,21 @@ internal class MemberAccessSamples
         catch (Exception exception)
         {
             Debugger.Break();
+            // TODO
+        }
+        
+
+        if (customer1.CountryIdentifierNavigation is null)
+        {
+            Console.WriteLine("Country is unknown");
+        }
+        else
+        {
+            Console.WriteLine($"Country is {customer1.CountryIdentifierNavigation.Name}");
         }
 
-        // The null conditional operator (?.) allows you to safely access members.
-        var country1 = customer1.CountryIdentifierNavigation?.Name;
+            // The null conditional operator (?.) allows you to safely access members.
+            var country1 = customer1.CountryIdentifierNavigation?.Name;
 
         /*
          * The null-coalescing operator ?? returns the value of its left-hand operand if it's not null.

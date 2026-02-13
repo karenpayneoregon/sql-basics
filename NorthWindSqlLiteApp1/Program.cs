@@ -11,9 +11,9 @@ internal partial class Program
     {
         await Task.Delay(0);
 
-        //MemberAccessSamples.NullCondition();
+        MemberAccessSamples.NullCondition();
 
-        await ExecuteImplicitOperators();
+        //await ExecuteImplicitOperators();
 
         //await PerformCustomerOperations();
         //await CustomerOperations.FixCityMexico();
