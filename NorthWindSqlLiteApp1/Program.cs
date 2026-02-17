@@ -11,9 +11,7 @@ internal partial class Program
     {
         await Task.Delay(0);
         //await Warmup();
-
         //MemberAccessSamples.NullCondition();
-
         //await ExecuteImplicitOperators();
 
         await PerformCustomerOperations();
