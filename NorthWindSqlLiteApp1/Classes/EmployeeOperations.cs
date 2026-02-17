@@ -38,7 +38,8 @@ internal class EmployeeOperations
 
         using var context = new Context();
 
-        var employee = context.Employees.Include(employees => employees.ContactTypeIdentifierNavigation)
+        var employee = context.Employees
+            .Include(employees => employees.ContactTypeIdentifierNavigation)
             .Include(employees => employees.CountryIdentifierNavigation)
             .Include(employees => employees.ReportsToNavigationEmployee)
             .FirstOrDefault(e => e.EmployeeID == id);

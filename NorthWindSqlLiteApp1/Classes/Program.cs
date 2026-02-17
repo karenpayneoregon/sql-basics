@@ -45,6 +45,14 @@ internal partial class Program
         SpectreConsoleHelpers.SetEncoding();
     }
 
+    /// <summary>
+    /// Initializes and warms up the application by configuring and starting a host with necessary services.
+    /// </summary>
+    /// <remarks>
+    /// This method sets up a host with a SQLite database context and a hosted service for EF Core warmup.
+    /// It ensures that the application is ready for database operations by starting and stopping the host.
+    /// </remarks>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     private static async Task Warmup()
     {
         var host = Host.CreateDefaultBuilder()

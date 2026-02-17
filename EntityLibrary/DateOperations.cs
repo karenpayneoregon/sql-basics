@@ -46,6 +46,20 @@ public class DateOperations
 
 public static class Extensions
 {
+    /// <summary>
+    /// Filters a sequence of <see cref="Calendar"/> objects to include only those whose 
+    /// <see cref="Calendar.CalendarMonth"/> falls within the specified range.
+    /// </summary>
+    /// <param name="sender">The source sequence of <see cref="Calendar"/> objects.</param>
+    /// <param name="startDate">The starting month of the range (inclusive).</param>
+    /// <param name="endDate">The ending month of the range (inclusive).</param>
+    /// <returns>
+    /// An <see cref="IQueryable{T}"/> containing the <see cref="Calendar"/> objects 
+    /// that satisfy the specified date range condition.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">
+    /// Thrown if the <paramref name="sender"/> is <c>null</c>.
+    /// </exception>
     public static IQueryable<Calendar> WhereDatesBetween(this IQueryable<Calendar> sender, int startDate, int endDate)
         => sender.Where(calendar => startDate <= calendar.CalendarMonth && calendar.CalendarMonth <= endDate);
 }

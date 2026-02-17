@@ -491,9 +491,7 @@ public partial class Context : DbContext
 
         if (ContextSettings.Instance.CustomerOptions.UseQueryFilter)
         {
-
-            var cust = new Customers(); // for nameof operator
-
+            
             modelBuilder.Entity<Customers>()
                 .HasQueryFilter(c =>
                     EF.Property<int?>(c, 
