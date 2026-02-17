@@ -4,22 +4,25 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using NorthWindSqlLiteApp1.Classes.Configuration;
 using NorthWindSqlLiteApp1.Classes.Core;
 using NorthWindSqlLiteApp1.Data;
 using NorthWindSqlLiteApp1.Services;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using Microsoft.Extensions.Logging;
+using System.Text;
 using static ConsoleConfigurationLibrary.Classes.ApplicationConfiguration;
 
 // ReSharper disable once CheckNamespace
 namespace NorthWindSqlLiteApp1;
 internal partial class Program
 {
+
     [ModuleInitializer]
     public static void Init()
     {
+ 
         var assembly = Assembly.GetEntryAssembly();
         var product = assembly?.GetCustomAttribute<AssemblyProductAttribute>()?.Product;
 

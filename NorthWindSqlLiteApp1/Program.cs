@@ -10,7 +10,7 @@ internal partial class Program
     private static async Task Main(string[] args)
     {
         await Task.Delay(0);
-        await Warmup();
+        //await Warmup();
 
         //MemberAccessSamples.NullCondition();
 
@@ -103,6 +103,9 @@ internal partial class Program
     private static async Task PerformCustomerOperations()
     {
         CustomerOperations.GetCustomersCount();
+        
+        await CustomerOperations.GetCustomersCountWithDapper();
+        
         CustomerOperations.GetCustomersCountIgnoreQueryFilters();
 
         CustomerOperations.DisplayTop5Customers();

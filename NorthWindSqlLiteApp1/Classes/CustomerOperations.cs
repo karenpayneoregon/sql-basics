@@ -1,11 +1,12 @@
-﻿using System.Diagnostics;
-using Microsoft.EntityFrameworkCore;
-using NorthWindSqlLiteApp1.Data;
-using NorthWindSqlLiteApp1.Models.Sorting;
-using Spectre.Console;
-using NorthWindSqlLiteApp1.Models;
+﻿using Microsoft.EntityFrameworkCore;
 using NorthWindSqlLiteApp1.Classes.Core;
 using NorthWindSqlLiteApp1.Classes.Extensions;
+using NorthWindSqlLiteApp1.Classes.MemberAccess;
+using NorthWindSqlLiteApp1.Data;
+using NorthWindSqlLiteApp1.Models;
+using NorthWindSqlLiteApp1.Models.Sorting;
+using Spectre.Console;
+using System.Diagnostics;
 using static NorthWindSqlLiteApp1.Classes.Core.SpectreConsoleHelpers;
 
 namespace NorthWindSqlLiteApp1.Classes;
@@ -111,6 +112,39 @@ internal class CustomerOperations
 
         Console.WriteLine();
 
+    }
+
+    /// <summary>
+    /// Asynchronously retrieves the total count of customers from the NorthWind SQLite database using Dapper.
+    /// </summary>
+    /// <remarks>
+    /// This method utilizes the <see cref="MemberAccessSamples.GetCustomerCountUsingDapper"/> method to fetch the customer count.
+    /// It also displays the count in the console using a formatted output.
+    /// </remarks>
+    /// <returns>
+    /// A <see cref="Task"/> representing the asynchronous operation.
+    /// </returns>
+    /// <example>
+    /// Example usage:
+    /// <code>
+    /// await CustomerOperations.GetCustomersCountWithDapper();
+    /// </code>
+    /// </example>
+    public static async Task GetCustomersCountWithDapper()
+    {
+        PrintPink();
+        
+        var customerCount = await MemberAccessSamples.GetCustomerCountUsingDapper();
+        if (customerCount > -1)
+        {
+            AnsiConsole.MarkupLine($"[green bold]Total Customers (Dapper): {customerCount}[/]");
+        }
+        else
+        {
+            AnsiConsole.MarkupLine("[red]Failed to retrieve customer count using Dapper.[/]");
+        }
+
+        Console.WriteLine();
     }
 
     /// <summary>

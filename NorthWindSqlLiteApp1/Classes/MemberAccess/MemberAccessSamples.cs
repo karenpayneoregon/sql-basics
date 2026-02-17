@@ -1,5 +1,10 @@
-﻿using System.Diagnostics;
+﻿using ConsoleConfigurationLibrary.Classes;
+using Dapper;
+using Microsoft.Data.SqlClient;
 using NorthWindSqlLiteApp1.Models;
+using Serilog;
+using System.Diagnostics;
+using Microsoft.Data.Sqlite;
 
 namespace NorthWindSqlLiteApp1.Classes.MemberAccess;
 /// <summary>
@@ -74,5 +79,36 @@ internal class MemberAccessSamples
         var country3 = customer1.CountryIdentifierNavigation.Name;
 
         Debugger.Break();
+    }
+
+    public static async Task<int> GetCustomerCountUsingDapper()
+    {
+        try
+        {
+            const string SqlServerQuery =
+                """
+                SELECT Max(Len(CompanyName))
+                FROM Customers
+                """;
+
+            const string SqliteQuery =
+                """
+                SELECT MAX(LENGTH(CompanyName))
+                FROM Customers;
+                """;
+
+
+            await using SqliteConnection cn = new(AppConnections.Instance.MainConnection);
+
+            var result = await cn.ExecuteScalarAsync<int?>(SqliteQuery);
+
+            return result ?? -1;
+        }
+        catch (Exception ex)
+        {
+            // uses SeriLog
+            Log.Error(ex, "Error occurred while getting the count.");
+            return -1;
+        }
     }
 }
