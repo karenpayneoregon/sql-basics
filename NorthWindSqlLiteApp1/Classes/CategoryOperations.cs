@@ -30,7 +30,7 @@ public class CategoryOperations
     /// </remarks>
     /// <seealso cref="CategoryItem"/>
     /// <seealso cref="Categories"/>
-    public static async Task ImplicitOperator()
+    public static async Task ImplicitExplicitOperatorAsync()
     {
         await using var context = new Context();
         var categories = await context.Categories

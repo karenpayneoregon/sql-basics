@@ -67,61 +67,44 @@ public class MethodExamples
         }
     }
 
-    public static (bool success, int identifier) AddCustomer3()
+    public static bool AddCustomer3(Customers newCustomer)
     {
+        using var context = new Context();
+        
+        context.Customers.Add(newCustomer);
 
-        using (var context = new Context())
-        {
-            var newCustomer = new Customers
-            {
-                CompanyName = "New Customer",
-                Street = "123 New St",
-                City = "New City",
-                PostalCode = "12345",
-                Phone = "555-1234",
-                CountryIdentifier = 20,
-                ContactTypeIdentifier = 7,
-                ContactId = 5
-            };
+        var result = context.SaveChanges();
 
-            context.Customers.Add(newCustomer);
-
-            var result = context.SaveChanges();
-
-            return (result == 1, newCustomer.CustomerIdentifier);
-        }
+        return result == 1;
     }
 
     public static (bool success, int identifier, Exception error) AddCustomer4()
     {
-
-        using (var context = new Context())
+        using var context = new Context();
+        var newCustomer = new Customers
         {
-            var newCustomer = new Customers
-            {
-                CompanyName = "New Customer",
-                Street = "123 New St",
-                City = "New City",
-                PostalCode = "12345",
-                Phone = "555-1234",
-                CountryIdentifier = 20,
-                ContactTypeIdentifier = 7,
-                ContactId = 5
-            };
+            CompanyName = "New Customer",
+            Street = "123 New St",
+            City = "New City",
+            PostalCode = "12345",
+            Phone = "555-1234",
+            CountryIdentifier = 20,
+            ContactTypeIdentifier = 7,
+            ContactId = 5
+        };
 
-            context.Customers.Add(newCustomer);
+        context.Customers.Add(newCustomer);
 
-            try
-            {
-                var result = context.SaveChanges();
+        try
+        {
+            var result = context.SaveChanges();
 
-                return (result == 1, newCustomer.CustomerIdentifier, null)!;
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "Error occurred while adding customer.");
-                return (false, 0, ex);
-            }
+            return (result == 1, newCustomer.CustomerIdentifier, null)!;
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Error occurred while adding customer.");
+            return (false, -1, ex);
         }
     }
 }

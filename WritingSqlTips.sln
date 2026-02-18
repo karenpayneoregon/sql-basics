@@ -227,6 +227,10 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "KeyboardShortcuts", "Keyboa
 		DefaultWebSiteLanguage = "Visual Basic"
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL Server Contacts", "SQL Server Contacts", "{1563981D-CF59-A57C-9880-41406C02981A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsApplication1", "ContactsApplication1\ContactsApplication1.csproj", "{01FCB8A6-E27A-44C0-ACC7-DC0B8ADE0541}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -533,6 +537,10 @@ Global
 		{B43C3C29-8FA3-6E05-8CDE-C6D0961692A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B43C3C29-8FA3-6E05-8CDE-C6D0961692A0}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{B43C3C29-8FA3-6E05-8CDE-C6D0961692A0}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{01FCB8A6-E27A-44C0-ACC7-DC0B8ADE0541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01FCB8A6-E27A-44C0-ACC7-DC0B8ADE0541}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01FCB8A6-E27A-44C0-ACC7-DC0B8ADE0541}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01FCB8A6-E27A-44C0-ACC7-DC0B8ADE0541}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -619,6 +627,8 @@ Global
 		{156DD675-4594-E866-4425-F3A202267F21} = {E6B17769-ABC0-0A56-D1A8-1E62C75C57AD}
 		{31D1E408-2796-4AFE-A327-DBFDC47C7107} = {156DD675-4594-E866-4425-F3A202267F21}
 		{85FA7594-95B9-44EC-8224-F1D8809F7801} = {156DD675-4594-E866-4425-F3A202267F21}
+		{1563981D-CF59-A57C-9880-41406C02981A} = {657E776F-9022-4416-8A69-149A718688E3}
+		{01FCB8A6-E27A-44C0-ACC7-DC0B8ADE0541} = {1563981D-CF59-A57C-9880-41406C02981A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}

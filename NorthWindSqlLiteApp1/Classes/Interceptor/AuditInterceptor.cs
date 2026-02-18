@@ -112,3 +112,23 @@ public class ConnectionInterceptor : DbConnectionInterceptor
         return base.ConnectionCreated(eventData, result);
     }
 }
+
+public class AuditingInterceptor : SaveChangesInterceptor
+{
+    // Inject services like ICurrentUserService if needed
+    public override ValueTask<InterceptionResult<int>> SavingChangesAsync(
+        DbContextEventData eventData,
+        InterceptionResult<int> result,
+        CancellationToken cancellationToken = default)
+    {
+
+        /*
+         * 1. Access the DbContext
+         * 2. Are we dealing with a Customer add or edit operation?
+         * 3. Check if CompanyName exists
+         *    if it does not create a duplicate company allow the operation to proceed
+         *    else prevent save
+         */
+        return base.SavingChangesAsync(eventData, result, cancellationToken);
+    }
+}

@@ -24,14 +24,14 @@ public class CallingExamplesForAddingCustomer
         
         {
 
-            var (success, identifier) = MethodExamples.AddCustomer3();
-            if (success)
-            {
-                // Use the identifier as needed
-            } else    
-            {
-                // Failed to add customer
-            }
+            //var (success, identifier) = MethodExamples.AddCustomer3();
+            //if (success)
+            //{
+            //    // Use the identifier as needed
+            //} else    
+            //{
+            //    // Failed to add customer
+            //}
 
         }
 
@@ -46,7 +46,7 @@ public class CallingExamplesForAddingCustomer
                 // Failed to add customer 
                 if (exception is not null)
                 {
-                    // see log for details
+                    // 
                 }
             }
 

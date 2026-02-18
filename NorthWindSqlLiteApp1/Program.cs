@@ -1,7 +1,11 @@
-﻿using NorthWindSqlLiteApp1.Classes;
+﻿using Microsoft.EntityFrameworkCore;
+using NorthWindSqlLiteApp1.Classes;
 using NorthWindSqlLiteApp1.Classes.Core;
 using NorthWindSqlLiteApp1.Classes.MemberAccess;
+using NorthWindSqlLiteApp1.Classes.MethodsExamples;
+using NorthWindSqlLiteApp1.Data;
 using NorthWindSqlLiteApp1.Models;
+using Serilog;
 using Spectre.Console;
 
 namespace NorthWindSqlLiteApp1;
@@ -10,11 +14,14 @@ internal partial class Program
     private static async Task Main(string[] args)
     {
         await Task.Delay(0);
+
+ 
+
         //await Warmup();
         //MemberAccessSamples.NullCondition();
         //await ExecuteImplicitOperators();
 
-        await PerformCustomerOperations();
+        //await PerformCustomerOperations();
         //await CustomerOperations.FixCityMexico();
         //PerformEmployeeOperations();
         //await PerformOrderOperations();
@@ -23,6 +30,22 @@ internal partial class Program
         //UtilityCode.GetModelNames();
 
         SpectreConsoleHelpers.ExitPrompt(Justify.Left);
+    }
+
+    private static void CreateAndAddCustomer()
+    {
+        var newCustomer = new Customers
+        {
+            CompanyName = "New Customer",
+            Street = "123 New St",
+            City = "New City",
+            PostalCode = "12345",
+            Phone = "555-1234",
+            CountryIdentifier = 20,
+            ContactTypeIdentifier = 7,
+            ContactId = 5
+        };
+        var success = MethodExamples.AddCustomer3(newCustomer);
     }
 
     /// <summary>
@@ -35,11 +58,11 @@ internal partial class Program
     /// corresponding DTOs using implicit operators.
     /// </remarks>
     /// <seealso cref="ProductsOperations.ImplicitOperator"/>
-    /// <seealso cref="CategoryOperations.ImplicitOperator"/>
+    /// <seealso cref="CategoryOperations.ImplicitExplicitOperatorAsync"/>
     private static async Task ExecuteImplicitOperators()
     {
         await ProductsOperations.ImplicitOperator();
-        await CategoryOperations.ImplicitOperator();
+        await CategoryOperations.ImplicitExplicitOperatorAsync();
     }
 
     /// <summary>
@@ -101,9 +124,9 @@ internal partial class Program
     private static async Task PerformCustomerOperations()
     {
         CustomerOperations.GetCustomersCount();
-        
+
         await CustomerOperations.GetCustomersCountWithDapper();
-        
+
         CustomerOperations.GetCustomersCountIgnoreQueryFilters();
 
         CustomerOperations.DisplayTop5Customers();

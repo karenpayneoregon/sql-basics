@@ -33,6 +33,7 @@ internal partial class Program
         Setup();
 
     }
+    
     private static void Setup()
     {
 
