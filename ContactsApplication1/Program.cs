@@ -76,7 +76,7 @@ internal partial class Program
         
         if (count1 == 1)
         {
-            Address address = new Address
+            Address address1 = new Address
             {
                 AddressLine1 = "123 Main St",
                 City = "Salem",
@@ -84,48 +84,48 @@ internal partial class Program
                 PostalCode = "12345",
             };
 
-            context.Add(address);
+            context.Add(address1);
 
             // save to get the generated AddressId for the new address
             var count2 = context.SaveChanges();
             
             if (count2 == 1)
             {
-                PersonAddress personAddress = new PersonAddress
+                PersonAddress personAddress1 = new PersonAddress
                 {
                     PersonId = person.PersonId,
                     IsPrimary = true,
-                    Address = address,
-                    AddressId = address.AddressId,
+                    Address = address1,
+                    AddressId = address1.AddressId,
                     AddressTypeId = 1, 
                     StartDate = DateOnly.FromDateTime(DateTime.Now)
                 };
 
-                context.Add(personAddress);
+                context.Add(personAddress1);
                 var count3 = context.SaveChanges();
 
-                Device device = new Device
+                Device device1 = new Device
                 {
                     DeviceTypeId = 1, 
                     DeviceValue = "5039991345", 
                     IsActive = true, 
                 };
 
-                context.Add(device);
+                context.Add(device1);
                 
                 // save to get the generated DeviceId for the new device
                 var count4 = context.SaveChanges();
                 
-                PersonDevice personDevice = new PersonDevice
+                PersonDevice personDevice1 = new PersonDevice
                 {
                     PersonId = person.PersonId,
                     DeviceId = 1,
                     
                     IsPrimary = true, 
-                    Device = device
+                    Device = device1
                 };
 
-                context.Add(personDevice);
+                context.Add(personDevice1);
 
                 var count5 = context.SaveChanges();
             }
