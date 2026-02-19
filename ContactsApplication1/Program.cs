@@ -157,7 +157,7 @@ internal partial class Program
     {
         using var context = new Context();
 
-        var person = new Person
+        Person person = new()
         {
             FirstName = "Jane",
             LastName = "Miller",
@@ -174,7 +174,7 @@ internal partial class Program
         
         if (count1 == 1)
         {
-            Address address1 = new Address
+            Address address1 = new()
             {
                 AddressLine1 = "123 Main St",
                 City = "Salem",
@@ -189,7 +189,7 @@ internal partial class Program
             
             if (count2 == 1)
             {
-                PersonAddress personAddress1 = new PersonAddress
+                PersonAddress personAddress1 = new()
                 {
                     PersonId = person.PersonId,
                     IsPrimary = true,
@@ -202,7 +202,7 @@ internal partial class Program
                 context.Add(personAddress1);
                 var count3 = context.SaveChanges();
 
-                Device device1 = new Device
+                Device device1 = new()
                 {
                     DeviceTypeId = 1, 
                     DeviceValue = "5039991345", 
@@ -214,7 +214,7 @@ internal partial class Program
                 // save to get the generated DeviceId for the new device
                 var count4 = context.SaveChanges();
                 
-                PersonDevice personDevice1 = new PersonDevice
+                PersonDevice personDevice1 = new()
                 {
                     PersonId = person.PersonId,
                     DeviceId = 1,
