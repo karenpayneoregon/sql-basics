@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Product>Basic</Product>
+		<Product>Contacts database</Product>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -67,5 +67,6 @@
 
 	<ItemGroup>
 	  <Folder Include="DatabaseScripts\" />
+	  <Folder Include="Documents\" />
 	</ItemGroup>
 </Project>
