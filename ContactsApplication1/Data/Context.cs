@@ -4,8 +4,6 @@ using ConsoleConfigurationLibrary.Classes;
 using ContactsApplication1.Classes.Core;
 using ContactsApplication1.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 
