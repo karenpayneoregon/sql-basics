@@ -12,36 +12,77 @@ internal partial class Program
 {
     static void Main(string[] args)
     {
-        //DisplayGeneratedPeopleTable();
-        
-        
-        //AddPerson();
-        //EditPerson_AddAddress();
-        //EditPerson_AddDevice();
-        //GetFirstPerson();
+        //GenerateAndAddPeople();
+        DisplayPeople();
+
+
         SpectreConsoleHelpers.ExitPrompt(Justify.Left);
     }
 
-    private static void DisplayGeneratedPeopleTable()
+    /// <summary>
+    /// Generates a collection of people with randomized data and adds them to the mock operations.
+    /// </summary>
+    /// <remarks>
+    /// This method performs the following actions:
+    /// <list type="number">
+    /// <item><description>Generates a list of <see cref="Person"/> objects using <see cref="BogusOperations.GeneratePeople"/>.</description></item>
+    /// <item><description>Iterates through the generated list and adds each <see cref="Person"/> to the mock operations using <see cref="MockOperations.AddPerson"/>.</description></item>
+    /// <item><description>Logs the total count of people in the database context to the console.</description></item>
+    /// </list>
+    /// </remarks>
+    private static void GenerateAndAddPeople()
     {
         var people = BogusOperations.GeneratePeople();
+        foreach (var person in people)
+        {
+            MockOperations.AddPerson(person);
+        }
+
+        using var context = new Context();
+        Console.WriteLine(context.People.Count());
+    }
+
+    private static void DisplayPeople()
+    {
+        using var context = new Context();
+        
+        var people = context.People
+            .AsNoTracking()
+            .Include(p => p.PersonAddresses)
+            .ThenInclude(pa => pa.Address)
+            .ThenInclude(a => a.StateProvince)
+            .Include(p => p.PersonAddresses)
+            .ThenInclude(pa => pa.AddressType)
+            .Include(p => p.Gender)
+            .Include(p => p.PersonDevices)
+            .ThenInclude(pd => pd.Device)
+            .ThenInclude(d => d.DeviceType)
+            .ToList();
+        
         SpectreConsoleHelpers.WindowTitle(Justify.Center, "Contacts Application");
 
         SpectreConsoleHelpers.InfoPill(Justify.Left, "Generated People Data");
 
-        // Display the generated people data in a table
-        var table = new Table().Border(TableBorder.Rounded);
-        table.AddColumn("Name");
-        table.AddColumn("Date of Birth");
-        table.AddColumn("Gender");
 
-        foreach (var person in people)
+        foreach (var p in people)
         {
-            table.AddRow($"{person.FirstName} {person.LastName}",
-                person.DateOfBirth?.ToString("yyyy-MM-dd")!, person.Gender?.GenderName!);
-        }
+            AnsiConsole.MarkupLine($"[cyan]{p.PersonId,-4}{p.FirstName,-12}{p.LastName,-12}{p.DateOfBirth, -12:MM/dd/yyyy}{p.Gender?.GenderName}[/]");
 
-        AnsiConsole.Write(table);
+            foreach (var pPersonAddress in p.PersonAddresses)
+            {
+                Console.WriteLine($"  {pPersonAddress.Address.AddressLine1, -25}{pPersonAddress.Address?.City,-18}{pPersonAddress.Address?.StateProvince.StateName}");
+            }
+            
+            foreach (var d in p.PersonDevices)
+            {
+                AnsiConsole.MarkupLine($"  {d.Device.DeviceType.DeviceTypeName, -25}{d.Device.DeviceValue, -30}{d.StartDate, -12:MM/dd/yyyy}{(d.IsPrimary ? "[green]Primary[/]" : "[red]Secondary[/]")}");
+            }
+
+            Console.WriteLine();
+        }
+   
+
+
         Console.WriteLine(); // Add a blank line for spacing
     }
 
@@ -54,12 +95,12 @@ internal partial class Program
     /// entities to ensure all necessary data is loaded. Debug information is tagged to the query
     /// for easier debugging in development mode.
     /// </remarks>
-    private static void GetFirstPerson()
+    private static void GetFirstPerson(int id)
     {
         using var context = new Context();
         var firstPerson = context.People
             // no need to track entities for read-only operations, improves performance
-            .AsNoTracking() 
+            .AsNoTracking()
             .TagWithDebugInfo("GetFirstPerson")
             .Include(p => p.PersonAddresses)
             .ThenInclude(pa => pa.Address)
@@ -70,198 +111,7 @@ internal partial class Program
             .Include(p => p.PersonDevices)
             .ThenInclude(pd => pd.Device)
             .ThenInclude(d => d.DeviceType)
-            .FirstOrDefault();
-    }
-
-    /// <summary>
-    /// Adds a new device to a person and establishes a relationship between the person and the device.
-    /// </summary>
-    /// <remarks>
-    /// This method performs the following actions:
-    /// 1. Retrieves a person with a specific <see cref="Person.PersonId"/> from the database.
-    /// 2. Creates a new <see cref="Device"/> instance and adds it to the database.
-    /// 3. Saves the changes to generate the <see cref="Device.DeviceId"/> for the new device.
-    /// 4. Creates a new <see cref="PersonDevice"/> instance to associate the person with the device.
-    /// 5. Marks the device as primary and sets the start date.
-    /// 6. Saves the changes to persist the relationship.
-    /// </remarks>
-    /// <exception cref="InvalidOperationException">
-    /// Thrown if the person with the specified <see cref="Person.PersonId"/> is not found.
-    /// </exception>
-    private static void EditPerson_AddDevice()
-    {
-        using var context = new Context();
-
-        var contact = context.People.FirstOrDefault(p => p.PersonId == 1);
-
-        Device device1 = new Device
-        {
-            DeviceTypeId = 3,
-            DeviceValue = "janeMiller@comcast.net",
-            IsActive = true,
-        };
-
-        context.Add(device1);
-
-        // save to get the generated DeviceId for the new device
-        var count1 = context.SaveChanges();
-
-        PersonDevice personDevice1 = new PersonDevice
-        {
-            PersonId = contact.PersonId,
-            DeviceId = 1,
-            StartDate = DateOnly.FromDateTime(DateTime.Now),
-            IsPrimary = true,
-            Device = device1
-        };
-
-        context.Add(personDevice1);
-
-        var count2 = context.SaveChanges();
-    }
-
-
-    /// <summary>
-    /// Adds a new address to a person and associates it with the person in the database.
-    /// </summary>
-    /// <remarks>
-    /// This method performs the following actions:
-    /// 1. Retrieves a person with a specific ID from the database.
-    /// 2. Creates a new address and saves it to the database.
-    /// 3. Associates the newly created address with the person by creating a <see cref="PersonAddress"/> entry.
-    /// 4. Displays a success message in the console upon completion.
-    /// </remarks>
-    private static void EditPerson_AddAddress()
-    {
-        using var context = new Context();
-
-        var contact = context.People.FirstOrDefault(p => p.PersonId == 1);
-
-        Address address = new Address
-        {
-            AddressLine1 = "34 Cherry Ave",
-            City = "Portland",
-            StateProvinceId = 37,
-            PostalCode = "12345",
-        };
-
-        context.Add(address);
-        var count1 = context.SaveChanges();
-
-        PersonAddress personAddress1 = new PersonAddress
-        {
-            PersonId = contact.PersonId,
-            IsPrimary = false,
-            Address = address,
-            AddressId = address.AddressId,
-            AddressTypeId = 1,
-            StartDate = DateOnly.FromDateTime(DateTime.Now)
-        };
-
-        context.Add(personAddress1);
-        var count2 = context.SaveChanges();
-
-        SpectreConsoleHelpers.SuccessPill(Justify.Left, "Added 2nd address");
-
+            .FirstOrDefault(x => x.PersonId == id);
     }
     
-    /// <summary>
-    /// Adds a new person to the database, along with their associated address, device, 
-    /// and relationships between these entities.
-    /// </summary>
-    /// <remarks>
-    /// This method performs the following actions:
-    /// 1. Creates a new <see cref="Person"/> entity and saves it to the database.
-    /// 2. Creates a new <see cref="Address"/> entity and associates it with the person.
-    /// 3. Establishes a relationship between the person and the address using <see cref="PersonAddress"/>.
-    /// 4. Creates a new <see cref="Device"/> entity and associates it with the person.
-    /// 5. Establishes a relationship between the person and the device using <see cref="PersonDevice"/>.
-    /// </remarks>
-    /// <exception cref="DbUpdateException">
-    /// Thrown if there is an error while saving changes to the database.
-    /// </exception>
-    private static void AddPerson()
-    {
-        using var context = new Context();
-
-        Person person = new()
-        {
-            FirstName = "Jane",
-            LastName = "Miller",
-            MiddleName = "A",
-            GenderId = 2,
-            DateOfBirth = new DateOnly(1966, 7, 6),
-            Notes = "Test person",
-        };
-
-        context.People.Add(person);
-
-        // save to get the generated PersonId for the new person
-        var count1 = context.SaveChanges();
-        
-        if (count1 == 1)
-        {
-            Address address1 = new()
-            {
-                AddressLine1 = "123 Main St",
-                City = "Salem",
-                StateProvinceId = 37,
-                PostalCode = "12345",
-            };
-
-            context.Add(address1);
-
-            // save to get the generated AddressId for the new address
-            var count2 = context.SaveChanges();
-            
-            if (count2 == 1)
-            {
-                PersonAddress personAddress1 = new()
-                {
-                    PersonId = person.PersonId,
-                    IsPrimary = true,
-                    Address = address1,
-                    AddressId = address1.AddressId,
-                    AddressTypeId = 1, 
-                    StartDate = DateOnly.FromDateTime(DateTime.Now)
-                };
-
-                context.Add(personAddress1);
-                var count3 = context.SaveChanges();
-
-                Device device1 = new()
-                {
-                    DeviceTypeId = 1, 
-                    DeviceValue = "5039991345", 
-                    IsActive = true, 
-                };
-
-                context.Add(device1);
-                
-                // save to get the generated DeviceId for the new device
-                var count4 = context.SaveChanges();
-                
-                PersonDevice personDevice1 = new()
-                {
-                    PersonId = person.PersonId,
-                    DeviceId = 1,
-                    StartDate = DateOnly.FromDateTime(DateTime.Now),
-                    IsPrimary = true, 
-                    Device = device1
-                };
-
-                context.Add(personDevice1);
-
-                var count5 = context.SaveChanges();
-            }
-            
-        }else
-        {
-            Log.Information("Failed to add person to the database.");
-            SpectreConsoleHelpers.ErrorPill(Justify.Left, "Failed to add person to the database.");
-        }
-
-        SpectreConsoleHelpers.SuccessPill(Justify.Left,
-            $"Person '{person.FirstName} {person.LastName}' added successfully.");
-    }
 }

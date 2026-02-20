@@ -1,24 +1,26 @@
-﻿using Serilog;
-using Spectre.Console;
+﻿using Bogus;
 using ContactsApplication1.Classes.Core;
-using ContactsApplication1.Models;
 using ContactsApplication1.Data;
+using ContactsApplication1.Models;
+using Serilog;
+using Spectre.Console;
+using Person = ContactsApplication1.Models.Person;
 
 namespace ContactsApplication1.Classes.Creation;
 internal class MockOperations
 {
-    public static void AddPerson()
+    public static void AddPerson(Person p)
     {
         using var context = new Context();
 
-        Person person = new()
+        Person person = new Person()
         {
-            FirstName = "Jane",
-            LastName = "Miller",
-            MiddleName = "A",
-            GenderId = 2,
-            DateOfBirth = new DateOnly(1966, 7, 6),
-            Notes = "Test person",
+            FirstName = p.FirstName,
+            LastName = p.LastName,
+            MiddleName = p.MiddleName,
+            DateOfBirth = p.DateOfBirth,
+            GenderId = p.GenderId,
+            Notes = p.Notes,
         };
 
         context.People.Add(person);
@@ -28,13 +30,7 @@ internal class MockOperations
 
         if (count1 == 1)
         {
-            Address address1 = new()
-            {
-                AddressLine1 = "123 Main St",
-                City = "Salem",
-                StateProvinceId = 37,
-                PostalCode = "12345",
-            };
+            Address address1 = BogusOperations.GenerateRandomAddress();
 
             context.Add(address1);
 
@@ -59,7 +55,7 @@ internal class MockOperations
                 Device device1 = new()
                 {
                     DeviceTypeId = 1,
-                    DeviceValue = "5039991345",
+                    DeviceValue = new Faker().Phone.PhoneNumber(),
                     IsActive = true,
                 };
 
@@ -80,7 +76,7 @@ internal class MockOperations
                 context.Add(personDevice1);
 
                 var count5 = context.SaveChanges();
-                EditPerson_AddAddress(person.PersonId);
+                EditPerson_AddAddress(person);
             }
 
         }
@@ -92,19 +88,13 @@ internal class MockOperations
 
         SpectreConsoleHelpers.SuccessPill(Justify.Left, $"Person '{person.FirstName} {person.LastName}' added successfully.");
     }
-    private static void EditPerson_AddAddress(int personId)
+    private static void EditPerson_AddAddress(Person person)
     {
         using var context = new Context();
 
-        var contact = context.People.FirstOrDefault(p => p.PersonId == personId);
+        var contact = context.People.FirstOrDefault(p => p.PersonId == person.PersonId);
 
-        Address address = new Address
-        {
-            AddressLine1 = "34 Cherry Ave",
-            City = "Portland",
-            StateProvinceId = 37,
-            PostalCode = "12345",
-        };
+        Address address = BogusOperations.GenerateAddress();
 
         context.Add(address);
         var count1 = context.SaveChanges();
@@ -123,20 +113,20 @@ internal class MockOperations
         var count2 = context.SaveChanges();
 
         SpectreConsoleHelpers.SuccessPill(Justify.Left, "Added address");
-        EditPerson_AddDevice(personId);
+        EditPerson_AddDevice(contact);
 
     }
 
-    private static void EditPerson_AddDevice(int personId)
+    private static void EditPerson_AddDevice(Person person)
     {
         using var context = new Context();
 
-        var contact = context.People.FirstOrDefault(p => p.PersonId == personId);
+        var contact = context.People.FirstOrDefault(p => p.PersonId == person.PersonId);
 
         Device device1 = new Device
         {
             DeviceTypeId = 3,
-            DeviceValue = "janeMiller@comcast.net",
+            DeviceValue = $"{person.FirstName}{person.LastName}@comcast.net",
             IsActive = true,
         };
 
