@@ -12,6 +12,18 @@ internal partial class Program
 {
     static void Main(string[] args)
     {
+        //DisplayGeneratedPeopleTable();
+        
+        
+        //AddPerson();
+        //EditPerson_AddAddress();
+        //EditPerson_AddDevice();
+        //GetFirstPerson();
+        SpectreConsoleHelpers.ExitPrompt(Justify.Left);
+    }
+
+    private static void DisplayGeneratedPeopleTable()
+    {
         var people = BogusOperations.GeneratePeople();
         SpectreConsoleHelpers.WindowTitle(Justify.Center, "Contacts Application");
 
@@ -31,11 +43,6 @@ internal partial class Program
 
         AnsiConsole.Write(table);
         Console.WriteLine(); // Add a blank line for spacing
-        //AddPerson();
-        //EditPerson_AddAddress();
-        //EditPerson_AddDevice();
-        //GetFirstPerson();
-        SpectreConsoleHelpers.ExitPrompt(Justify.Left);
     }
 
     /// <summary>

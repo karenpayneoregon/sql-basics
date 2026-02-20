@@ -1,0 +1,86 @@
+﻿erDiagram
+  Address {
+    AddressId int PK
+    AddressLine1 nvarchar(200) 
+    AddressLine2 nvarchar(200)(NULL) 
+    City nvarchar(100) 
+    StateProvinceId smallint FK
+    PostalCode nvarchar(20) 
+    CreatedAt datetime2(0) 
+    UpdatedAt datetime2(0) 
+    RowVersion rowversion 
+  }
+  Address }o--|| StateProvince : FK_Address_StateProvince
+  AddressType {
+    AddressTypeId tinyint PK
+    AddressTypeName nvarchar(30) 
+  }
+  Country {
+    CountryId smallint PK
+    CountryName nvarchar(100) 
+    CountryCode2 char(2) 
+  }
+  Device {
+    DeviceId int PK
+    DeviceTypeId tinyint FK
+    DeviceValue nvarchar(320) 
+    Extension nvarchar(10)(NULL) 
+    IsActive bit 
+    CreatedAt datetime2(0) 
+    UpdatedAt datetime2(0) 
+    RowVersion rowversion 
+  }
+  Device }o--|| DeviceType : FK_Device_DeviceType
+  DeviceType {
+    DeviceTypeId tinyint PK
+    DeviceTypeName nvarchar(30) 
+    DeviceKind nvarchar(10) 
+  }
+  Gender {
+    GenderId tinyint PK
+    GenderName nvarchar(20) 
+  }
+  Person {
+    PersonId int PK
+    FirstName nvarchar(100) 
+    LastName nvarchar(100) 
+    MiddleName nvarchar(100)(NULL) 
+    DateOfBirth date(NULL) 
+    GenderId tinyint(NULL) FK
+    Notes nvarchar(2000)(NULL) 
+    CreatedAt datetime2(0) 
+    UpdatedAt datetime2(0) 
+    RowVersion rowversion 
+  }
+  Person }o--|| Gender : FK_Person_Gender
+  PersonAddress {
+    PersonAddressId int PK
+    PersonId int FK
+    AddressId int FK
+    AddressTypeId tinyint FK
+    IsPrimary bit 
+    StartDate date(NULL) 
+    EndDate date(NULL) 
+    CreatedAt datetime2(0) 
+  }
+  PersonAddress }o--|| Address : FK_PersonAddress_Address
+  PersonAddress }o--|| AddressType : FK_PersonAddress_AddressType
+  PersonAddress }o--|| Person : FK_PersonAddress_Person
+  PersonDevice {
+    PersonDeviceId int PK
+    PersonId int FK
+    DeviceId int FK
+    IsPrimary bit 
+    StartDate date(NULL) 
+    EndDate date(NULL) 
+    CreatedAt datetime2(0) 
+  }
+  PersonDevice }o--|| Device : FK_PersonDevice_Device
+  PersonDevice }o--|| Person : FK_PersonDevice_Person
+  StateProvince {
+    StateProvinceId smallint PK
+    CountryId smallint FK
+    StateCode char(2) 
+    StateName nvarchar(100) 
+  }
+  StateProvince }o--|| Country : FK_StateProvince_Country
