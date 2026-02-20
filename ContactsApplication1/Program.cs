@@ -1,4 +1,5 @@
 ﻿using ContactsApplication1.Classes.Core;
+using ContactsApplication1.Classes.Creation;
 using ContactsApplication1.Classes.Extensions;
 using ContactsApplication1.Data;
 using ContactsApplication1.Models;
@@ -11,10 +12,29 @@ internal partial class Program
 {
     static void Main(string[] args)
     {
+        var people = BogusOperations.GeneratePeople();
+        SpectreConsoleHelpers.WindowTitle(Justify.Center, "Contacts Application");
+
+        SpectreConsoleHelpers.InfoPill(Justify.Left, "Generated People Data");
+
+        // Display the generated people data in a table
+        var table = new Table().Border(TableBorder.Rounded);
+        table.AddColumn("Name");
+        table.AddColumn("Date of Birth");
+        table.AddColumn("Gender");
+
+        foreach (var person in people)
+        {
+            table.AddRow($"{person.FirstName} {person.LastName}",
+                person.DateOfBirth?.ToString("yyyy-MM-dd")!, person.Gender?.GenderName!);
+        }
+
+        AnsiConsole.Write(table);
+        Console.WriteLine(); // Add a blank line for spacing
         //AddPerson();
         //EditPerson_AddAddress();
         //EditPerson_AddDevice();
-        GetFirstPerson();
+        //GetFirstPerson();
         SpectreConsoleHelpers.ExitPrompt(Justify.Left);
     }
 

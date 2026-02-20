@@ -257,7 +257,7 @@ public static class SpectreConsoleHelpers
 
         // Get file and project name
         var fileName = Path.GetFileNameWithoutExtension(filePath);
-        var projectName = Utilities.GetProjectName(filePath);
+        var projectName = Utilities.GetProjectName(filePath!);
 
         AnsiConsole.MarkupLine($"[hotpink2]{projectName}[/][yellow bold].[/][hotpink2]" +
                                $"{fileName}[/][yellow bold].[/][hotpink2]{methodName}[/]");
