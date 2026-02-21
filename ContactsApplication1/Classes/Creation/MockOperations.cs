@@ -89,6 +89,21 @@ internal class MockOperations
 
         SpectreConsoleHelpers.SuccessPill(Justify.Left, $"Person '{person.FirstName} {person.LastName}' added successfully.");
     }
+    /// <summary>
+    /// Adds a new address to the specified <see cref="Person"/> and associates it with the person.
+    /// </summary>
+    /// <param name="person">
+    /// The <see cref="Person"/> object to which the new address will be added. 
+    /// This must include a valid <c>PersonId</c> that exists in the database.
+    /// </param>
+    /// <remarks>
+    /// This method generates a new address using <see cref="BogusOperations.GenerateAddress"/> and saves it to the database.
+    /// It then creates a new <see cref="PersonAddress"/> entry to associate the generated address with the specified person.
+    /// If the operation is successful, a success message is displayed using <see cref="SpectreConsoleHelpers.SuccessPill"/>.
+    /// </remarks>
+    /// <exception cref="InvalidOperationException">
+    /// Thrown if the specified <see cref="Person"/> does not exist in the database.
+    /// </exception>
     private static void EditPerson_AddAddress(Person person)
     {
         using var context = new Context();
@@ -118,6 +133,23 @@ internal class MockOperations
 
     }
 
+    /// <summary>
+    /// Associates a new device with the specified person in the database.
+    /// </summary>
+    /// <param name="person">
+    /// The <see cref="Person"/> object representing the individual to whom the device will be added.
+    /// </param>
+    /// <remarks>
+    /// This method performs the following operations:
+    /// 1. Retrieves the person record from the database using the provided <paramref name="person"/>.
+    /// 2. Creates a new <see cref="Device"/> instance and populates its properties.
+    /// 3. Saves the new device to the database to generate its unique identifier.
+    /// 4. Creates a <see cref="PersonDevice"/> instance to associate the device with the person.
+    /// 5. Saves the association to the database.
+    /// </remarks>
+    /// <exception cref="InvalidOperationException">
+    /// Thrown if the specified person does not exist in the database.
+    /// </exception>
     private static void EditPerson_AddDevice(Person person)
     {
         using var context = new Context();
