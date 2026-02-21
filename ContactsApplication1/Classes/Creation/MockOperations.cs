@@ -4,6 +4,7 @@ using ContactsApplication1.Data;
 using ContactsApplication1.Models;
 using Serilog;
 using Spectre.Console;
+
 using Person = ContactsApplication1.Models.Person;
 
 namespace ContactsApplication1.Classes.Creation;
@@ -13,7 +14,7 @@ internal class MockOperations
     {
         using var context = new Context();
 
-        Person person = new Person()
+        Person person = new()
         {
             FirstName = p.FirstName,
             LastName = p.LastName,

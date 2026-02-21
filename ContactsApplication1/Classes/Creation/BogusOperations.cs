@@ -38,6 +38,7 @@ internal class BogusOperations
         var female = new Gender { GenderId = 2, GenderName = "Female" };
 
         var faker = new Faker<Person>()
+            // do not use when adding a new Person to the DB
             .RuleFor(p => p.Gender, f => f.PickRandom(male, female))
             .RuleFor(p => p.GenderId, (f, p) => p.Gender.GenderId)
 
@@ -47,17 +48,18 @@ internal class BogusOperations
                     : f.Name.FirstName(Name.Gender.Female))
 
             .RuleFor(p => p.LastName, f => f.Name.LastName())
-            .RuleFor(p => p.MiddleName, f => f.Name.FirstName()) // required non-null in your model
+            .RuleFor(p => p.MiddleName, f => f.Name.FirstName())
             .RuleFor(p => p.Notes, f => f.Lorem.Sentence())
 
             .RuleFor(p => p.DateOfBirth, f =>
             {
-                var dt = f.Date.Past(60, DateTime.Today.AddYears(-18)); // 18-78ish
+                var dt = f.Date.Past(60, DateTime.Today.AddYears(-18)); 
                 return DateOnly.FromDateTime(dt);
             })
             .RuleFor(p => p.UpdatedAt, (f, p) => f.Date.Between(p.CreatedAt, DateTime.Now));
 
         return faker.Generate(20);
+        
     }
     
     /// <summary>
