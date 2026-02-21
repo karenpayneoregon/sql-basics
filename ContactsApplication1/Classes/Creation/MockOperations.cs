@@ -100,7 +100,7 @@ internal class MockOperations
         context.Add(address);
         var count1 = context.SaveChanges();
 
-        PersonAddress personAddress1 = new PersonAddress
+        PersonAddress personAddress1 = new()
         {
             PersonId = contact.PersonId,
             IsPrimary = true,
@@ -124,7 +124,7 @@ internal class MockOperations
 
         var contact = context.People.FirstOrDefault(p => p.PersonId == person.PersonId);
 
-        Device device1 = new Device
+        Device device1 = new()
         {
             DeviceTypeId = 3,
             DeviceValue = $"{person.FirstName}{person.LastName}@comcast.net",
@@ -136,7 +136,7 @@ internal class MockOperations
         // save to get the generated DeviceId for the new device
         var count1 = context.SaveChanges();
 
-        PersonDevice personDevice1 = new PersonDevice
+        PersonDevice personDevice1 = new()
         {
             PersonId = contact.PersonId,
             DeviceId = 1,
