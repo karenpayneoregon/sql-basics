@@ -8,6 +8,15 @@ using Spectre.Console;
 using Person = ContactsApplication1.Models.Person;
 
 namespace ContactsApplication1.Classes.Creation;
+/// <summary>
+/// Provides mock operations for managing and manipulating <see cref="Person"/> entities 
+/// and their related data, such as addresses and devices, within the application.
+/// </summary>
+/// <remarks>
+/// This class is designed to facilitate the creation and addition of <see cref="Person"/> entities 
+/// to the database, along with their associated addresses and devices. It utilizes a combination 
+/// of random data generation and database operations to populate the application's data context.
+/// </remarks>
 internal class MockOperations
 {
     public static void AddPerson(Person p)
