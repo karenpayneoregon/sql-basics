@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using ContactsApplication1.Classes.Configuration;
 using ContactsApplication1.Classes.Core;
 using ContactsApplication1.Classes.Creation;
 using ContactsApplication1.Classes.Extensions;
@@ -7,12 +7,18 @@ using ContactsApplication1.Models;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Spectre.Console;
+using System.Diagnostics;
 
 namespace ContactsApplication1;
 internal partial class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
+        if (AppConfiguration.Instance.Use)
+        {
+            await Warmup();
+        }
+
         GenerateAndAddPeople();
         DisplayPeople();
 
