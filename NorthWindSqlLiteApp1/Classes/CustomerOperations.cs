@@ -6,6 +6,7 @@ using NorthWindSqlLiteApp1.Classes.MemberAccess;
 using NorthWindSqlLiteApp1.Data;
 using NorthWindSqlLiteApp1.Mappings;
 using NorthWindSqlLiteApp1.Models;
+using NorthWindSqlLiteApp1.Models.Projections;
 using NorthWindSqlLiteApp1.Models.Sorting;
 using Spectre.Console;
 using System.Diagnostics;
@@ -91,6 +92,40 @@ internal class CustomerOperations
         Console.WriteLine();
 
 
+    }
+
+    /// <summary>
+    /// Retrieves a single customer and their associated details using a projection.
+    /// </summary>
+    /// <remarks>
+    /// This method queries the database to fetch a customer with a specific identifier. 
+    /// It includes related data such as contact information, contact type, and country details. 
+    /// The result is projected into a <see cref="CustomerAndContact"/> object for simplified access to the data.
+    /// </remarks>
+    public static void WithProjection(int id = 1)
+    {
+        PrintPink();
+
+        using (var context = new Context())
+        {
+            var customer = context
+                .Customers
+                .IgnoreQueryFilters()
+                .AsNoTracking()
+                .Include(x => x.Contact)
+                .Include(x => x.ContactTypeIdentifierNavigation)
+                .Include(x => x.CountryIdentifierNavigation)
+                .Select(x => new CustomerAndContact(
+                    x.CustomerIdentifier, 
+                    x.CompanyName, 
+                    x.Contact.FirstName, 
+                    x.Contact.LastName, 
+                    x.ContactTypeIdentifierNavigation.ContactTitle, 
+                    x.CountryIdentifierNavigation.Name))
+                .FirstOrDefault(x => x.CustomerIdentifier == id);
+        }
+
+        Console.WriteLine();
     }
 
     /// <summary>
