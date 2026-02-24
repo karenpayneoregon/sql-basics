@@ -1,12 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Diacritics.Extensions;
+using Microsoft.EntityFrameworkCore;
 using NorthWindSqlLiteApp1.Classes.Core;
 using NorthWindSqlLiteApp1.Classes.Extensions;
 using NorthWindSqlLiteApp1.Classes.MemberAccess;
 using NorthWindSqlLiteApp1.Data;
+using NorthWindSqlLiteApp1.Mappings;
 using NorthWindSqlLiteApp1.Models;
 using NorthWindSqlLiteApp1.Models.Sorting;
 using Spectre.Console;
 using System.Diagnostics;
+using System.Text;
 using static NorthWindSqlLiteApp1.Classes.Core.SpectreConsoleHelpers;
 
 namespace NorthWindSqlLiteApp1.Classes;
@@ -570,14 +573,34 @@ internal class CustomerOperations
         await context.Customers
             .IgnoreQueryFilters()
             .Where(e => e.City == name)
-            .ExecuteUpdateAsync(cust => cust.SetProperty(b => b.City, "Mexico D.F."));
+            .ExecuteUpdateAsync(cust => 
+                cust.SetProperty(b => b.City, "Mexico D.F."));
 
         // Save changes is not needed when using ExecuteUpdateAsync as
         // it executes the update directly in the database without tracking changes in the context.
 
         Console.WriteLine(context.Customers.IgnoreQueryFilters().Count(x => x.City == name));
     }
-    
+
+    public static async Task CityRemoveDiacritics()
+    {
+        await using var context = new Context();
+
+        var customers = context.Customers
+            .IgnoreQueryFilters()
+            .OrderBy(c => c)
+            .ToList();
+
+
+        foreach (var customer in customers.Where(customer => customer.City.HasDiacritics()))
+        {
+            context.Entry(customer).Property(c => c.City).CurrentValue = 
+                customer.City.RemoveDiacritics(new CityNameAccentsMapping());
+        }
+
+        Console.WriteLine(await context.SaveChangesAsync());
+    }
+
     private static Table CreateTableForContactTitle()
     {
         return new Table()

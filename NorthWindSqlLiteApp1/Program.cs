@@ -28,7 +28,7 @@ internal partial class Program
         //await ExecuteImplicitOperators();
 
         //await PerformCustomerOperations();
-        //await CustomerOperations.FixCityMexico();
+        await CustomerOperations.CityRemoveDiacritics();
         //PerformEmployeeOperations();
         //await PerformOrderOperations();
 
@@ -38,7 +38,7 @@ internal partial class Program
         await using var context = new Context();
 
         var names = context.Customers.IgnoreQueryFilters().Select(c => c.CompanyName).OrderBy(c => c).ToList();
-        names.ForEach(Console.WriteLine);
+        //names.ForEach(Console.WriteLine);
         
         SpectreConsoleHelpers.ExitPrompt(Justify.Left);
     }
