@@ -1,9 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Text;
+using System.Text.Json;
+using Diacritics.AccentMappings;
+using Diacritics.Extensions;
+using Microsoft.EntityFrameworkCore;
 using NorthWindSqlLiteApp1.Classes;
 using NorthWindSqlLiteApp1.Classes.Core;
+using NorthWindSqlLiteApp1.Classes.Extensions;
 using NorthWindSqlLiteApp1.Classes.MemberAccess;
 using NorthWindSqlLiteApp1.Classes.MethodsExamples;
 using NorthWindSqlLiteApp1.Data;
+using NorthWindSqlLiteApp1.Mappings;
 using NorthWindSqlLiteApp1.Models;
 using Serilog;
 using Spectre.Console;
@@ -15,7 +21,7 @@ internal partial class Program
     {
         await Task.Delay(0);
 
- 
+
 
         //await Warmup();
         //MemberAccessSamples.NullCondition();
@@ -29,6 +35,11 @@ internal partial class Program
         //Console.WriteLine();
         //UtilityCode.GetModelNames();
 
+        await using var context = new Context();
+
+        var names = context.Customers.IgnoreQueryFilters().Select(c => c.CompanyName).OrderBy(c => c).ToList();
+        names.ForEach(Console.WriteLine);
+        
         SpectreConsoleHelpers.ExitPrompt(Justify.Left);
     }
 
@@ -150,5 +161,57 @@ internal partial class Program
         CustomerOperations.CustomersFormattableString();
 
         await CustomerOperations.SortCustomerOnContactTitle();
+    }
+
+    private static async Task CityRemoveDiacritics()
+    {
+        await using var context = new Context();
+
+        var names = context.Customers
+            .IgnoreQueryFilters()
+            .Select(c => c.City)
+            .OrderBy(c => c)
+            .ToList();
+        
+        StringBuilder sb = new();
+        
+        foreach (var name in names)
+        {
+            if (name.HasDiacritics())
+            {
+                sb.AppendLine($"{name} -> {name.RemoveDiacritics(new CityNameAccentsMapping())}");
+            }
+            else
+            {
+                sb.AppendLine(name);
+            }
+        }
+        await File.WriteAllTextAsync("Cities.txt", sb.ToString());
+    }
+
+    private static async Task CompanyNameRemoveDiacritics()
+    {
+        await using var context = new Context();
+
+        var names = context.Customers
+            .IgnoreQueryFilters()
+            .Select(c => c.CompanyName)
+            .OrderBy(c => c)
+            .ToList();
+        
+        StringBuilder sb = new();
+        
+        foreach (var name in names)
+        {
+            if (name.HasDiacritics())
+            {
+                sb.AppendLine($"{name} -> {name.RemoveDiacritics(new CompanyNameAccentsMapping())}");
+            }
+            else
+            {
+                sb.AppendLine(name);
+            }
+        }
+        await File.WriteAllTextAsync("CompanyNames.txt", sb.ToString());
     }
 }

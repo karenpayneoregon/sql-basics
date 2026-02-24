@@ -17,22 +17,25 @@
 
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <NoWarn>1701;1702;CS8629;CS8602</NoWarn>
+	  <NoWarn>1701;1702;CS8629;CS8602;CS0168;CS0219</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <NoWarn>1701;1702;CS8629;CS8602</NoWarn>
+	  <NoWarn>1701;1702;CS8629;CS8602;CS0168;CS0219</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Mappings\readme.md" />
 	  <None Remove="readme.md" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Content Include="Mappings\readme.md" />
 	  <Content Include="readme.md" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Diacritics" Version="4.1.4" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.18" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.3" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
