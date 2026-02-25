@@ -28,10 +28,12 @@ public class Context : DbContext
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder
+    {
+        optionsBuilder
             .LogTo(new DbContextToFileLogger().Log,
                 [DbLoggerCategory.Database.Command.Name],
                 LogLevel.Information)
             .UseSqlServer(ConnectionString())
             .EnableSensitiveDataLogging();
+    }
 }
