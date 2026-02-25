@@ -7,7 +7,7 @@
 /// This class encapsulates details about a customer, including their identifier, company name,
 /// contact person's first and last names, contact title, and a combined name representation.
 /// </remarks>
-public class CustomerAndContact
+public class CustomerWithContact
 {
     public int CustomerIdentifier { get; }
     public string CompanyName { get; }
@@ -16,7 +16,7 @@ public class CustomerAndContact
     public string ContactTitle { get; }
     public string Name { get; }
 
-    public CustomerAndContact(int customerIdentifier, string companyName, string firstName, string lastName, string contactTitle, string name)
+    public CustomerWithContact(int customerIdentifier, string companyName, string firstName, string lastName, string contactTitle, string name)
     {
         CustomerIdentifier = customerIdentifier;
         CompanyName = companyName;
@@ -27,7 +27,7 @@ public class CustomerAndContact
     }
 
     public override bool Equals(object? value) 
-        => value is CustomerAndContact other && 
+        => value is CustomerWithContact other && 
            EqualityComparer<int>.Default.Equals(other.CustomerIdentifier, CustomerIdentifier) && EqualityComparer<string>.Default.Equals(other.CompanyName, CompanyName) && EqualityComparer<string>.Default.Equals(other.FirstName, FirstName) && EqualityComparer<string>.Default.Equals(other.LastName, LastName) && EqualityComparer<string>.Default.Equals(other.ContactTitle, ContactTitle) && EqualityComparer<string>.Default.Equals(other.Name, Name);
 
     public override int GetHashCode()

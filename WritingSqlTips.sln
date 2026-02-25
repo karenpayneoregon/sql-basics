@@ -233,6 +233,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsApplication1", "Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsDataLibrary", "ContactsDataLibrary\ContactsDataLibrary.csproj", "{989053E3-6DEB-40B9-A49C-890BC9A2148E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueConversionsEncryptProperty", "ValueConversionsEncryptProperty\ValueConversionsEncryptProperty.csproj", "{D68FC3AF-71D3-A676-C580-3F973C48436A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -547,6 +549,10 @@ Global
 		{989053E3-6DEB-40B9-A49C-890BC9A2148E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{989053E3-6DEB-40B9-A49C-890BC9A2148E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{989053E3-6DEB-40B9-A49C-890BC9A2148E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D68FC3AF-71D3-A676-C580-3F973C48436A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D68FC3AF-71D3-A676-C580-3F973C48436A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D68FC3AF-71D3-A676-C580-3F973C48436A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D68FC3AF-71D3-A676-C580-3F973C48436A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -636,6 +642,7 @@ Global
 		{1563981D-CF59-A57C-9880-41406C02981A} = {657E776F-9022-4416-8A69-149A718688E3}
 		{01FCB8A6-E27A-44C0-ACC7-DC0B8ADE0541} = {1563981D-CF59-A57C-9880-41406C02981A}
 		{989053E3-6DEB-40B9-A49C-890BC9A2148E} = {1563981D-CF59-A57C-9880-41406C02981A}
+		{D68FC3AF-71D3-A676-C580-3F973C48436A} = {BCA6D25E-F641-4217-A509-D134814082DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C3B1DD2-2A38-451D-8A31-EDC82056765A}

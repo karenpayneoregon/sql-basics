@@ -28,7 +28,7 @@ internal partial class Program
         //await ExecuteImplicitOperators();
 
         //await PerformCustomerOperations();
-        await CustomerOperations.CityRemoveDiacritics();
+        //await CustomerOperations.CityRemoveDiacritics();
         //PerformEmployeeOperations();
         //await PerformOrderOperations();
 

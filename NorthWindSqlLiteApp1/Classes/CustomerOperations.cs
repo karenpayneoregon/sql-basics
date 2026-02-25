@@ -100,7 +100,7 @@ internal class CustomerOperations
     /// <remarks>
     /// This method queries the database to fetch a customer with a specific identifier. 
     /// It includes related data such as contact information, contact type, and country details. 
-    /// The result is projected into a <see cref="CustomerAndContact"/> object for simplified access to the data.
+    /// The result is projected into a <see cref="CustomerWithContact"/> object for simplified access to the data.
     /// </remarks>
     public static void WithProjection(int id = 1)
     {
@@ -115,7 +115,7 @@ internal class CustomerOperations
                 .Include(x => x.Contact)
                 .Include(x => x.ContactTypeIdentifierNavigation)
                 .Include(x => x.CountryIdentifierNavigation)
-                .Select(x => new CustomerAndContact(
+                .Select(x => new CustomerWithContact(
                     x.CustomerIdentifier, 
                     x.CompanyName, 
                     x.Contact.FirstName, 
