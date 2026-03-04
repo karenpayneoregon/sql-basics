@@ -37,7 +37,10 @@ public class CategoryOperations
             .AsNoTracking()
             .ToListAsync();
         
-        List<CategoryItem> implicitList = categories.Select(c => (CategoryItem)c).ToList();
-        List<CategoryItem> explicitList = categories.Select<Categories, CategoryItem>(c => c).ToList();
+        List<CategoryItem> implicitList = 
+            categories.Select(c => (CategoryItem)c).ToList();
+        
+        List<CategoryItem> explicitList = 
+            categories.Select<Categories, CategoryItem>(c => c).ToList();
     }
 }

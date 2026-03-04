@@ -619,21 +619,37 @@ internal class CustomerOperations
 
     public static async Task CityRemoveDiacritics()
     {
-        await using var context = new Context();
-
-        var customers = context.Customers
-            .IgnoreQueryFilters()
-            .OrderBy(c => c)
-            .ToList();
-
-
-        foreach (var customer in customers.Where(customer => customer.City.HasDiacritics()))
+        PrintPink();
+        
+        await using (var context = new Context())
         {
-            context.Entry(customer).Property(c => c.City).CurrentValue = 
-                customer.City.RemoveDiacritics(new CityNameAccentsMapping());
+            var customers = context.Customers
+                .IgnoreQueryFilters()
+                .OrderBy(c => c)
+                .ToList();
+
+
+            foreach (var customer in customers.Where(customer => customer.City.HasDiacritics()))
+            {
+                context.Entry(customer).Property(c => c.City).CurrentValue =
+                    customer.City.RemoveDiacritics(new CityNameAccentsMapping());
+            }
+
+            Console.WriteLine(await context.SaveChangesAsync());
         }
 
-        Console.WriteLine(await context.SaveChangesAsync());
+        await using (var context = new Context())
+        {
+            var customers = context.Customers
+                .IgnoreQueryFilters()
+                .OrderBy(c => c.City)
+                .ToList();
+
+            foreach (var customer in customers)
+            {
+                Console.WriteLine($"{customer.City}");
+            }
+        }
     }
 
     private static Table CreateTableForContactTitle()

@@ -22,7 +22,7 @@ internal partial class Program
         await Task.Delay(0);
 
 
-
+        await CustomerOperations.CityRemoveDiacritics();
         //await Warmup();
         //MemberAccessSamples.NullCondition();
         //await ExecuteImplicitOperators();
