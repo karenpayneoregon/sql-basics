@@ -357,6 +357,8 @@ internal class CustomerOperations
                 ContactTypeIdentifier = 7,
                 ContactId = 5
             };
+            
+            newCustomer.Contact = context.Contacts.FirstOrDefault(c => c.ContactId == newCustomer.ContactId);
 
             context.Customers.Add(newCustomer);
 
@@ -402,7 +404,15 @@ internal class CustomerOperations
                 ContactId = 5
             };
 
-            context.Customers.Add(newCustomer);
+            newCustomer.Contact = context.Contacts.FirstOrDefault(c => c.ContactId == newCustomer.ContactId);
+            
+            newCustomer.ContactTypeIdentifierNavigation = 
+                context.ContactType.FirstOrDefault(ct => ct.ContactTypeIdentifier == newCustomer.ContactTypeIdentifier);
+            
+            newCustomer.CountryIdentifierNavigation = 
+                context.Countries.FirstOrDefault(co => co.CountryIdentifier == newCustomer.CountryIdentifier);
+            
+            context.Customers.Attach(newCustomer).State = EntityState.Added;
 
             Console.WriteLine(context.ChangeTracker.DebugView.LongView);
 

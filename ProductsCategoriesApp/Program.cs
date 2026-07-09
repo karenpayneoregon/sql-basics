@@ -11,7 +11,7 @@ internal partial class Program
 {
     static async Task Main(string[] args)
     {
-        //await EntityCode();
+        await EntityCode();
 
 
         var ddddd = await DapperOperations.GetContactDetailsAsync();

@@ -10,7 +10,7 @@ internal partial class Program
         var inspector = new DatabaseInspector(AppConnections.Instance.MainConnection);
         var catalog = DatabaseService.DatabaseName(AppConnections.Instance.MainConnection);
         
-        var tableStats = inspector.GetTableSpaceUsages();
+        var tableStats = inspector.GetTableSpaceUsages().OrderBy(x => x.TableName);
 
         var table = new Table()
             .Border(TableBorder.Rounded)

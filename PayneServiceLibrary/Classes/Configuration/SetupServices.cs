@@ -60,14 +60,7 @@ internal class SetupServices
     /// </remarks>
     public void GetEntitySettings()
     {
-        if (JsonHelpers.EntityConfigurationSectionExists())
-        {
-            EntitySettings.Instance.CreateNew = _settings.CreateNew;
-        }
-        else
-        {
-            EntitySettings.Instance.CreateNew = false;
-        }
-        
+        EntitySettings.Instance.CreateNew = 
+            JsonHelpers.EntityConfigurationSectionExists() && _settings.CreateNew;
     }
 }

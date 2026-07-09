@@ -39,5 +39,6 @@ public class DatabaseService
     /// <returns>
     /// The name of the database specified in the connection string.
     /// </returns>
-    public static string DatabaseName(string connectionString) => new SqlConnectionStringBuilder(connectionString).InitialCatalog;
+    public static string DatabaseName(string connectionString) 
+        => new SqlConnectionStringBuilder(connectionString).InitialCatalog;
 }

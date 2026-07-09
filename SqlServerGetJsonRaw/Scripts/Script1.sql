@@ -30,7 +30,6 @@ SELECT pa.Id,
 --- Create a database named EF.Json under localDb.
 USE [EF.Json]
 GO
-/****** Object:  Table [dbo].[Person]    Script Date: 12/21/2024 4:27:39 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON

@@ -15,10 +15,10 @@ internal partial class Program
 
 
         var customersJoinedSample = DapperOperations.CustomersJoinedSample1();
-        //await EntityOperations.ReadAllCustomers();
+        await EntityOperations.ReadAllCustomers();
         //await EntityOperations.AddNewContact();
         //await EntityOperations.AddNewContactBad();
-        await EntityOperations.ReadAllCategories();
+        //await EntityOperations.ReadAllCategories();
         //await EntityOperations.ReadAllEmployeesUpDateOne();
         //await EntityOperations.RemoveOneOrder();
         //await EntityOperations.GetTableNamesInDatabase();

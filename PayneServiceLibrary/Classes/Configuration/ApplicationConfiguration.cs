@@ -24,17 +24,18 @@ internal class ApplicationConfiguration
         static void ConfigureService(IServiceCollection services)
         {
             // [Config] is an alias setup in the project file
-            services.Configure<ConnectionStrings>(Config.Configuration.JsonRoot()
-                .GetSection(nameof(ConnectionStrings)));
+            services.Configure<ConnectionStrings>(
+                Config.Configuration.JsonRoot().GetSection(nameof(ConnectionStrings)));
 
             if (JsonHelpers.EntityConfigurationSectionExists())
             {
-                services.Configure<EntityConfiguration>(Config.Configuration.JsonRoot()
-                    .GetSection(nameof(EntityConfiguration)));
+                services.Configure<EntityConfiguration>(
+                    Config.Configuration.JsonRoot().GetSection(nameof(EntityConfiguration)));
             }
 
 
             services.AddScoped<SetupServices>();
+            
         }
     }
 }

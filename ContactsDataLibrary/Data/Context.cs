@@ -41,8 +41,21 @@ public partial class Context : DbContext
 
     public virtual DbSet<StateProvince> StateProvinces { get; set; }
 
+    /// <summary>
+    /// Configures the database context options for the application.
+    /// </summary>
+    /// <param name="optionsBuilder">
+    /// An instance of <see cref="DbContextOptionsBuilder"/> used to configure the database context.
+    /// </param>
+    /// <remarks>
+    /// This method ensures that the database context is properly configured with a SQL Server connection.
+    /// It also enables sensitive data logging in development environments and logs database commands to a file.
+    /// </remarks>
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+        
+        if (optionsBuilder.IsConfigured) return;
+        
         optionsBuilder.UseSqlServer(AppConnections.Instance.MainConnection);
 
         // Enable sensitive data logging only in Development environment
@@ -53,9 +66,9 @@ public partial class Context : DbContext
 
         // Log database commands to file
         optionsBuilder.LogTo(new DbContextToFileLogger().Log,
-            [
-                DbLoggerCategory.Database.Command.Name
-            ], LogLevel.Information);
+        [
+            DbLoggerCategory.Database.Command.Name
+        ], LogLevel.Information);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

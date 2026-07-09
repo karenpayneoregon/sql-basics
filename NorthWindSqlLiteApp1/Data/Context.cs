@@ -70,23 +70,21 @@ public partial class Context : DbContext
     /// <seealso cref="DbContext.OnConfiguring(DbContextOptionsBuilder)"/>
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        // Configure SQLite connection
-        optionsBuilder.UseSqlite(AppConnections.Instance.MainConnection);
+        var builder = optionsBuilder.UseSqlite(AppConnections.Instance.MainConnection);
 
-        // Enable sensitive data logging only in Development environment
-        if (Debugger.IsAttached)
+        var env = System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        if (string.Equals(env, "development", System.StringComparison.OrdinalIgnoreCase))
         {
-            optionsBuilder.EnableSensitiveDataLogging();
-            
-            if (ContextSettings.Instance.UseAuditInterceptor)
-            {
-                optionsBuilder.AddInterceptors(new AuditInterceptor());
-            }
+            builder.EnableSensitiveDataLogging();
         }
 
-        // Log database commands to file
-        optionsBuilder.LogTo(new DbContextToFileLogger().Log,
-            new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information);
+        //builder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+        
+        builder.LogTo(new DbContextToFileLogger().Log, new[]
+            {
+                DbLoggerCategory.Database.Command.Name
+            },
+            LogLevel.Information);
 
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)

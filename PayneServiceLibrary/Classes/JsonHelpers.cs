@@ -82,4 +82,37 @@ public class JsonHelpers
         return doc.RootElement.TryGetProperty(section, out JsonElement sectionElement) &&
                sectionElement.TryGetProperty(propertyName, out _);
     }
+
+    /// <summary>
+    /// Determines whether a property exists in the "appsettings.json" file based on a specified path.
+    /// </summary>
+    /// <param name="path">
+    /// An array of strings representing the hierarchical path to the property. Each element in the array 
+    /// corresponds to a level in the JSON structure.
+    /// </param>
+    /// <returns>
+    /// <c>true</c> if the property exists at the specified path; otherwise, <c>false</c>.
+    /// </returns>
+    /// <remarks>
+    /// This method allows for flexible and dynamic checks of deeply nested properties within the 
+    /// "appsettings.json" file. It traverses the JSON structure based on the provided path and verifies 
+    /// the existence of the specified property.
+    /// </remarks>
+    public static bool PropertyExists(params string[] path)
+    {
+        string jsonContent = File.ReadAllText(FileName);
+        using JsonDocument doc = JsonDocument.Parse(jsonContent);
+
+        JsonElement current = doc.RootElement;
+
+        foreach (var segment in path)
+        {
+            if (current.ValueKind != JsonValueKind.Object || !current.TryGetProperty(segment, out current))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

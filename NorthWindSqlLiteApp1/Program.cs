@@ -22,12 +22,12 @@ internal partial class Program
         await Task.Delay(0);
 
 
-        await CustomerOperations.CityRemoveDiacritics();
+        //await CustomerOperations.CityRemoveDiacritics();
         //await Warmup();
         //MemberAccessSamples.NullCondition();
         //await ExecuteImplicitOperators();
 
-        //await PerformCustomerOperations();
+        await PerformCustomerOperations();
         //await CustomerOperations.CityRemoveDiacritics();
         //PerformEmployeeOperations();
         //await PerformOrderOperations();
@@ -134,33 +134,35 @@ internal partial class Program
     /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     private static async Task PerformCustomerOperations()
     {
-        CustomerOperations.GetCustomersCount();
+        await Task.Delay(0);
+        
+        //CustomerOperations.GetCustomersCount();
 
-        await CustomerOperations.GetCustomersCountWithDapper();
+        //await CustomerOperations.GetCustomersCountWithDapper();
 
-        CustomerOperations.GetCustomersCountIgnoreQueryFilters();
+        //CustomerOperations.GetCustomersCountIgnoreQueryFilters();
 
-        CustomerOperations.DisplayTop5Customers();
-        CustomerOperations.CustomerWithJoins();
+        //CustomerOperations.DisplayTop5Customers();
+        //CustomerOperations.CustomerWithJoins();
 
-        CustomerOperations.UpdateCustomerById();
-        CustomerOperations.DisplayTop5Customers(); // Display updated customer
+        //CustomerOperations.UpdateCustomerById();
+        //CustomerOperations.DisplayTop5Customers(); // Display updated customer
 
-        CustomerOperations.RemoveCustomerDenied();
+        //CustomerOperations.RemoveCustomerDenied();
 
-        CustomerOperations.GetCustomersCount();
+        //CustomerOperations.GetCustomersCount();
 
-        CustomerOperations.WhereInCustomersIdentifiers();
-        CustomerOperations.WhereInCompanyName();
+        //CustomerOperations.WhereInCustomersIdentifiers();
+        //CustomerOperations.WhereInCompanyName();
 
         CustomerOperations.AddCustomer();
         CustomerOperations.AddCustomerDebugView();
 
-        CustomerOperations.GetCustomersCountIgnoreQueryFilters();
+        //CustomerOperations.GetCustomersCountIgnoreQueryFilters();
 
-        CustomerOperations.CustomersFormattableString();
+        //CustomerOperations.CustomersFormattableString();
 
-        await CustomerOperations.SortCustomerOnContactTitle();
+        //await CustomerOperations.SortCustomerOnContactTitle();
     }
 
     private static async Task CityRemoveDiacritics()

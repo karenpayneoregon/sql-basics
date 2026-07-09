@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ProductsCategoriesApp.Models;
 
+using static ConfigurationLibrary.Classes.ConfigurationHelper;
+
 namespace ProductsCategoriesApp.Data;
 
 public partial class Context : DbContext
@@ -51,14 +53,21 @@ public partial class Context : DbContext
     public virtual DbSet<Territories> Territories { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder
-            .UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=NorthWind;Integrated Security=True")
-            .EnableSensitiveDataLogging()
-            .LogTo(new DbContextToFileLogger().Log, new[]
-                {
-                    DbLoggerCategory.Database.Command.Name
-                },
-                LogLevel.Information);
+    {
+        var builder = optionsBuilder.UseSqlServer(ConnectionString());
+
+        var env = System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        if (string.Equals(env, "development", System.StringComparison.OrdinalIgnoreCase))
+        {
+            builder.EnableSensitiveDataLogging();
+        }
+
+        builder.LogTo(new DbContextToFileLogger().Log, new[]
+            {
+                DbLoggerCategory.Database.Command.Name
+            },
+            LogLevel.Information);
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

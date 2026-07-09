@@ -2,6 +2,10 @@
   "version": 2,
   "items": [
     {
+      "name": "ApplicationConfiguration.cs",
+      "path": "PayneServiceLibrary\\Classes\\Configuration\\ApplicationConfiguration.cs"
+    },
+    {
       "name": "Program.cs",
       "path": "EnumHasConversionDapper\\Program.cs"
     },
@@ -12,6 +16,10 @@
     {
       "name": "Program.cs",
       "path": "GlobalConnection\\Program.cs"
+    },
+    {
+      "name": "SetupServices.cs",
+      "path": "PayneServiceLibrary\\Classes\\Configuration\\SetupServices.cs"
     },
     {
       "name": "WineOperations.cs",

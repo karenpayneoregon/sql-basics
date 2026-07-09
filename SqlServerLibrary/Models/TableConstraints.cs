@@ -10,5 +10,11 @@ public class TableConstraints
     public string? ForeignKeyColumn { get; set; }
     public string? UpdateRule { get; set; }
     public string? DeleteRule { get; set; }
-    public override string ToString() => PrimaryKeyTable;
+    public override string ToString() => PrimaryKeyTable!;
+    public string Values() => $"""
+                               {PrimaryKeyTable}.{PrimaryKeyColumn}
+                               {ForeignKeyTable}.{ForeignKeyColumn}
+                               {UpdateRule}
+                               {DeleteRule}
+                               """;
 }

@@ -153,7 +153,7 @@ internal class EntityOperations
             .ThenInclude(x => x.Supplier)
             .ToListAsync();
 
-
+        Directory.CreateDirectory("Results");
         await File.WriteAllTextAsync("Results\\Categories.txt", ObjectDumper.Dump(categories));
     }
 
@@ -249,6 +249,7 @@ internal class EntityOperations
             .Include(c => c.Contact)
             .ToListAsync();
 
+        Directory.CreateDirectory("Results");
         await File.WriteAllTextAsync("Results\\Customers.txt", ObjectDumper.Dump(customers));
 
     }

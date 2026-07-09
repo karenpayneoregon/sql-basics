@@ -89,11 +89,11 @@ internal partial class Program
 
         foreach (var p in people)
         {
-            AnsiConsole.MarkupLine($"[cyan]{p.PersonId,-4}{p.FirstName,-12}{p.LastName,-12}{p.DateOfBirth, -12:MM/dd/yyyy}{p.Gender?.GenderName}[/]");
+            AnsiConsole.MarkupLine($"[cyan]{p.PersonId,-4}{p.FirstName,-12}{p.LastName,-11}{p.DateOfBirth, -30:MM/dd/yyyy}{p.Gender?.GenderName}[/]");
 
             foreach (var pPersonAddress in p.PersonAddresses)
             {
-                Console.WriteLine($"  {pPersonAddress.Address.AddressLine1, -25}{pPersonAddress.Address?.City,-18}{pPersonAddress.Address?.StateProvince.StateName}");
+                Console.WriteLine($"  {pPersonAddress.Address.AddressLine1, -25}{pPersonAddress.Address?.City,-30}{pPersonAddress.Address?.StateProvince.StateName}");
             }
             
             foreach (var d in p.PersonDevices)
