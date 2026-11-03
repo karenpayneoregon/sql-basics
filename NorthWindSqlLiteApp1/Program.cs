@@ -21,7 +21,8 @@ internal partial class Program
     {
         await Task.Delay(0);
 
-
+        EmployeeOperations.ReportsToManager();
+        SpectreConsoleHelpers.ExitPrompt(Justify.Left);
         //await CustomerOperations.CityRemoveDiacritics();
         //await Warmup();
         //MemberAccessSamples.NullCondition();
